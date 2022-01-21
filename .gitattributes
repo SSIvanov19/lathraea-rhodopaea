@@ -1,0 +1,2 @@
+*.cpp -text crlf diff
+*.h -text crlf diff
