@@ -3,8 +3,16 @@
 */
 
 #include <iostream>
+#include <back-end/accountSystem.h>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	try
+	{
+		accountManager.registerUser("Stoyan123", "SS@cb.bg", "Password123", Roles::USER);
+	}
+	catch (const std::string errorMsg)
+	{
+		std::cout << "The user can not be registered\nReason: " + errorMsg;
+	}
 }

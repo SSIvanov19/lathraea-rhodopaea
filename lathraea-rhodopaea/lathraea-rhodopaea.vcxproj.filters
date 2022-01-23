@@ -26,5 +26,8 @@
     <ClInclude Include="include\back-end\accountSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\back-end\validations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
