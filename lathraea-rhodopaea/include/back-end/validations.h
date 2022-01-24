@@ -15,34 +15,19 @@ static struct Validations
 	 * @param uname Username to be validated
 	 * @return Is username valid
 	*/
-	bool validateUname(const std::string uname)
-	{
-		const std::regex valRegex("[A-Za-z][A-Za-z0-9_]{2,29}");
-
-		return std::regex_match(uname, valRegex);
-	}
+	bool validateUname(const std::string uname); /*!< Function for validating a username */
 
 	/**
 	 * @brief Function for validating a email
 	 * @param email Email to be validated
 	 * @return Is email valid
 	*/
-	bool validateEmail(const std::string email)
-	{
-		const std::regex valRegex("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");;
-
-		return std::regex_match(email, valRegex);
-	}
+	bool validateEmail(const std::string email); /*!< Function for validating a username */
 
 	/**
 	 * @brief Function for validating a password
 	 * @param pass Password to be validated
 	 * @return Is password valid
 	*/
-	bool validatePass(const std::string pass)
-	{
-		const std::regex valRegex("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}");;
-
-		return std::regex_match(pass, valRegex);
-	}
+	bool validatePass(const std::string pass); /*!< Function for validating a username */
 } validations;

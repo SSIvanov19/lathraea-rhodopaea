@@ -9,10 +9,14 @@ int main()
 {
 	try
 	{
-		accountManager.registerUser("Stoyan123", "SS@cb.bg", "Password123", Roles::USER);
+		accountManager.registerUser("Stoyan", "SS@cb.bg", "Password123", Roles::USER);
 	}
 	catch (const std::string errorMsg)
 	{
-		std::cout << "The user can not be registered\nReason: " + errorMsg;
+		std::cout << "The user can not be registered\nReason: " + errorMsg << std::endl;;
+	}
+	catch (...)
+	{
+		std::cout << "Problem occurred. Please restart the program!";
 	}
 }

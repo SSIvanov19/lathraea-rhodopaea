@@ -341,3 +341,6 @@ healthchecksdb
 
 # Documentation
 docs
+
+# Environment variables
+.env
