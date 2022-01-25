@@ -22,12 +22,12 @@ static struct Validations
 	 * @param email Email to be validated
 	 * @return Is email valid
 	*/
-	bool validateEmail(const std::string email); /*!< Function for validating a username */
+	bool validateEmail(const std::string email); /*!< Function for validating a email */
 
 	/**
 	 * @brief Function for validating a password
 	 * @param pass Password to be validated
 	 * @return Is password valid
 	*/
-	bool validatePass(const std::string pass); /*!< Function for validating a username */
+	bool validatePass(const std::string pass); /*!< Function for validating a password */
 } validations;

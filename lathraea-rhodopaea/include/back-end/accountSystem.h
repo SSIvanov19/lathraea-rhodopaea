@@ -4,6 +4,7 @@
 
 #pragma once
 #include <string>
+#include <vector>
 
 /**
  * @brief A enum for the different roles
@@ -21,7 +22,7 @@ struct Account
 {
 	std::string uname; /*!< Username of the user */
 	std::string email; /*!< Email of the user */
-	std::string pass; /*!< Password of the user */
+	std::vector<int> pass; /*!< Password of the user */
 	Roles role = Roles::USER; /*< Role of the user */
 
 	/**
@@ -31,7 +32,7 @@ struct Account
 	 * @param pass_ Password of the user
 	 * @param role_ Role of the user
 	*/
-	Account(std::string uname_, std::string email_, std::string pass_, Roles role_); /*!< A constructor for creating a user */
+	Account(std::string uname_, std::string email_, std::vector<int> pass_, Roles role_); /*!< A constructor for creating a user */
 
 	/**
 	 * @brief Default constructor for Account
@@ -45,7 +46,7 @@ struct Account
 };
 
 /**
- * @brief A structure for a linked list that holds all of the acounts
+ * @brief A structure for a linked list that holds all of the accounts
 */
 struct AccountList
 {
@@ -71,9 +72,9 @@ struct AccountList
 	void displayAllUsers(AccountList* head);
 
 	/**
-	 * @brief A function for checking if there is already a acount with this email
+	 * @brief A function for checking if there is already a account with this email
 	 * @param head The head of the list
-	 * @param emailToCheck The email to be cheked
+	 * @param emailToCheck The email to be checked
 	 * @return Is email duplicate
 	*/
 	bool checkForDuplicateEmail(AccountList* head, std::string emailToCheck);
@@ -85,7 +86,7 @@ struct AccountList
 static struct AccountManager
 {
 	/**
-	 * @brief A Linked list that holds all of the acounts
+	 * @brief A Linked list that holds all of the accounts
 	*/
 	AccountList* accountList;
 

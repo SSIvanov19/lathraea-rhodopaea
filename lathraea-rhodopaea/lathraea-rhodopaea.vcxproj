@@ -147,10 +147,12 @@
     <ClCompile Include="lathraeaRhodopaea.cpp" />
     <ClCompile Include="src\back-end\accountSystem.cpp" />
     <ClCompile Include="src\back-end\env.cpp" />
+    <ClCompile Include="src\back-end\encryption.cpp" />
     <ClCompile Include="src\back-end\validations.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\back-end\accountSystem.h" />
+    <ClInclude Include="include\back-end\encryption.h" />
     <ClInclude Include="include\back-end\env.h" />
     <ClInclude Include="include\back-end\validations.h" />
     <ClInclude Include="include\external\dotenv.h" />

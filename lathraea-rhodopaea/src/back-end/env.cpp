@@ -13,7 +13,7 @@ std::string EnvManager::getEnv(const char* var)
 
 	if (val == NULL)
 	{
-		throw std::string("Envirment variable not found");
+		throw std::string("Environment variable not found");
 	}
 	else
 	{

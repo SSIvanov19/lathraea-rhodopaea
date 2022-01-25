@@ -5,10 +5,11 @@
 #include <back-end/accountSystem.h>
 #include <back-end/validations.h>
 #include <back-end/env.h>
+#include <back-end/encryption.h>
 #include <string>
 #include <iostream>
 
-Account::Account(std::string uname_, std::string email_, std::string pass_, Roles role_)
+Account::Account(std::string uname_, std::string email_, std::vector<int> pass_, Roles role_)
 {
 	uname = uname_;
 	email = email_;
@@ -22,7 +23,7 @@ void Account::displayUserInfo()
 {
 	std::cout << "Username: " << uname << std::endl;
 	std::cout << "Email: " << email << std::endl;
-	std::cout << "Password: " << pass << std::endl;
+	std::cout << "Password: " << encryptionManager.decrypt(pass) << std::endl;
 	std::cout << "Roles: " << int(role) << std::endl;
 }
 
@@ -81,7 +82,7 @@ AccountManager::AccountManager()
 	try
 	{
 		// Create the first Account
-		accountList = new AccountList(Account(envManager.getEnv("ADMIN_USERNAME"), envManager.getEnv("ADMIN_EMAIL"), envManager.getEnv("ADMIN_PASSWORD"), Roles::ADMIN), nullptr);
+		accountList = new AccountList(Account(envManager.getEnv("ADMIN_USERNAME"), envManager.getEnv("ADMIN_EMAIL"), encryptionManager.encrypt(envManager.getEnv("ADMIN_PASSWORD")), Roles::ADMIN), nullptr);
 	}
 	catch (const std::string errorMsg)
 	{
@@ -113,14 +114,14 @@ bool AccountManager::registerUser(std::string uname, std::string email, std::str
 		throw std::string("The password is invalid");
 	}
 
-	//Check for dublicate email
+	//Check for duplicate email
 	if (accountList->checkForDuplicateEmail(accountList, email))
 	{
 		throw std::string("The email is duplicate");
 	}
 
 	//Create and save the user
-	accountList->addUser(accountList, Account(uname, email, pass, role));
+	accountList->addUser(accountList, Account(uname, email, encryptionManager.encrypt(pass), role));
 
 	// Only for debugging purposes
 	// Should not be used in the final product
