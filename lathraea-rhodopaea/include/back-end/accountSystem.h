@@ -3,8 +3,9 @@
 */
 
 #pragma once
-#include <string>
-#include <vector>
+#include <back-end/validations.h>
+#include <back-end/env.h>
+#include <back-end/encryption.h>
 
 /**
  * @brief A enum for the different roles
@@ -75,20 +76,41 @@ struct AccountList
 	 * @brief A function for checking if there is already a account with this email
 	 * @param head The head of the list
 	 * @param emailToCheck The email to be checked
+	 * @param accountData Optional parameter for getting an account data 
 	 * @return Is email duplicate
 	*/
-	bool checkForDuplicateEmail(AccountList* head, std::string emailToCheck);
+	bool doesUserExist(AccountList* head, std::string emailToCheck, Account* accountData = nullptr); /*!< Function for checking for duplicate emails */
 };
 
 /**
  * @brief A struct about the account manager
 */
-static struct AccountManager
+struct AccountManager
 {
 	/**
 	 * @brief A Linked list that holds all of the accounts
 	*/
-	AccountList* accountList;
+	AccountList* accountList; /*!< A Linked list that holds all of the accounts */
+
+	/**
+	 * @brief Account that is currently logged in
+	*/
+	Account* activeUser = nullptr; /*!< Account that is currently logged in */
+	
+	/**
+	 * @brief Validation manager
+	*/
+	Validations validations; /*!< Validation manager */
+
+	/**
+	 * @brief Environment variables manager
+	*/
+	EnvManager envManager ;/*!< Environment variables manager */
+
+	/**
+	 * @brief Encryption manager
+	*/
+	EncryptionManager encryptionManager; /*!< Encryption manager */
 
 	/**
 	 * @brief A constructior for AccountManager
@@ -104,5 +126,14 @@ static struct AccountManager
 	 * @return True or false, based on that
 			   if a registration is successful
 	*/
-	bool registerUser(std::string uname, std::string email, std::string pass, Roles role); /*!< Function for registering a user */
-} accountManager;
+	bool isRegistrationSuccessful(std::string uname, std::string email, std::string pass, Roles role); /*!< Function for registering a user */
+
+	/**
+	 * @brief Function for logining a user
+	 * @param email Email of the user
+	 * @param pass Password of the user
+	 * @return True or false, based on that
+			   if a login is successful 
+	*/
+	bool isLoginSuccessful(std::string email, std::string pass);
+};

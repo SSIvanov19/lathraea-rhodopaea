@@ -3,21 +3,21 @@
 */
 #include <back-end/validations.h>
 
-bool Validations::validateUname(const std::string uname)
+bool Validations::isUnameValid(const std::string uname)
 {
 	const std::regex valRegex("[A-Za-z][A-Za-z0-9_]{2,29}");
 
 	return std::regex_match(uname, valRegex);
 }
 
-bool Validations::validateEmail(const std::string email)
+bool Validations::isEmailValid(const std::string email)
 {
 	const std::regex valRegex("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");;
 
 	return std::regex_match(email, valRegex);
 }
 
-bool Validations::validatePass(const std::string pass)
+bool Validations::isPassValid(const std::string pass)
 {
 	const std::regex valRegex("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}");;
 

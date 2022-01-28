@@ -3,7 +3,6 @@
 */
 
 #include <back-end/accountSystem.h>
-#include <back-end/validations.h>
 #include <back-end/env.h>
 #include <back-end/encryption.h>
 #include <string>
@@ -23,7 +22,7 @@ void Account::displayUserInfo()
 {
 	std::cout << "Username: " << uname << std::endl;
 	std::cout << "Email: " << email << std::endl;
-	std::cout << "Password: " << encryptionManager.decrypt(pass) << std::endl;
+	//std::cout << "Password: " << encryptionManager.decrypt(pass) << std::endl;
 	std::cout << "Roles: " << int(role) << std::endl;
 }
 
@@ -53,15 +52,22 @@ void AccountList::addUser(AccountList* head, Account data)
 	}
 }
 
-bool AccountList::checkForDuplicateEmail(AccountList* head, std::string emailToCheck)
+bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account* accountData)
 {
-	while (head != NULL)
+	AccountList* temp = head;
+
+	while (temp != NULL)
 	{
-		if (head->user.email == emailToCheck)
+		if (temp->user.email == emailToCheck)
 		{
+			if (accountData)
+			{
+				accountData = &temp->user;
+			}
+
 			return true;
 		}
-		head = head->next;
+		temp = temp->next;
 	}
 
 	return false;
@@ -96,26 +102,26 @@ AccountManager::AccountManager()
 	}
 }
 
-bool AccountManager::registerUser(std::string uname, std::string email, std::string pass, Roles role)
+bool AccountManager::isRegistrationSuccessful(std::string uname, std::string email, std::string pass, Roles role)
 {
 	//Validate the data
-	if (!validations.validateUname(uname))
+	if (!validations.isUnameValid(uname))
 	{
 		throw std::string("The username is invalid");
 	}
 
-	if (!validations.validateEmail(email))
+	if (!validations.isEmailValid(email))
 	{
 		throw std::string("The email address is invalid");
 	}
 
-	if (!validations.validatePass(pass))
+	if (!validations.isPassValid(pass))
 	{
 		throw std::string("The password is invalid");
 	}
 
 	//Check for duplicate email
-	if (accountList->checkForDuplicateEmail(accountList, email))
+	if (accountList->doesUserExist(accountList, email))
 	{
 		throw std::string("The email is duplicate");
 	}
@@ -130,6 +136,30 @@ bool AccountManager::registerUser(std::string uname, std::string email, std::str
 	// Only for debugging purposes
 	// Should not be used in the final product
 	accountList->displayAllUsers(accountList);
+
+	return true;
+}
+
+bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
+{
+	if (this->activeUser != nullptr)
+	{
+		throw std::string("There is already logged in account");
+	}
+
+	Account* user = new Account();
+
+	if (!accountList->doesUserExist(accountList, email, user))
+	{
+		throw std::string("There is no user with such an email");
+	}
+
+	if (user->pass != encryptionManager.encrypt(pass))
+	{
+		throw std::string("The password in incorrect");
+	}
+
+	this->activeUser = user;
 
 	return true;
 }

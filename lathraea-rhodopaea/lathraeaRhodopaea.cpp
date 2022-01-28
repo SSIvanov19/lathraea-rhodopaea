@@ -2,21 +2,13 @@
 *   @brief The main source file of the program.
 */
 
-#include <iostream>
-#include <back-end/accountSystem.h>
+#include <application.h>
 
+/**
+ * @brief The main entry point for the application
+*/
 int main()
 {
-	try
-	{
-		accountManager.registerUser("Stoyan", "SS@cb.bg", "Password123", Roles::USER);
-	}
-	catch (const std::string errorMsg)
-	{
-		std::cout << "The user can not be registered\nReason: " + errorMsg << std::endl;;
-	}
-	catch (...)
-	{
-		std::cout << "Problem occurred. Please restart the program!";
-	}
+	Application* app = new Application();
+	app->run(app->accountManager);	
 }

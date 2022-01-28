@@ -4,13 +4,12 @@
 
 #include <back-end/encryption.h>
 
-
 /**
  * @brief Function for converting from decimal to gray code
  * @param n The number in decimal
  * @return The number in gray code
 */
-int applyGrayCode(int n)
+int applyGrayCode(const int n)
 {
 	/* Right Shift the number by 1
 	   taking xor with original number */
@@ -35,7 +34,7 @@ int inversegrayCode(int n)
 	return inv;
 }
 
-std::vector<int> EncryptionManager::encrypt(std::string str)
+std::vector<int> EncryptionManager::encrypt(const std::string str)
 {
 	std::vector<int> returnVal;
 
@@ -47,7 +46,7 @@ std::vector<int> EncryptionManager::encrypt(std::string str)
 	return returnVal;
 }
 
-std::string EncryptionManager::decrypt(std::vector<int> v)
+std::string EncryptionManager::decrypt(const std::vector<int> v)
 {
 	std::string returnStr;
 
