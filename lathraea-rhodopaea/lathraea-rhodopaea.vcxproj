@@ -150,6 +150,7 @@
     <ClCompile Include="src\back-end\env.cpp" />
     <ClCompile Include="src\back-end\encryption.cpp" />
     <ClCompile Include="src\back-end\validations.cpp" />
+    <ClCompile Include="src\front-end\animations.cpp" />
     <ClCompile Include="src\front-end\graphics.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="include\back-end\env.h" />
     <ClInclude Include="include\back-end\validations.h" />
     <ClInclude Include="include\external\dotenv.h" />
+    <ClInclude Include="include\front-end\graphics.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
