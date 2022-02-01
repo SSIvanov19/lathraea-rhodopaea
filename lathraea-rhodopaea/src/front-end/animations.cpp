@@ -1,18 +1,20 @@
+/*! @file animation.cpp
+*   @brief A source file for the animations.
+*/
+
 #include <iostream>
 #include <windows.h>
 #include <front-end/graphics.h>
 
-/**
- * @brief Structure for setting the delay time
-*/
-struct Timer {
-	void operator()()
-	{
-		Sleep(70);
-	}
-};
 
-Timer delay;
+/**
+ * @brief Function for setting the delay time 
+ * @param seconds 
+*/
+void delay(int seconds)
+{
+	Sleep(seconds);
+}
 
 /**
  * @brief Function for printing book leafing animation
@@ -20,19 +22,19 @@ Timer delay;
 void bookAnimation()
 {
 	printOnePageLeafedBook();
-	delay();
+	delay(70);
 	system("CLS");
 	pageLeafingLeft1();
-	delay();
+	delay(70);
 	system("CLS");
 	pageLeafingLeft2();
-	delay();
+	delay(70);
 	system("CLS");
 	pageLeafingRight2();
-	delay();
+	delay(70);
 	system("CLS");
 	pageLeafingRight1();
-	delay();
+	delay(70);
 	system("CLS");
 	printOpenedBook();
 }
