@@ -29,12 +29,12 @@ void Account::displayUserInfo()
 AccountList::AccountList(Account user_, AccountList* next_)
 {
 	user = user_;
-	next = next;
+	next = next_;
 }
 
 void AccountList::addUser(AccountList* head, Account data)
 {
-	AccountList* newNode = new AccountList(data, head);
+	AccountList* newNode = new AccountList(data, nullptr);
 
 	AccountList* temp = head;
 
@@ -53,6 +53,27 @@ void AccountList::addUser(AccountList* head, Account data)
 }
 
 bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account* accountData)
+{
+	AccountList* temp = head;
+
+	while (temp != NULL)
+	{
+		if (temp->user.email == emailToCheck)
+		{
+			if (accountData)
+			{
+				accountData = &temp->user;
+			}
+
+			return true;
+		}
+		temp = temp->next;
+	}
+
+	return false;
+}
+
+bool AccountList::kondio(AccountList* head, std::string emailToCheck, Account*& accountData)
 {
 	AccountList* temp = head;
 
@@ -149,7 +170,7 @@ bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
 
 	Account* user = new Account();
 
-	if (!accountList->doesUserExist(accountList, email, user))
+	if (!accountList->kondio(accountList, email, user))
 	{
 		throw std::string("There is no user with such an email");
 	}

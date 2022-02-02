@@ -13,60 +13,96 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\front-end">
+      <UniqueIdentifier>{93935a3c-3bbf-499c-8d60-3e5298b7cc9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\back-end">
+      <UniqueIdentifier>{8fef019c-8d73-4b66-9fe5-c11e0962bd4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\external">
+      <UniqueIdentifier>{40d84dab-54a3-4ee3-9f77-1239a01b715a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\front-end">
+      <UniqueIdentifier>{f1b2094d-2ef1-4ca4-9b88-ab307baf4abd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\back-end">
+      <UniqueIdentifier>{5a7fac60-2ad9-4f54-9384-cd0dc5b62054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{7b874fc6-c28f-412f-8513-60bc99f26d64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lathraeaRhodopaea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\back-end\accountSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\back-end\validations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\back-end\env.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\back-end\encryption.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\front-end\graphics.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\back-end\accountSystem.cpp">
+      <Filter>Source Files\back-end</Filter>
     </ClCompile>
-    <ClCompile Include="src\front-end\animations.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\back-end\encryption.cpp">
+      <Filter>Source Files\back-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\back-end\env.cpp">
+      <Filter>Source Files\back-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\back-end\eventManager.cpp">
+      <Filter>Source Files\back-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\back-end\validations.cpp">
+      <Filter>Source Files\back-end</Filter>
     </ClCompile>
     <ClCompile Include="src\front-end\output.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\graphics.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\animations.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\strptime.cpp">
+      <Filter>Source Files\external</Filter>
+    </ClCompile>
+    <ClCompile Include="src\back-end\datetimeManager.cpp">
+      <Filter>Source Files\back-end</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\back-end\accountSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\back-end\validations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\back-end\env.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\external\dotenv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\back-end\encryption.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\front-end\graphics.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\front-end</Filter>
     </ClInclude>
     <ClInclude Include="include\front-end\output.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\accountSystem.h">
+      <Filter>Header Files\back-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\encryption.h">
+      <Filter>Header Files\back-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\env.h">
+      <Filter>Header Files\back-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\eventManager.h">
+      <Filter>Header Files\back-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\validations.h">
+      <Filter>Header Files\back-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\external\dotenv.h">
+      <Filter>Header Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="include\external\strptime.h">
+      <Filter>Header Files\external</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\datetimeManager.h">
+      <Filter>Header Files\back-end</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

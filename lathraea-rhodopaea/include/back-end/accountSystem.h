@@ -8,7 +8,7 @@
 #include <back-end/encryption.h>
 
 /**
- * @brief A enum for the different roles
+ * @brief An enum for the different roles
 */
 enum class Roles
 {
@@ -80,6 +80,8 @@ struct AccountList
 	 * @return Is email duplicate
 	*/
 	bool doesUserExist(AccountList* head, std::string emailToCheck, Account* accountData = nullptr); /*!< Function for checking for duplicate emails */
+	
+	bool kondio(AccountList* head, std::string emailToCheck, Account*& accountData);
 };
 
 /**
@@ -135,5 +137,5 @@ struct AccountManager
 	 * @return True or false, based on that
 			   if a login is successful 
 	*/
-	bool isLoginSuccessful(std::string email, std::string pass);
+	bool isLoginSuccessful(std::string email, std::string pass); /*!< Function for logining a user */
 };

@@ -9,6 +9,7 @@
 */
 int main()
 {
+
 	Application* app = new Application();
-	app->run(app->accountManager);	
+	app->run(app->accountManager, app->eventManager);	
 }
