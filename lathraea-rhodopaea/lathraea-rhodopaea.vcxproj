@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lathraeaRhodopaea.cpp" />
+    <ClCompile Include="mainMenu.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\back-end\accountSystem.cpp" />
     <ClCompile Include="src\back-end\datetimeManager.cpp" />

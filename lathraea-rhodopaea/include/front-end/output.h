@@ -4,3 +4,4 @@
 #pragma once
 
 void outputPosition(int x, int y);
+void color(int color);

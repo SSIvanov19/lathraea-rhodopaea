@@ -19,3 +19,16 @@ void outputPosition(int x, int y)
 	}
 	else {}
 }
+
+/**
+ * @brief Function for setting the output color
+ * @param color 
+*/
+void color(int color)
+{
+	if (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color))
+	{
+		return;
+	}
+	else {}
+}

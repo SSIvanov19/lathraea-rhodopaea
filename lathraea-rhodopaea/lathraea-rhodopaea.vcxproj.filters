@@ -69,6 +69,9 @@
     <ClCompile Include="src\back-end\datetimeManager.cpp">
       <Filter>Source Files\back-end</Filter>
     </ClCompile>
+    <ClCompile Include="mainMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
