@@ -58,5 +58,3 @@ struct DateManager
 	*/
 	bool isDateBetweenTwoDates(tm firstDate, tm middleDate, tm lastDate);
 };
-
-extern DateManager dm;

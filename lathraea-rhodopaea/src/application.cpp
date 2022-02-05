@@ -7,7 +7,7 @@
 
 void Application::run(AccountManager accountManager, EventManager eventManager)
 {
-	/**/
+	
 	try
 	{
 		// EventManager test
@@ -86,13 +86,7 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 	{
 		std::cout << "The event can not be added\nReason: " + errorMsg << std::endl;;
 	}
-	catch (...)
-	{
-		std::cout << "Problem occurred. Please restart the program!";
-	}
 	
-
-
 	/* Account system test
 	try
 	{

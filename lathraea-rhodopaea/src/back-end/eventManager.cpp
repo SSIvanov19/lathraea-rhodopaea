@@ -4,7 +4,7 @@
 
 #include <back-end/eventManager.h>
 #include <external/strptime.h>
-
+#include <back-end/logs.h>
 
 Event::Event(
 	std::string title_,
@@ -78,8 +78,8 @@ void Event::displayEventInfo()
 	
 	if (period.size() == 2)
 	{
-		std::cout << "Start date: " << period[0].tm_mday << "." << 1 + period[0].tm_mon << "." << 1900 + period[0].tm_year << std::endl;
-		std::cout << "End date: " << period[1].tm_mday << "." << 1 + period[1].tm_mon << "." << 1900 + period[1].tm_year << std::endl;
+		std::cout << "Start date: " << std::put_time(&period[0], "%x") << std::endl;
+		std::cout << "End date: " << std::put_time(&period[1], "%x") << std::endl;
 		std::cout << "Duration in days: " << dateManager.getDifference(period[0], period[1]) << std::endl;
 	}
 	else
@@ -160,25 +160,57 @@ bool EventManager::addUprisingEvent(
 	std::string additionalNotes
 )
 {
+	LoggerManager loggerManager;
+	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+
 	// Validate the data
 	if (title.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " + 
+			title + 
+			" can not be registerd, because the title is NULL."
+		);
+
 		throw std::string("Title can not be empty!");
 	}
 
 	if (period.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " + 
+			title + 
+			" can not be registerd, because the period is NULL."
+		);
+
 		throw std::string("Period can not be empty!");
 	}
 	
 	if (organizers.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the organizers is NULL."
+		);
+
 		throw std::string("Organizers can not be empty");
 	}
 
 	// Check for duplicate names
 	if (eventList->doesEventExist(eventList, title))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because there is already"
+			" an event with the same name."
+		);
+
 		throw std::string("There is already an event with the same name");
 	}
 
@@ -212,7 +244,10 @@ bool EventManager::addUprisingEvent(
 		);
 	}
 
-	//Should be logged
+	// Log
+	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+
+	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
 	eventList->displayAllEvents(eventList);
 	std::cout << std::endl;
@@ -231,37 +266,84 @@ bool EventManager::addWarEvent(
 	std::string additionalNotes
 )
 {
+	LoggerManager loggerManager;
+	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+
 	// Validate the data
 	if (title.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the title is NULL."
+		);
+
 		throw std::string("Title can not be empty!");
 	}
 
 	if (period.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the period is NULL."
+		);
+
 		throw std::string("Period can not be empty!");
 	}
 
 	if (participatingCountries.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the participating countries is NULL."
+		);
+
 		throw std::string("Participating countries can not be empty");
 	}
 
 	if (winner.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the winner is NULL."
+		);
+
 		throw std::string("Winner can not be empty!");
 	}
 
 	if (reasons.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the reasons is NULL."
+		);
+
 		throw std::string("Reasons can not be empty!");
 	}
 
 	// Check for duplicate names
 	if (eventList->doesEventExist(eventList, title))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because there is already"
+			" an event with the same name."
+		);
+
 		throw std::string("There is already an event with the same name");
 	}
+
 	// Add the event to the linked list
 	if (eventList != nullptr)
 	{
@@ -296,7 +378,10 @@ bool EventManager::addWarEvent(
 		);
 	}
 
-	//Should be logged
+	// Log
+	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+
+	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
 	eventList->displayAllEvents(eventList);
 	std::cout << std::endl;
@@ -316,37 +401,84 @@ bool EventManager::addMovementEvent(
 	std::string additionalNotes
 )
 {
+	LoggerManager loggerManager;
+	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+
 	// Validate the data
 	if (title.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the title is NULL."
+		);
+
 		throw std::string("Title can not be empty!");
 	}
 
 	if (period.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the period is NULL."
+		);
+
 		throw std::string("Period can not be empty!");
 	}
 
 	if (howItStarted.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the how it started is NULL."
+		);
+
 		throw std::string("How it started can not be empty!");
 	}
 
 	if (ideas.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the ideas is NULL."
+		);
+
 		throw std::string("Ideas can not be empty!");
 	}
 
 	if (aims.size() == 0)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the aims is NULL."
+		);
+
 		throw std::string("Aims can not be empty!");
 	}
 
 	// Check for duplicate names
 	if (eventList->doesEventExist(eventList, title))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because there is already"
+			" an event with the same name."
+		);
+
 		throw std::string("There is already an event with the same name");
 	}
+
 	// Add the event to the linked list
 	if (eventList != nullptr)
 	{
@@ -380,7 +512,10 @@ bool EventManager::addMovementEvent(
 		);
 	}
 
-	//Should be logged
+	// Log
+	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+
+	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
 	eventList->displayAllEvents(eventList);
 	std::cout << std::endl;
@@ -390,12 +525,22 @@ bool EventManager::addMovementEvent(
 
 bool EventManager::removeEvent(EventList** head, std::string searchTitle)
 {
+	LoggerManager loggerManager;
+	
 	EventList* temp = *head;
 	EventList* prev = NULL;
 
 	if (temp != NULL && temp->event.title == searchTitle)
 	{
 		*head = temp->next; 
+		
+		loggerManager.log(
+			LogSeverity::INFO, 
+			"Event with title: " +
+			temp->event.title + 
+			" is successfully deleted."
+		);
+
 		delete temp;
 		return true;
 	}
@@ -409,10 +554,25 @@ bool EventManager::removeEvent(EventList** head, std::string searchTitle)
 
 		if (temp == NULL)
 		{
+			loggerManager.log(
+				LogSeverity::NOTICE,
+				"Event with title: " +
+				temp->event.title +
+				" can not be deleted, because there is not an event with such title: " + 
+				searchTitle
+			);
+
 			return false;
 		}
 
 		prev->next = temp->next;
+
+		loggerManager.log(
+			LogSeverity::INFO,
+			"Event with title: " +
+			temp->event.title +
+			" is successfully deleted."
+		);
 
 		delete temp;
 	}
@@ -444,12 +604,16 @@ bool EventManager::editEvent(EventList* head, std::string searchTitle, std::stri
 */
 
 std::vector<Event> EventManager::getAllEventsWithTitle(
-	EventList* head, std::string searchTitle
+	EventList* head, 
+	std::string searchTitle
 )
 {
+	LoggerManager loggerManager;
 	std::vector<Event> returnValue;
 
 	EventList* temp = head;
+
+	loggerManager.log(LogSeverity::INFO, "Trying to get all events with title: " + searchTitle);
 
 	while (temp != NULL)
 	{
@@ -461,12 +625,22 @@ std::vector<Event> EventManager::getAllEventsWithTitle(
 		temp = temp->next;
 	}
 
+	loggerManager.log(LogSeverity::INFO, "Found " + std::to_string(returnValue.size()) + " events with title: " + searchTitle);
 	return returnValue;
 }
 
 std::vector<Event> EventManager::getAllEventsWithDate(EventList* head, tm date)
 {
+	LoggerManager loggerManager;
 	std::vector<Event> returnValue;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Trying to get all events with date: " +
+		std::to_string(date.tm_year + 1900) + "-" +
+		std::to_string(date.tm_mon + 1) + "-" +
+		std::to_string(date.tm_mday)
+	);
 
 	EventList* temp = head;
 
@@ -497,5 +671,13 @@ std::vector<Event> EventManager::getAllEventsWithDate(EventList* head, tm date)
 		temp = temp->next;
 	}
 
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Found " + std::to_string(returnValue.size()) + 
+		" events with date: " +
+		std::to_string(date.tm_year + 1900) + "-" +
+		std::to_string(date.tm_mon + 1) + "-" +
+		std::to_string(date.tm_mday)
+	);
 	return returnValue;
 }

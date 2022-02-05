@@ -5,6 +5,7 @@
 #include <back-end/accountSystem.h>
 #include <back-end/env.h>
 #include <back-end/encryption.h>
+#include <back-end/logs.h>
 #include <string>
 #include <iostream>
 
@@ -106,49 +107,75 @@ void AccountList::displayAllUsers(AccountList* head)
 
 AccountManager::AccountManager()
 {
-	try
-	{
-		// Create the first Account
-		accountList = new AccountList(Account(envManager.getEnv("ADMIN_USERNAME"), envManager.getEnv("ADMIN_EMAIL"), encryptionManager.encrypt(envManager.getEnv("ADMIN_PASSWORD")), Roles::ADMIN), nullptr);
-	}
-	catch (const std::string errorMsg)
-	{
-		std::cout << "There is a problem with the program\nReason: " + errorMsg << std::endl;
-		exit(1);
-	}
-	catch (...)
-	{
-		std::cout << "Problem occurred. Please restart the program!";
-		exit(1);
-	}
+	// Create the first Account
+	accountList = new AccountList(
+		Account(
+			envManager.getEnv("ADMIN_USERNAME"), 
+			envManager.getEnv("ADMIN_EMAIL"),
+			encryptionManager.encrypt(envManager.getEnv("ADMIN_PASSWORD")),
+			Roles::ADMIN),
+		nullptr
+	);
 }
 
 bool AccountManager::isRegistrationSuccessful(std::string uname, std::string email, std::string pass, Roles role)
 {
+	LoggerManager loggerManager;
+	loggerManager.log(
+		LogSeverity::INFO, 
+		"User with email: " + 
+		email + 
+		" is trying to login."
+	);
+
 	//Validate the data
 	if (!validations.isUnameValid(uname))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Username: " + uname + " is invalid."
+		);
+
 		throw std::string("The username is invalid");
 	}
 
 	if (!validations.isEmailValid(email))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Email address: " + email + " is invalid."
+		);
+
 		throw std::string("The email address is invalid");
 	}
 
 	if (!validations.isPassValid(pass))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"The password is invalid."
+		);
+
 		throw std::string("The password is invalid");
 	}
 
 	//Check for duplicate email
 	if (accountList->doesUserExist(accountList, email))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Email address: " + email + " is duplicate."
+		);
 		throw std::string("The email is duplicate");
 	}
 
 	//Create and save the user
 	accountList->addUser(accountList, Account(uname, email, encryptionManager.encrypt(pass), role));
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"User with email: " + email + "is successfully registered"
+	);
 
 	// Only for debugging purposes
 	// Should not be used in the final product
@@ -163,8 +190,19 @@ bool AccountManager::isRegistrationSuccessful(std::string uname, std::string ema
 
 bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
 {
+	LoggerManager loggerManager;
+	loggerManager.log(
+		LogSeverity::INFO,
+		"User with email: " + email + " is trying to login."
+	);
+
 	if (this->activeUser != nullptr)
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"There is already logged in account."
+		);
+
 		throw std::string("There is already logged in account");
 	}
 
@@ -172,15 +210,30 @@ bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
 
 	if (!accountList->kondio(accountList, email, user))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"There is no user with this email:" + email
+		);
+
 		throw std::string("There is no user with such an email");
 	}
 
 	if (user->pass != encryptionManager.encrypt(pass))
 	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"The password for " + email + "is incorrect."
+		);
+
 		throw std::string("The password in incorrect");
 	}
 
 	this->activeUser = user;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"User with email: " + email + " is successfully logged."
+	);
 
 	return true;
 }

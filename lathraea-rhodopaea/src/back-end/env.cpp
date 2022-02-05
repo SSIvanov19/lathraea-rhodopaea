@@ -4,6 +4,7 @@
 
 #include <back-end/env.h>
 #include <external/dotenv.h>
+#include <back-end/errorManager.h>
 
 std::string EnvManager::getEnv(const char* var)
 {
@@ -13,7 +14,7 @@ std::string EnvManager::getEnv(const char* var)
 
 	if (val == NULL)
 	{
-		throw std::string("Environment variable not found");
+		throw ErrorHandler("env.cpp", "getEnv()", "Environment variable not found!");
 	}
 	else
 	{

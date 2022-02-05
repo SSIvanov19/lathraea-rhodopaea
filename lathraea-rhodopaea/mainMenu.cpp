@@ -84,6 +84,7 @@ void addEvent()
 	// TO DO - FIX ROW 85
 	/*while (type != 1 && type != 2 && type != 3)
 	{*/
+	/*
 		std::cin >> type;
 		switch (type)
 		{
@@ -94,10 +95,9 @@ void addEvent()
 		case 3: addMovementEvent();
 			break;
 		/*default:
-		std::cout << "Please enter a number between 1 and 3!";*/
+		std::cout << "Please enter a number between 1 and 3!";
 		}
-		
-	/*}*/
+    }*/
 
 	if (_getch())
 	{
