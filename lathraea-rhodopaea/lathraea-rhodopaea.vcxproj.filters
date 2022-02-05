@@ -69,14 +69,14 @@
     <ClCompile Include="src\back-end\datetimeManager.cpp">
       <Filter>Source Files\back-end</Filter>
     </ClCompile>
-    <ClCompile Include="mainMenu.cpp">
-      <Filter>Source Files\front-end</Filter>
-    </ClCompile>
     <ClCompile Include="src\back-end\logs.cpp">
       <Filter>Source Files\back-end</Filter>
     </ClCompile>
     <ClCompile Include="src\back-end\errorManager.cpp">
       <Filter>Source Files\back-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\mainMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="include\back-end\errorManager.h">
       <Filter>Header Files\back-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\mainMenu.h">
+      <Filter>Header Files\front-end</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

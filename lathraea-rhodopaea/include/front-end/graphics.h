@@ -1,5 +1,5 @@
 /*! @file graphics.h
-*   @brief A header file for the application graphics
+*   @brief A header file for the application graphics.
 */
 
 #pragma once

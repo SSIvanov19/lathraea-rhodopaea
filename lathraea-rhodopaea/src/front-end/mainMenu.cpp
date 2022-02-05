@@ -6,6 +6,7 @@
 #include <front-end/output.h>
 #include <back-end/eventManager.h>
 #include <back-end/datetimeManager.h>
+#include <application.h>
 
 /**
  * @brief Enumeration representing the color codes
@@ -72,40 +73,6 @@ void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption
 }
 
 /**
- * @brief Function for adding historical events
- * @param selectedOption
-*/
-void addEvent()
-{
-	system("CLS");
-	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement: ";
-	int type = 0;
-
-	// TO DO - FIX ROW 85
-	/*while (type != 1 && type != 2 && type != 3)
-	{*/
-	/*
-		std::cin >> type;
-		switch (type)
-		{
-		case 1: addUprisingEvent();
-			break;
-		case 2: addWarEvent();
-			break;
-		case 3: addMovementEvent();
-			break;
-		/*default:
-		std::cout << "Please enter a number between 1 and 3!";
-		}
-    }*/
-
-	if (_getch())
-	{
-		system("CLS");
-	}
-}
-
-/**
  * @brief Function for adding events of type "uprising"
 */
 void addUprisingEvent()
@@ -115,6 +82,7 @@ void addUprisingEvent()
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
+	std::cin.ignore();
 	getline(std::cin, title);
 
 	system("CLS");
@@ -141,7 +109,7 @@ void addUprisingEvent()
 
 	system("CLS");
 	bool isItSuccessful;
-	std::cout << "Enter true if the event is successful and false if it is unsuccessful: ";
+	std::cout << "Enter 1 if the event is successful and 0 if it is unsuccessful: ";
 	std::cin >> isItSuccessful;
 
 	system("CLS");
@@ -152,6 +120,7 @@ void addUprisingEvent()
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
+	std::cin.ignore();
 	getline(std::cin, additionalNotes);
 
 	EventMenager.addUprisingEvent(title, periodV, coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
@@ -167,6 +136,7 @@ void addWarEvent()
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
+	std::cin.ignore();
 	getline(std::cin, title);
 
 	system("CLS");
@@ -211,6 +181,7 @@ void addWarEvent()
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
+	std::cin.ignore();
 	getline(std::cin, additionalNotes);
 
 	EventMenager.addWarEvent(title, periodV, coordinates, participatingCountriesV, winner, reasons, rulersV, additionalNotes);
@@ -226,6 +197,7 @@ void addMovementEvent()
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
+	std::cin.ignore();
 	getline(std::cin, title);
 
 	system("CLS");
@@ -268,18 +240,65 @@ void addMovementEvent()
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
+	std::cin.ignore();
 	getline(std::cin, additionalNotes);
 
 	EventMenager.addMovementEvent(title, periodV, coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
+	std::cout << "If you want to go back press any key" << std::endl;
+	if (_getch())
+	{
+		system("CLS");
+	}
+	else {
+		std::cout << "Press any key to go back!";
+	}
 }
 
+/**
+ * @brief Function for adding historical events
+ * @param selectedOption
+*/
+void addEvent()
+{
+	system("CLS");
+	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement: ";
+	int type = 0;
+
+	/*TO DO - FIX ROW 85*/
+	while (type != 1 && type != 2 && type != 3)
+	{
+
+		std::cin >> type;
+		switch (type)
+		{
+		case 1: addUprisingEvent();
+			break;
+		case 2: addWarEvent();
+			break;
+		case 3: addMovementEvent();
+			break;
+		default:
+			std::cout << "Please enter a number between 1 and 3!";
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+	}
+}
+
+/**
+ * @brief Function for deleting historical events
+*/
 void deleteEvent()
 {
-	/*EventManager EventMenager;
+	system("CLS");
+	EventManager eventMenager;
 	std::string title;
-	std::cout << "Enter the title of the event you want to remove";
+	std::cout << "Enter the title of the event you want to remove: ";
 	getline(std::cin, title);
-	EventMenager.removeEvent(EventManager, title);*/
+	eventMenager.removeEvent(&eventMenager.eventList, title);
 }
 
 /**
@@ -306,6 +325,7 @@ void hoverMenuOptions(char key, int& selectedOption, std::vector<std::string> po
 		{
 			selectedOption -= 1;
 		}
+		break;
 	case ARROW_KEYS::KEY_ENTER:
 		switch (selectedOption)
 		{
