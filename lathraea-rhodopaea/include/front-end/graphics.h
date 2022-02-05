@@ -11,4 +11,5 @@ void pageLeafingRight1();
 void pageLeafingLeft2();
 void pageLeafingRight2();
 void printSnakeSword();
+void printBulgarianMap();
 

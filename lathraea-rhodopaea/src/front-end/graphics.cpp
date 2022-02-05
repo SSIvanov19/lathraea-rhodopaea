@@ -889,3 +889,62 @@ void printSnakeSword()
 	std::cout << "    |/,-'" << std::endl;
 	std::cout << "    /" << std::endl;
 }
+
+/**
+ * @brief Function for printing the map of Bulgaria
+*/
+void printBulgarianMap()
+{
+	outputPosition(4, 1);
+	std::cout << "  .-.                                                     _.--._" << std::endl;
+	outputPosition(4, 2);
+	std::cout << " _|  \\_                                              _.-'       ._   _" << std::endl;
+	outputPosition(4, 3);
+	std::cout << "/    .-'  _                                       .'              '-' '" << std::endl;
+	outputPosition(4, 4);
+	std::cout << "|    '-.-' '-._       _                        _.'                     '----'." << std::endl;
+	outputPosition(4, 5);
+	std::cout << " \\             '-.--.' '-.._._       _______.'                               \\" << std::endl;
+	outputPosition(4, 6);
+	std::cout << "  |                            '-_.-'                                    _.._/" << std::endl;
+	outputPosition(4, 7);
+	std::cout << "   \\_                                                                 .'" << std::endl;
+	outputPosition(4, 8);
+	std::cout << "     \\                                                              _.'" << std::endl;
+	outputPosition(4, 9);
+	std::cout << "      \\_                                                           '." << std::endl;
+	outputPosition(4, 10);
+	std::cout << "        |                                                         _.'" << std::endl;
+	outputPosition(4, 11);
+	std::cout << "        '.                                                         '." << std::endl;
+	outputPosition(4, 12);
+	std::cout << "       .'                                                           '." << std::endl;
+	outputPosition(4, 13);
+	std::cout << "      _/                                                            _'" << std::endl;
+	outputPosition(4, 14);
+	std::cout << "  .-_/                                                            .'" << std::endl;
+	outputPosition(4, 15);
+	std::cout << "  '.                                                             .'" << std::endl;
+	outputPosition(4, 16);
+	std::cout << "   /_                                                           .'" << std::endl;
+	outputPosition(4, 17);
+	std::cout << "   _/                                                           '-" << std::endl;
+	outputPosition(4, 18);
+	std::cout << "   \\.                                                    _._     '-." << std::endl;
+	outputPosition(4, 19);
+	std::cout << "     '--.                                             .-'    '-.    '-." << std::endl;
+	outputPosition(4, 20);
+	std::cout << "        |_                                           /         '-._.-.-'" << std::endl;
+	outputPosition(4, 21);
+	std::cout << "          '-.                                     _.'" << std::endl;
+	outputPosition(4, 22);
+	std::cout << "          .'                                   .-'" << std::endl;
+	outputPosition(4, 23);
+	std::cout << "          |        ._..-.-.                   '-." << std::endl;
+	outputPosition(4, 24);
+	std::cout << "         .'   ._.-'       '-._._              _.'" << std::endl;
+	outputPosition(4, 25);
+	std::cout << "        '__.-'                  '.    _._.'.-'" << std::endl;
+	outputPosition(4, 26);
+	std::cout << "                                  '-.'" << std::endl;
+}
