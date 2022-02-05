@@ -244,14 +244,15 @@ void addMovementEvent()
 	getline(std::cin, additionalNotes);
 
 	EventMenager.addMovementEvent(title, periodV, coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
-	std::cout << "If you want to go back press any key" << std::endl;
+
+	/*std::cout << "If you want to go back press any key" << std::endl;
 	if (_getch())
 	{
 		system("CLS");
 	}
 	else {
 		std::cout << "Press any key to go back!";
-	}
+	}*/
 }
 
 /**
