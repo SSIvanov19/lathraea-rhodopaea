@@ -44,28 +44,20 @@ enum class ARROW_KEYS : int
 
 /**
  * @brief Function for printing the main menu options
- * @param possibleOptions
- * @param selectedOption
+ * @param possibleOptions The possible options
+ * @param selectedOption The selected option
 */
 void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption)
 {
 	for (int i = 0; i < possibleOptions.size(); i++)
 	{
-		try
-		{
-			if (i + 1 == selectedOption)
-			{
-				throw(selectedOption);
-			}
-			else
-			{
-				color((int)COLORS::GRAY);
-			}
-
-		}
-		catch (int option)
+		if (i + 1 == selectedOption)
 		{
 			color((int)COLORS::RED);
+		}
+		else
+		{
+			color((int)COLORS::GRAY);
 		}
 		outputPosition(1, i + i + 1);
 		std::cout << " -> " << possibleOptions[i] << std::endl << std::endl;
@@ -74,7 +66,7 @@ void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption
 
 /**
  * @brief Function for checking whether the month is entered correctly
- * @param month
+ * @param month The month that needs to be checked
  * @return true/false
 */
 bool isValidMonthName(std::string month)
@@ -99,28 +91,21 @@ bool isValidMonthName(std::string month)
 
 /**
  * @brief Function for checking whether the day is in range
- * @param day
+ * @param day A day that needs to be checked
  * @return true/false
 */
 bool isDayInRange(std::string day)
 {
-	try
+	if (stoi(day) >= 1 and stoi(day) <= 31)
 	{
-		if (stoi(day) >= 1 and stoi(day) <= 31)
-		{
-			return true;
-		}
-		throw(day);
+		return true;
 	}
-	catch (std::string exception)
-	{
-		return false;
-	}
+	return false;
 }
 
 /**
  * @brief Function for checking whether the date is entered in the correct way
- * @param str
+ * @param str The string containing the date/s
  * @return true/false
 */
 bool checkDatesValidation(std::string str)
@@ -148,6 +133,18 @@ bool checkDatesValidation(std::string str)
 	if (whiteSpaces != 2 and twoDates == 0)
 	{
 		return false;
+	}
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (str[i] == ',')
+		{
+			twoDates = true;
+		}
+		if (str[i] == ' ')
+		{
+			whiteSpaces++;
+		}
 	}
 
 	whiteSpaces = 0;
@@ -213,11 +210,93 @@ bool checkDatesValidation(std::string str)
 }
 
 /**
+ * @brief Function for passing the date/s as vector
+ * @param str The string containing the date/s
+ * @return The date/s as vector
+*/
+std::vector <std::string> separateDates(std::string str)
+{
+	std::string startDate;
+	std::string endDate;
+	std::string day, month, year, dayTwo, monthTwo, yearTwo;
+
+	std::vector <std::string> dates;
+
+	bool twoDates = false;
+	int whiteSpaces = 0;
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (str[i] == ',')
+		{
+			twoDates = true;
+		}
+	}
+
+	for (size_t i = 0; i < str.size(); i++)
+	{
+
+		if (str[i] == ' ')
+		{
+			whiteSpaces++;
+			continue;
+		}
+
+		if (str[i] != ',')
+		{
+			if (whiteSpaces == 0)
+			{
+				day += str[i];
+			}
+			if (whiteSpaces == 1)
+			{
+				month += str[i];
+			}
+			if (whiteSpaces == 2)
+			{
+				year += str[i];
+			}
+		}
+
+		if (twoDates)
+		{
+			if (whiteSpaces == 3)
+			{
+				dayTwo += str[i];
+			}
+			if (whiteSpaces == 4)
+			{
+				monthTwo += str[i];
+			}
+			if (whiteSpaces == 5)
+			{
+				yearTwo += str[i];
+			}
+		}
+
+	}
+
+	startDate += day + ' ' + month + ' ' + year;
+	endDate += dayTwo + ' ' + monthTwo + ' ' + yearTwo;
+	
+	if (twoDates)
+	{
+		dates.push_back(startDate);
+		dates.push_back(endDate);
+	}
+	else
+	{
+		dates.push_back(startDate);
+	}
+	return dates;
+}
+
+/**
  * @brief Function for adding events of type "uprising"
 */
 void addUprisingEvent()
 {
-	EventManager eventMenager;
+	EventManager eventMenager; // event menijara da e edin i da sa podava s funkciq
 
 	system("CLS");
 	std::string title;
@@ -229,13 +308,13 @@ void addUprisingEvent()
 	std::string period;
 	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
+
 	while (!checkDatesValidation(period))
 	{
 		std::cout << "The data you've entered is incorrect, please enter a date/s - ex(24 apr 2004, 27 apr 2005)";
 		getline(std::cin, period);
 	}
-	std::vector<std::string> periodV;
-	periodV.push_back(period);
+	separateDates(period);
 
 	system("CLS");
 	int x = 0, y = 0;
@@ -270,7 +349,7 @@ void addUprisingEvent()
 
 	try
 	{
-		eventMenager.addUprisingEvent(title, periodV, coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
+		eventMenager.addUprisingEvent(title, separateDates(period), coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
 	}
 	catch (std::string errorMessage)
 	{
@@ -295,13 +374,13 @@ void addWarEvent()
 	std::string period;
 	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
+
 	while (!checkDatesValidation(period))
 	{
 		std::cout << "The data you've entered is incorrect, please enter a date/s - ex(24 apr 2004, 27 apr 2005)";
 		getline(std::cin, period);
 	}
-	std::vector<std::string> periodV;
-	periodV.push_back(period);
+	separateDates(period);
 
 	system("CLS");
 	int x = 0, y = 0;
@@ -343,7 +422,7 @@ void addWarEvent()
 
 	try
 	{
-		eventMenager.addWarEvent(title, periodV, coordinates, participatingCountriesV, winner, reasons, rulersV, additionalNotes);
+		eventMenager.addWarEvent(title, separateDates(period), coordinates, participatingCountriesV, winner, reasons, rulersV, additionalNotes);
 	}
 	catch (std::string errorMessage)
 	{
@@ -373,8 +452,7 @@ void addMovementEvent()
 		std::cout << "The data you've entered is incorrect, please enter a date/s - ex(24 apr 2004, 27 apr 2005)";
 		getline(std::cin, period);
 	}
-	std::vector<std::string> periodV;
-	periodV.push_back(period);
+	separateDates(period);
 
 	system("CLS");
 	int x = 0, y = 0;
@@ -415,7 +493,7 @@ void addMovementEvent()
 	system("CLS");
 	try
 	{
-		eventMenager.addMovementEvent(title, periodV, coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
+		eventMenager.addMovementEvent(title, separateDates(period), coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
 	}
 	catch (std::string errorMessage)
 	{
@@ -425,7 +503,6 @@ void addMovementEvent()
 
 /**
  * @brief Function for adding historical events
- * @param selectedOption
 */
 void addEvent()
 {
@@ -433,11 +510,13 @@ void addEvent()
 	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement: ";
 	int type = 0;
 
-	/*TO DO - FIX ROW 85*/
 	while (type != 1 && type != 2 && type != 3)
 	{
 
 		std::cin >> type;
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+
 		switch (type)
 		{
 		case 1: addUprisingEvent();
@@ -472,9 +551,9 @@ void deleteEvent()
 
 /**
  * @brief Function for coloring hovered options
- * @param key
- * @param selectedOption
- * @param possibleOptions
+ * @param key The pressed button
+ * @param selectedOption The selected option
+ * @param possibleOptions The possible options
 */
 void hoverMenuOptions(char key, int& selectedOption, std::vector<std::string> possibleOptions)
 {
@@ -499,47 +578,10 @@ void hoverMenuOptions(char key, int& selectedOption, std::vector<std::string> po
 		switch (selectedOption)
 		{
 		case 1: addEvent();
+			break;
 		case 2: deleteEvent();
+			break;
 		}
 
 	}
-	// TO DO - ADD THE OTHER OPTIONS
 }
-
-//int main()
-//{
-//	std::vector<std::string> loginOptions =
-//	{
-//		"Login",
-//		"Register"
-//	};
-//
-//	std::vector<std::string> menuOptions =
-//	{
-//		"Add historical event",
-//		"Remove historical event",
-//		"Edit historical events",
-//		"Visualize added events",
-//		"Connect events",
-//		"About us",
-//		"Exit"
-//	};
-//
-//	std::vector<std::string> visualizationOptions =
-//	{
-//		"As a map",
-//		"As a timeline",
-//		"As an encyclopedia"
-//	};
-//
-//	char pressedKey;
-//	int selectedOption = 1;
-//
-//	while (selectedOption)
-//	{
-//		outputOptions(menuOptions, selectedOption);
-//		pressedKey = _getch();
-//		hoverMenuOptions(pressedKey, selectedOption, menuOptions);
-//	}
-//
-//}

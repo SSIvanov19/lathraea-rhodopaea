@@ -5,8 +5,8 @@
 
 /**
  * @brief Function for setting the output position
- * @param x 
- * @param y 
+ * @param x The X coordinates
+ * @param y The Y coordinates
 */
 void outputPosition(int x, int y)
 {
@@ -22,7 +22,7 @@ void outputPosition(int x, int y)
 
 /**
  * @brief Function for setting the output color
- * @param color 
+ * @param color The set color
 */
 void color(int color)
 {

@@ -9,7 +9,7 @@
 
 /**
  * @brief Function for setting the delay time 
- * @param seconds 
+ * @param seconds The seconds of delay
 */
 void delay(int seconds)
 {

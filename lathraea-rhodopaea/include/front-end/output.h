@@ -3,5 +3,5 @@
 */
 #pragma once
 
-void outputPosition(int x, int y);
-void color(int color);
+void outputPosition(int x, int y); // Function for setting the output position
+void color(int color); // Function for setting the output color

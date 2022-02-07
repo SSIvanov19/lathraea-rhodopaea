@@ -12,7 +12,7 @@
 */
 int main()
 {
-	/*
+	
 	try
 	{
 		LoggerManager loggerManager;
@@ -52,42 +52,7 @@ int main()
 		std::cout << "There was a problem with the program and it is going to close"
 			"itself!\nSee the log file for more information";
 	}
-	*/
-
 	
-	/*TO-DO - FIX BUGS*/
-	std::vector<std::string> loginOptions =
-	{
-		"Login",
-		"Register"
-	};
-
-	std::vector<std::string> menuOptions =
-	{
-		"Add historical event",
-		"Remove historical event",
-		"Edit historical events",
-		"Visualize added events",
-		"Connect events",
-		"About us",
-		"Exit"
-	};
-
-	std::vector<std::string> visualizationOptions =
-	{
-		"As a map",
-		"As a timeline",
-		"As an encyclopedia"
-	};
-
-	char pressedKey;
-	int selectedOption = 1;
-
-	while (selectedOption)
-	{
-		outputOptions(menuOptions, selectedOption);
-		pressedKey = _getch();
-		hoverMenuOptions(pressedKey, selectedOption, menuOptions);
-	}
+	
 }
 
