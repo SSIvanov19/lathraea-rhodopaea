@@ -12,7 +12,7 @@
 */
 int main()
 {
-		/*try
+	/*try
 	{
 		LoggerManager loggerManager;
 		loggerManager.log(LogSeverity::INFO, "Initializing the application");

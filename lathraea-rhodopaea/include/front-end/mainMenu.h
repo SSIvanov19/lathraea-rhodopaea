@@ -10,6 +10,9 @@
 
 void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption);
 void addEvent();
+bool isValidMonthName(std::string month);
+bool isDayInRange(std::string day);
+bool checkDatesValidation(std::string str);
 void addUprisingEvent();
 void addWarEvent();
 void addMovementEvent();
