@@ -7,7 +7,6 @@
 
 void Application::run(AccountManager accountManager, EventManager eventManager)
 {
-	
 	try
 	{
 		// EventManager test
@@ -45,6 +44,13 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 			"Long story",
 			"Djena e velika",
 			"Qsha beibi"
+		);
+		
+		eventManager.addOtherEvent(
+			"Giurgiu Revolutionary Committee",
+			{ "11 nov 1875", "25 dec 1875"},
+			{ 0, 0 },
+			"Giurgiu Revolutionary Committee lorem ipsum lorem"
 		);
 
 		if (eventManager.removeEvent(&eventManager.eventList, "Movement ipsum"))

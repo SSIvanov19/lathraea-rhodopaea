@@ -154,6 +154,7 @@
     <ClCompile Include="src\back-end\errorManager.cpp" />
     <ClCompile Include="src\back-end\eventManager.cpp" />
     <ClCompile Include="src\back-end\logs.cpp" />
+    <ClCompile Include="src\back-end\storylineManager.cpp" />
     <ClCompile Include="src\back-end\validations.cpp" />
     <ClCompile Include="src\external\strptime.cpp" />
     <ClCompile Include="src\front-end\animations.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="include\back-end\errorManager.h" />
     <ClInclude Include="include\back-end\eventManager.h" />
     <ClInclude Include="include\back-end\logs.h" />
+    <ClInclude Include="include\back-end\storylineManager.h" />
     <ClInclude Include="include\back-end\validations.h" />
     <ClInclude Include="include\external\dotenv.h" />
     <ClInclude Include="include\external\strptime.h" />

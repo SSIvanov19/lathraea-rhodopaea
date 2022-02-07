@@ -5,7 +5,7 @@
 #include <iostream>
 #include <front-end/output.h>
 
-enum class CHARACTERS : char
+enum class CHARACTERS
 {
 	DOT = 205, /*Space dot*/
 	HORIZONTAL_LINE = 196,  /*Horizontal line */

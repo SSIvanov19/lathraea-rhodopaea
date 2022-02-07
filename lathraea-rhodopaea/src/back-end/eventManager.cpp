@@ -70,6 +70,20 @@ Event::Event(
 	type = TypeOfEvent::MOVEMENT;
 }
 
+Event::Event(
+	std::string title_,
+	std::vector<std::string> period_,
+	Coordinates coordinates_,
+	std::string additionalNotes_
+)
+{
+	title = title_;
+	period = dateManager.converVectorOfStringsToVectorOfDate(period_);
+	coordinates = coordinates_;
+	additionalNotes = additionalNotes_;
+	type = TypeOfEvent::MOVEMENT;
+}
+
 Event::Event() = default;
 
 void Event::displayEventInfo()
@@ -150,7 +164,7 @@ void EventList::displayAllEvents(EventList* head)
 	}
 }
 
-bool EventManager::addUprisingEvent(
+void EventManager::addUprisingEvent(
 	std::string title, 
 	std::vector<std::string> period, 
 	Coordinates coordinates, 
@@ -251,11 +265,9 @@ bool EventManager::addUprisingEvent(
 	std::cout << "Event added successfully. All events data:\n\n";
 	eventList->displayAllEvents(eventList);
 	std::cout << std::endl;
-
-	return true;
 }
 
-bool EventManager::addWarEvent(
+void EventManager::addWarEvent(
 	std::string title,
 	std::vector<std::string> period,
 	Coordinates coordinates,
@@ -385,12 +397,10 @@ bool EventManager::addWarEvent(
 	std::cout << "Event added successfully. All events data:\n\n";
 	eventList->displayAllEvents(eventList);
 	std::cout << std::endl;
-
-	return true;
 }
 
 
-bool EventManager::addMovementEvent(
+void EventManager::addMovementEvent(
 	std::string title,
 	std::vector<std::string> period,
 	Coordinates coordinates,
@@ -519,8 +529,90 @@ bool EventManager::addMovementEvent(
 	std::cout << "Event added successfully. All events data:\n\n";
 	eventList->displayAllEvents(eventList);
 	std::cout << std::endl;
+}
 
-	return true;
+void EventManager::addOtherEvent(
+	std::string title, 
+	std::vector<std::string> period, 
+	Coordinates coordinates, 
+	std::string additionalNotes
+)
+{
+	LoggerManager loggerManager;
+	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+
+	// Validate the data
+	if (title.size() == 0)
+	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the title is NULL."
+		);
+
+		throw std::string("Title can not be empty!");
+	}
+
+	if (period.size() == 0)
+	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because the period is NULL."
+		);
+
+		throw std::string("Period can not be empty!");
+	}
+
+	// Check for duplicate names
+	if (eventList->doesEventExist(eventList, title))
+	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"Event with title: " +
+			title +
+			" can not be registerd, because there is already"
+			" an event with the same name."
+		);
+
+		throw std::string("There is already an event with the same name");
+	}
+
+	// Add the event to the linked list
+	if (eventList != nullptr)
+	{
+		eventList->addEvent(
+			eventList,
+			Event(
+				title,
+				period, 
+				coordinates,
+				additionalNotes
+			)
+		);
+	}
+	else
+	{
+		eventList->insertEventAtFront(
+			&eventList,
+			Event(
+				title,
+				period,
+				coordinates,
+				additionalNotes
+			)
+		);
+	}
+
+	// Log
+	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+
+	//Should be removed
+	std::cout << "Event added successfully. All events data:\n\n";
+	eventList->displayAllEvents(eventList);
+	std::cout << std::endl;
 }
 
 bool EventManager::removeEvent(EventList** head, std::string searchTitle)

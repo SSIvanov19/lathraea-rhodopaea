@@ -125,6 +125,20 @@ struct Event
 	); /*!< Constructor for a movement event */
 
 	/**
+	 * @brief Constructor for a undefined (other) event
+	 * @param title_ Title for the event
+	 * @param period_ Period for the event
+	 * @param coordinates_ Coordinates of the movement on the map
+	 * @param additionalNotes_ Additional notes for the event
+	*/
+	Event(
+		std::string title_,
+		std::vector<std::string> period_,
+		Coordinates coordinates_,
+		std::string additionalNotes_ = ""
+	);
+
+	/**
 	 * @brief Default constructor for Event
 	*/
 	Event(); /*!< Default constructor for Event */
@@ -193,9 +207,8 @@ struct EventManager
 	 * @param isItSuccessful Is the uprise successful
 	 * @param numberOfRebelions Number of rebelions taking part in the uprise
 	 * @param additionalNotes Additional notes for the uprise
-	 * @return Is the adding to the list successful
 	*/
-	bool addUprisingEvent(
+	void addUprisingEvent(
 		std::string title,
 		std::vector<std::string> period,
 		Coordinates coordinates,
@@ -215,9 +228,8 @@ struct EventManager
 	 * @param reasons Reasons for the war
 	 * @param rulers Rulers of the countries Participating in the war
 	 * @param additionalNotes Additional notes
-	 * @return Is the adding to the list successful
 	*/
-	bool addWarEvent(
+	void addWarEvent(
 		std::string title,
 		std::vector<std::string> period,
 		Coordinates coordinates,
@@ -238,9 +250,8 @@ struct EventManager
 	 * @param aims Aims of the movement
 	 * @param representatives Representatives of the movement
 	 * @param additionalNotes Additional notes
-	 * @return Is the adding to the list successful
 	*/
-	bool addMovementEvent(
+	void addMovementEvent(
 		std::string title,
 		std::vector<std::string> period,
 		Coordinates coordinates,
@@ -250,6 +261,20 @@ struct EventManager
 		std::vector<std::string> representatives = std::vector<std::string>(),
 		std::string additionalNotes = ""
 	); /*!< Function for adding a movement */
+
+	/**
+	 * @brief Function for adding a undefined (other) event
+	 * @param title TItle of the event
+	 * @param period Period of the event
+	 * @param coordinates Coordinates of the event 
+	 * @param additionalNotes Additional notes for the event
+	*/
+	void addOtherEvent(
+		std::string title,
+		std::vector<std::string> period,
+		Coordinates coordinates,
+		std::string additionalNotes = ""
+	); /*!< Function for adding an event */
 
 	/**
 	 * @brief Function for deleting a node from the list

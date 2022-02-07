@@ -78,6 +78,9 @@
     <ClCompile Include="src\front-end\mainMenu.cpp">
       <Filter>Source Files\front-end</Filter>
     </ClCompile>
+    <ClCompile Include="src\back-end\storylineManager.cpp">
+      <Filter>Source Files\back-end</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="include\front-end\mainMenu.h">
       <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\back-end\storylineManager.h">
+      <Filter>Header Files\back-end</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,7 +12,8 @@
 */
 int main()
 {
-	/*try
+	/*
+	try
 	{
 		LoggerManager loggerManager;
 		loggerManager.log(LogSeverity::INFO, "Initializing the application");
@@ -50,8 +51,10 @@ int main()
 	{
 		std::cout << "There was a problem with the program and it is going to close"
 			"itself!\nSee the log file for more information";
-	}*/
+	}
+	*/
 
+	
 	/*TO-DO - FIX BUGS*/
 	std::vector<std::string> loginOptions =
 	{
@@ -86,6 +89,5 @@ int main()
 		pressedKey = _getch();
 		hoverMenuOptions(pressedKey, selectedOption, menuOptions);
 	}
-
 }
 
