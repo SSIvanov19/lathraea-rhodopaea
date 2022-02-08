@@ -11,7 +11,7 @@
 /**
  * @brief Enumeration representing the color codes
 */
-enum class COLORS : int
+enum class COLORS
 {
 	DARK_BLUE = 1,
 	DARK_GREEN = 2,
@@ -33,7 +33,7 @@ enum class COLORS : int
 /**
  * @brief Enumeration representing the keys' codes
 */
-enum class ARROW_KEYS : int
+enum class ARROW_KEYS
 {
 	KEY_UP = 72,
 	KEY_DOWN = 80,
@@ -288,12 +288,18 @@ void addOtherEvent(EventManager* eventManager)
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
-	std::cin.ignore();
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, title);
+
+	while (title.empty())
+	{
+		std::cout << "Title can not be empty, please enter again: ";
+		getline(std::cin, title);
+	}
 
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
 
 	while (!checkDatesValidation(period))
@@ -314,7 +320,7 @@ void addOtherEvent(EventManager* eventManager)
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore();
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
 
 	try
@@ -340,9 +346,15 @@ void addUprisingEvent(EventManager* eventManager)
 	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, title);
 
+	while (title.empty())
+	{
+		std::cout << "Title can not be empty, please enter again: ";
+		getline(std::cin, title);
+	}
+
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
 
 	while (!checkDatesValidation(period))
@@ -364,12 +376,19 @@ void addUprisingEvent(EventManager* eventManager)
 	std::string organizers;
 	std::cout << "Enter the organizers of the event you want to add: ";
 	getline(std::cin, organizers);
+
+	while (organizers.empty())
+	{
+		std::cout << "Organizers can not be empty, please enter again: ";
+		getline(std::cin, organizers);
+	}
+
 	std::vector<std::string> organizersV;
 	organizersV.push_back(organizers);
 
 	system("CLS");
 	bool isItSuccessful;
-	std::cout << "Enter 1 if the event is successful && 0 if it is unsuccessful: ";
+	std::cout << "Enter 1 if the event is successful and 0 if it is unsuccessful: ";
 	std::cin >> isItSuccessful;
 
 	system("CLS");
@@ -380,7 +399,6 @@ void addUprisingEvent(EventManager* eventManager)
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
 
 	try
@@ -402,12 +420,18 @@ void addWarEvent(EventManager* eventManager)
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
-	std::cin.ignore();
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, title);
+
+	while (title.empty())
+	{
+		std::cout << "Title can not be empty, please enter again: ";
+		getline(std::cin, title);
+	}
 
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
 
 	while (!checkDatesValidation(period))
@@ -428,7 +452,15 @@ void addWarEvent(EventManager* eventManager)
 	system("CLS");
 	std::string participatingCountries;
 	std::cout << "Enter the countries participating in the event you want to add: ";
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, participatingCountries);
+
+	while (participatingCountries.empty())
+	{
+		std::cout << "ParticipatingCountries can not be empty, please enter again: ";
+		getline(std::cin, participatingCountries);
+	}
+
 	std::vector<std::string> participatingCountriesV;
 	participatingCountriesV.push_back(participatingCountries);
 
@@ -437,21 +469,43 @@ void addWarEvent(EventManager* eventManager)
 	std::cout << "Enter the winner of the event you want to add: " << std::endl;
 	getline(std::cin, winner);
 
+	while (winner.empty())
+	{
+		std::cout << "Winner can not be empty, please enter again: ";
+		getline(std::cin, winner);
+	}
+
 	system("CLS");
 	std::string reasons;
 	std::cout << "Enter the reason that led to the event: " << std::endl;
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, reasons);
+
+	while (reasons.empty())
+	{
+		std::cout << "Reasons can not be empty, please enter again: ";
+		getline(std::cin, reasons);
+	}
 
 	system("CLS");
 	std::string rulers;
 	std::cout << "Enter the rulers of the event you want to add: ";
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, rulers);
+
+	while (rulers.empty())
+	{
+		std::cout << "Rulers can not be empty, please enter again: ";
+		getline(std::cin, rulers);
+	}
+
 	std::vector<std::string> rulersV;
 	rulersV.push_back(rulers);
 
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
 
 	try
@@ -472,25 +526,40 @@ void addMovementEvent(EventManager* eventManager)
 {
 	system("CLS");
 	std::string title;
-	std::cout << "Enter the title of the event you want to add: " << std::endl;
-	std::cin.ignore();
+	std::cout << "Enter the title of the event you want to add: " << std::endl;	
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, title);
+
+	while (title.empty()) 
+	{
+		std::cout << "Title can not be empty, please enter again: ";
+		getline(std::cin, title);
+	}
 
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
+
+	while (period.empty())
+	{
+		std::cout << "Date can not be empty, please enter again: ";
+		getline(std::cin, period);
+	}
+
 	while (!checkDatesValidation(period))
 	{
 		std::cout << "The data you've entered is incorrect, please enter a date/s - ex(24 apr 2004, 27 apr 2005)";
 		getline(std::cin, period);
 	}
+
 	separateDates(period);
 
 	system("CLS");
 	int x = 0, y = 0;
 	std::cout << "Enter X coordinates of the event: ";
 	std::cin >> x;
+
 	std::cout << "Enter Y coordinates of the event: ";
 	std::cin >> y;
 	Coordinates coordinates{ x, y };
@@ -500,26 +569,55 @@ void addMovementEvent(EventManager* eventManager)
 	std::cout << "Enter the way the event started: " << std::endl;
 	getline(std::cin, howItStarted);
 
+	while (howItStarted.empty())
+	{
+		std::cout << "The way it started can not be empty, please enter again: ";
+		getline(std::cin, howItStarted);
+	}
+
 	system("CLS");
 	std::string ideas;
 	std::cout << "Enter ideas of the event you want to add: " << std::endl;
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, ideas);
+
+	while (ideas.empty())
+	{
+		std::cout << "The ideas can not be empty, please enter again: ";
+		getline(std::cin, ideas);
+	}
 
 	system("CLS");
 	std::string aims;
 	std::cout << "Enter the aims of the event you want to add: " << std::endl;
-	getline(std::cin, ideas);
+	std::cin.ignore(INT_MAX, '\n');
+	getline(std::cin, aims);
+
+	while (aims.empty())
+	{
+		std::cout << "The aims can not be empty, please enter again: ";
+		getline(std::cin, aims);
+	}
 
 	system("CLS");
 	std::string representatives;
-	std::cout << "Enter the crepresentatives of the event you want to add: ";
+	std::cout << "Enter the representatives of the event you want to add: ";
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, representatives);
+
+	while (representatives.empty())
+	{
+		std::cout << "The representatives can not be empty, please enter again: ";
+		getline(std::cin, representatives);
+	}
+
 	std::vector<std::string> representativesV;
 	representativesV.push_back(representatives);
 
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
 
 	system("CLS");
@@ -543,7 +641,7 @@ void addEvent(EventManager* eventManager)
 	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement, enter 4 for other: ";
 	int type = 0;
 
-	while (type != 1 && type != 2 && type != 3 && type != 4)
+	while (type != (int)TypeOfEvent::UPRISING && type != (int)TypeOfEvent::WAR && type != (int)TypeOfEvent::MOVEMENT && type != (int)TypeOfEvent::OTHER)
 	{
 
 		std::cin >> type;
@@ -604,8 +702,19 @@ void deleteEvent(EventManager* eventManager)
 }
 
 /**
+ * @brief Function for exiting of the program
+ * @return 0
+*/
+int exitProgram() 
+{
+	system("CLS");
+	return 0;
+}
+
+/**
  * @brief Function for coloring hovered options
- * @param key The pressed button
+ * @param eventManager Variable for an event manager
+ * @param key key The pressed button
  * @param selectedOption The selected option
  * @param possibleOptions The possible options
 */
@@ -635,8 +744,9 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 			break;
 		case 2: deleteEvent(eventManager);
 			break;
+		case 7: exitProgram();
+			break;
 		}
-
 	}
 
 }
