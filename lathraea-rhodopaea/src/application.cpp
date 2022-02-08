@@ -12,13 +12,13 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 {
 	try
 	{
-		std::vector<std::string> loginOptions =
+		const std::vector<std::string> loginOptions =
 		{
 			"Login",
 			"Register"
 		};
 
-		std::vector<std::string> menuOptions =
+		const std::vector<std::string> menuOptions =
 		{
 			"Add historical event",
 			"Remove historical event",
@@ -29,7 +29,7 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 			"Exit"
 		};
 
-		std::vector<std::string> visualizationOptions =
+		const std::vector<std::string> visualizationOptions =
 		{
 			"As a map",
 			"As a timeline",
@@ -43,7 +43,7 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 		{
 			outputOptions(menuOptions, selectedOption);
 			pressedKey = _getch();
-			hoverMenuOptions(pressedKey, selectedOption, menuOptions);
+			switchMenuOptions(&eventManager, pressedKey, selectedOption, menuOptions);
 		}
 	}
 	catch (const std::string errorMsg)

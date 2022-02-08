@@ -96,7 +96,7 @@ bool isValidMonthName(std::string month)
 */
 bool isDayInRange(std::string day)
 {
-	if (stoi(day) >= 1 and stoi(day) <= 31)
+	if (stoi(day) >= 1 && stoi(day) <= 31)
 	{
 		return true;
 	}
@@ -125,26 +125,14 @@ bool checkDatesValidation(std::string str)
 		}
 	}
 
-	if (whiteSpaces != 5 and twoDates == 1)
+	if (whiteSpaces != 5 && twoDates == 1)
 	{
 		return false;
 	}
 
-	if (whiteSpaces != 2 and twoDates == 0)
+	if (whiteSpaces != 2 && twoDates == 0)
 	{
 		return false;
-	}
-
-	for (size_t i = 0; i < str.size(); i++)
-	{
-		if (str[i] == ',')
-		{
-			twoDates = true;
-		}
-		if (str[i] == ' ')
-		{
-			whiteSpaces++;
-		}
 	}
 
 	whiteSpaces = 0;
@@ -196,12 +184,12 @@ bool checkDatesValidation(std::string str)
 		return false;
 	}
 
-	if (twoDates and !isDayInRange(dayTwo))
+	if (twoDates && !isDayInRange(dayTwo))
 	{
 		return false;
 	}
 
-	if (!isValidMonthName(month) or (!isValidMonthName(monthTwo) and twoDates))
+	if (!isValidMonthName(month) || (!isValidMonthName(monthTwo) && twoDates))
 	{
 		return false;
 	}
@@ -292,12 +280,11 @@ std::vector <std::string> separateDates(std::string str)
 }
 
 /**
- * @brief Function for adding events of type "uprising"
+ * @brief Function for adding events of type "other"
+ * @param eventManager Variable for an event manager
 */
-void addUprisingEvent()
+void addOtherEvent(EventManager* eventManager)
 {
-	EventManager eventMenager; // event menijara da e edin i da sa podava s funkciq
-
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
@@ -306,7 +293,56 @@ void addUprisingEvent()
 
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
+	getline(std::cin, period);
+
+	while (!checkDatesValidation(period))
+	{
+		std::cout << "The data you've entered is incorrect, please enter a date/s - ex(24 apr 2004, 27 apr 2005)";
+		getline(std::cin, period);
+	}
+	separateDates(period);
+
+	system("CLS");
+	int x = 0, y = 0;
+	std::cout << "Enter X coordinates of the event: ";
+	std::cin >> x;
+	std::cout << "Enter Y coordinates of the event: ";
+	std::cin >> y;
+	Coordinates coordinates{ x, y };
+
+	system("CLS");
+	std::string additionalNotes;
+	std::cout << "Enter some additional notes for the event, if any: ";
+	std::cin.ignore();
+	getline(std::cin, additionalNotes);
+
+	try
+	{
+		eventManager->addOtherEvent(title, separateDates(period), coordinates, additionalNotes);
+	}
+	catch (std::string errorMessage)
+	{
+		std::cout << errorMessage;
+	}
+
+}
+
+/**
+ * @brief Function for adding events of type "uprising"
+ * @param eventManager Variable for an event manager
+*/
+void addUprisingEvent(EventManager* eventManager)
+{
+	system("CLS");
+	std::string title;
+	std::cout << "Enter the title of the event you want to add: " << std::endl;
+	std::cin.ignore(INT_MAX, '\n');
+	getline(std::cin, title);
+
+	system("CLS");
+	std::string period;
+	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
 
 	while (!checkDatesValidation(period))
@@ -333,7 +369,7 @@ void addUprisingEvent()
 
 	system("CLS");
 	bool isItSuccessful;
-	std::cout << "Enter 1 if the event is successful and 0 if it is unsuccessful: ";
+	std::cout << "Enter 1 if the event is successful && 0 if it is unsuccessful: ";
 	std::cin >> isItSuccessful;
 
 	system("CLS");
@@ -344,12 +380,12 @@ void addUprisingEvent()
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore();
+	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
 
 	try
 	{
-		eventMenager.addUprisingEvent(title, separateDates(period), coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
+		eventManager->addUprisingEvent(title, separateDates(period), coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
 	}
 	catch (std::string errorMessage)
 	{
@@ -359,11 +395,10 @@ void addUprisingEvent()
 
 /**
  * @brief Function for adding events of type "war"
+ * @param eventManager Variable for an event manager
 */
-void addWarEvent()
+void addWarEvent(EventManager* eventManager)
 {
-	EventManager eventMenager;
-
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
@@ -372,7 +407,7 @@ void addWarEvent()
 
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
 
 	while (!checkDatesValidation(period))
@@ -417,12 +452,11 @@ void addWarEvent()
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore();
 	getline(std::cin, additionalNotes);
 
 	try
 	{
-		eventMenager.addWarEvent(title, separateDates(period), coordinates, participatingCountriesV, winner, reasons, rulersV, additionalNotes);
+		eventManager->addWarEvent(title, separateDates(period), coordinates, participatingCountriesV, winner, reasons, rulersV, additionalNotes);
 	}
 	catch (std::string errorMessage)
 	{
@@ -432,11 +466,10 @@ void addWarEvent()
 
 /**
  * @brief Function for adding events of type "movement"
+ * @param eventManager Variable for an event manager
 */
-void addMovementEvent()
+void addMovementEvent(EventManager* eventManager)
 {
-	EventManager eventMenager;
-
 	system("CLS");
 	std::string title;
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
@@ -445,7 +478,7 @@ void addMovementEvent()
 
 	system("CLS");
 	std::string period;
-	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
+	std::cout << "Enter the starting && ending year && date - ex.(20 apr 1876, 15 may 1876)";
 	getline(std::cin, period);
 	while (!checkDatesValidation(period))
 	{
@@ -487,13 +520,12 @@ void addMovementEvent()
 	system("CLS");
 	std::string additionalNotes;
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore();
 	getline(std::cin, additionalNotes);
 
 	system("CLS");
 	try
 	{
-		eventMenager.addMovementEvent(title, separateDates(period), coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
+		eventManager->addMovementEvent(title, separateDates(period), coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
 	}
 	catch (std::string errorMessage)
 	{
@@ -503,30 +535,39 @@ void addMovementEvent()
 
 /**
  * @brief Function for adding historical events
+ * @param eventManager Variable for an event manager
 */
-void addEvent()
+void addEvent(EventManager* eventManager)
 {
 	system("CLS");
-	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement: ";
+	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement, enter 4 for other: ";
 	int type = 0;
 
-	while (type != 1 && type != 2 && type != 3)
+	while (type != 1 && type != 2 && type != 3 && type != 4)
 	{
 
 		std::cin >> type;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+
+		while (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(INT_MAX, '\n');
+			std::cout << "Please enter a number: ";
+			std::cin >> type;
+		}
 
 		switch (type)
 		{
-		case 1: addUprisingEvent();
+		case 1: addUprisingEvent(eventManager);
 			break;
-		case 2: addWarEvent();
+		case 2: addWarEvent(eventManager);
 			break;
-		case 3: addMovementEvent();
+		case 3: addMovementEvent(eventManager);
+			break;
+		case 4: addOtherEvent(eventManager);
 			break;
 		default:
-			std::cout << "Please enter a number between 1 and 3!";
+			std::cout << "Please enter a number between 1 and 4!";
 		}
 	}
 
@@ -538,15 +579,28 @@ void addEvent()
 
 /**
  * @brief Function for deleting historical events
+ * @param eventManager Variable for an event manager
 */
-void deleteEvent()
+void deleteEvent(EventManager* eventManager)
 {
 	system("CLS");
-	EventManager eventMenager;
 	std::string title;
 	std::cout << "Enter the title of the event you want to remove: ";
 	getline(std::cin, title);
-	eventMenager.removeEvent(&eventMenager.eventList, title);
+
+	if (eventManager->removeEvent(&eventManager->eventList, title))
+	{
+		std::cout << "You've successfully deleted the event!";
+	}
+	else
+	{
+		std::cout << "The event wasn't deleted";
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+	}
 }
 
 /**
@@ -555,7 +609,7 @@ void deleteEvent()
  * @param selectedOption The selected option
  * @param possibleOptions The possible options
 */
-void hoverMenuOptions(char key, int& selectedOption, std::vector<std::string> possibleOptions)
+void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption, std::vector<std::string> possibleOptions)
 {
 	switch (key)
 	{
@@ -577,11 +631,12 @@ void hoverMenuOptions(char key, int& selectedOption, std::vector<std::string> po
 	case (int)ARROW_KEYS::KEY_ENTER:
 		switch (selectedOption)
 		{
-		case 1: addEvent();
+		case 1: addEvent(eventManager);
 			break;
-		case 2: deleteEvent();
+		case 2: deleteEvent(eventManager);
 			break;
 		}
 
 	}
+
 }
