@@ -1,5 +1,5 @@
-/*! @file errorManager.cpp
-*   @brief A source file for the logs.
+/*! @file errorManager.h
+*   @brief A header file for the error-handling.
 */
 
 #pragma once

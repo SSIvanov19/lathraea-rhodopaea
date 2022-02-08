@@ -6,6 +6,77 @@
 #include <external/strptime.h>
 #include <back-end/logs.h>
 
+std::string getTheEpoch(tm d)
+{
+	int year = d.tm_year + 1900;
+
+	if (year < 681)
+	{
+		return "Antiquity and the Early Middle Ages (up to the 7th century)";
+	}
+	
+	if (year >= 681 && year <= 1018)
+	{
+		return "Bulgarian Middle Ages -> First Bulgarian country (681 - 1018)";
+	}
+	
+	if (year > 1018 && year <= 1185)
+	{
+		return "Bulgarian Middle Ages -> Byzantine rule (1018 - 1185)";
+	}
+	
+	if (year > 1185 && year <= 1396)
+	{
+		return "Bulgarian Middle Ages -> Second Bulgarian Country (1185 - 1396)";
+	}
+	
+	if (year > 1396 && year <= 1601)
+	{
+		return "Ottoman rule (1396 - 1878) -> Bulgarian lands in the XV and XVI centuries (1396 - 1600)";
+	}
+	
+	if (year > 1601 && year <= 1760)
+	{
+		return "Ottoman rule (1396 - 1878) -> Bulgarian lands in the XVII centuryand the first half of the XVIII century(1601 - 1760)";
+	}
+	
+	if (year > 1760 && year <= 1878)
+	{
+		return "Ottoman rule (1396 - 1878) -> Revival (18th - 19th century)";
+	}
+	
+	if (year > 1878 && year <= 1912)
+	{
+		return "Third Bulgarian state (since 1878) -> From the Liberation to the Balkan Wars";
+	}
+	
+	if (year > 1912 && year <= 1918)
+	{
+		return "Third Bulgarian state (since 1878) -> Wars of national unification";
+	}
+	
+	if (year > 1918 && year <= 1945)
+	{
+		return "Third Bulgarian state (since 1878) -> After the First and during Second World Wars (1918 - 1945)";
+	}
+	
+	if (year > 1945 && year <= 1989)
+	{
+		return "Third Bulgarian state (since 1878) -> People's Republic of Bulgaria (1946 - 1989)";
+	}
+	
+	time_t rawtime = time(0);
+	struct tm timeinfo;
+	localtime_s(&timeinfo, &rawtime);
+
+	if (year > 1989 &&  year <= (timeinfo.tm_year + 1900))
+	{
+		return "Third Bulgarian state (since 1878) -> Republic of Bulgaria (since 1990)";
+	}
+	
+	return "Are you a time traveller?";
+}
+
 Event::Event(
 	std::string title_,
 	std::vector<std::string> period_,
@@ -24,6 +95,10 @@ Event::Event(
 	numberOfRebelions = numberOfRebelions_;
 	additionalNotes = additionalNotes_;
 	type = TypeOfEvent::UPRISING;
+	for (const tm &date: period)
+	{
+		epochs.push_back(getTheEpoch(date));
+	}
 }
 
 Event::Event(
@@ -46,6 +121,10 @@ Event::Event(
 	rulers = rulers_;
 	additionalNotes = additionalNotes_;
 	type = TypeOfEvent::WAR;
+	for (const tm& date : period)
+	{
+		epochs.push_back(getTheEpoch(date));
+	}
 }
 
 Event::Event(
@@ -68,6 +147,10 @@ Event::Event(
 	representatives = representatives_;
 	additionalNotes = additionalNotes_;
 	type = TypeOfEvent::MOVEMENT;
+	for (const tm& date : period)
+	{
+		epochs.push_back(getTheEpoch(date));
+	}
 }
 
 Event::Event(
@@ -81,7 +164,11 @@ Event::Event(
 	period = dateManager.converVectorOfStringsToVectorOfDate(period_);
 	coordinates = coordinates_;
 	additionalNotes = additionalNotes_;
-	type = TypeOfEvent::MOVEMENT;
+	type = TypeOfEvent::OTHER;
+	for (const tm& date : period)
+	{
+		epochs.push_back(getTheEpoch(date));
+	}
 }
 
 Event::Event() = default;
@@ -175,7 +262,10 @@ void EventManager::addUprisingEvent(
 )
 {
 	LoggerManager loggerManager;
-	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Trying to add new event with title: " + title
+	);
 
 	// Validate the data
 	if (title.size() == 0)
@@ -184,7 +274,7 @@ void EventManager::addUprisingEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " + 
 			title + 
-			" can not be registerd, because the title is NULL."
+			" can not be registered, because the title is NULL."
 		);
 
 		throw std::string("Title can not be empty!");
@@ -196,7 +286,7 @@ void EventManager::addUprisingEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " + 
 			title + 
-			" can not be registerd, because the period is NULL."
+			" can not be registered, because the period is NULL."
 		);
 
 		throw std::string("Period can not be empty!");
@@ -208,7 +298,7 @@ void EventManager::addUprisingEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the organizers is NULL."
+			" can not be registered, because the organizers is NULL."
 		);
 
 		throw std::string("Organizers can not be empty");
@@ -221,7 +311,7 @@ void EventManager::addUprisingEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because there is already"
+			" can not be registered, because there is already"
 			" an event with the same name."
 		);
 
@@ -259,7 +349,10 @@ void EventManager::addUprisingEvent(
 	}
 
 	// Log
-	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Event with title: " + title + " is registered successfully."
+	);
 
 	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
@@ -279,7 +372,10 @@ void EventManager::addWarEvent(
 )
 {
 	LoggerManager loggerManager;
-	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Trying to add new event with title: " + title
+	);
 
 	// Validate the data
 	if (title.size() == 0)
@@ -288,7 +384,7 @@ void EventManager::addWarEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the title is NULL."
+			" can not be registered, because the title is NULL."
 		);
 
 		throw std::string("Title can not be empty!");
@@ -300,7 +396,7 @@ void EventManager::addWarEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the period is NULL."
+			" can not be registered, because the period is NULL."
 		);
 
 		throw std::string("Period can not be empty!");
@@ -312,7 +408,7 @@ void EventManager::addWarEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the participating countries is NULL."
+			" can not be registered, because the participating countries is NULL."
 		);
 
 		throw std::string("Participating countries can not be empty");
@@ -324,7 +420,7 @@ void EventManager::addWarEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the winner is NULL."
+			" can not be registered, because the winner is NULL."
 		);
 
 		throw std::string("Winner can not be empty!");
@@ -336,7 +432,7 @@ void EventManager::addWarEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the reasons is NULL."
+			" can not be registered, because the reasons is NULL."
 		);
 
 		throw std::string("Reasons can not be empty!");
@@ -349,7 +445,7 @@ void EventManager::addWarEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because there is already"
+			" can not be registered, because there is already"
 			" an event with the same name."
 		);
 
@@ -391,7 +487,10 @@ void EventManager::addWarEvent(
 	}
 
 	// Log
-	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Event with title: " + title + " is registered successfully."
+	);
 
 	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
@@ -412,7 +511,10 @@ void EventManager::addMovementEvent(
 )
 {
 	LoggerManager loggerManager;
-	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Trying to add new event with title: " + title
+	);
 
 	// Validate the data
 	if (title.size() == 0)
@@ -421,7 +523,7 @@ void EventManager::addMovementEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the title is NULL."
+			" can not be registered, because the title is NULL."
 		);
 
 		throw std::string("Title can not be empty!");
@@ -433,7 +535,7 @@ void EventManager::addMovementEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the period is NULL."
+			" can not be registered, because the period is NULL."
 		);
 
 		throw std::string("Period can not be empty!");
@@ -445,7 +547,7 @@ void EventManager::addMovementEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the how it started is NULL."
+			" can not be registered, because the how it started is NULL."
 		);
 
 		throw std::string("How it started can not be empty!");
@@ -457,7 +559,7 @@ void EventManager::addMovementEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the ideas is NULL."
+			" can not be registered, because the ideas is NULL."
 		);
 
 		throw std::string("Ideas can not be empty!");
@@ -469,7 +571,7 @@ void EventManager::addMovementEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the aims is NULL."
+			" can not be registered, because the aims is NULL."
 		);
 
 		throw std::string("Aims can not be empty!");
@@ -482,7 +584,7 @@ void EventManager::addMovementEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because there is already"
+			" can not be registered, because there is already"
 			" an event with the same name."
 		);
 
@@ -523,7 +625,10 @@ void EventManager::addMovementEvent(
 	}
 
 	// Log
-	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Event with title: " + title + " is registered successfully."
+	);
 
 	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
@@ -539,7 +644,10 @@ void EventManager::addOtherEvent(
 )
 {
 	LoggerManager loggerManager;
-	loggerManager.log(LogSeverity::INFO, "Trying to add new event with title: " + title);
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Trying to add new event with title: " + title
+	);
 
 	// Validate the data
 	if (title.size() == 0)
@@ -548,7 +656,7 @@ void EventManager::addOtherEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the title is NULL."
+			" can not be registered, because the title is NULL."
 		);
 
 		throw std::string("Title can not be empty!");
@@ -560,7 +668,7 @@ void EventManager::addOtherEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because the period is NULL."
+			" can not be registered, because the period is NULL."
 		);
 
 		throw std::string("Period can not be empty!");
@@ -573,7 +681,7 @@ void EventManager::addOtherEvent(
 			LogSeverity::NOTICE,
 			"Event with title: " +
 			title +
-			" can not be registerd, because there is already"
+			" can not be registered, because there is already"
 			" an event with the same name."
 		);
 
@@ -607,7 +715,10 @@ void EventManager::addOtherEvent(
 	}
 
 	// Log
-	loggerManager.log(LogSeverity::INFO, "Event with title: " + title + " is registerd successfully.");
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Event with title: " + title + " is registered successfully."
+	);
 
 	//Should be removed
 	std::cout << "Event added successfully. All events data:\n\n";
@@ -629,7 +740,7 @@ bool EventManager::removeEvent(EventList** head, std::string searchTitle)
 		loggerManager.log(
 			LogSeverity::INFO, 
 			"Event with title: " +
-			temp->event.title + 
+			searchTitle +
 			" is successfully deleted."
 		);
 
@@ -649,9 +760,8 @@ bool EventManager::removeEvent(EventList** head, std::string searchTitle)
 			loggerManager.log(
 				LogSeverity::NOTICE,
 				"Event with title: " +
-				temp->event.title +
-				" can not be deleted, because there is not an event with such title: " + 
-				searchTitle
+				searchTitle +
+				" can not be deleted, because there is not an event with such title."
 			);
 
 			return false;
@@ -662,7 +772,7 @@ bool EventManager::removeEvent(EventList** head, std::string searchTitle)
 		loggerManager.log(
 			LogSeverity::INFO,
 			"Event with title: " +
-			temp->event.title +
+			searchTitle +
 			" is successfully deleted."
 		);
 
@@ -705,7 +815,10 @@ std::vector<Event> EventManager::getAllEventsWithTitle(
 
 	EventList* temp = head;
 
-	loggerManager.log(LogSeverity::INFO, "Trying to get all events with title: " + searchTitle);
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Trying to get all events with title: " + searchTitle
+	);
 
 	while (temp != NULL)
 	{
@@ -717,7 +830,10 @@ std::vector<Event> EventManager::getAllEventsWithTitle(
 		temp = temp->next;
 	}
 
-	loggerManager.log(LogSeverity::INFO, "Found " + std::to_string(returnValue.size()) + " events with title: " + searchTitle);
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Found " + std::to_string(returnValue.size()) +
+		" events with title: " + searchTitle);
 	return returnValue;
 }
 

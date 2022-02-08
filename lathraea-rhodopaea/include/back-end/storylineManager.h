@@ -80,6 +80,12 @@ struct StorylineManager
 {
 	StorylineList* storylineList = nullptr; /*!< List with all storylines */
 	
+	/**
+	 * @brief Function for adding a storyline
+	 * @param title Title of the storyline
+	 * @param events Events that are included in the storyline
+	 * @param desc Description of the event
+	*/
 	void addStoryline(
 		std::string title,
 		std::vector<Event> events,

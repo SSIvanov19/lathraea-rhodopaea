@@ -9,7 +9,12 @@
 #include <string>
 #include <iostream>
 
-Account::Account(std::string uname_, std::string email_, std::vector<int> pass_, Roles role_)
+Account::Account(
+	std::string uname_,
+	std::string email_,
+	std::vector<int> pass_,
+	Roles role_
+)
 {
 	uname = uname_;
 	email = email_;
@@ -53,7 +58,7 @@ void AccountList::addUser(AccountList* head, Account data)
 	}
 }
 
-bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account* accountData)
+bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck)
 {
 	AccountList* temp = head;
 
@@ -61,11 +66,6 @@ bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Acc
 	{
 		if (temp->user.email == emailToCheck)
 		{
-			if (accountData)
-			{
-				accountData = &temp->user;
-			}
-
 			return true;
 		}
 		temp = temp->next;
@@ -74,7 +74,7 @@ bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Acc
 	return false;
 }
 
-bool AccountList::kondio(AccountList* head, std::string emailToCheck, Account*& accountData)
+bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account*& accountData)
 {
 	AccountList* temp = head;
 
@@ -108,7 +108,7 @@ void AccountList::displayAllUsers(AccountList* head)
 AccountManager::AccountManager()
 {
 	// Create the first Account
-	accountList = new AccountList(
+	accountNode = new AccountList(
 		Account(
 			envManager.getEnv("ADMIN_USERNAME"), 
 			envManager.getEnv("ADMIN_EMAIL"),
@@ -118,7 +118,12 @@ AccountManager::AccountManager()
 	);
 }
 
-bool AccountManager::isRegistrationSuccessful(std::string uname, std::string email, std::string pass, Roles role)
+void AccountManager::registerUser(
+	std::string uname,
+	std::string email,
+	std::string pass,
+	Roles role
+)
 {
 	LoggerManager loggerManager;
 	loggerManager.log(
@@ -160,17 +165,21 @@ bool AccountManager::isRegistrationSuccessful(std::string uname, std::string ema
 	}
 
 	//Check for duplicate email
-	if (accountList->doesUserExist(accountList, email))
+	if (accountNode->doesUserExist(accountNode, email))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,
 			"Email address: " + email + " is duplicate."
 		);
+
 		throw std::string("The email is duplicate");
 	}
 
 	//Create and save the user
-	accountList->addUser(accountList, Account(uname, email, encryptionManager.encrypt(pass), role));
+	accountNode->addUser(
+		accountNode,
+		Account(uname, email, encryptionManager.encrypt(pass), role)
+	);
 
 	loggerManager.log(
 		LogSeverity::INFO,
@@ -183,12 +192,10 @@ bool AccountManager::isRegistrationSuccessful(std::string uname, std::string ema
 
 	// Only for debugging purposes
 	// Should not be used in the final product
-	accountList->displayAllUsers(accountList);
-
-	return true;
+	accountNode->displayAllUsers(accountNode);
 }
 
-bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
+void AccountManager::loginUser(std::string email, std::string pass)
 {
 	LoggerManager loggerManager;
 	loggerManager.log(
@@ -208,7 +215,7 @@ bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
 
 	Account* user = new Account();
 
-	if (!accountList->kondio(accountList, email, user))
+	if (!accountNode->doesUserExist(accountNode, email, user))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,
@@ -234,6 +241,4 @@ bool AccountManager::isLoginSuccessful(std::string email, std::string pass)
 		LogSeverity::INFO,
 		"User with email: " + email + " is successfully logged."
 	);
-
-	return true;
 }

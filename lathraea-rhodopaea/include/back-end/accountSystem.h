@@ -17,7 +17,7 @@ enum class Roles
 };
 
 /**
- * @brief A struct for account
+ * @brief A struct for an account
 */
 struct Account
 {
@@ -33,7 +33,12 @@ struct Account
 	 * @param pass_ Password of the user
 	 * @param role_ Role of the user
 	*/
-	Account(std::string uname_, std::string email_, std::vector<int> pass_, Roles role_); /*!< A constructor for creating a user */
+	Account(
+		std::string uname_,
+		std::string email_,
+		std::vector<int> pass_,
+		Roles role_
+	); /*!< A constructor for creating a user */
 
 	/**
 	 * @brief Default constructor for Account
@@ -76,12 +81,22 @@ struct AccountList
 	 * @brief A function for checking if there is already a account with this email
 	 * @param head The head of the list
 	 * @param emailToCheck The email to be checked
-	 * @param accountData Optional parameter for getting an account data 
 	 * @return Is email duplicate
 	*/
-	bool doesUserExist(AccountList* head, std::string emailToCheck, Account* accountData = nullptr); /*!< Function for checking for duplicate emails */
+	bool doesUserExist(AccountList* head, std::string emailToCheck); /*!< Function for checking for duplicate emails */
 	
-	bool kondio(AccountList* head, std::string emailToCheck, Account*& accountData);
+	/**
+	 * @brief Overload for function doesUserExist that gets the user info
+	 * @param head The head of the list
+	 * @param emailToCheck The email to be checked
+	 * @param accountData Variable which gets the account data
+	 * @return does the user exist
+	*/
+	bool doesUserExist(
+		AccountList* head,
+		std::string emailToCheck,
+		Account*& accountData
+	);
 };
 
 /**
@@ -92,12 +107,12 @@ struct AccountManager
 	/**
 	 * @brief A Linked list that holds all of the accounts
 	*/
-	AccountList* accountList; /*!< A Linked list that holds all of the accounts */
+	AccountList* accountNode; /*!< A Linked list that holds all of the accounts */
 
 	/**
-	 * @brief Account that is currently logged in
+	 * @brief Pointer to the account that is currently logged in
 	*/
-	Account* activeUser = nullptr; /*!< Account that is currently logged in */
+	Account* activeUser = nullptr; /*!< Pointer to the account that is currently logged in */
 	
 	/**
 	 * @brief Validation manager
@@ -128,7 +143,12 @@ struct AccountManager
 	 * @return True or false, based on that
 			   if a registration is successful
 	*/
-	bool isRegistrationSuccessful(std::string uname, std::string email, std::string pass, Roles role); /*!< Function for registering a user */
+	void registerUser(
+		std::string uname,
+		std::string email,
+		std::string pass,
+		Roles role
+	); /*!< Function for registering a user */
 
 	/**
 	 * @brief Function for logining a user
@@ -137,5 +157,5 @@ struct AccountManager
 	 * @return True or false, based on that
 			   if a login is successful 
 	*/
-	bool isLoginSuccessful(std::string email, std::string pass); /*!< Function for logining a user */
+	void loginUser(std::string email, std::string pass); /*!< Function for logining a user */
 };

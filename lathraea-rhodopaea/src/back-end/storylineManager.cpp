@@ -103,7 +103,7 @@ void StorylineManager::addStoryline(
 			LogSeverity::NOTICE,
 			"Storyline with title: " +
 			title +
-			" can not be registerd, because the title is NULL."
+			" can not be registered, because the title is NULL."
 		);
 
 		throw std::string("Title can not be empty!");
@@ -115,7 +115,7 @@ void StorylineManager::addStoryline(
 			LogSeverity::NOTICE,
 			"Storyline with title: " +
 			title +
-			" can not be registerd, because the events is NULL."
+			" can not be registered, because the events is NULL."
 		);
 
 		throw std::string("Events can not be empty!");
@@ -128,7 +128,7 @@ void StorylineManager::addStoryline(
 			LogSeverity::NOTICE,
 			"Storyline with title: " +
 			title +
-			" can not be registerd, because there is already"
+			" can not be registered, because there is already"
 			" an storyline with the same name."
 		);
 
@@ -160,7 +160,10 @@ void StorylineManager::addStoryline(
 	}
 
 	// Log
-	loggerManager.log(LogSeverity::INFO, "Storyline with title: " + title + " is registerd successfully.");
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Storyline with title: " + title + " is registered successfully."
+	);
 
 	//Should be removed
 	std::cout << "Storyline added successfully. All Storylines data:\n\n";

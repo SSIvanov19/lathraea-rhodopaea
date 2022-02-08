@@ -37,7 +37,9 @@ int DateManager::countLeapYears(tm d)
 	//  considered for the count of leap years
 	// or not
 	if (d.tm_mon + 1 <= 2)
+	{
 		years--;
+	}
 
 	// An year is a leap year if it
 	// is a multiple of 4,
@@ -107,8 +109,7 @@ bool DateManager::areDatesInOrder(tm firstDate, tm secondDate)
 bool DateManager::isDateBetweenTwoDates(tm firstDate, tm middleDate, tm lastDate)
 {
 	if ((middleDate.tm_year - firstDate.tm_year) *
-		(middleDate.tm_year - lastDate.tm_year) <= 0
-		)
+		(middleDate.tm_year - lastDate.tm_year) <= 0)
 	{
 		return true;
 	}

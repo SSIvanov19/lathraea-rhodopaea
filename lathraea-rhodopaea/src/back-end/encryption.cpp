@@ -45,16 +45,3 @@ std::vector<int> EncryptionManager::encrypt(const std::string str)
 
 	return returnVal;
 }
-
-std::string EncryptionManager::decrypt(const std::vector<int> v)
-{
-	std::string returnStr;
-
-	for (int el: v)
-	{
-
-		returnStr += char(inversegrayCode(el));
-	}
-
-	return returnStr;
-}

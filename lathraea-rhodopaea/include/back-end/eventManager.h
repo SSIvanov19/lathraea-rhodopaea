@@ -16,7 +16,8 @@ enum class TypeOfEvent
 {
 	UPRISING = 1, /*!< Uprising */
 	WAR = 2, /*!< War */
-	MOVEMENT = 3 /*!< Movement */
+	MOVEMENT = 3, /*!< Movement */
+	OTHER = 4 /*!< Other (Undefined)*/
 };
 
 
@@ -58,7 +59,7 @@ struct Event
 	std::string aims; /*!< The aims of the movement */
 	std::vector<std::string> representatives; /*!< The representatives of the movement */
 
-	DateManager dateManager;
+	DateManager dateManager; /*!< Date manager */
 
 	/**
 	 * @brief Constructor for a uprising event
@@ -139,9 +140,9 @@ struct Event
 	);
 
 	/**
-	 * @brief Default constructor for Event
+	 * @brief Default constructor for a Event
 	*/
-	Event(); /*!< Default constructor for Event */
+	Event(); /*!< Default constructor for a Event */
 
 	// Only for debugging purposes
 	// Should not be used in the final product
