@@ -7,7 +7,7 @@
 
 enum class CHARACTERS
 {
-	DOT = 205, /*Space dot*/
+	DOT = 250, /*Space dot*/
 	HORIZONTAL_LINE = 196,  /*Horizontal line */
 	VERTICAL_LINE = 179, /*Vertical line*/
 	DOUBLE_HORIZONTAL_LINE = 205, /*Double horizontal line*/
@@ -895,56 +895,125 @@ void printSnakeSword()
 */
 void printBulgarianMap()
 {
-	outputPosition(4, 1);
+	outputPosition(9, 4);
 	std::cout << "  .-.                                                     _.--._" << std::endl;
-	outputPosition(4, 2);
+	outputPosition(9, 5);
 	std::cout << " _|  \\_                                              _.-'       ._   _" << std::endl;
-	outputPosition(4, 3);
+	outputPosition(9, 6);
 	std::cout << "/    .-'  _                                       .'              '-' '" << std::endl;
-	outputPosition(4, 4);
+	outputPosition(9, 7);
 	std::cout << "|    '-.-' '-._       _                        _.'                     '----'." << std::endl;
-	outputPosition(4, 5);
+	outputPosition(9, 8);
 	std::cout << " \\             '-.--.' '-.._._       _______.'                               \\" << std::endl;
-	outputPosition(4, 6);
+	outputPosition(9, 9);
 	std::cout << "  |                            '-_.-'                                    _.._/" << std::endl;
-	outputPosition(4, 7);
+	outputPosition(9, 10);
 	std::cout << "   \\_                                                                 .'" << std::endl;
-	outputPosition(4, 8);
+	outputPosition(9, 11);
 	std::cout << "     \\                                                              _.'" << std::endl;
-	outputPosition(4, 9);
+	outputPosition(9, 12);
 	std::cout << "      \\_                                                           '." << std::endl;
-	outputPosition(4, 10);
+	outputPosition(9, 13);
 	std::cout << "        |                                                         _.'" << std::endl;
-	outputPosition(4, 11);
+	outputPosition(9, 14);
 	std::cout << "        '.                                                         '." << std::endl;
-	outputPosition(4, 12);
+	outputPosition(9, 15);
 	std::cout << "       .'                                                           '." << std::endl;
-	outputPosition(4, 13);
+	outputPosition(9, 16);
 	std::cout << "      _/                                                            _'" << std::endl;
-	outputPosition(4, 14);
+	outputPosition(9, 17);
 	std::cout << "  .-_/                                                            .'" << std::endl;
-	outputPosition(4, 15);
+	outputPosition(9, 18);
 	std::cout << "  '.                                                             .'" << std::endl;
-	outputPosition(4, 16);
+	outputPosition(9, 19);
 	std::cout << "   /_                                                           .'" << std::endl;
-	outputPosition(4, 17);
+	outputPosition(9, 20);
 	std::cout << "   _/                                                           '-" << std::endl;
-	outputPosition(4, 18);
+	outputPosition(9, 21);
 	std::cout << "   \\.                                                    _._     '-." << std::endl;
-	outputPosition(4, 19);
+	outputPosition(9, 22);
 	std::cout << "     '--.                                             .-'    '-.    '-." << std::endl;
-	outputPosition(4, 20);
+	outputPosition(9, 23);
 	std::cout << "        |_                                           /         '-._.-.-'" << std::endl;
-	outputPosition(4, 21);
+	outputPosition(9, 24);
 	std::cout << "          '-.                                     _.'" << std::endl;
-	outputPosition(4, 22);
+	outputPosition(9, 25);
 	std::cout << "          .'                                   .-'" << std::endl;
-	outputPosition(4, 23);
+	outputPosition(9, 26);
 	std::cout << "          |        ._..-.-.                   '-." << std::endl;
-	outputPosition(4, 24);
+	outputPosition(9, 27);
 	std::cout << "         .'   ._.-'       '-._._              _.'" << std::endl;
-	outputPosition(4, 25);
+	outputPosition(9, 28);
 	std::cout << "        '__.-'                  '.    _._.'.-'" << std::endl;
-	outputPosition(4, 26);
+	outputPosition(9, 29);
 	std::cout << "                                  '-.'" << std::endl;
+}
+
+/**
+ * @brief Function for printing a pop-up tab
+*/
+void printPopUp()
+{
+	outputPosition(5, 1);
+	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
+	for (int i = 0; i < 20; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
+
+	outputPosition(5, 2);
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                       X  " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+
+	for (int i = 0; i < 7; i++)
+	{
+		outputPosition(5, 3 + i);
+		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                          " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	}
+
+	outputPosition(5, 10);
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                          " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+
+	outputPosition(5, 11);
+	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
+	for (int i = 0; i < 20; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+}
+
+/**
+ * @brief Function for printing a pop-up tab for the map
+*/
+void printMapPopUp()
+{
+	outputPosition(5, 1);
+	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
+	for (int i = 0; i < 42; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
+
+	outputPosition(5, 2);
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                   X  " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+
+	for (int i = 0; i < 28; i++)
+	{
+		outputPosition(5, 3 + i);
+		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	}
+
+	outputPosition(5, 31);
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+
+	outputPosition(5, 32);
+	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
+	for (int i = 0; i < 42; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+
 }

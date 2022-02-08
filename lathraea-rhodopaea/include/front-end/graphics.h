@@ -12,4 +12,6 @@ void pageLeafingLeft2(); // Function for printing the second part of the book's 
 void pageLeafingRight2(); // Function for printing the second part of the book's leafing to the right
 void printSnakeSword(); // Function for printing a sword with a snake
 void printBulgarianMap(); // Function for printing the map of Bulgaria
+void printPopUp(); // Function for printing a pop-up tab
+void printMapPopUp(); // Function for printing a pop-up tab for the map
 
