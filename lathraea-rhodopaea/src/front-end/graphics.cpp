@@ -1015,5 +1015,48 @@ void printMapPopUp()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+}
 
+/**
+ * @brief Function for printing a timeline
+*/
+void printTimeline() // Example
+{
+	outputPosition(4, 3);
+	std::cout << "                    1987            1876            1967            1432" << std::endl;
+	outputPosition(4, 4);
+	std::cout << "                     v               v               v               v" << std::endl;
+	outputPosition(4, 5);
+	std::cout << "         />__________________________________________________________________" << std::endl;
+	outputPosition(4, 6);
+	std::cout << "[########[]__________________________________________________________________>" << std::endl;
+	outputPosition(4, 7);
+	std::cout << "         \\>" << std::endl;
+	outputPosition(4, 8);
+	std::cout << "                           ^               ^                ^" << std::endl;
+	outputPosition(4, 9);
+	std::cout << "                          1987            1876             1967" << std::endl;
+}
+
+/**
+ * @brief Function for printing a timeline
+*/
+void printTimeLine1() // Example
+{
+	outputPosition(4, 3);
+	std::cout << "                   1987            1876             1967" << std::endl;
+	outputPosition(4, 4);
+	std::cout << "                    v               v                v" << std::endl;
+	outputPosition(4, 5);
+	std::cout << "              /\\                               ______,....----," << std::endl;
+	outputPosition(4, 6);
+	std::cout << "/VVVVVVVVVVVVVV|===================\"\"\"\"\"\"\"\"\"\"\"\"       ___,..-' " << std::endl;
+	outputPosition(4, 7);
+	std::cout << "`^^^^^^^^^^^^^^|======================----------\"\"\"\"\"\"" << std::endl;
+	outputPosition(4, 8);
+	std::cout << "              \\/" << std::endl;
+	outputPosition(4, 9);
+	std::cout << "                    ^               ^                ^" << std::endl;
+	outputPosition(4, 10);
+	std::cout << "                   1987            1876             1967" << std::endl;
 }

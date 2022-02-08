@@ -14,4 +14,6 @@ void printSnakeSword(); // Function for printing a sword with a snake
 void printBulgarianMap(); // Function for printing the map of Bulgaria
 void printPopUp(); // Function for printing a pop-up tab
 void printMapPopUp(); // Function for printing a pop-up tab for the map
+void printTimeline(); // Function for printing a timeline
+void printTimeLine1(); // Function for printing a timeline
 
