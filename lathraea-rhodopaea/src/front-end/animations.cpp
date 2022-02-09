@@ -23,6 +23,19 @@ void bookAnimation()
 {
 	printClosedBook();
 	delay(70);
+	system("CLS");
+	printSlightlyOpenBook();
+	delay(70);
+	system("CLS");
+	printHalfOpenBook();
+	delay(70);
+	system("CLS");
+	printAlmostOpenedBook();
+	delay(70);
+	system("CLS");
+	printFullyOpenedBook();
+	delay(70);
+	system("CLS");
 	printOnePageLeafedBook();
 	delay(70);
 	system("CLS");

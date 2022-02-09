@@ -6,6 +6,11 @@
 #include <external/strptime.h>
 #include <back-end/logs.h>
 
+/**
+ * @brief Function for getting epoch based on the year
+ * @param d The date in form of tm
+ * @return The epoch as a string
+*/
 std::string getTheEpoch(tm d)
 {
 	int year = d.tm_year + 1900;

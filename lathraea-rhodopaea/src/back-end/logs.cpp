@@ -38,6 +38,7 @@ std::string enumToString(LogSeverity logSeverity)
 		return "Debug";
 		break;
 	default:
+		return "Debug";
 		break;
 	}
 }
