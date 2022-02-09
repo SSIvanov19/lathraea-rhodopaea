@@ -22,6 +22,207 @@ enum class CHARACTERS
 	DOUBLE_LOWER_RIGHT_CORNER = 188, /*Double lower rigt corner*/
 };
 
+
+void printClosedBook()
+{
+	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER;
+	for (int i = 0; i < 53; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                                                     ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
+	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                                                     ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                                 ,-.                 ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                                (\"O_)                ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                               / `-/                 ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                              /-. /                  ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                             /   )                   ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                            /   /                    ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                _          /-. /                     ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "               (_)\"-._    /   )                      ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                 \"-._ \"-'\"\"( )/                      ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                     \"-/\"-._\"`.                      ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                      /     \"-.'._                   ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                     /\\       /-._\"-._               ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      _,---...__    /  ) _,-\"/    \"-(_)              ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "  ___<__(|) _   \"\"-/  / /   /                        ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "   '  `----' \"\"-.   \\/ /   /                         ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                 )  ] /   /                          ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "         ____..-'   //   /                       )   ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "     ,-\"\"      __.,'/   /   ___                 /    ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "    /    ,--\"\"/  / /   /,-\"\"   \"\"\"-          ,'/     ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "   [    (    /  / /   /  ,.---,_   `._   _,-','      ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "    \\    `-./  / /   /  /       `-._  \"\"\", -'        ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
+	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "     `-._  /  / /   /_,'            \"\"--\"            ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "         \"/  / /   /\"                                ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "         /  / /   /                                  ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "        /  / /   /                                   ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "       /  |,'   /                                    ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      :   /    /                                     ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      [  /   ,'                                      ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      | /  ,'                                        ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      |/,-'                                          ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      /                                              ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "                                                     ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
+	for (int i = 0; i < 52; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << " ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << "( .";
+	for (int i = 0; i < 53; i++)
+	{
+		std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
+	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	std::cout << " ";
+	for (int i = 0; i < 57; i++)
+	{
+		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
+	}
+	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+}
+
 /**
  * @brief Function for printing the opened book
 */

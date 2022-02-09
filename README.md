@@ -2,6 +2,7 @@
 <img src= "Photos/logo.jpg" width="600" height="400">
 
 </div>
+
 # Hello, we are team Lathraea rhodopaea!
 ---
 You can view our Presentation here:

@@ -21,6 +21,8 @@ void delay(int seconds)
 */
 void bookAnimation()
 {
+	printClosedBook();
+	delay(70);
 	printOnePageLeafedBook();
 	delay(70);
 	system("CLS");
