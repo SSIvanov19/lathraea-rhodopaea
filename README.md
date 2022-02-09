@@ -1,28 +1,24 @@
 
 # Hello, we are team Lathraea rhodopaea!
 ---
+You can view our Presentation here:
 <br>
-You can open and see our presentation here:
 
+# About
 
-# Table of contents
- 
-+ [Participants](#participants)
-+ [Used technologies](#used-technologies)
-+ [Installation](#installation)
- 
+<br>
 
 ## Participants <a name = "participants"></a>
 
-Name | Email
--------|------------
-Stoqn Ivanov | SSIvanov19@codingburgas.bg
-Vasilen Mihaylov |VMMihaylov19@codingburgas.bg
-Mariq Ilcheva | MZIlcheva19@codingburgas.bg
-Vesela Dekova | VBDekova19@codingburgas.bg
-Polina Petrova | PYPetrova19@codingburgas.bg
+Name   | Github profile| Role
+-------|---------------|------
+Stoqn Ivanov | <a href = "https://github.com/SSIvanov19"> SSIvanov19</a> | Back-end Developer
+Vasilen Mihaylov | <a href = "https://github.com/VMMihaylov19/vmmihaylov19"> VMMihaylov19</a> | Scrum trainer
+Mariq Ilcheva | <a href = "https://github.com/MZIlcheva19/mzilcheva19"> MZIlcheva19</a> | Front-end Developer
+Vesela Dekova | <a href = "https://github.com/VBDekova19/vbdekova19"> VBDekova19</a> | Front-end Developer
+Polina Petrova | <a href = "https://github.com/PYPetrova19/pypetrova19"> PYPetrova19</a> | QA Engineer
 
-
+# Online Documentation
  
 
 ##  Used technologies <a name = "used-technologies"></a>
