@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <front-end/mainMenu.h>
+#include <front-end/graphics.h>
 
 void Application::run(AccountManager accountManager, EventManager eventManager)
 {
@@ -41,6 +42,8 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 
 		while (selectedOption)
 		{
+			printClosedBook();
+			printTeamLogo();
 			outputOptions(menuOptions, selectedOption);
 			pressedKey = _getch();
 			switchMenuOptions(&eventManager, pressedKey, selectedOption, menuOptions);

@@ -20,6 +20,11 @@ void printBulgarianMap(); // Function for printing the map of Bulgaria
 void printPopUp(); // Function for printing a pop-up tab
 void printMapPopUp(); // Function for printing a pop-up tab for the map
 void printTimeline(); // Function for printing a timeline
-void printTimeLine1(); // Function for printing a timeline
-void logoForProgram();// Function for printing the logo of the project
+void printTimelinePopUp(); // Function for printing a pop-up tab for the timeline
+void printSwordTimelinePopUp(); // Function for printing a pop-up tab for the sword timeline
+void printSwordTimeline(); // Function for printing a sword timeline
+void printTimeline(); // Function for printing a timeline
+void logoForProgram(); // Function for printing the logo of the project
+void printTeamLogo(); // Function for printing the team logo
+void printTeamKeyboardLogo(); // Function for printing the team logo as keyboard
 

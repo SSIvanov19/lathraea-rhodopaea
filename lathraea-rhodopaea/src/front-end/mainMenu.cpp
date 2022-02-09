@@ -53,14 +53,15 @@ void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption
 	{
 		if (i + 1 == selectedOption)
 		{
-			color((int)COLORS::RED);
+			outputPosition(6, 18 + i * 2 );
+			std::cout << "-> ";
 		}
 		else
 		{
-			color((int)COLORS::GRAY);
+			outputPosition(6, 18 + i * 2);
+			std::cout << "   ";
 		}
-		outputPosition(1, i + i + 1);
-		std::cout << " -> " << possibleOptions[i] << std::endl << std::endl;
+		std::cout << possibleOptions[i] << std::endl << std::endl;
 	}
 }
 
@@ -702,19 +703,9 @@ void deleteEvent(EventManager* eventManager)
 }
 
 /**
- * @brief Function for exiting of the program
- * @return 0
-*/
-int exitProgram() 
-{
-	system("CLS");
-	return 0;
-}
-
-/**
  * @brief Function for coloring hovered options
  * @param eventManager Variable for an event manager
- * @param key key The pressed button
+ * @param key The pressed button
  * @param selectedOption The selected option
  * @param possibleOptions The possible options
 */
@@ -744,7 +735,9 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 			break;
 		case 2: deleteEvent(eventManager);
 			break;
-		case 7: exitProgram();
+		case 7: 
+			system("CLS");
+			exit(0);
 			break;
 		}
 	}
