@@ -10,9 +10,9 @@
 */
 struct Storyline
 {
-	std::string title; /*!< Title of the storyline */
-	std::vector<Event> events; /*!< Events in the storyline */
-	std::string desc; /*!< Description of the storyline */
+	std::string title; //!< Title of the storyline
+	std::vector<Event> events; //!< Events in the storyline
+	std::string desc; //!< Description of the storyline
 
 	/**
 	 * @brief Constructor for the storyline
@@ -35,38 +35,41 @@ struct Storyline
 	void displayStoryline();
 };
 
+/**
+ * @brief A structure for a linked list that holds all of the storylines 
+*/
 struct StorylineList
 {
-	Storyline storyline; /*!< The data of the storyline */
-	StorylineList* next = nullptr; /*!< The next node */
+	Storyline storyline; //!< The data of the storyline
+	StorylineList* next = nullptr; //!< The next node
 
 	/**
 	 * @brief A constructor for StorylineList
 	 * @param event_ The data of the storyline
 	 * @param next_ A pointer to the next storyline
 	*/
-	StorylineList(Storyline storyline_, StorylineList* next_); /*!< A constructor for StorylineList */
+	StorylineList(Storyline storyline_, StorylineList* next_);
 
 	/**
 	 * @brief Function for adding a storyline
 	 * @param head The head of the list
 	 * @param data The data of the storyline
 	*/
-	void addStoryline(StorylineList* head, Storyline data); /*!< Function for adding a storyline */
+	void addStoryline(StorylineList* head, Storyline data);
 
 	/**
 	 * @brief Function for adding a storyline at the begging of the list
 	 * @param head The head of the list
 	 * @param data The data of the storyline
 	*/
-	void insertStorylineAtFront(StorylineList** head, Storyline data); /*!<Function for adding a storyline at the begging of the list */
+	void insertStorylineAtFront(StorylineList** head, Storyline data);
 
 	/**
 	 * @brief Function for checking if there is already a storyline with the same name
 	 * @param head The head of the list
 	 * @param titleToCheck Title of the storyline to be checked
 	*/
-	bool doesStorylineExist(StorylineList* head, std::string titleToCheck);  /*!< Function for checking if there is already a storyline with the same name */
+	bool doesStorylineExist(StorylineList* head, std::string titleToCheck);
 
 	// Only for debugging purposes
 	// Should not be used in the final product

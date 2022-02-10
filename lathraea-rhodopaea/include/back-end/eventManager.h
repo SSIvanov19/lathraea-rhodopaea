@@ -26,8 +26,8 @@ enum class TypeOfEvent
 */
 struct Coordinates
 {
-	short X; /*!< X coordinate */
-	short Y; /*!< Y coordinate */
+	short X; //!< X coordinate
+	short Y; //!< Y coordinate
 };
 
 /**
@@ -35,31 +35,31 @@ struct Coordinates
 */
 struct Event
 {
-	std::string title; /*!< Title of the event */
-	std::vector<tm> period; /*!< Period/Year of the event */
-	std::vector<std::string> epochs; /*!< Epoch of the event (Determine by the year)*/
-	Coordinates coordinates; /*!< Coordinates of the event */
-	TypeOfEvent type; /*!< Type of the event */
-	std::string additionalNotes; /*!< Description of the event */
+	std::string title; //!< Title of the event
+	std::vector<tm> period; //!< Period/Year of the event
+	std::vector<std::string> epochs; //!< Epoch of the event (Determine by the year)
+	Coordinates coordinates; //!< Coordinates of the event
+	TypeOfEvent type; //!< Type of the event
+	std::string additionalNotes; //!< Description of the event
 
 	// Uprising event
-	std::vector<std::string> organizers; /*!< Organizers of the uprising */
-	int numberOfRebelions; /*!< Number of rebelions participation in the uprising */
-	bool isItSuccessful; /*!< Is the uprising successful */
+	std::vector<std::string> organizers; //!< Organizers of the uprising
+	int numberOfRebelions; //!< Number of rebelions participation in the uprising
+	bool isItSuccessful; //!< Is the uprising successful
 
 	// War event
-	std::vector<std::string> participatingCountries; /*!< Participating countries in the war */
-	std::string winner; /*!< The winier of the war */
-	std::string reason; /*!< The reasong for the war */
-	std::vector<std::string> rulers; /*!< The rulers of the countries Participating in the war */
+	std::vector<std::string> participatingCountries; //!< Participating countries in the war
+	std::string winner; //!< The winier of the war
+	std::string reason; //!< The reasong for the war
+	std::vector<std::string> rulers; //!< The rulers of the countries Participating in the war
 
 	// Movement event
-	std::string howItStarted; /*!< How does the movement start*/
-	std::string ideas; /*!< The ideas of the movement */
-	std::string aims; /*!< The aims of the movement */
-	std::vector<std::string> representatives; /*!< The representatives of the movement */
+	std::string howItStarted; //!< How does the movement start
+	std::string ideas; //!< The ideas of the movement
+	std::string aims; //!< The aims of the movement
+	std::vector<std::string> representatives; //!< The representatives of the movement
 
-	DateManager dateManager; /*!< Date manager */
+	DateManager dateManager; //!< Date manager
 
 	/**
 	 * @brief Constructor for a uprising event
@@ -79,7 +79,7 @@ struct Event
 		bool isItSuccessful_,
 		int numberOfRebelions_ = NULL,
 		std::string additionalNotes_ = ""
-	); /*!< Constructor for a uprising event */
+	);
 
 	/**
 	 * @brief Constructor for a war event
@@ -101,7 +101,7 @@ struct Event
 		std::string reasons_,
 		std::vector<std::string> rulers_ = std::vector<std::string>(),
 		std::string additionalNotes_ = ""
-	); /*!< Constructor for a war event */
+	);
 
 	/**
 	 * @brief Constructor for a movement event
@@ -123,7 +123,7 @@ struct Event
 		std::string aims_,
 		std::vector<std::string> representatives_ = std::vector<std::string>(),
 		std::string additionalNotes_ = ""
-	); /*!< Constructor for a movement event */
+	);
 
 	/**
 	 * @brief Constructor for a undefined (other) event
@@ -142,7 +142,7 @@ struct Event
 	/**
 	 * @brief Default constructor for a Event
 	*/
-	Event(); /*!< Default constructor for a Event */
+	Event();
 
 	// Only for debugging purposes
 	// Should not be used in the final product
@@ -154,36 +154,36 @@ struct Event
 */
 struct EventList
 {
-	Event event; /*!< The data of the event */
-	EventList* next = nullptr; /*!< The next node */
+	Event event; //!< The data of the event
+	EventList* next = nullptr; //!< The next node
 
 	/**
 	 * @brief A constructor for EventList
 	 * @param event_ The data of the first event (Admin)
 	 * @param next_ A pointer to the next event
 	*/
-	EventList(Event event_, EventList* next_); /*!< A constructor for EventList */
+	EventList(Event event_, EventList* next_);
 
 	/**
 	 * @brief Function for adding an event
 	 * @param head The head of the list
 	 * @param data The data of the event
 	*/
-	void addEvent(EventList* head, Event data); /*!< Function for adding a event */
+	void addEvent(EventList* head, Event data);
 
 	/**
 	 * @brief Function for adding an event at the end of the list
 	 * @param head The head of the list
 	 * @param data The data of the event
 	*/
-	void insertEventAtFront(EventList** head, Event data); /*!< Function for adding an event at the end of the list */
-	
+	void insertEventAtFront(EventList** head, Event data);
+
 	/**
 	 * @brief Function for checking if there is already a event with the same name
 	 * @param head The head of the list
 	 * @param titleToCheck Title of the event to be checked
 	*/
-	bool doesEventExist(EventList* head, std::string titleToCheck);  /*!< Function for checking if there is already a event with the same name */
+	bool doesEventExist(EventList* head, std::string titleToCheck);
 
 	// Only for debugging purposes
 	// Should not be used in the final product
@@ -195,9 +195,9 @@ struct EventList
 */
 struct EventManager
 {
-	EventList* eventList = nullptr; /*!< List with all events */
+	EventList* eventList = nullptr; //!< List with all events 
 	
-	DateManager dateManager; /*< Date manager */
+	DateManager dateManager; //!< Date manager
 
 	/**
 	 * @brief Function for adding an uprise event
@@ -217,7 +217,7 @@ struct EventManager
 		bool isItSuccessful,
 		int numberOfRebelions = NULL,
 		std::string additionalNotes = ""
-	); /*!< Function for adding an uprise event */
+	);
 
 	/**
 	 * @brief Function for adding a war event
@@ -239,7 +239,7 @@ struct EventManager
 		std::string reasons,
 		std::vector<std::string> rulers = std::vector<std::string>(),
 		std::string additionalNotes = ""
-	); /*!< Function for adding a war event */
+	);
 
 	/**
 	 * @brief Function for adding a movement
@@ -261,7 +261,7 @@ struct EventManager
 		std::string aims,
 		std::vector<std::string> representatives = std::vector<std::string>(),
 		std::string additionalNotes = ""
-	); /*!< Function for adding a movement */
+	);
 
 	/**
 	 * @brief Function for adding a undefined (other) event
@@ -275,7 +275,7 @@ struct EventManager
 		std::vector<std::string> period,
 		Coordinates coordinates,
 		std::string additionalNotes = ""
-	); /*!< Function for adding an event */
+	);
 
 	/**
 	 * @brief Function for deleting a node from the list
@@ -283,7 +283,7 @@ struct EventManager
 	 * @param searchTitle Title to be looked up
 	 * @return Is removeing successful
 	*/
-	bool removeEvent(EventList** head, std::string searchTitle); /*!< Function for deleting a node from the list */
+	bool removeEvent(EventList** head, std::string searchTitle);
 	
 	/*
 	template<typename T>
@@ -297,9 +297,9 @@ struct EventManager
 	 * @return All events with this keyword in their title
 	*/
 	std::vector<Event> getAllEventsWithTitle(
-		EventList* head, 
+		EventList* head,
 		std::string searchTitle
-	); /*!< Function for getting all elements with a keyword in the title */
+	);
 
 	/**
 	 * @brief Function for getting all elements with a date
@@ -307,7 +307,7 @@ struct EventManager
 	 * @param date The date to be looked up
 	 * @return All events that happend on this date
 	*/
-	std::vector<Event> getAllEventsWithDate(EventList* head, tm date); /*!< Function for getting all elements with a date */
+	std::vector<Event> getAllEventsWithDate(EventList* head, tm date);
 };
 
 //template bool EventManager::editEvent(EventList*, std::string, std::string, std::string);

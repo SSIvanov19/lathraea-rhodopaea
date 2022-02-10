@@ -15,5 +15,5 @@ struct EnvManager
 	 * @param var The name of the variable to be getted
 	 * @return The environment variable
 	*/
-	std::string getEnv(const char* var); /*!< A function for getting environment variable */
+	std::string getEnv(const char* var);
 };

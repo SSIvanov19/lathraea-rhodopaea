@@ -21,10 +21,10 @@ enum class Roles
 */
 struct Account
 {
-	std::string uname; /*!< Username of the user */
-	std::string email; /*!< Email of the user */
-	std::vector<int> pass; /*!< Password of the user */
-	Roles role = Roles::USER; /*< Role of the user */
+	std::string uname; //!< Username of the user
+	std::string email; //!< Email of the user
+	std::vector<int> pass; //!< Password of the user
+	Roles role = Roles::USER; //!< Role of the user
 
 	/**
 	 * @brief A constructor for creating a user
@@ -38,12 +38,12 @@ struct Account
 		std::string email_,
 		std::vector<int> pass_,
 		Roles role_
-	); /*!< A constructor for creating a user */
+	);
 
 	/**
 	 * @brief Default constructor for Account
 	*/
-	Account(); /*!< Default constructor for Account */
+	Account();
 	
 	
 	// Only for debugging purposes
@@ -56,37 +56,29 @@ struct Account
 */
 struct AccountList
 {
-	Account user; /*!< The data of the user */
-	AccountList* next = nullptr; /*!< The next node */
+	Account user; //!< The data of the user
+	AccountList* next = nullptr; //!< The next node
 
 	/**
 	 * @brief A constructor for AccountList
 	 * @param user_ The data of the first user (Admin)
 	 * @param next_ A pointer to the next user
 	*/
-	AccountList(Account user_, AccountList* next_); /*!< A constructor for AccountList */
+	AccountList(Account user_, AccountList* next_);
 
 	/**
 	 * @brief Function for adding a user
 	 * @param head The head of the list
 	 * @param data The data of the account
 	*/
-	void addUser(AccountList* head, Account data); /*!< Function for adding a user */
+	void addUser(AccountList* head, Account data);
 
 	// Only for debugging purposes
 	// Should not be used in the final product
 	void displayAllUsers(AccountList* head);
-
-	/**
-	 * @brief A function for checking if there is already a account with this email
-	 * @param head The head of the list
-	 * @param emailToCheck The email to be checked
-	 * @return Is email duplicate
-	*/
-	bool doesUserExist(AccountList* head, std::string emailToCheck); /*!< Function for checking for duplicate emails */
 	
 	/**
-	 * @brief Overload for function doesUserExist that gets the user info
+	 * @brief Function that check if user exists
 	 * @param head The head of the list
 	 * @param emailToCheck The email to be checked
 	 * @param accountData Variable which gets the account data
@@ -95,7 +87,7 @@ struct AccountList
 	bool doesUserExist(
 		AccountList* head,
 		std::string emailToCheck,
-		Account*& accountData
+		Account** accountData
 	);
 };
 
@@ -107,32 +99,32 @@ struct AccountManager
 	/**
 	 * @brief A Linked list that holds all of the accounts
 	*/
-	AccountList* accountNode; /*!< A Linked list that holds all of the accounts */
+	AccountList* accountNode; 
 
 	/**
 	 * @brief Pointer to the account that is currently logged in
 	*/
-	Account* activeUser = nullptr; /*!< Pointer to the account that is currently logged in */
+	Account* activeUser = nullptr;
 	
 	/**
 	 * @brief Validation manager
 	*/
-	Validations validations; /*!< Validation manager */
+	Validations validations;
 
 	/**
 	 * @brief Environment variables manager
 	*/
-	EnvManager envManager ;/*!< Environment variables manager */
+	EnvManager envManager;
 
 	/**
 	 * @brief Encryption manager
 	*/
-	EncryptionManager encryptionManager; /*!< Encryption manager */
+	EncryptionManager encryptionManager;
 
 	/**
 	 * @brief A constructior for AccountManager
 	*/
-	AccountManager(); /*!< A constructior for AccountManager */
+	AccountManager();
 
 	/**
 	 * @brief Function for registering a user
@@ -148,7 +140,7 @@ struct AccountManager
 		std::string email,
 		std::string pass,
 		Roles role
-	); /*!< Function for registering a user */
+	);
 
 	/**
 	 * @brief Function for logining a user
@@ -157,5 +149,5 @@ struct AccountManager
 	 * @return True or false, based on that
 			   if a login is successful 
 	*/
-	void loginUser(std::string email, std::string pass); /*!< Function for logining a user */
+	void loginUser(std::string email, std::string pass);
 };

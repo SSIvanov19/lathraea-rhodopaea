@@ -15,19 +15,19 @@ struct Validations
 	 * @param uname Username to be validated
 	 * @return Is username valid
 	*/
-	bool isUnameValid(const std::string uname); /*!< Function for validating a username */
+	bool isUnameValid(const std::string uname);
 
 	/**
 	 * @brief Function for validating a email
 	 * @param email Email to be validated
 	 * @return Is email valid
 	*/
-	bool isEmailValid(const std::string email); /*!< Function for validating a email */
+	bool isEmailValid(const std::string email);
 
 	/**
 	 * @brief Function for validating a password
 	 * @param pass Password to be validated
 	 * @return Is password valid
 	*/
-	bool isPassValid(const std::string pass); /*!< Function for validating a password */
+	bool isPassValid(const std::string pass);
 };

@@ -1,5 +1,5 @@
 <div align = "center">
-<img src= "Photos/logo.jpg" width="600" height="400">
+<img src= "img/logo.jpg" width="600" height="400">
 
 </div>
 
