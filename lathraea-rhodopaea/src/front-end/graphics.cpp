@@ -4,26 +4,7 @@
 
 #include <iostream>
 #include <front-end/output.h>
-
-enum class CHARACTERS
-{
-	DOT = 250, /*Space dot*/
-	BLOCK = 219, /*Block*/
-	T = 194, /*T*/
-	ROTATED_T = 193, /*Rotated T*/
-	HORIZONTAL_LINE = 196,  /*Horizontal line */
-	VERTICAL_LINE = 179, /*Vertical line*/
-	DOUBLE_HORIZONTAL_LINE = 205, /*Double horizontal line*/
-	DOUBLE_VERTICAL_LINE = 186, /*Double vertical line*/
-	UPPER_LEFT_CORNER = 218, /*Upper left corner*/
-	UPPER_RIGHT_CORNER = 191, /*Upper right corner*/
-	LOWER_LEFT_CORNER = 192, /*Lower left corner*/
-	LOWER_RIGHT_CORNER = 217, /*Lower right corner*/
-	DOUBLE_UPPER_LEFT_CORNER = 201, /*Double upper left corner*/
-	DOUBLE_UPPER_RIGHT_CORNER = 187, /*Double upper right corner*/
-	DOUBLE_LOWER_LEFT_CORNER = 200, /*Double lower left corner*/
-	DOUBLE_LOWER_RIGHT_CORNER = 188, /*Double lower rigt corner*/
-};
+#include <front-end/enumerations.h>
 
 /**
  * @brief Function for printing closed book.
@@ -2064,4 +2045,32 @@ void printTeamKeyboardLogo()
 	std::cout << "||__|||__|||__|||__|||__|||__|||__|||__|||__||" << std::endl;
 	outputPosition(6, 11);
 	std::cout << "|/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|/__\\|" << std::endl;
+}
+
+/**
+ * @brief Function for printing blank space
+*/
+void printBlankSpace()
+{
+	outputPosition(6, 18);
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
+	std::cout << "                                                         " << std::endl;
 }

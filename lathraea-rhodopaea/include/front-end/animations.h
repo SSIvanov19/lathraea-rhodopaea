@@ -1,4 +1,4 @@
-/*! @file graphics.h
+/*! @file animations.h
 *   @brief A header file for the application annimations.
 */
 

@@ -81,6 +81,9 @@
     <ClCompile Include="src\back-end\storylineManager.cpp">
       <Filter>Source Files\back-end</Filter>
     </ClCompile>
+    <ClCompile Include="include\front-end\loginMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -129,6 +132,12 @@
       <Filter>Header Files\back-end</Filter>
     </ClInclude>
     <ClInclude Include="include\front-end\animations.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\loginMenu.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\enumerations.h">
       <Filter>Header Files\front-end</Filter>
     </ClInclude>
   </ItemGroup>

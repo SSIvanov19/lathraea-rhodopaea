@@ -8,6 +8,7 @@
 #include <conio.h>
 #include <front-end/mainMenu.h>
 #include <front-end/graphics.h>
+#include <front-end/loginMenu.h>
 
 void Application::run(AccountManager accountManager, EventManager eventManager)
 {
@@ -40,14 +41,18 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 		char pressedKey;
 		int selectedOption = 1;
 
-		while (selectedOption)
+		accountMenu(accountManager);
+		if (loginUser) 
 		{
-			printClosedBook();
-			printTeamLogo();
-			outputOptions(menuOptions, selectedOption);
-			pressedKey = _getch();
-			switchMenuOptions(&eventManager, pressedKey, selectedOption, menuOptions);
-		}
+			while (selectedOption)
+			{
+				printClosedBook();
+				printTeamLogo();
+				outputOptions(menuOptions, selectedOption);
+				pressedKey = _getch();
+				switchMenuOptions(&eventManager, pressedKey, selectedOption, menuOptions);
+			}
+		}	
 	}
 	catch (const std::string errorMsg)
 	{

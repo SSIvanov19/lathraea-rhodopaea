@@ -186,13 +186,14 @@ void AccountManager::registerUser(
 		"User with email: " + email + "is successfully registered"
 	);
 
-	// Only for debugging purposes
-	// Should not be used in the final product
-	std::cout << "Added new user. All users are:\n";
-
-	// Only for debugging purposes
-	// Should not be used in the final product
-	accountNode->displayAllUsers(accountNode);
+//	// Only for debugging purposes
+//	// Should not be used in the final product
+//	std::cout << "Added new user. All users are:\n";
+//
+//	// Only for debugging purposes
+//	// Should not be used in the final product
+//	accountNode->displayAllUsers(accountNode);
+//
 }
 
 void AccountManager::loginUser(std::string email, std::string pass)

@@ -2,6 +2,7 @@
 *   @brief A source file for setting the output color and position.
 */
 #include <windows.h>
+#include <string>
 
 /**
  * @brief Function for setting the output position
@@ -31,4 +32,14 @@ void color(int color)
 		return;
 	}
 	else {}
+}
+
+/**
+ * @brief Check if the output that was returned from getOutputHandle() is INVALID_HANDLE_VALUE.
+ * @param handle The handle given from getOutputHandle()
+ * @return bool Is the handle invalid
+*/
+bool checkForInvalidHandle(HANDLE handle)
+{
+	return handle == INVALID_HANDLE_VALUE;
 }

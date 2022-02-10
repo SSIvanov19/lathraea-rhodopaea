@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\front-end\loginMenu.cpp" />
     <ClCompile Include="lathraeaRhodopaea.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\back-end\accountSystem.cpp" />
@@ -176,7 +177,9 @@
     <ClInclude Include="include\external\dotenv.h" />
     <ClInclude Include="include\external\strptime.h" />
     <ClInclude Include="include\front-end\animations.h" />
+    <ClInclude Include="include\front-end\enumerations.h" />
     <ClInclude Include="include\front-end\graphics.h" />
+    <ClInclude Include="include\front-end\loginMenu.h" />
     <ClInclude Include="include\front-end\mainMenu.h" />
     <ClInclude Include="include\front-end\output.h" />
   </ItemGroup>

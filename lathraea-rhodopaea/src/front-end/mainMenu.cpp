@@ -6,43 +6,10 @@
 #include <front-end/output.h>
 #include <front-end/graphics.h>
 #include <front-end/animations.h>
+#include <front-end/enumerations.h>
 #include <back-end/eventManager.h>
 #include <back-end/datetimeManager.h>
 #include <application.h>
-
-/**
- * @brief Enumeration representing the color codes
-*/
-enum class COLORS
-{
-	DARK_BLUE = 1,
-	DARK_GREEN = 2,
-	DARK_CYAN = 3,
-	DARK_RED = 4,
-	DARK_MAGENTA = 5,
-	DARK_YELLOW = 6,
-	DIRTY_WHITE = 7,
-	GRAY = 8,
-	BLUE = 9,
-	GREEN = 10,
-	CYAN = 11,
-	RED = 12,
-	MAGENTA = 13,
-	YELLOW = 14,
-	WHITE = 15,
-};
-
-/**
- * @brief Enumeration representing the keys' codes
-*/
-enum class ARROW_KEYS
-{
-	KEY_UP = 72,
-	KEY_DOWN = 80,
-	KEY_LEFT = 77,
-	KEY_RIGHT = 75,
-	KEY_ENTER = '\r'
-};
 
 /**
  * @brief Function for printing the main menu options
@@ -334,7 +301,6 @@ void addOtherEvent(EventManager* eventManager)
 	{
 		std::cout << errorMessage;
 	}
-
 }
 
 /**
