@@ -4,6 +4,8 @@
 #include <string>
 #include <conio.h>
 #include <front-end/output.h>
+#include <front-end/graphics.h>
+#include <front-end/animations.h>
 #include <back-end/eventManager.h>
 #include <back-end/datetimeManager.h>
 #include <application.h>
@@ -53,7 +55,7 @@ void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption
 	{
 		if (i + 1 == selectedOption)
 		{
-			outputPosition(6, 18 + i * 2 );
+			outputPosition(6, 18 + i * 2);
 			std::cout << "-> ";
 		}
 		else
@@ -267,7 +269,7 @@ std::vector <std::string> separateDates(std::string str)
 
 	startDate += day + ' ' + month + ' ' + year;
 	endDate += dayTwo + ' ' + monthTwo + ' ' + yearTwo;
-	
+
 	if (twoDates)
 	{
 		dates.push_back(startDate);
@@ -527,11 +529,11 @@ void addMovementEvent(EventManager* eventManager)
 {
 	system("CLS");
 	std::string title;
-	std::cout << "Enter the title of the event you want to add: " << std::endl;	
+	std::cout << "Enter the title of the event you want to add: " << std::endl;
 	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, title);
 
-	while (title.empty()) 
+	while (title.empty())
 	{
 		std::cout << "Title can not be empty, please enter again: ";
 		getline(std::cin, title);
@@ -638,35 +640,69 @@ void addMovementEvent(EventManager* eventManager)
 */
 void addEvent(EventManager* eventManager)
 {
-	system("CLS");
-	std::cout << "Eneter the type of event yopu want to add!" << std::endl << "Enter 1 for an uprising, enter 2 for a war, enter 3 for a movement, enter 4 for other: ";
-	int type = 0;
+	outputPosition(68, 10);
+	std::cout << "Choose the type of event you want to add!";
+	std::vector<std::string> eventTypeOptions = {
+		"Uprising",
+		"War",
+		"Movement",
+		"Other"
+	};
 
-	while (type != (int)TypeOfEvent::UPRISING && type != (int)TypeOfEvent::WAR && type != (int)TypeOfEvent::MOVEMENT && type != (int)TypeOfEvent::OTHER)
+	int selectedOption = 1;
+	char pressedKey;
+
+	while (selectedOption)
 	{
-
-		std::cin >> type;
-
-		while (std::cin.fail())
+		for (int i = 0; i < eventTypeOptions.size(); i++)
 		{
-			std::cin.clear();
-			std::cin.ignore(INT_MAX, '\n');
-			std::cout << "Please enter a number: ";
-			std::cin >> type;
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(68, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(68, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << eventTypeOptions[i] << std::endl << std::endl;
 		}
+		pressedKey = _getch();
 
-		switch (type)
+		switch (pressedKey)
 		{
-		case 1: addUprisingEvent(eventManager);
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
 			break;
-		case 2: addWarEvent(eventManager);
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == eventTypeOptions.size() + 1)
+			{
+				selectedOption -= 1;
+			}
 			break;
-		case 3: addMovementEvent(eventManager);
-			break;
-		case 4: addOtherEvent(eventManager);
-			break;
-		default:
-			std::cout << "Please enter a number between 1 and 4!";
+		case (int)ARROW_KEYS::KEY_ENTER:
+			switch (selectedOption)
+			{
+			case 1:
+				addUprisingEvent(eventManager);
+				break;
+			case 2:
+				addWarEvent(eventManager);
+				break;
+			case 3:
+				addMovementEvent(eventManager);
+				break;
+			case 4:
+				addOtherEvent(eventManager);
+				break;
+			}
 		}
 	}
 
@@ -731,11 +767,13 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 	case (int)ARROW_KEYS::KEY_ENTER:
 		switch (selectedOption)
 		{
-		case 1: addEvent(eventManager);
+		case 1:
+			bookOpeningAnimation();
+			addEvent(eventManager);
 			break;
 		case 2: deleteEvent(eventManager);
 			break;
-		case 7: 
+		case 7:
 			system("CLS");
 			exit(0);
 			break;

@@ -21,21 +21,6 @@ void delay(int seconds)
 */
 void bookAnimation()
 {
-	printClosedBook();
-	delay(70);
-	system("CLS");
-	printSlightlyOpenBook();
-	delay(70);
-	system("CLS");
-	printHalfOpenBook();
-	delay(70);
-	system("CLS");
-	printAlmostOpenedBook();
-	delay(70);
-	system("CLS");
-	printFullyOpenedBook();
-	delay(70);
-	system("CLS");
 	printOnePageLeafedBook();
 	delay(70);
 	system("CLS");
@@ -52,4 +37,19 @@ void bookAnimation()
 	delay(70);
 	system("CLS");
 	printOpenedBook();
+}
+
+void bookOpeningAnimation()
+{
+	printSlightlyOpenBook();
+	delay(120);
+	system("CLS");
+	printHalfOpenBook();
+	delay(120);
+	system("CLS");
+	printAlmostOpenedBook();
+	delay(120);
+	system("CLS");
+	printFullyOpenedBook();
+	delay(120);
 }

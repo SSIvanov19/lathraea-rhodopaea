@@ -175,6 +175,7 @@
     <ClInclude Include="include\back-end\validations.h" />
     <ClInclude Include="include\external\dotenv.h" />
     <ClInclude Include="include\external\strptime.h" />
+    <ClInclude Include="include\front-end\animations.h" />
     <ClInclude Include="include\front-end\graphics.h" />
     <ClInclude Include="include\front-end\mainMenu.h" />
     <ClInclude Include="include\front-end\output.h" />

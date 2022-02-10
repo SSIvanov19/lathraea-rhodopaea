@@ -30,217 +30,218 @@ enum class CHARACTERS
 */
 void printClosedBook()
 {
-	outputPosition(64, 3);
+	int counter = 5;
+	outputPosition(64, counter + 1);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER;
 	for (int i = 0; i < 53; i++)
 	{
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(64, 4);
+	outputPosition(64, counter + 2);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(64, 5);
+	outputPosition(64, counter + 3);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(64, 6);
+	outputPosition(64, counter + 4);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                  ,-.                ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 7);
+	outputPosition(64, counter + 5);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                 (\"O_)               ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 8);
+	outputPosition(64, counter + 6);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                / `-/                ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 9);
+	outputPosition(64, counter + 7);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                               /-. /                 ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 10);
+	outputPosition(64, counter + 8);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                              /   )                  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 11);
+	outputPosition(64, counter + 9);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                             /   /                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 12);
+	outputPosition(64, counter + 10);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                 _          /-. /                    ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 13);
+	outputPosition(64, counter + 11);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                (_)\"-._    /   )                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 14);
+	outputPosition(64, counter + 12);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                  \"-._ \"-'\"\"( )/                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 15);
+	outputPosition(64, counter + 13);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                      \"-/\"-._\"`.                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 16);
+	outputPosition(64, counter + 14);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                       /     \"-.'._                  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 17);
+	outputPosition(64, counter + 15);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                      /\\       /-._\"-._              ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 18);
+	outputPosition(64, counter + 16);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       _,---...__    /  ) _,-\"/    \"-(_)             ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 19);
+	outputPosition(64, counter + 17);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "   ___<__(|) _   \"\"-/  / /   /                       ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 20);
+	outputPosition(64, counter + 18);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "    '  `----' \"\"-.   \\/ /   /                        ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 21);
+	outputPosition(64, counter + 19);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                  )  ] /   /                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 22);
+	outputPosition(64, counter + 20);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "          ____..-'   //   /                       )  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 23);
+	outputPosition(64, counter + 21);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "      ,-\"\"      __.,'/   /   ___                 /   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 24);
+	outputPosition(64, counter + 22);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "     /    ,--\"\"/  / /   /,-\"\"   \"\"\"-          ,'/    ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 25);
+	outputPosition(64, counter + 23);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "    [    (    /  / /   /  ,.---,_   `._   _,-','     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 26);
+	outputPosition(64, counter + 24);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "     \\    `-./  / /   /  /       `-._  \"\"\", -'       ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 27);
+	outputPosition(64, counter + 25);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "      `-._  /  / /   /_,'            \"\"--\"           ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 28);
+	outputPosition(64, counter + 26);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "          \"/  / /   /\"                               ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 29);
+	outputPosition(64, counter + 27);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "          /  / /   /                                 ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 30);
+	outputPosition(64, counter + 28);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "         /  / /   /                                  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 31);
+	outputPosition(64, counter + 29);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "        /  |,'   /                                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 32);
+	outputPosition(64, counter + 30);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       :   /    /                                    ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 33);
+	outputPosition(64, counter + 31);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       [  /   ,'                                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 34);
+	outputPosition(64, counter + 32);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       | /  ,'                                       ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 35);
+	outputPosition(64, counter + 33);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       |/,-'                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 36);
+	outputPosition(64, counter + 34);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       /                                             ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 37);
+	outputPosition(64, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 38);
+	outputPosition(64, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " ";
 	for (int i = 0; i < 52; i++)
 	{
@@ -249,7 +250,7 @@ void printClosedBook()
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << " ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 39);
+	outputPosition(64, counter + 37);
 	std::cout << "( .";
 	for (int i = 0; i < 53; i++)
 	{
@@ -257,7 +258,7 @@ void printClosedBook()
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(64, 40);
+	outputPosition(64, counter + 38);
 	std::cout << " ";
 	for (int i = 0; i < 57; i++)
 	{
@@ -271,19 +272,25 @@ void printClosedBook()
 */
 void printSlightlyOpenBook()
 {
+	int counter = 2;
+	outputPosition(64, counter);
 	std::cout << "                            . " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
+	outputPosition(64, counter + 1);
 	std::cout << "                      . " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "       " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 2);
 	std::cout << "               . " << (char)CHARACTERS::DOT << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 3);
 	std::cout << "         . " << (char)CHARACTERS::DOT << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "                    " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "." << std::endl;
+	outputPosition(64, counter + 4);
 	std::cout << "  . " << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "                           ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
@@ -292,6 +299,7 @@ void printSlightlyOpenBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << std::endl;
+	outputPosition(64, counter + 5);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "     ' ";
@@ -299,49 +307,57 @@ void printSlightlyOpenBook()
 	{
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	}
-
 	for (int i = 0; i < 7; i++)
 	{
 		std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	}
 	std::cout << char(187) << std::endl;
+	outputPosition(64, counter + 6);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                    ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	for (int i = 0; i < 26; i++)
+
+	for (int i = 0; i < 28; i++)
 	{
+		outputPosition(64, counter + 7 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                  ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                    ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
+	outputPosition(64, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                           . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::DOT << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::LOWER_RIGHT_CORNER;
 	std::cout << "                    " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                     . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "                            ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "              . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "                                   ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "          " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "                                         ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 39);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  . " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "                                               ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 40);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << (char)CHARACTERS::DOT << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "                            " << (char)CHARACTERS::DOT << " ";
@@ -358,6 +374,7 @@ void printSlightlyOpenBook()
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(64, counter + 41);
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 56; i++)
 	{
@@ -371,8 +388,12 @@ void printSlightlyOpenBook()
 */
 void printHalfOpenBook()
 {
+	int counter = 2;
+	outputPosition(61, counter + 1);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "\\" << std::endl;
+	outputPosition(61, counter + 2);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " \\" << std::endl;
+	outputPosition(61, counter + 3);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  \\           . ";
 	for (int i = 0; i < 3; i++)
 	{
@@ -387,6 +408,7 @@ void printHalfOpenBook()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
+	outputPosition(61, counter + 4);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  | .  . ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' '                       ' ";
 	for (int i = 0; i < 3; i++)
@@ -394,6 +416,7 @@ void printHalfOpenBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << std::endl;
+	outputPosition(61, counter + 5);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "  |                                        ' ";
 	for (int i = 0; i < 3; i++)
@@ -405,19 +428,21 @@ void printHalfOpenBook()
 		std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
+	outputPosition(61, counter + 6);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "  |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-
-	for (int i = 0; i < 29; i++)
+	for (int i = 0; i < 31; i++)
 	{
+		outputPosition(61, counter + 7 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE;
 		std::cout << "  |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
+	outputPosition(61, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  |         . " << (char)CHARACTERS::DOT << " ' ";
 	for (int i = 0; i < 8; i++)
 	{
@@ -426,6 +451,7 @@ void printHalfOpenBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' " << (char)CHARACTERS::DOT;
 	std::cout << "                   " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(61, counter + 39);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  |  . " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "    . " << (char)CHARACTERS::DOT;
@@ -441,6 +467,7 @@ void printHalfOpenBook()
 	}
 	std::cout << "              " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(61, counter + 40);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  | /  . " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "                     ";
@@ -450,11 +477,11 @@ void printHalfOpenBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' ";
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << " ";
 	}
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	}
@@ -464,6 +491,7 @@ void printHalfOpenBook()
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(61, counter + 41);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "    / ";
 	for (int i = 0; i < 51; i++)
@@ -471,6 +499,7 @@ void printHalfOpenBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+	outputPosition(61, counter + 42);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER;
 	for (int i = 0; i < 5; i++)
 	{
@@ -483,12 +512,17 @@ void printHalfOpenBook()
 */
 void printAlmostOpenedBook()
 {
+	int counter = 1;
+	outputPosition(6, counter + 1);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE << "   ` ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .   " << std::endl;
+	outputPosition(6, counter + 2);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE << "          ` ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .   " << std::endl;
+	outputPosition(6, counter + 3);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE << "                 ` ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .   " << std::endl;
+	outputPosition(6, counter + 4);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                          ` " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " .    " << std::endl;
@@ -502,12 +536,14 @@ void printAlmostOpenedBook()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
+	outputPosition(6, counter + 5);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                      ` ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .                 ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' '                         ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
+	outputPosition(6, counter + 6);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                             ` " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " .  ___ /                                       ' ";
@@ -519,29 +555,35 @@ void printAlmostOpenedBook()
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
+	outputPosition(6, counter + 7);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                   :   |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	for (int i = 0; i < 26; i++)
+	for (int i = 0; i < 28; i++)
 	{
+		outputPosition(6, counter + 8 + i);
 		std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
 		std::cout << "                                                   :   |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
+	outputPosition(6, counter + 36);
 	std::cout << "    ` " << (char)CHARACTERS::HORIZONTAL_LINE << " .";
 	std::cout << "                                             :   |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 37);
 	std::cout << "           " << (char)CHARACTERS::HORIZONTAL_LINE << " .";
 	std::cout << "                                        :   |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 38);
 	std::cout << "               " << (char)CHARACTERS::HORIZONTAL_LINE << " .";
 	std::cout << "                                    :   |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 39);
 	std::cout << "                    ` " << (char)CHARACTERS::HORIZONTAL_LINE << " .";
 	std::cout << "                             :   |         . " << (char)CHARACTERS::DOT;
 	std::cout << " ' " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -553,6 +595,7 @@ void printAlmostOpenedBook()
 	std::cout << " ' " << (char)CHARACTERS::DOT << "                   ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 40);
 	std::cout << "                           ` " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ." << "                      :   |  . " << (char)CHARACTERS::DOT;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -568,6 +611,7 @@ void printAlmostOpenedBook()
 	}
 	std::cout << "              " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 41);
 	std::cout << "                                  ` " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ." << "               :   | /  . " << (char)CHARACTERS::DOT << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -585,6 +629,7 @@ void printAlmostOpenedBook()
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 42);
 	std::cout << "                                         ` ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .                  / ";
 	for (int i = 0; i < 50; i++)
@@ -592,6 +637,7 @@ void printAlmostOpenedBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+	outputPosition(6, counter + 43);
 	std::cout << "                                                  ' ";
 	for (int i = 0; i < 9; i++)
 	{
@@ -599,11 +645,14 @@ void printAlmostOpenedBook()
 	}
 	std::cout << " '" << std::endl;
 }
+
 /**
  * @brief Function for printing fully open book.
 */
 void printFullyOpenedBook()
 {
+	int counter = 4;
+	outputPosition(6, counter + 1);
 	std::cout << "                                                                    . ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -612,10 +661,12 @@ void printFullyOpenedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
+	outputPosition(6, counter + 2);
 	std::cout << "                                                              ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' '                         ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
+	outputPosition(6, counter + 3);
 	std::cout << " ________________________________________________________   /                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -624,19 +675,21 @@ void printFullyOpenedBook()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
+	outputPosition(6, counter + 4);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                        \\ /                                                      ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	for (int i = 0; i < 29; i++)
+	for (int i = 0; i < 31; i++)
 	{
+		outputPosition(6, counter + 5 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE;
 		std::cout << "                                                         |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
 	}
-
+	outputPosition(6, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                         |         . ";
 	std::cout << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -647,6 +700,7 @@ void printFullyOpenedBook()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ' " << (char)CHARACTERS::DOT;
 	std::cout << "                   " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                         |  . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -661,6 +715,7 @@ void printFullyOpenedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                         | /  . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -678,6 +733,7 @@ void printFullyOpenedBook()
 	}
 	std::cout << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	outputPosition(6, counter + 39);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 24; i++)
 	{
@@ -689,6 +745,7 @@ void printFullyOpenedBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
+	outputPosition(6, counter + 40);
 	std::cout << "                                                     '";
 	for (int i = 0; i < 3; i++)
 	{
