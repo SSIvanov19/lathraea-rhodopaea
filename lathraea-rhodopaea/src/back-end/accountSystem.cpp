@@ -58,23 +58,7 @@ void AccountList::addUser(AccountList* head, Account data)
 	}
 }
 
-bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck)
-{
-	AccountList* temp = head;
-
-	while (temp != NULL)
-	{
-		if (temp->user.email == emailToCheck)
-		{
-			return true;
-		}
-		temp = temp->next;
-	}
-
-	return false;
-}
-
-bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account*& accountData)
+bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account** accountData = nullptr)
 {
 	AccountList* temp = head;
 
@@ -84,7 +68,7 @@ bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Acc
 		{
 			if (accountData)
 			{
-				accountData = &temp->user;
+				*accountData = &temp->user;
 			}
 
 			return true;
@@ -214,9 +198,9 @@ void AccountManager::loginUser(std::string email, std::string pass)
 		throw std::string("There is already logged in account");
 	}
 
-	Account* user = new Account();
+	Account* user = nullptr;
 
-	if (!accountNode->doesUserExist(accountNode, email, user))
+	if (!accountNode->doesUserExist(accountNode, email, &user))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,

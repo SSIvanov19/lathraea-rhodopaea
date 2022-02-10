@@ -1,10 +1,20 @@
 <div align = "center">
-<img src= "Photos/logo.jpg" width="600" height="400">
+<img src= "img/logo.jpg" width="600" height="400">
 
 </div>
 
-# Hello, we are team Lathraea rhodopaea!
----
+<div align = "center">
+ <h1>Hello, we are team Lathraea rhodopaea!<h1>
+
+ <div align = "center">
+   <img src = "https://img.shields.io/github/languages/count/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
+   <img src = "https://img.shields.io/github/contributors/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
+   <img src = "https://img.shields.io/github/repo-size/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
+   <img src = "https://img.shields.io/github/last-commit/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
+   <img src = "https://img.shields.io/github/languages/top/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
+ </div>
+</div>
+
 You can view our Presentation here:
 <br>
 

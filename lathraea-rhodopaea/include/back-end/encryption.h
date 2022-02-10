@@ -16,5 +16,5 @@ struct EncryptionManager
 	 * @param str The password in format of string
 	 * @return The encrypted password in format of a vector
 	*/
-	std::vector<int> encrypt(std::string str); /*!< Function for encrypting a password */
+	std::vector<int> encrypt(std::string str);
 };

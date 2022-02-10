@@ -33,5 +33,5 @@ struct LoggerManager
 	 * @brief Function that logs
 	 * @param msg Message to be logged
 	*/
-	void log(LogSeverity levelOfLog, std::string msg); /*!< Function that logs */
+	void log(LogSeverity levelOfLog, std::string msg);
 };
