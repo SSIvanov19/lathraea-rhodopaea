@@ -21,21 +21,21 @@ struct Application
 	/**
 	 * @brief Account manager
 	*/
-	AccountManager accountManager; /*!< Account manager */
+	AccountManager accountManager;
 
 	/**
 	 * @brief Event manager
 	*/
-	EventManager eventManager; /*!< Event manager */
+	EventManager eventManager;
 
 	/**
 	 * @brief Logger manager
 	*/
-	LoggerManager loggerManager; /*!< Logger manager */
+	LoggerManager loggerManager;
 
 	/**
 	 * @brief Entry point for the application
 	 * @param accountManager Account manager
 	*/
-	void run(AccountManager accountManager, EventManager eventManager); /*!< entry point for the application */
+	void run(AccountManager accountManager, EventManager eventManager);
 };
