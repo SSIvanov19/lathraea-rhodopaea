@@ -38,11 +38,11 @@ AccountList::AccountList(Account user_, AccountList* next_)
 	next = next_;
 }
 
-void AccountList::addUser(AccountList* head, Account data)
+void AccountList::addUser(Account data)
 {
 	AccountList* newNode = new AccountList(data, nullptr);
 
-	AccountList* temp = head;
+	AccountList* temp = this;
 
 	while (temp)
 	{
@@ -79,13 +79,15 @@ bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Acc
 	return false;
 }
 
-void AccountList::displayAllUsers(AccountList* head)
+void AccountList::displayAllUsers()
 {
-	while (head != NULL)
+	AccountList* temp = this;
+
+	while (temp != NULL)
 	{
-		head->user.displayUserInfo();
+		temp->user.displayUserInfo();
 		std::cout << std::endl;
-		head = head->next;
+		temp = temp->next;
 	}
 }
 
@@ -161,7 +163,6 @@ void AccountManager::registerUser(
 
 	//Create and save the user
 	accountNode->addUser(
-		accountNode,
 		Account(uname, email, encryptionManager.encrypt(pass), role)
 	);
 

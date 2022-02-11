@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 #include <back-end/datetimeManager.h>
 
 /**
@@ -41,6 +42,8 @@ struct Event
 	Coordinates coordinates; //!< Coordinates of the event
 	TypeOfEvent type; //!< Type of the event
 	std::string additionalNotes; //!< Description of the event
+	time_t timeOfCreation; //!< Time of creation of the event
+	bool isAdminApproved; //!< Is the event aproved by an admin
 
 	// Uprising event
 	std::vector<std::string> organizers; //!< Organizers of the uprising
@@ -166,28 +169,26 @@ struct EventList
 
 	/**
 	 * @brief Function for adding an event
-	 * @param head The head of the list
 	 * @param data The data of the event
 	*/
-	void addEvent(EventList* head, Event data);
+	void addEvent(Event data);
 
 	/**
 	 * @brief Function for adding an event at the end of the list
-	 * @param head The head of the list
+	 * @param head Head of the list
 	 * @param data The data of the event
 	*/
 	void insertEventAtFront(EventList** head, Event data);
 
 	/**
 	 * @brief Function for checking if there is already a event with the same name
-	 * @param head The head of the list
 	 * @param titleToCheck Title of the event to be checked
 	*/
-	bool doesEventExist(EventList* head, std::string titleToCheck);
+	bool doesEventExist(std::string titleToCheck);
 
 	// Only for debugging purposes
 	// Should not be used in the final product
-	void displayAllEvents(EventList* head);
+	void displayAllEvents();
 };
 
 /**
@@ -196,7 +197,7 @@ struct EventList
 struct EventManager
 {
 	EventList* eventList = nullptr; //!< List with all events 
-	
+
 	DateManager dateManager; //!< Date manager
 
 	/**
@@ -267,7 +268,7 @@ struct EventManager
 	 * @brief Function for adding a undefined (other) event
 	 * @param title TItle of the event
 	 * @param period Period of the event
-	 * @param coordinates Coordinates of the event 
+	 * @param coordinates Coordinates of the event
 	 * @param additionalNotes Additional notes for the event
 	*/
 	void addOtherEvent(
@@ -284,11 +285,32 @@ struct EventManager
 	 * @return Is removeing successful
 	*/
 	bool removeEvent(EventList** head, std::string searchTitle);
-	
+
 	/*
 	template<typename T>
 	bool editEvent(EventList* head, std::string searchTitle, std::string propertyToBeEdit, T newValue);
 	*/
+
+	/**
+	 * @brief Function for approving an event by the admin
+	 * @param titleOfTheEvent Title of the event to be approved
+	*/
+	void approveEvent(std::string titleOfTheEvent);
+
+
+	/**
+	 * @brief Function for getting all events that are approved/unapproved
+	 * @param isApproved Are events approved/unapproved
+	 * @return Vector with all the events
+	*/
+	std::vector<Event> getAllEvents(bool isApproved);
+
+	/**
+	 * @brief Function for getting event with specific title
+	 * @param title Title of the event
+	 * @return Pointer to the event
+	*/
+	Event* getEventWithName(std::string title);
 
 	/**
 	 * @brief Function for getting all elements with a keyword in the title
@@ -297,17 +319,57 @@ struct EventManager
 	 * @return All events with this keyword in their title
 	*/
 	std::vector<Event> getAllEventsWithTitle(
-		EventList* head,
+		std::vector<Event> events,
 		std::string searchTitle
 	);
 
 	/**
 	 * @brief Function for getting all elements with a date
-	 * @param head Head of the list
 	 * @param date The date to be looked up
 	 * @return All events that happend on this date
 	*/
-	std::vector<Event> getAllEventsWithDate(EventList* head, tm date);
+	std::vector<Event> getAllEventsWithDate(
+		std::vector<Event> events,
+		tm date
+	);
+
+	/**
+	 * @brief Function for getting all events with same type from a vetor
+	 * @param events Events to be looke up
+	 * @param typeOfEvent The type of the events
+	 * @return Vector with all events of that type
+	*/
+	std::vector<Event> getAllEventsWithType(
+		std::vector<Event> events,
+		TypeOfEvent typeOfEvent
+	);
+
+	/**
+	 * @brief Function for getting and sorting all events from a vetor, based on the time of creations
+	 * @param events Vector with events to be sorted
+	 * @return new Vector with sorted events
+	*/
+	std::vector<Event> sortAndGetAllEventsByTimeOfCreation(
+		std::vector<Event> events
+	);
+
+	/**
+	 * @brief Function for getting and sorting all events from a vetor, based on the title
+	 * @param events Vector with events to be sorted
+	 * @return new Vector with sorted events
+	*/
+	std::vector<Event> sortAndGetAllEventsByTitle(
+		std::vector<Event> events
+	);
+
+	/**
+	 * @brief Function for getting and sorting all events from a vetor, based on the date of the event
+	 * @param events Vector with events to be sorted
+	 * @return new Vector with sorted events
+	*/
+	std::vector<Event> sortAndGetAllEventsByDate(
+		std::vector<Event> events
+	);
 };
 
 //template bool EventManager::editEvent(EventList*, std::string, std::string, std::string);

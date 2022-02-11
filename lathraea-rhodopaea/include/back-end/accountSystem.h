@@ -71,11 +71,11 @@ struct AccountList
 	 * @param head The head of the list
 	 * @param data The data of the account
 	*/
-	void addUser(AccountList* head, Account data);
+	void addUser(Account data);
 
 	// Only for debugging purposes
 	// Should not be used in the final product
-	void displayAllUsers(AccountList* head);
+	void displayAllUsers();
 	
 	/**
 	 * @brief Function that check if user exists
