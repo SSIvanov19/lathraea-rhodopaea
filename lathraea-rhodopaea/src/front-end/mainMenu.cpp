@@ -655,7 +655,7 @@ void addWarEvent(EventManager* eventManager)
 	participatingCountriesV.push_back(participatingCountries);
 
 	printFullyOpenedBook();
-	std::string winner; 
+	std::string winner;
 	outputPosition(81, 10);
 	std::cout << "Enter the winner of the event you want to add: " << std::endl;
 	outputPosition(81, 12);
@@ -906,9 +906,9 @@ void addEvent(EventManager* eventManager)
 	};
 
 	int selectedOption = 1;
-	char pressedKey;
+	char pressedKey = ' ';
 
-	while (selectedOption)
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
 		for (int i = 0; i < eventTypeOptions.size(); i++)
 		{
@@ -965,6 +965,10 @@ void addEvent(EventManager* eventManager)
 	if (_getch())
 	{
 		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
 	}
 }
 
@@ -974,23 +978,43 @@ void addEvent(EventManager* eventManager)
 */
 void deleteEvent(EventManager* eventManager)
 {
-	system("CLS");
+	printFullyOpenedBook();
 	std::string title;
+	outputPosition(81, 10);
 	std::cout << "Enter the title of the event you want to remove: ";
+	outputPosition(81, 12);
 	getline(std::cin, title);
 
 	if (eventManager->removeEvent(&eventManager->eventList, title))
 	{
+		outputPosition(81, 14);
 		std::cout << "You've successfully deleted the event!";
 	}
 	else
 	{
-		std::cout << "The event wasn't deleted";
+		outputPosition(81, 14);
+		std::cout << "The event wasn't found";
+		while (!eventManager->removeEvent(&eventManager->eventList, title))
+		{
+			outputPosition(81, 16);
+			std::cout << "Enter the title of the event you want to remove: ";
+			outputPosition(81, 18);
+			getline(std::cin, title);
+			if (eventManager->removeEvent(&eventManager->eventList, title))
+			{
+				outputPosition(81, 20);
+				std::cout << "You've successfully deleted the event!";
+			}
+		}
 	}
 
 	if (_getch())
 	{
 		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
 	}
 }
 
@@ -1024,10 +1048,13 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 		switch (selectedOption)
 		{
 		case 1:
+			system("CLS");
 			bookOpeningAnimation();
 			addEvent(eventManager);
 			break;
-		case 2: deleteEvent(eventManager);
+		case 2: 
+			system("CLS");
+			deleteEvent(eventManager);
 			break;
 		case 7:
 			system("CLS");
