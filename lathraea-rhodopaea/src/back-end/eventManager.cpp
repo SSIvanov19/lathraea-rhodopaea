@@ -759,10 +759,10 @@ void EventManager::addOtherEvent(
 		"Event with title: " + title + " is registered successfully."
 	);
 
-	//Should be removed
-	std::cout << "Event added successfully. All events data:\n\n";
-	eventList->displayAllEvents();
-	std::cout << std::endl;
+	////Should be removed
+	//std::cout << "Event added successfully. All events data:\n\n";
+	//eventList->displayAllEvents();
+	//std::cout << std::endl;
 }
 
 bool EventManager::removeEvent(EventList * *head, std::string searchTitle)

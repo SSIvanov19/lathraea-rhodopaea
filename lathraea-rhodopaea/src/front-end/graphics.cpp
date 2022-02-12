@@ -1645,58 +1645,58 @@ void printSnakeSword()
 */
 void printBulgarianMap()
 {
-	int counter = 4;
-	outputPosition(9, counter + 1);
+	int counter = 11;
+	outputPosition(39, counter + 1);
 	std::cout << "  .-.                                                     _.--._" << std::endl;
-	outputPosition(9, counter + 2);
+	outputPosition(39, counter + 2);
 	std::cout << " _|  \\_                                              _.-'       ._   _" << std::endl;
-	outputPosition(9, counter + 3);
+	outputPosition(39, counter + 3);
 	std::cout << "/    .-'  _                                       .'              '-' '" << std::endl;
-	outputPosition(9, counter + 4);
+	outputPosition(39, counter + 4);
 	std::cout << "|    '-.-' '-._       _                        _.'                     '----'." << std::endl;
-	outputPosition(9, counter + 5);
+	outputPosition(39, counter + 5);
 	std::cout << " \\             '-.--.' '-.._._       _______.'                               \\" << std::endl;
-	outputPosition(9, counter + 6);
+	outputPosition(39, counter + 6);
 	std::cout << "  |                            '-_.-'                                    _.._/" << std::endl;
-	outputPosition(9, counter + 7);
+	outputPosition(39, counter + 7);
 	std::cout << "   \\_                                                                 .'" << std::endl;
-	outputPosition(9, counter + 8);
+	outputPosition(39, counter + 8);
 	std::cout << "     \\                                                              _.'" << std::endl;
-	outputPosition(9, counter + 9);
+	outputPosition(39, counter + 9);
 	std::cout << "      \\_                                                           '." << std::endl;
-	outputPosition(9, counter + 10);
+	outputPosition(39, counter + 10);
 	std::cout << "        |                                                         _.'" << std::endl;
-	outputPosition(9, counter + 11);
+	outputPosition(39, counter + 11);
 	std::cout << "        '.                                                         '." << std::endl;
-	outputPosition(9, counter + 12);
+	outputPosition(39, counter + 12);
 	std::cout << "       .'                                                           '." << std::endl;
-	outputPosition(9, counter + 13);
+	outputPosition(39, counter + 13);
 	std::cout << "      _/                                                            _'" << std::endl;
-	outputPosition(9, counter + 14);
+	outputPosition(39, counter + 14);
 	std::cout << "  .-_/                                                            .'" << std::endl;
-	outputPosition(9, counter + 15);
+	outputPosition(39, counter + 15);
 	std::cout << "  '.                                                             .'" << std::endl;
-	outputPosition(9, counter + 16);
+	outputPosition(39, counter + 16);
 	std::cout << "   /_                                                           .'" << std::endl;
-	outputPosition(9, counter + 17);
+	outputPosition(39, counter + 17);
 	std::cout << "   _/                                                           '-" << std::endl;
-	outputPosition(9, counter + 18);
+	outputPosition(39, counter + 18);
 	std::cout << "   \\.                                                    _._     '-." << std::endl;
-	outputPosition(9, counter + 19);
+	outputPosition(39, counter + 19);
 	std::cout << "     '--.                                             .-'    '-.    '-." << std::endl;
-	outputPosition(9, counter + 20);
+	outputPosition(39, counter + 20);
 	std::cout << "        |_                                           /         '-._.-.-'" << std::endl;
-	outputPosition(9, counter + 21);
+	outputPosition(39, counter + 21);
 	std::cout << "          '-.                                     _.'" << std::endl;
-	outputPosition(9, counter + 22);
+	outputPosition(39, counter + 22);
 	std::cout << "          .'                                   .-'" << std::endl;
-	outputPosition(9, counter + 23);
+	outputPosition(39, counter + 23);
 	std::cout << "          |        ._..-.-.                   '-." << std::endl;
-	outputPosition(9, counter + 24);
+	outputPosition(39, counter + 24);
 	std::cout << "         .'   ._.-'       '-._._              _.'" << std::endl;
-	outputPosition(9, counter + 25);
+	outputPosition(39, counter + 25);
 	std::cout << "        '__.-'                  '.    _._.'.-'" << std::endl;
-	outputPosition(9, counter + 26);
+	outputPosition(39, counter + 26);
 	std::cout << "                                  '-.'" << std::endl;
 }
 
@@ -1739,28 +1739,27 @@ void printPopUp()
 */
 void printMapPopUp()
 {
-	int counter = 3;
-	outputPosition(5, counter + 1);
+	int counter = 9;
+	outputPosition(33, counter + 1 );
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 42; i++)
 	{
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
+	outputPosition(33, counter + 2);
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << "     Move the marker on the coordinates the event had been placed and press Enter!    " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
-	outputPosition(5, counter + 2);
-	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                   X  " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-
-	for (int i = 0; i < 28; i++)
+	for (int i = 0; i < 26; i++)
 	{
-		outputPosition(5, counter + i + 1);
+		outputPosition(33, counter + i + 3);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
 
-	outputPosition(5, counter + 28);
+	outputPosition(33, counter + 28);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
-	outputPosition(5, counter + 29);
+	outputPosition(33, counter + 29);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 42; i++)
 	{
