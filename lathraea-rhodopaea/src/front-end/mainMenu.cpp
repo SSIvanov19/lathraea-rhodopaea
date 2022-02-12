@@ -322,8 +322,10 @@ void addOtherEvent(EventManager* eventManager)
 			x += 1;
 			outputPosition(x, y);
 			std::cout << char(254);
+
 			break;
 		case (char)ARROW_KEYS::KEY_RIGHT:
+
 			outputPosition(x, y);
 			std::cout << " ";
 			x -= 1;
@@ -342,7 +344,6 @@ void addOtherEvent(EventManager* eventManager)
 	outputPosition(81, 10);
 	std::cout << "Enter some additional notes for the event, if any: ";
 	outputPosition(81, 12);
-	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
 
 	try
@@ -390,6 +391,8 @@ void addUprisingEvent(EventManager* eventManager)
 		std::cout << "The data you've entered is incorrect!";
 		outputPosition(81, 16);
 		std::cout << "Please enter a date/s - ex(24 apr 809, 27 apr 810)";
+		outputPosition(81, 18);
+		std::cout << "                                                  ";
 		outputPosition(81, 18);
 		getline(std::cin, period);
 	}
@@ -535,7 +538,6 @@ void addUprisingEvent(EventManager* eventManager)
 	std::cout << "Enter some additional notes for the event, if any: ";
 	outputPosition(81, 12);
 	std::cin.ignore(INT_MAX, '\n');
-	outputPosition(81, 14);
 	getline(std::cin, additionalNotes);
 
 	try
@@ -646,7 +648,9 @@ void addWarEvent(EventManager* eventManager)
 	while (participatingCountries.empty())
 	{
 		outputPosition(81, 12);
-		std::cout << "Participating countries can not be empty, please enter again: ";
+		std::cout << "Participating countries can not be empty!";
+		outputPosition(81, 12);
+		std::cout << "Please enter again: ";
 		outputPosition(81, 14);
 		getline(std::cin, participatingCountries);
 	}
@@ -706,8 +710,7 @@ void addWarEvent(EventManager* eventManager)
 	std::string additionalNotes;
 	outputPosition(81, 10);
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore(INT_MAX, '\n');
-	outputPosition(81, 14);
+	outputPosition(81, 12);
 	getline(std::cin, additionalNotes);
 
 	try
@@ -818,8 +821,10 @@ void addMovementEvent(EventManager* eventManager)
 	while (howItStarted.empty())
 	{
 		outputPosition(81, 12);
-		std::cout << "The way it started can not be empty, please enter again: ";
+		std::cout << "The way it started can not be empty!";
 		outputPosition(81, 14);
+		std::cout << "Please enter again: ";
+		outputPosition(81, 16);
 		getline(std::cin, howItStarted);
 	}
 
@@ -840,9 +845,9 @@ void addMovementEvent(EventManager* eventManager)
 
 	printFullyOpenedBook();
 	std::string aims;
-	outputPosition(81, 12);
+	outputPosition(81, 10);
 	std::cout << "Enter the aims of the event you want to add: " << std::endl;
-	outputPosition(81, 14);
+	outputPosition(81, 12);
 	getline(std::cin, aims);
 
 	while (aims.empty())
@@ -856,15 +861,17 @@ void addMovementEvent(EventManager* eventManager)
 	printFullyOpenedBook();
 	std::string representatives;
 	outputPosition(81, 10);
-	std::cout << "Enter the representatives of the event you want to add: ";
+	std::cout << "Enter the representatives of the event: ";
 	outputPosition(81, 12);
 	getline(std::cin, representatives);
 
 	while (representatives.empty())
 	{
 		outputPosition(81, 12);
-		std::cout << "The representatives can not be empty, please enter again: ";
+		std::cout << "The representatives can not be empty!";
 		outputPosition(81, 14);
+		std::cout << "Please enter again: ";
+		outputPosition(81, 16);
 		getline(std::cin, representatives);
 	}
 
@@ -875,11 +882,18 @@ void addMovementEvent(EventManager* eventManager)
 	std::string additionalNotes;
 	outputPosition(81, 10);
 	std::cout << "Enter some additional notes for the event, if any: ";
-	std::cin.ignore(INT_MAX, '\n');
 	outputPosition(81, 12);
 	getline(std::cin, additionalNotes);
+	while (std::cin.fail())
+	{
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+		outputPosition(81, 10);
+		std::cout << "Enter some additional notes for the event, if any: ";
+		outputPosition(81, 12);
+		getline(std::cin, additionalNotes);
+	}
 
-	system("CLS");
 	try
 	{
 		eventManager->addMovementEvent(title, separateDates(period), coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
@@ -998,6 +1012,9 @@ void deleteEvent(EventManager* eventManager)
 		{
 			outputPosition(81, 16);
 			std::cout << "Enter the title of the event you want to remove: ";
+
+			outputPosition(81, 18);
+			std::cout << "                                                  ";
 			outputPosition(81, 18);
 			getline(std::cin, title);
 			if (eventManager->removeEvent(&eventManager->eventList, title))
@@ -1015,6 +1032,40 @@ void deleteEvent(EventManager* eventManager)
 		prinyBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
+	}
+}
+
+void displayEvents(EventManager* eventManager)
+{
+	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	printFullyOpenedBook();
+	if (allEvents.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to display";
+		outputPosition(81, 11);
+		std::cout << "Press any key to go back!";
+		_getch();
+		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+		return;
+	}
+	outputPosition(81, 10);
+	std::cout << "Press Enter if you want to go back!";
+	for (size_t i = 0; i < allEvents.size(); i++)
+	{
+		outputPosition(81, 12 + i * 2);
+		std::cout << allEvents[i].title << std::endl;
+	}
+	int key;
+	key = _getch();
+	if (key == (int)ARROW_KEYS::KEY_ENTER)
+	{
+		system("CLS");
+		return;
 	}
 }
 
@@ -1052,9 +1103,15 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 			bookOpeningAnimation();
 			addEvent(eventManager);
 			break;
-		case 2: 
+		case 2:
 			system("CLS");
+			bookOpeningAnimation();
 			deleteEvent(eventManager);
+			break;
+		case 4:
+			system("CLS");
+			bookOpeningAnimation();
+			displayEvents(eventManager);
 			break;
 		case 7:
 			system("CLS");
