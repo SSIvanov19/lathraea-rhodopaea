@@ -1035,6 +1035,10 @@ void deleteEvent(EventManager* eventManager)
 	}
 }
 
+/**
+ * @brief Function for displaying all the events by their title
+ * @param eventManager Variable for an event manager
+*/
 void displayAllEventsByTitle(EventManager* eventManager)
 {
 	std::vector<Event> allEvents = eventManager->getAllEvents(0);
@@ -1072,6 +1076,10 @@ void displayAllEventsByTitle(EventManager* eventManager)
 	}
 }
 
+/**
+ * @brief Function for displaying all the events by their period
+ * @param eventManager Variable for an event manager
+*/
 void displayAllEventsByYear(EventManager* eventManager)
 {
 	std::vector<Event> allEvents = eventManager->getAllEvents(0);
@@ -1112,6 +1120,11 @@ void displayAllEventsByYear(EventManager* eventManager)
 		return;
 	}
 }
+
+/**
+ * @brief Function for choosing the type of printing the events
+ * @param eventManager Variable for an event manager
+*/
 void printBy(EventManager* eventManager)
 {
 	outputPosition(81, 10);
@@ -1173,6 +1186,10 @@ void printBy(EventManager* eventManager)
 	}
 }
 
+/**
+ * @brief Function for choosing the way of printing the events
+ * @param eventManager Variable for an event manager
+*/
 void displayEvents(EventManager* eventManager)
 {
 	outputPosition(81, 10);

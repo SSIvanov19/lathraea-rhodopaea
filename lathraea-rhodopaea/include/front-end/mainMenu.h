@@ -20,4 +20,8 @@ void addWarEvent(EventManager* eventManager); // Function for adding events of t
 void addMovementEvent(EventManager* eventManager); // Function for adding events of type "movement"
 void addEvent(EventManager* eventManager); // Function for adding historical events
 void deleteEvent(EventManager* eventManager); // Function for deleting historical events
+void displayAllEventsByTitle(EventManager* eventManager); // Function for displaying all the events by their title
+void displayAllEventsByYear(EventManager* eventManager); // Function for displaying all the events by their period
+void printBy(EventManager* eventManager); // Function for choosing the type of printing the events
+void displayEvents(EventManager* eventManager); // Function for choosing the way of printing the events
 void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption, std::vector<std::string> possibleOptions); // Function for coloring hovered options
