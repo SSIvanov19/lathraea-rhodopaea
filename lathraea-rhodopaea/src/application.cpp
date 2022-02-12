@@ -52,6 +52,8 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 				if (firstTime)
 				{
 					printClosedBook();
+					prinyBookDecorations();
+					printSnakeSword();
 					printTeamLogo();
 					firstTime = false;
 				}

@@ -28,4 +28,5 @@ void logoForProgram(); // Function for printing the logo of the project
 void printTeamLogo(); // Function for printing the team logo
 void printTeamKeyboardLogo(); // Function for printing the team logo as keyboard
 void printBlankSpace(int x, int y); // Function for printing blank space
+void prinyBookDecorations(); // Function for printing book decorations
 
