@@ -43,3 +43,20 @@ bool checkForInvalidHandle(HANDLE handle)
 {
 	return handle == INVALID_HANDLE_VALUE;
 }
+
+/**
+ * @brief Function for showing/hideing the cursor
+ * @param shown bool show/hide
+*/
+void setCursor(bool shown)
+{
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO info;
+	info.dwSize = 100;
+	info.bVisible = shown;
+
+	if (SetConsoleCursorInfo(consoleHandle, &info) == 0)
+	{
+		//Add error handaling
+	}
+}

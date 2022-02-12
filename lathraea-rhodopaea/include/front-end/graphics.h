@@ -27,5 +27,5 @@ void printTimeline(); // Function for printing a timeline
 void logoForProgram(); // Function for printing the logo of the project
 void printTeamLogo(); // Function for printing the team logo
 void printTeamKeyboardLogo(); // Function for printing the team logo as keyboard
-void printBlankSpace(); // Function for printing blank space
+void printBlankSpace(int x, int y); // Function for printing blank space
 

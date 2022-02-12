@@ -25,7 +25,7 @@ std::vector<std::string> enterRegisterData()
 
 
     std::string email, uname, password;
-    printBlankSpace();
+     printBlankSpace(6, 18);
     outputPosition(7, 18);
     std::cout << "Enter an email: ";
 
@@ -62,7 +62,6 @@ std::vector<std::string> enterRegisterData()
     {
         outputPosition(7, 24);
         std::cout << "Please, enter a valid password: ";
-        outputPosition(7, 24);
         std::getline(std::cin, password);
         std::cout << std::endl;
         outputPosition(7, 24);
@@ -73,7 +72,7 @@ std::vector<std::string> enterRegisterData()
     accountInformation.push_back(uname);
     accountInformation.push_back(password);
 
-    printBlankSpace();
+     printBlankSpace(6, 18);
 
     return accountInformation;
 }
@@ -105,7 +104,7 @@ std::vector<std::string> enterLoginData()
 
     std::string email, password;
 
-    printBlankSpace();
+     printBlankSpace(6, 18);
     outputPosition(7, 18);
     std::cout << "Enter an email: ";
     std::getline(std::cin, email);
@@ -117,7 +116,7 @@ std::vector<std::string> enterLoginData()
 
     loginData.push_back(email);
     loginData.push_back(password);
-    printBlankSpace();
+     printBlankSpace(6, 18);
     return loginData;
 }
 
@@ -126,19 +125,20 @@ std::vector<std::string> enterLoginData()
  * @param accountManager Variable for an account manager
  * @return
 */
-bool loginUser(AccountManager* accountManager)
+bool isUserLogedIn(AccountManager* accountManager)
 {
     std::vector<std::string> loginData = enterLoginData();
+
     try
     {
         accountManager->loginUser(loginData[0], loginData[1]);
+        return true;
     }
     catch (std::string errorMessage)
     {
-       std::cout << errorMessage;
+        std::cout << errorMessage;
+        return false;
     }
-
-    return accountManager->activeUser != nullptr;
 }
 
 /**
@@ -171,7 +171,7 @@ bool switchLoginOptions(AccountManager* accountManager, char key, int& selectedO
     case (int)ARROW_KEYS::KEY_ENTER:
         switch (selectedOption)
         {
-        case 1: isLoginSuccessful = loginUser(accountManager);
+        case 1: isLoginSuccessful = isUserLogedIn(accountManager);
             break;
         case 2: registerUser(accountManager);
             break;
@@ -202,14 +202,21 @@ void accountMenu(AccountManager accountManager)
     char pressedKey;
     int selectedOption = 1;
 
+    bool firstTime = true;
+
     while (selectedOption)
     {
-        printClosedBook();
-        printTeamLogo();
+        if (firstTime)
+        {
+            printClosedBook();
+            printTeamLogo();
+            firstTime = false;
+        }
+
         outputOptions(loginOptions, selectedOption);
         pressedKey = _getch();
         isLoginSuccessful = switchLoginOptions(&accountManager, pressedKey, selectedOption, loginOptions);
-        if (isLoginSuccessful) 
+        if (isLoginSuccessful)
         {
             break;
         }

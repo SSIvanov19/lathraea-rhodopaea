@@ -309,46 +309,88 @@ void addOtherEvent(EventManager* eventManager)
 */
 void addUprisingEvent(EventManager* eventManager)
 {
-	system("CLS");
 	std::string title;
+	printFullyOpenedBook();
+	outputPosition(81, 10);
 	std::cout << "Enter the title of the event you want to add: " << std::endl;
+	outputPosition(81, 12);
 	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, title);
 
 	while (title.empty())
 	{
+		outputPosition(81, 12);
 		std::cout << "Title can not be empty, please enter again: ";
+		outputPosition(81, 13);
 		getline(std::cin, title);
 	}
-
-	system("CLS");
+	printFullyOpenedBook();
 	std::string period;
-	std::cout << "Enter the starting and ending year and date - ex.(20 apr 1876, 15 may 1876)";
+	outputPosition(81, 10);
+	std::cout << "Enter the starting and ending year and date";
+	outputPosition(81, 12);
+	std::cout << "Example - (20 apr 1876, 15 may 1876)";
+	outputPosition(81, 13);
 	getline(std::cin, period);
 
 	while (!checkDatesValidation(period))
 	{
-		std::cout << "The data you've entered is incorrect, please enter a date/s - ex(24 apr 2004, 27 apr 2005)";
+		outputPosition(81, 14);
+		std::cout << "The data you've entered is incorrect!";
+		outputPosition(81, 15);
+		std::cout << "Please enter a date/s - ex(24 apr 809, 27 apr 810)";
+		outputPosition(81, 16);
 		getline(std::cin, period);
 	}
 	separateDates(period);
 
-	system("CLS");
-	int x = 0, y = 0;
-	std::cout << "Enter X coordinates of the event: ";
-	std::cin >> x;
-	std::cout << "Enter Y coordinates of the event: ";
-	std::cin >> y;
+	printFullyOpenedBook();
+	printMapPopUp();
+	printBulgarianMap();
+	int x = 56, y = 20;
+	char key;
+	std::cout << char(254);
+	key = _getch();
+	switch (key)
+	{
+	case (char)ARROW_KEYS::KEY_UP:
+		outputPosition(x, y);
+		std::cout << " ";
+		outputPosition(x, y - 1);
+		std::cout << char(256);
+		break;
+	case (char)ARROW_KEYS::KEY_DOWN:
+		outputPosition(x, y);
+		std::cout << " ";
+		outputPosition(x, y + 1);
+		break;
+	case (char)ARROW_KEYS::KEY_LEFT:
+		outputPosition(x, y);
+		std::cout << " ";
+		outputPosition(x - 1, y);
+		break;
+	case (char)ARROW_KEYS::KEY_RIGHT:
+		outputPosition(x, y);
+		std::cout << " ";
+		outputPosition(x + 1, y);
+		break;
+	case (char)ARROW_KEYS::KEY_ENTER:		
+		printFullyOpenedBook();
+		break;
+	}
 	Coordinates coordinates{ x, y };
 
-	system("CLS");
 	std::string organizers;
+	outputPosition(81, 10);
 	std::cout << "Enter the organizers of the event you want to add: ";
+	outputPosition(81, 11);
 	getline(std::cin, organizers);
 
 	while (organizers.empty())
 	{
+		outputPosition(81, 12);
 		std::cout << "Organizers can not be empty, please enter again: ";
+		outputPosition(81, 13);
 		getline(std::cin, organizers);
 	}
 
@@ -606,7 +648,7 @@ void addMovementEvent(EventManager* eventManager)
 */
 void addEvent(EventManager* eventManager)
 {
-	outputPosition(68, 10);
+	outputPosition(81, 10);
 	std::cout << "Choose the type of event you want to add!";
 	std::vector<std::string> eventTypeOptions = {
 		"Uprising",
@@ -624,12 +666,12 @@ void addEvent(EventManager* eventManager)
 		{
 			if (i + 1 == selectedOption)
 			{
-				outputPosition(68, 12 + i * 2);
+				outputPosition(81, 12 + i * 2);
 				std::cout << "-> ";
 			}
 			else
 			{
-				outputPosition(68, 12 + i * 2);
+				outputPosition(81, 12 + i * 2);
 				std::cout << "   ";
 			}
 			std::cout << eventTypeOptions[i] << std::endl << std::endl;

@@ -9,11 +9,13 @@
 #include <front-end/mainMenu.h>
 #include <front-end/graphics.h>
 #include <front-end/loginMenu.h>
+#include <front-end/output.h>
 
 void Application::run(AccountManager accountManager, EventManager eventManager)
 {
 	try
 	{
+		setCursor(false);
 		const std::vector<std::string> loginOptions =
 		{
 			"Login",
@@ -40,20 +42,26 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 
 		char pressedKey;
 		int selectedOption = 1;
+		bool firstTime = true;
 
-		accountMenu(accountManager);
-		if (loginUser) 
-		{
+		/*accountMenu(accountManager);
+		if (isUserLogedIn)
+		{*/
 			while (selectedOption)
 			{
-				printClosedBook();
-				printTeamLogo();
+				if (firstTime)
+				{
+					printClosedBook();
+					printTeamLogo();
+					firstTime = false;
+				}
+
 				outputOptions(menuOptions, selectedOption);
 				pressedKey = _getch();
 				switchMenuOptions(&eventManager, pressedKey, selectedOption, menuOptions);
 			}
-		}	
-	}
+		}
+	/*}*/
 	catch (const std::string errorMsg)
 	{
 		std::cout << "The event can not be added\nReason: " + errorMsg << std::endl;;
