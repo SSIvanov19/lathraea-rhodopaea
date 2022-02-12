@@ -33,13 +33,6 @@ void Application::run(AccountManager accountManager, EventManager eventManager)
 			"Exit"
 		};
 
-		const std::vector<std::string> visualizationOptions =
-		{
-			"As a map",
-			"As a timeline",
-			"As an encyclopedia"
-		};
-
 		char pressedKey;
 		int selectedOption = 1;
 		bool firstTime = true;

@@ -1035,10 +1035,9 @@ void deleteEvent(EventManager* eventManager)
 	}
 }
 
-void displayEvents(EventManager* eventManager)
+void displayAllEventsByTitle(EventManager* eventManager)
 {
 	std::vector<Event> allEvents = eventManager->getAllEvents(0);
-	printFullyOpenedBook();
 	if (allEvents.empty())
 	{
 		outputPosition(81, 10);
@@ -1055,7 +1054,7 @@ void displayEvents(EventManager* eventManager)
 	}
 	outputPosition(81, 10);
 	std::cout << "Press Enter if you want to go back!";
-	for (size_t i = 0; i < allEvents.size(); i++)
+	for (int i = 0; i < allEvents.size(); i++)
 	{
 		outputPosition(81, 12 + i * 2);
 		std::cout << allEvents[i].title << std::endl;
@@ -1065,7 +1064,178 @@ void displayEvents(EventManager* eventManager)
 	if (key == (int)ARROW_KEYS::KEY_ENTER)
 	{
 		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
 		return;
+	}
+}
+
+void displayAllEventsByYear(EventManager* eventManager)
+{
+	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	if (allEvents.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to display";
+		outputPosition(81, 11);
+		std::cout << "Press any key to go back!";
+		_getch();
+		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+		return;
+	}
+	outputPosition(81, 10);
+	std::cout << "Press Enter if you want to go back!";
+	for (int i = 0; i < allEvents.size(); i++)
+	{
+		outputPosition(81, 12 + i * 2);
+		for (int j = 0; j < allEvents[i].period.size(); j++)
+		{
+			outputPosition(81, 12 + i * 2);
+			std::cout << allEvents[i].period[j].tm_wday<< " " << allEvents[i].period[j].tm_mon<<" "<< allEvents[i].period[j].tm_year;
+		}
+	}
+	int key;
+	key = _getch();
+	if (key == (int)ARROW_KEYS::KEY_ENTER)
+	{
+		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+		return;
+	}
+}
+void printBy(EventManager* eventManager)
+{
+	outputPosition(81, 10);
+	std::cout << "How do you want to see the events?" << std::endl;
+	int selectedOption = 1;
+	char pressedKey = ' ';
+	const std::vector<std::string> printByOptions =
+	{
+		"By title",
+		"By year, month and day",
+	};
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < printByOptions.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << printByOptions[i] << std::endl << std::endl;
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == printByOptions.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			switch (selectedOption)
+			{
+			case 1:
+				printFullyOpenedBook();
+				displayAllEventsByTitle(eventManager);
+				break;
+			case 2:
+				printFullyOpenedBook();
+				displayAllEventsByYear(eventManager);
+				break;
+			}
+		}
+	}
+}
+
+void displayEvents(EventManager* eventManager)
+{
+	outputPosition(81, 10);
+	std::cout << "How you want to display the events?" << std::endl;
+	int selectedOption = 1;
+	char pressedKey = ' ';
+	const std::vector<std::string> visualizationOptions =
+	{
+		"As a map",
+		"As a timeline",
+		"As an encyclopedia"
+	};
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < visualizationOptions.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << visualizationOptions[i] << std::endl << std::endl;
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == visualizationOptions.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			switch (selectedOption)
+			{
+			case 1:
+				printFullyOpenedBook();
+				displayAllEventsByTitle(eventManager);
+				break;
+			case 2:
+				printFullyOpenedBook();
+				displayAllEventsByTitle(eventManager);
+				break;
+			case 3:
+				printFullyOpenedBook();
+				printBy(eventManager);
+				break;
+			}
+		}
 	}
 }
 
