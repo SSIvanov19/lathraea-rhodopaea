@@ -43,7 +43,7 @@ struct Event
 	TypeOfEvent type; //!< Type of the event
 	std::string additionalNotes; //!< Description of the event
 	time_t timeOfCreation; //!< Time of creation of the event
-	bool isAdminApproved; //!< Is the event aproved by an admin
+	bool isAdminApproved; //!< Is the event approved by an admin
 
 	// Uprising event
 	std::vector<std::string> organizers; //!< Organizers of the uprising
@@ -286,10 +286,23 @@ struct EventManager
 	*/
 	bool removeEvent(EventList** head, std::string searchTitle);
 
-	/*
-	template<typename T>
-	bool editEvent(EventList* head, std::string searchTitle, std::string propertyToBeEdit, T newValue);
+	/**
+	 * @brief Function for editing single value filed of a struct
+	 * @tparam T The type of filed and value
+	 * @param field The filed to be edited
+	 * @param value The new value of the field
 	*/
+	template<typename T>
+	void setSingleValueField(T& field, T value);
+
+	/**
+	 * @brief Function for editing multi value filed of a struct
+	 * @tparam T The type of vector of filed and value
+	 * @param field The filed to be edited
+	 * @param value The new value of the field
+	*/
+	template<typename T>
+	void setMultiValueField(std::vector<T>& field, std::vector<T> value);
 
 	/**
 	 * @brief Function for approving an event by the admin
@@ -334,8 +347,8 @@ struct EventManager
 	);
 
 	/**
-	 * @brief Function for getting all events with same type from a vetor
-	 * @param events Events to be looke up
+	 * @brief Function for getting all events with same type from a vector
+	 * @param events Events to be looked up
 	 * @param typeOfEvent The type of the events
 	 * @return Vector with all events of that type
 	*/
@@ -345,7 +358,7 @@ struct EventManager
 	);
 
 	/**
-	 * @brief Function for getting and sorting all events from a vetor, based on the time of creations
+	 * @brief Function for getting and sorting all events from a vector, based on the time of creations
 	 * @param events Vector with events to be sorted
 	 * @return new Vector with sorted events
 	*/
@@ -354,7 +367,7 @@ struct EventManager
 	);
 
 	/**
-	 * @brief Function for getting and sorting all events from a vetor, based on the title
+	 * @brief Function for getting and sorting all events from a vector, based on the title
 	 * @param events Vector with events to be sorted
 	 * @return new Vector with sorted events
 	*/
@@ -363,7 +376,7 @@ struct EventManager
 	);
 
 	/**
-	 * @brief Function for getting and sorting all events from a vetor, based on the date of the event
+	 * @brief Function for getting and sorting all events from a vector, based on the date of the event
 	 * @param events Vector with events to be sorted
 	 * @return new Vector with sorted events
 	*/
@@ -372,4 +385,11 @@ struct EventManager
 	);
 };
 
-//template bool EventManager::editEvent(EventList*, std::string, std::string, std::string);
+template void EventManager::setSingleValueField<std::string>(std::string&, std::string);
+template void EventManager::setSingleValueField<Coordinates>(Coordinates&, Coordinates);
+template void EventManager::setSingleValueField<time_t>(time_t&, time_t);
+template void EventManager::setSingleValueField<bool>(bool&, bool);
+template void EventManager::setSingleValueField<int>(int&, int);
+
+template void EventManager::setMultiValueField<std::string>(std::vector<std::string>&, std::vector<std::string>);
+template void EventManager::setMultiValueField<tm>(std::vector<tm>&, std::vector<tm>);

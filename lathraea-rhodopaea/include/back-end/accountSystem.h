@@ -44,8 +44,8 @@ struct Account
 	 * @brief Default constructor for Account
 	*/
 	Account();
-	
-	
+
+
 	// Only for debugging purposes
 	// Should not be used in the final product
 	void displayUserInfo();
@@ -68,7 +68,6 @@ struct AccountList
 
 	/**
 	 * @brief Function for adding a user
-	 * @param head The head of the list
 	 * @param data The data of the account
 	*/
 	void addUser(Account data);
@@ -76,16 +75,14 @@ struct AccountList
 	// Only for debugging purposes
 	// Should not be used in the final product
 	void displayAllUsers();
-	
+
 	/**
 	 * @brief Function that check if user exists
-	 * @param head The head of the list
 	 * @param emailToCheck The email to be checked
 	 * @param accountData Variable which gets the account data
 	 * @return does the user exist
 	*/
 	bool doesUserExist(
-		AccountList* head,
 		std::string emailToCheck,
 		Account** accountData
 	);
@@ -99,13 +96,13 @@ struct AccountManager
 	/**
 	 * @brief A Linked list that holds all of the accounts
 	*/
-	AccountList* accountNode; 
+	AccountList* accountNode;
 
 	/**
 	 * @brief Pointer to the account that is currently logged in
 	*/
 	Account* activeUser = nullptr;
-	
+
 	/**
 	 * @brief Validation manager
 	*/
@@ -147,7 +144,24 @@ struct AccountManager
 	 * @param email Email of the user
 	 * @param pass Password of the user
 	 * @return True or false, based on that
-			   if a login is successful 
+			   if a login is successful
 	*/
 	void loginUser(std::string email, std::string pass);
+
+	/**
+	 * @brief Function for logging out the current user
+	*/
+	void logoutUser();
+
+	/**
+	 * @brief Function that checks if the user is logged in
+	 * @return Is the user logged in
+	*/
+	bool isUserLoggedIn();
+
+	/**
+	 * @brief Function for getting logged in user data
+	 * @return Logged in user data
+	*/
+	Account getLoggedInUserData();
 };

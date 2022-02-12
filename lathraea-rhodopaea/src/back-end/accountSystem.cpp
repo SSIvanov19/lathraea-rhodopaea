@@ -32,7 +32,7 @@ void Account::displayUserInfo()
 	std::cout << "Roles: " << int(role) << std::endl;
 }
 
-AccountList::AccountList(Account user_, AccountList* next_)
+AccountList::AccountList(Account user_, AccountList * next_)
 {
 	user = user_;
 	next = next_;
@@ -58,9 +58,9 @@ void AccountList::addUser(Account data)
 	}
 }
 
-bool AccountList::doesUserExist(AccountList* head, std::string emailToCheck, Account** accountData = nullptr)
+bool AccountList::doesUserExist(std::string emailToCheck, Account * *accountData = nullptr)
 {
-	AccountList* temp = head;
+	AccountList* temp = this;
 
 	while (temp != NULL)
 	{
@@ -96,7 +96,7 @@ AccountManager::AccountManager()
 	// Create the first Account
 	accountNode = new AccountList(
 		Account(
-			envManager.getEnv("ADMIN_USERNAME"), 
+			envManager.getEnv("ADMIN_USERNAME"),
 			envManager.getEnv("ADMIN_EMAIL"),
 			encryptionManager.encrypt(envManager.getEnv("ADMIN_PASSWORD")),
 			Roles::ADMIN),
@@ -113,9 +113,9 @@ void AccountManager::registerUser(
 {
 	LoggerManager loggerManager;
 	loggerManager.log(
-		LogSeverity::INFO, 
-		"User with email: " + 
-		email + 
+		LogSeverity::INFO,
+		"User with email: " +
+		email +
 		" is trying to login."
 	);
 
@@ -151,7 +151,7 @@ void AccountManager::registerUser(
 	}
 
 	//Check for duplicate email
-	if (accountNode->doesUserExist(accountNode, email))
+	if (accountNode->doesUserExist(email))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,
@@ -171,14 +171,14 @@ void AccountManager::registerUser(
 		"User with email: " + email + "is successfully registered"
 	);
 
-//	// Only for debugging purposes
-//	// Should not be used in the final product
-//	std::cout << "Added new user. All users are:\n";
-//
-//	// Only for debugging purposes
-//	// Should not be used in the final product
-//	accountNode->displayAllUsers(accountNode);
-//
+	//	// Only for debugging purposes
+	//	// Should not be used in the final product
+	//	std::cout << "Added new user. All users are:\n";
+	//
+	//	// Only for debugging purposes
+	//	// Should not be used in the final product
+	//	accountNode->displayAllUsers(accountNode);
+	//
 }
 
 void AccountManager::loginUser(std::string email, std::string pass)
@@ -201,7 +201,7 @@ void AccountManager::loginUser(std::string email, std::string pass)
 
 	Account* user = nullptr;
 
-	if (!accountNode->doesUserExist(accountNode, email, &user))
+	if (!accountNode->doesUserExist(email, &user))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,
@@ -227,4 +227,36 @@ void AccountManager::loginUser(std::string email, std::string pass)
 		LogSeverity::INFO,
 		"User with email: " + email + " is successfully logged."
 	);
+}
+
+void AccountManager::logoutUser()
+{
+	LoggerManager loggerManager;
+
+	if (this->activeUser == nullptr)
+	{
+		loggerManager.log(
+			LogSeverity::NOTICE,
+			"There is not active user"
+		);
+
+		throw std::string("There is not currently any logged in user");
+	}
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"User is logged in successfully"
+	);
+
+	this->activeUser = nullptr;
+}
+
+bool AccountManager::isUserLoggedIn()
+{
+	return this->activeUser != nullptr;
+}
+
+Account AccountManager::getLoggedInUserData()
+{
+	return *this->activeUser;
 }
