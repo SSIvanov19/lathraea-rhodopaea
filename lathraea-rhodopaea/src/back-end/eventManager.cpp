@@ -821,29 +821,17 @@ bool EventManager::removeEvent(EventList * *head, std::string searchTitle)
 	return true;
 }
 
-/*
 template<typename T>
-bool EventManager::editEvent(EventList* head, std::string searchTitle, std::string propertyToBeEdit, T newValue)
+void EventManager::setSingleValueField(T& field, T value)
 {
-	EventList* temp = head;
-
-	while (temp != NULL)
-	{
-		if (temp->event.title == searchTitle)
-		{
-			std::unordered_map<std::string, Event> map = temp->event;
-
-
-			//std::cout << temp->event.propertyToBeEdit;// = static_cast<decltype(temp->event[propertyToBeEdit])>(newValue);
-			return true;
-		}
-		temp = temp->next;
-	}
-
-	return false;
+	field = value;
 }
-*/
 
+template<typename T>
+void EventManager::setMultiValueField(std::vector<T>& field, std::vector<T> value)
+{
+	field.swap(value);
+}
 
 void EventManager::approveEvent(std::string titleOfTheEvent)
 {
@@ -863,7 +851,7 @@ void EventManager::approveEvent(std::string titleOfTheEvent)
 
 			loggerManager.log(
 				LogSeverity::INFO,
-				"Event with title: " + titleOfTheEvent + " is succesfully approved."
+				"Event with title: " + titleOfTheEvent + " is successfully approved."
 			);
 
 			return;
@@ -910,6 +898,38 @@ std::vector<Event> EventManager::getAllEvents(bool isApproved)
 	);
 
 	return returnVal;
+}
+
+Event* EventManager::getEventWithName(std::string title)
+{
+	LoggerManager loggerManager;
+	EventList* temp = this->eventList;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Start searching for event with title: " + title
+	);
+
+	while (temp)
+	{
+		if (temp->event.title == title)
+		{
+			loggerManager.log(
+				LogSeverity::INFO,
+				"Found event with title: " + title
+			);
+			return &temp->event;
+		}
+
+		temp = temp->next;
+	}
+
+	loggerManager.log(
+		LogSeverity::NOTICE,
+		"Could not find event with title: " + title
+	);
+
+	return nullptr;
 }
 
 std::vector<Event> EventManager::getAllEventsWithTitle(
