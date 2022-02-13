@@ -22,6 +22,8 @@ void addEvent(EventManager* eventManager); // Function for adding historical eve
 void deleteEvent(EventManager* eventManager); // Function for deleting historical events
 void displayAllEventsByTitle(EventManager* eventManager); // Function for displaying all the events by their title
 void displayAllEventsByYear(EventManager* eventManager); // Function for displaying all the events by their period
+void chooseTitleSorting(EventManager* eventManager); // Function for choosing the way of sorting the events by title 
+void chooseYearSorting(EventManager* eventManager); // Function for choosing the way of sorting the events by year
 void printBy(EventManager* eventManager); // Function for choosing the type of printing the events
 void displayEvents(EventManager* eventManager); // Function for choosing the way of printing the events
 void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption, std::vector<std::string> possibleOptions); // Function for coloring hovered options
