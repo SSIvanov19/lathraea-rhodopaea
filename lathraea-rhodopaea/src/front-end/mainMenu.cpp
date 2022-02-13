@@ -1125,7 +1125,7 @@ void displayAllEventsByYear(EventManager* eventManager, int sorting)
 		for (int j = 0; j < allEvents[i].period.size(); j++)
 		{
 			outputPosition(81, 12 + i * 2);
-			std::cout << allEvents[i].period[j].tm_wday << " " << allEvents[i].period[j].tm_mon << " " << allEvents[i].period[j].tm_year;
+			std::cout << allEvents[i].period[j].tm_mday << " " << allEvents[i].period[j].tm_mon + 1 << " " << allEvents[i].period[j].tm_year + 1900;
 		}
 	}
 	int key;
@@ -1220,8 +1220,8 @@ void chooseYearSorting(EventManager* eventManager)
 	char pressedKey = ' ';
 	const std::vector<std::string> yåarSortingOptions =
 	{
-		"Àscending",
-		"Descending",
+		"Ascending",
+		"Descending"
 	};
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
