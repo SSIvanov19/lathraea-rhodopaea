@@ -20,8 +20,12 @@ void addWarEvent(EventManager* eventManager); // Function for adding events of t
 void addMovementEvent(EventManager* eventManager); // Function for adding events of type "movement"
 void addEvent(EventManager* eventManager); // Function for adding historical events
 void deleteEvent(EventManager* eventManager); // Function for deleting historical events
-void displayAllEventsByTitle(EventManager* eventManager); // Function for displaying all the events by their title
-void displayAllEventsByYear(EventManager* eventManager); // Function for displaying all the events by their period
+std::string getEventPeriod(const std::vector<tm> period); // Function for converting date form vector to string 
+std::string separate(const std::vector<std::string> information); // Function for converting information in vector to string
+void displayEvent(const Event& e); // Function for displaying information about a particular event
+void choose(const std::vector<Event> events, int output); // Function for choosing event to display
+void displayAllEventsByTitle(EventManager* eventManager, int sorting); // Function for displaying all the events by their title
+void displayAllEventsByYear(EventManager* eventManager, int sorting); // Function for displaying all the events by their period
 void chooseTitleSorting(EventManager* eventManager); // Function for choosing the way of sorting the events by title 
 void chooseYearSorting(EventManager* eventManager); // Function for choosing the way of sorting the events by year
 void printBy(EventManager* eventManager); // Function for choosing the type of printing the events

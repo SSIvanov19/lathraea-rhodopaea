@@ -1036,30 +1036,44 @@ void deleteEvent(EventManager* eventManager)
 	}
 }
 
+/**
+ * @brief Function for converting date form vector to string 
+ * @param period Date as vector
+ * @return Date as string
+*/
 std::string getEventPeriod(const std::vector<tm> period)
 {
 	std::string date = "";
 	for (size_t i = 0; i < period.size(); i++)
 	{
-		date += std::to_string(period[i].tm_mday) + ", " + std::to_string((period[i].tm_mon + 1)) + ", " + std::to_string((period[i].tm_year + 1900)) + '\n';
+		date += std::to_string(period[i].tm_mday) + "/" + std::to_string((period[i].tm_mon + 1)) + "/" + std::to_string((period[i].tm_year + 1900)) + '\n';
 	}
 	return date;
 }
 
+/**
+ * @brief Function for converting information in vector to string
+ * @param information Given vector
+ * @return Information as string
+*/
 std::string separate(const std::vector<std::string> information)
 {
-	std::string result = "( ";
+	std::string result = " ";
 
 	for (size_t i = 0; i < information.size(); i++)
 	{
-		result += information[i] + ", ";
+		result += information[i];
 	}
 
-	result += " )";
+	result += " ";
 
 	return result;
 }
 
+/**
+ * @brief Function for displaying information about a particular event
+ * @param e Given event
+*/
 void displayEvent(const Event& e)
 {
 	outputPosition(81, 12);
@@ -1114,7 +1128,7 @@ void displayEvent(const Event& e)
 		std::cout << "Title: " << e.title;
 		outputPosition(81, 14);
 		std::cout << "Date: " << getEventPeriod(e.period);
-		outputPosition(81, 26);
+		outputPosition(81, 16);
 		std::cout << "Additional notes: " << e.additionalNotes;
 		break;
 	}
@@ -1127,6 +1141,11 @@ void displayEvent(const Event& e)
 	printTeamLogo();
 }
 
+/**
+ * @brief Function for choosing event to display
+ * @param events Vector with all the events to show
+ * @param output The way the events should be displayed
+*/
 void choose(const std::vector<Event> events, int output)
 {
 	int selectedOption = 1;
