@@ -1036,6 +1036,156 @@ void deleteEvent(EventManager* eventManager)
 	}
 }
 
+std::string getEventPeriod(const std::vector<tm> period)
+{
+	std::string date = "";
+	for (size_t i = 0; i < period.size(); i++)
+	{
+		date += std::to_string(period[i].tm_mday) + ", " + std::to_string((period[i].tm_mon + 1)) + ", " + std::to_string((period[i].tm_year + 1900)) + '\n';
+	}
+	return date;
+}
+
+std::string separate(const std::vector<std::string> information)
+{
+	std::string result = "( ";
+
+	for (size_t i = 0; i < information.size(); i++)
+	{
+		result += information[i] + ", ";
+	}
+
+	result += " )";
+
+	return result;
+}
+
+void displayEvent(const Event& e)
+{
+	outputPosition(81, 12);
+	switch (e.type)
+	{
+	case TypeOfEvent::UPRISING:
+		outputPosition(81, 12);
+		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Date: " << getEventPeriod(e.period);
+		outputPosition(81, 16);
+		std::cout << "Success: " << e.isItSuccessful;
+		outputPosition(81, 18);
+		std::cout << "Number of rebilions: " << e.numberOfRebelions;
+		outputPosition(81, 20);
+		std::cout << "Additional notes: " << e.additionalNotes;
+		break;
+	case TypeOfEvent::WAR:
+		outputPosition(81, 12);
+		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Date: " << getEventPeriod(e.period);
+		outputPosition(81, 16);
+		std::cout << "Participting countries: " << separate(e.participatingCountries);
+		outputPosition(81, 18);
+		std::cout << "Winner:  " << e.winner;
+		outputPosition(81, 20);
+		std::cout << "Reason " << e.reason;
+		outputPosition(81, 22);
+		std::cout << "Rulers: " << separate(e.rulers);
+		outputPosition(81, 24);
+		std::cout << "Additional notes: " << e.additionalNotes;
+		break;
+	case TypeOfEvent::MOVEMENT:
+		outputPosition(81, 12);
+		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Date: " << getEventPeriod(e.period);
+		outputPosition(81, 16);
+		std::cout << "How it started: " << e.howItStarted;
+		outputPosition(81, 18);
+		std::cout << "Ideas " << e.ideas;
+		outputPosition(81, 20);
+		std::cout << "Aims " << e.aims;
+		outputPosition(81, 22);
+		std::cout << "Representatives: " << separate(e.representatives);
+		outputPosition(81, 24);
+		std::cout << "Additional notes: " << e.additionalNotes;
+		break;
+	case TypeOfEvent::OTHER:
+		outputPosition(81, 12);
+		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Date: " << getEventPeriod(e.period);
+		outputPosition(81, 26);
+		std::cout << "Additional notes: " << e.additionalNotes;
+		break;
+	}
+
+	_getch();
+	system("CLS");
+	printClosedBook();
+	prinyBookDecorations();
+	printSnakeSword();
+	printTeamLogo();
+}
+
+void choose(const std::vector<Event> events, int output)
+{
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < events.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			if (output == 1) {
+				std::cout << events[i].title << std::endl << std::endl;
+			}
+			else if (output == 2)
+			{
+				for (int i = 0; i < events.size(); i++)
+				{
+					outputPosition(81, 12 + i * 2);
+					for (int j = 0; j < events[i].period.size(); j++)
+					{
+						outputPosition(81, 12 + i * 2);
+						std::cout << events[i].period[j].tm_mday << " " << events[i].period[j].tm_mon + 1 << " " << events[i].period[j].tm_year + 1900;
+					}
+				}
+			}
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == events.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			displayEvent(events[selectedOption - 1]);
+		}
+	}
+}
+
 /**
  * @brief Function for displaying all the events by their title
  * @param eventManager Variable for an event manager
@@ -1069,22 +1219,7 @@ void displayAllEventsByTitle(EventManager* eventManager, int sorting)
 
 	outputPosition(81, 10);
 	std::cout << "Press Enter if you want to go back!";
-	for (int i = 0; i < allEvents.size(); i++)
-	{
-		outputPosition(81, 12 + i * 2);
-		std::cout << allEvents[i].title << std::endl;
-	}
-	int key;
-	key = _getch();
-	if (key == (int)ARROW_KEYS::KEY_ENTER)
-	{
-		system("CLS");
-		printClosedBook();
-		prinyBookDecorations();
-		printSnakeSword();
-		printTeamLogo();
-		return;
-	}
+	choose(allEvents, 1);
 }
 
 /**
@@ -1119,26 +1254,7 @@ void displayAllEventsByYear(EventManager* eventManager, int sorting)
 	}
 	outputPosition(81, 10);
 	std::cout << "Press Enter if you want to go back!";
-	for (int i = 0; i < allEvents.size(); i++)
-	{
-		outputPosition(81, 12 + i * 2);
-		for (int j = 0; j < allEvents[i].period.size(); j++)
-		{
-			outputPosition(81, 12 + i * 2);
-			std::cout << allEvents[i].period[j].tm_mday << " " << allEvents[i].period[j].tm_mon + 1 << " " << allEvents[i].period[j].tm_year + 1900;
-		}
-	}
-	int key;
-	key = _getch();
-	if (key == (int)ARROW_KEYS::KEY_ENTER)
-	{
-		system("CLS");
-		printClosedBook();
-		prinyBookDecorations();
-		printSnakeSword();
-		printTeamLogo();
-		return;
-	}
+	choose(allEvents, 2);
 }
 
 /**
@@ -1156,6 +1272,7 @@ void chooseTitleSorting(EventManager* eventManager)
 	{
 		"A -> Z",
 		"Z -> A",
+		"Time added"
 	};
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
@@ -1202,6 +1319,10 @@ void chooseTitleSorting(EventManager* eventManager)
 				printFullyOpenedBook();
 				displayAllEventsByTitle(eventManager, 2);
 				break;
+			case 3:
+				printFullyOpenedBook();
+				displayAllEventsByTitle(eventManager, 3);
+				break;
 			}
 		}
 	}
@@ -1221,7 +1342,8 @@ void chooseYearSorting(EventManager* eventManager)
 	const std::vector<std::string> yåarSortingOptions =
 	{
 		"Ascending",
-		"Descending"
+		"Descending",
+		"Time added"
 	};
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
@@ -1269,6 +1391,10 @@ void chooseYearSorting(EventManager* eventManager)
 				displayAllEventsByYear(eventManager, 2);
 				break;
 			}
+		case 3:
+			printFullyOpenedBook();
+			displayAllEventsByYear(eventManager, 3);
+			break;
 		}
 	}
 }
