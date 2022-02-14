@@ -2066,7 +2066,9 @@ void printTeamLogo()
 	outputPosition(6, 14);
 	std::cout << "                               |_|                     " << std::endl;
 }
-
+/**
+ * @brief Function for printing text for about us page
+*/
 void printText() {
 	std::cout << "Hello, we are team from five people, making a program for historical events!" << std::endl;
 	std::cout << "1. Use your arrow keys to navigate through the options given in the menu" << std::endl;
@@ -2074,9 +2076,10 @@ void printText() {
 	std::cout << "3. Fill your progress about the event, providing details (date, period, year, type, ect.)" << std::endl;
 }
 
+/**
+ * @brief Function for printing about us page 
+*/
 void printaboutUs() {
-
-
 
 	std::cout << " " << std::endl;
 	std::cout << "  ________________________________________________________________" << std::endl;
