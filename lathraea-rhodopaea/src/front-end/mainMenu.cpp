@@ -1634,6 +1634,10 @@ void printAsMap(EventManager* eventManager)
 	}
 }
 
+/**
+ * @brief Function for printing events as a timeline
+ * @param storylineManager Variable for an storyline manager
+*/
 void printAsTimeline(StorylineManager* storylineManager)
 {
 	std::vector<Storyline> allEvents = storylineManager->getAllStorylines(0);
