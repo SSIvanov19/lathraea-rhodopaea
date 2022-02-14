@@ -15,7 +15,7 @@
  </div>
 </div>
 
-You can view our Presentation here:
+You can view our Presentation here: [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/vmmihaylov19_codingburgas_bg/EXXSPE_PIS1KuVWciFPpxUgBndSAjtLEEcKtulO2y2bIng?e=tjojwV)
 <br>
 
 # About
