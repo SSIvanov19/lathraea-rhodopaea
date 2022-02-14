@@ -24,8 +24,8 @@ void printTimelinePopUp(); // Function for printing a pop-up tab for the timelin
 void printSwordTimelinePopUp(); // Function for printing a pop-up tab for the sword timeline
 void printSwordTimeline(); // Function for printing a sword timeline
 void printTimeline(); // Function for printing a timeline
-void printaboutUs();
-void printText();
+void printaboutUs();// Function for printing about us page
+void printText();// Function for printing printing text for about us page 
 void logoForProgram(); // Function for printing the logo of the project
 void printTeamLogo(); // Function for printing the team logo
 void printTeamKeyboardLogo(); // Function for printing the team logo as keyboard
