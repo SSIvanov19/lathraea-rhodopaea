@@ -1003,7 +1003,7 @@ void printOnePageLeafedBook()
 /**
  * @brief Function for printing the first part of the book's leafing to the left
 */
-void pageLeafingLeft1()
+void pageLeafingLeftOne()
 {
 	int counter = 3;
 	outputPosition(19, counter + 1);
@@ -1119,7 +1119,7 @@ void pageLeafingLeft1()
 /**
  * @brief Function for printing the first part of the book's leafing to the right
 */
-void pageLeafingRight1()
+void pageLeafingRightOne()
 {
 	int counter = 3;
 	outputPosition(19, counter + 1);
@@ -1244,7 +1244,7 @@ void pageLeafingRight1()
 /**
  * @brief Function for printing the second part of the book's leafing to the left
 */
-void pageLeafingLeft2()
+void pageLeafingLeftTwo()
 {
 	int counter = -2;
 	outputPosition(19, counter + 1);
@@ -1414,7 +1414,7 @@ void pageLeafingLeft2()
 /**
  * @brief Function for printing the second part of the book's leafing to the right
 */
-void pageLeafingRight2()
+void pageLeafingRightTwo()
 {
 	int counter = -2;
 	outputPosition(19, counter + 1);
@@ -1644,6 +1644,42 @@ void printSnakeSword()
 	outputPosition(89, counter + 29);
 	std::cout << "|/,-'" << std::endl;
 }
+
+/**
+ * @brief Function for printing main page 
+*/
+void printMainPage()
+{
+	std::cout << "                   [\\                                            " << std::endl;
+	std::cout << "                   |\\)                                           " << std::endl;
+	std::cout << "                   |                                                  ___      __       ___                     " << std::endl;
+	std::cout << "                   /\\           __                           |     /\\  | |__| |__)  /\\  |__   /\\                  " << std::endl;
+	std::cout << "                  /  \\       __(  )--.                       |___ /~~\\ | |  | |  \\ /~~\\ |___ /~~\\                " << std::endl;
+	std::cout << "                 /    \\   ,-(         )_                                 __        __   __   __   __       ___                 " << std::endl;
+	std::cout << "                //T`-._\\ (             _)                               |__) |__| /  \\ |  \\ /  \\ |__) /\\  |__   /\\              " << std::endl;
+	std::cout << "                /[|   ]|  `-(_______)-`   |\\                            |  \\ |  | \\__/ |__/ \\__/ |   /~~\\ |___ /~~\\                 " << std::endl;
+	std::cout << "                | |    |                  J'                      " << std::endl;
+	std::cout << "                | |  ] |     _           /;\\                     " << std::endl;
+	std::cout << "               [| |    |     L'         /;  \\                    " << std::endl;
+	std::cout << "              /||.| /\\ |    /\\         /.,-._\\                 " << std::endl;
+	std::cout << "             /_|||| || |   /  \\        | |{  |                   " << std::endl;
+	std::cout << "   L/\\        |\\| | '` |_ _  {|        | | U |   /\\            " << std::endl;
+	std::cout << "  /   \\/\\    `| Y | [  '-'  '--''-''- -'`'   | '`  \\ /\\,`\\   " << std::endl;
+	std::cout << " / ,'./  \\.`  |[  |       [     __   L    ]  |      /  \\  \\    " << std::endl;
+	std::cout << "/,'     `     |   |           ,`   .   ]     |___Y Y____,_,,___,_____,,______________,______   " << std::endl;
+	std::cout << "---    -----.-(] [|   ]     o/     |o       ]|| /`-, Y  _   Y  Y        _             _    " << std::endl;
+	std::cout << "     Y Y  --;`~T  |      }   \\     |[\\ _,.- (^) ,-'    (^)__  _        (^)           (^)         " << std::endl;
+	std::cout << "    Y  YY   ;'~~l |   L     [|\\       \\   \\ \\Y-`  _     Y   _       --- Y   ` _ _     Y               " << std::endl;
+	std::cout << "   Y  Y Y   ;\\~~/\\{| [      _,'-\\`= = '.\\_ ,`    (^)       (^)      _        _              " << std::endl;
+	std::cout << "       --   ;\\~~~/\\|  _,.-` _  `.\\_..-'   _  ., _ Y     _   Y__    (^)      (^)            " << std::endl;
+	std::cout << "      _    _; \\~~( Y``   Y (^) / `,      (^)      _    (^)          Y        Y    _      " << std::endl;
+	std::cout << "     (^)  (^)`._~ /  L \\  _.Y'`  _  ` --  Y - - -(^) -  Y -         ===          (^)          " << std::endl;
+	std::cout << "      Y    Y    `'--..,-'`      (^)   _  -    _   Y ____       __      _          Y   " << std::endl;
+	std::cout << "        --                _ --   Y   (^)     (^)  ===   ----          (^) _  _  _              " << std::endl;
+	std::cout << "            __   -       (^)      --- Y       Y                        Y          " << std::endl;
+	std::cout << "                          Y                                                           " << std::endl;
+}
+
 
 /**
  * @brief Function for printing the map of Bulgaria
@@ -2068,7 +2104,9 @@ void printTeamLogo()
 	outputPosition(6, 14);
 	std::cout << "                               |_|                     " << std::endl;
 }
-
+/**
+ * @brief Function for printing text for about us page
+*/
 void printText() {
 	std::cout << "Hello, we are team from five people, making a program for historical events!" << std::endl;
 	std::cout << "1. Use your arrow keys to navigate through the options given in the menu" << std::endl;
@@ -2076,9 +2114,10 @@ void printText() {
 	std::cout << "3. Fill your progress about the event, providing details (date, period, year, type, ect.)" << std::endl;
 }
 
+/**
+ * @brief Function for printing about us page 
+*/
 void printaboutUs() {
-
-
 
 	std::cout << " " << std::endl;
 	std::cout << "  ________________________________________________________________" << std::endl;

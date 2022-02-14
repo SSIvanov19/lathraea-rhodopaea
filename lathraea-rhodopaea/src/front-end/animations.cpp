@@ -8,7 +8,7 @@
 
 
 /**
- * @brief Function for setting the delay time 
+ * @brief Function for setting the delay time.
  * @param seconds The seconds of delay
 */
 void delay(int seconds)
@@ -17,7 +17,7 @@ void delay(int seconds)
 }
 
 /**
- * @brief Function for printing book leafing animation
+ * @brief Function for printing book leafing animation.
 */
 void bookAnimation()
 {
@@ -27,21 +27,50 @@ void bookAnimation()
 	printOnePageLeafedBook();
 	delay(120);
 	system("CLS");
-	pageLeafingLeft1();
+	pageLeafingLeftOne();
 	delay(120);
 	system("CLS");
-	pageLeafingLeft2();
+	pageLeafingLeftTwo();
 	delay(120);
 	system("CLS");
-	pageLeafingRight2();
+	pageLeafingRightTwo();
 	delay(120);
 	system("CLS");
-	pageLeafingRight1();
+	pageLeafingRightOne();
 	delay(120);
 	system("CLS");
 	printOpenedBook();
 }
 
+/**
+ * @brief Function for printing reverse book animation.
+*/
+void reverseBookAnimation() 
+{
+	printOpenedBook();
+	system("CLS");
+	delay(120);
+	pageLeafingRightOne();
+	system("CLS");
+	delay(120);
+	pageLeafingRightTwo();
+	system("CLS");
+	delay(120);
+	pageLeafingLeftTwo();
+	system("CLS");
+	delay(120);
+	pageLeafingLeftOne();
+	system("CLS");
+	delay(120);
+	printOnePageLeafedBook();
+	system("CLS");
+	delay(120);
+	printOpenedBook();
+}
+
+/**
+ * @brief Function for printing book opening animation.
+*/
 void bookOpeningAnimation()
 {
 	printSlightlyOpenBook();
@@ -55,4 +84,21 @@ void bookOpeningAnimation()
 	system("CLS");
 	printFullyOpenedBook();
 	delay(120);
+}
+
+/**
+ * @brief Function for printing reverse book opening animation.
+*/
+void reverseBookOpeningAnimation() {
+	delay(120);
+	printFullyOpenedBook();
+	system("CLS");
+	delay(120);
+	printAlmostOpenedBook();
+	system("CLS");
+	delay(120);
+	printHalfOpenBook();
+	system("CLS");
+	delay(120);
+	printSlightlyOpenBook();
 }
