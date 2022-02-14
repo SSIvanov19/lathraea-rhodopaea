@@ -11,7 +11,7 @@ void printAlmostOpenedBook();// Function for printing almost open book.
 void printFullyOpenedBook();// Function for printing fully open book.
 void printOpenedBook(); // Function for printing the opened book
 void printOnePageLeafedBook(); // Function for printing the book with only one page leafed
-void pageLeafingLeft1(); // Function for printing the first part of the book's leafing to the left
+void pageLeafingLeftOne(); // Function for printing the first part of the book's leafing to the left
 void pageLeafingRight1(); // Function for printing the first part of the book's leafing to the right
 void pageLeafingLeft2(); // Function for printing the second part of the book's leafing to the left
 void pageLeafingRight2(); // Function for printing the second part of the book's leafing to the right

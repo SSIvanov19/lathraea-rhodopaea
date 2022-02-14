@@ -27,7 +27,7 @@ void bookAnimation()
 	printOnePageLeafedBook();
 	delay(120);
 	system("CLS");
-	pageLeafingLeft1();
+	pageLeafingLeftOne();
 	delay(120);
 	system("CLS");
 	pageLeafingLeft2();
