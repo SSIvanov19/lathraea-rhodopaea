@@ -33,7 +33,7 @@ void bookAnimation()
 	pageLeafingLeftTwo();
 	delay(120);
 	system("CLS");
-	pageLeafingRight2();
+	pageLeafingRightTwo();
 	delay(120);
 	system("CLS");
 	pageLeafingRightOne();
