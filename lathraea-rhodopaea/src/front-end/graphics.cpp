@@ -2067,6 +2067,60 @@ void printTeamLogo()
 	std::cout << "                               |_|                     " << std::endl;
 }
 
+void printText() {
+	std::cout << "Hello, we are team from five people, making a program for historical events!" << std::endl;
+	std::cout << "1. Use your arrow keys to navigate through the options given in the menu" << std::endl;
+	std::cout << "2. From the menu, you can choose either to remove, edit or add an event" << std::endl;
+	std::cout << "3. Fill your progress about the event, providing details (date, period, year, type, ect.)" << std::endl;
+}
+
+void printaboutUs() {
+
+
+
+	std::cout << " " << std::endl;
+	std::cout << "  ________________________________________________________________" << std::endl;
+	std::cout << " / \                                                               \\. " << std::endl;
+	std::cout << "|   |                                                              \\. " << std::endl;
+	std::cout << "|   |                                                              |. " << std::endl;
+	std::cout << " \\_ |              _   _              _     _   _                  |. " << std::endl;
+	std::cout << "    |             /_\\ | |__  ___ _  _| |_  | | | |___              |. " << std::endl;
+	std::cout << "    |            / _ \\| '_ \\/ _ \\ || |  _| | |_| (_-<              |. " << std::endl;
+	std::cout << "    |           /_/ \\_\\_.__/\\___/\\_,_|\\__|  \\___//__/              |. " << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |." << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |                                                              |. " << std::endl;
+	std::cout << "    |     _________________________________________________________|___ " << std::endl;
+	std::cout << "    |    /                                                            /." << std::endl;
+	std::cout << "    \\   /                                                            /." << std::endl;
+	std::cout << "     \\_/  __________________________________________________________/. " << std::endl;
+}
+
 /**
  * @brief Function for printing the team logo as keyboard
 */

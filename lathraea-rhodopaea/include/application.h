@@ -8,6 +8,7 @@
 #include <back-end/datetimeManager.h>
 #include <back-end/logs.h>
 #include <back-end/errorManager.h>
+#include <back-end/storylineManager.h>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -29,6 +30,11 @@ struct Application
 	EventManager eventManager;
 
 	/**
+	 * @brief Storyline manager
+	*/
+	StorylineManager storylineManager;
+
+	/**
 	 * @brief Logger manager
 	*/
 	LoggerManager loggerManager;
@@ -37,13 +43,15 @@ struct Application
 	 * @brief Function for initialising
 	 * @param accountManager Account manager
 	 * @param eventManager Event manager
+	 * @param storylineManager Storyline manager
 	*/
-	void init(AccountManager& accountManager, EventManager& eventManager);
+	void init(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager);
 
 	/**
 	 * @brief Entry point for the application
 	 * @param accountManager Account manager
 	 * @param eventManager Event manager
+	 * @param storylineManager Storyline manager
 	*/
-	void run(AccountManager& accountManager, EventManager& eventManager);
+	void run(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager);
 };
