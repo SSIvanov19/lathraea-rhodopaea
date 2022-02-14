@@ -1,5 +1,5 @@
 <div align = "center">
-<img src= "img/logo.jpg" width="600" height="400">
+<img src= "img/logoForREADME.jpg" width="800" height="400">
 
 </div>
 
@@ -19,6 +19,7 @@ You can view our Presentation here:
 <br>
 
 # About
+  We made a program to help you add , edit, remove, connect and vvisualise different events, wars, movements and rebellions!
 
 <br>
 
