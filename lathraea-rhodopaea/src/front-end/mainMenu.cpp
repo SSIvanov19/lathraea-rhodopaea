@@ -1594,6 +1594,189 @@ void displayEvents(EventManager* eventManager)
 	}
 }
 
+int getNumberOfSelectedEvents(std::vector<int> v)
+{
+	int counter = 0;
+
+	for (int el : v)
+	{
+		if (el)
+		{
+			counter++;
+		}
+	}
+
+	return counter;
+}
+
+void createStoryline(EventManager* eventManager, StorylineManager* storylineManager, bool getEvents = false)
+{
+	std::vector<Event> events = eventManager->getAllEvents(false);
+	static std::vector<int> indexSelectedEvents(events.size(), 0);
+
+	if (getEvents)
+	{
+		indexSelectedEvents = std::vector<int>(events.size(), 0);
+	}
+
+	static int selectedOptions = 0;
+
+	outputPosition(81, 10);
+	std::cout << "Chose up to six events to be added to storyline: " << std::endl;
+
+	for (size_t i = 0; i < events.size(); i++)
+	{
+		outputPosition(81, 12 + i);
+		selectedOptions == i ? std::cout << " -> " : std::cout << "    ";
+
+		std::cout << events[i].title;
+
+		if (indexSelectedEvents[i])
+		{
+			std::cout << " +";
+		}
+		else
+		{
+			std::cout << " -";
+		}
+	}
+
+	outputPosition(81, 12 + events.size());
+
+	int numOfSelEvents = getNumberOfSelectedEvents(indexSelectedEvents);
+
+	if (numOfSelEvents > 1)
+	{
+		selectedOptions == events.size() ? std::cout << " -> Add events to storyline" : std::cout << "    Add events to storyline";
+	}
+	else
+	{
+		std::cout << "                           ";
+	}
+
+	char pressedKey = _getch();
+	switch (pressedKey)
+	{
+	case (int)ARROW_KEYS::KEY_UP:
+		if (selectedOptions != 0) selectedOptions--;
+		createStoryline(eventManager, storylineManager);
+		break;
+
+	case (int)ARROW_KEYS::KEY_DOWN:
+		if (numOfSelEvents > 1)
+		{
+			if (selectedOptions != events.size()) selectedOptions++;
+		}
+		else
+		{
+			if (selectedOptions != events.size() - 1) selectedOptions++;
+		}
+		createStoryline(eventManager, storylineManager);
+		break;
+	case (int)ARROW_KEYS::KEY_ENTER:
+		if (selectedOptions >= 0 && selectedOptions < events.size())
+		{
+
+			if (numOfSelEvents > 5)
+			{
+				if (indexSelectedEvents[selectedOptions] == 1)
+				{
+					indexSelectedEvents[selectedOptions] = 0;
+					outputPosition(81, 13 + events.size());
+					std::cout << "                                                  ";
+				}
+				else
+				{
+					outputPosition(81, 13 + events.size());
+					std::cout << "Can not add more than 6 events to single storyline";
+				}
+			}
+			else
+			{
+				outputPosition(81, 13 + events.size());
+				std::cout << "                                                  ";
+				indexSelectedEvents[selectedOptions] = !indexSelectedEvents[selectedOptions];
+			}
+		}
+		else
+		{
+			outputPosition(81, 13 + events.size());
+			std::cout << "                                                  ";
+
+			std::string title;
+			outputPosition(81, 13 + events.size());
+			std::cout << "Please, enter title for the new storyline";
+			outputPosition(81, 14 + events.size());
+			getline(std::cin, title);
+
+			while (title.empty())
+			{
+				outputPosition(81, 13 + events.size());
+				std::cout << "Please, enter title for the new storyline";
+				outputPosition(81, 14 + events.size());
+				getline(std::cin, title);
+			}
+
+			std::string desc;
+			outputPosition(81, 15 + events.size());
+			std::cout << "Please, enter description for the new storyline";
+			outputPosition(81, 16 + events.size());
+			getline(std::cin, desc);
+
+			std::vector<Event> storylineEvents;
+
+			for (size_t i = 0; i < indexSelectedEvents.size(); i++)
+			{
+				if (indexSelectedEvents[i])
+				{
+					storylineEvents.push_back(events[i]);
+				}
+			}
+
+			try
+			{
+				storylineManager->addStoryline(title, storylineEvents, desc);
+				indexSelectedEvents.clear();
+				selectedOptions = 0;
+				system("CLS");
+				printClosedBook();
+				prinyBookDecorations();
+				printSnakeSword();
+				printTeamLogo();
+				return;
+			}
+			catch (std::string error)
+			{
+				outputPosition(81, 17 + events.size());
+				std::cout << error;
+				_getch();
+				outputPosition(81, 13 + events.size());
+				for (int i = 0; i < 10; i++)
+				{
+					std::cout << "                                                  ";
+					outputPosition(81, 13 + events.size() + i);
+				}
+
+				createStoryline(eventManager, storylineManager);
+			}
+		}
+
+		createStoryline(eventManager, storylineManager);
+		break;
+	case (int)ARROW_KEYS::KEY_ESC:
+		indexSelectedEvents.clear();
+		selectedOptions = 0;
+		system("CLS");
+		printClosedBook();
+		prinyBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+		return;
+	default:
+		createStoryline(eventManager, storylineManager);
+	}
+}
+
 /**
  * @brief Function for coloring hovered options
  * @param eventManager Variable for an event manager
@@ -1601,7 +1784,7 @@ void displayEvents(EventManager* eventManager)
  * @param selectedOption The selected option
  * @param possibleOptions The possible options
 */
-void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption, std::vector<std::string> possibleOptions)
+void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineManager, char key, int& selectedOption, std::vector<std::string> possibleOptions)
 {
 	switch (key)
 	{
@@ -1637,6 +1820,11 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 			system("CLS");
 			bookOpeningAnimation();
 			displayEvents(eventManager);
+			break;
+		case 5:
+			system("CLS");
+			bookOpeningAnimation();
+			createStoryline(eventManager, storylineManager, true);
 			break;
 		case 6 :
 			system("CLS");

@@ -11,7 +11,7 @@
 #include <front-end/loginMenu.h>
 #include <front-end/output.h>
 
-void Application::init(AccountManager& accountManager, EventManager& eventManager)
+void Application::init(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager)
 {
 	// Hide the cursor
 	setCursor(false);
@@ -59,9 +59,23 @@ void Application::init(AccountManager& accountManager, EventManager& eventManage
 		{ 0, 0 },
 		"Giurgiu Revolutionary Committee lorem ipsum lorem"
 	);
+
+	eventManager.addOtherEvent(
+		"Qsha",
+		{ "11 nov 1875", "25 dec 1875" },
+		{ 0, 0 },
+		"Giurgiu Revolutionary Committee lorem ipsum lorem"
+	);
+
+	eventManager.addOtherEvent(
+		"Djana Koleva",
+		{ "11 nov 1875", "25 dec 1875" },
+		{ 0, 0 },
+		"Giurgiu Revolutionary Committee lorem ipsum lorem"
+	);
 }
 
-void Application::run(AccountManager& accountManager, EventManager& eventManager)
+void Application::run(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager)
 {
 	try
 	{
@@ -102,7 +116,7 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 
 				outputOptions(menuOptions, selectedOption);
 				pressedKey = _getch();
-				switchMenuOptions(&eventManager, pressedKey, selectedOption, menuOptions);
+				switchMenuOptions(&eventManager, &storylineManager, pressedKey, selectedOption, menuOptions);
 			}
 		}
 	/*}*/

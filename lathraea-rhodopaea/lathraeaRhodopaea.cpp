@@ -18,8 +18,8 @@ int main()
 		LoggerManager loggerManager;
 		loggerManager.log(LogSeverity::INFO, "Initializing the application");
 		Application* app = new Application();
-		app->init(app->accountManager, app->eventManager);
-		app->run(app->accountManager, app->eventManager);
+		app->init(app->accountManager, app->eventManager, app->storylineManager);
+		app->run(app->accountManager, app->eventManager, app->storylineManager);
 	}
 	catch (ErrorHandler error)
 	{

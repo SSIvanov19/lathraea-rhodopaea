@@ -57,5 +57,6 @@ enum class ARROW_KEYS
 	KEY_DOWN = 80,
 	KEY_LEFT = 77,
 	KEY_RIGHT = 75,
-	KEY_ENTER = '\r'
+	KEY_ENTER = '\r',
+	KEY_ESC = 27
 };

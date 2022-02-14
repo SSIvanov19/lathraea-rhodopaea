@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <back-end/eventManager.h>
+#include <back-end/storylineManager.h>
 
 void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption); // Function for printing the main menu options
 bool isValidMonthName(std::string month); // Function for checking whether the month is entered correctly
@@ -27,4 +28,4 @@ void displayAllEvents(EventManager* eventManager, int sorting, int& type); // Fu
 void chooseSorting(EventManager* eventManager, int type); // Function for choosing the way of sorting the events by year
 void printBy(EventManager* eventManager); // Function for choosing the type of printing the events
 void displayEvents(EventManager* eventManager); // Function for choosing the way of printing the events
-void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption, std::vector<std::string> possibleOptions); // Function for coloring hovered options
+void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineManager, char key, int& selectedOption, std::vector<std::string> possibleOptions); // Function for coloring hovered options
