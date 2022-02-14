@@ -1057,7 +1057,7 @@ bool compareTitle(Event e1, Event e2)
 bool compareDates(Event e1, Event e2)
 {
 	DateManager dateManager;
-	return dateManager.areDatesInOrder(e2.period[0], e1.period[0]);
+	return dateManager.areDatesInOrder(e1.period[0], e2.period[0]);
 }
 
 std::vector<Event> EventManager::sortAndGetAllEventsByTimeOfCreation(std::vector<Event> events)
