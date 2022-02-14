@@ -4,4 +4,6 @@
 
 #pragma once
 void bookAnimation();
+void reverseBookAnimation();
+void bookOpeningAnimation();
 void bookOpeningAnimation();
