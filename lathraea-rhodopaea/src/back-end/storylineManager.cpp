@@ -9,6 +9,7 @@ Storyline::Storyline(
 	title = title_;
 	events = events_;
 	desc = desc_;
+	isApproved = false;
 }
 
 Storyline::Storyline() = default;
@@ -169,4 +170,36 @@ void StorylineManager::addStoryline(
 	std::cout << "Storyline added successfully. All Storylines data:\n\n";
 	storylineList->displayAllStorylines(storylineList);
 	std::cout << std::endl;
+}
+
+std::vector<Storyline> StorylineManager::getAllStorylines(bool isApproved)
+{
+	LoggerManager loggerManager;
+	std::vector<Storyline> returnVal;
+
+	StorylineList* temp = this->storylineList;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Getting all events that are " +
+		isApproved ? "approved." : "unapproved."
+	);
+
+	while (temp)
+	{
+		if (temp->storyline.isApproved == isApproved)
+		{
+			returnVal.push_back(temp->storyline);
+		}
+
+		temp = temp->next;
+	}
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Found " + std::to_string(returnVal.size()) +
+		" events that are " + (isApproved ? "approved." : "unapproved.")
+	);
+
+	return returnVal;
 }

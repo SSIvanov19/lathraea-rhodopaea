@@ -13,6 +13,7 @@ struct Storyline
 	std::string title; //!< Title of the storyline
 	std::vector<Event> events; //!< Events in the storyline
 	std::string desc; //!< Description of the storyline
+	bool isApproved; //!< Is approved by the admin
 
 	/**
 	 * @brief Constructor for the storyline
@@ -94,4 +95,11 @@ struct StorylineManager
 		std::vector<Event> events,
 		std::string desc = ""
 	);
+
+	/**
+	 * @brief Function for getting all storylines that are approved/unapproved
+	 * @param isApproved Are storylines approved/unapproved
+	 * @return Vector with all the storylines
+	*/
+	std::vector<Storyline> getAllStorylines(bool isApproved);
 };
