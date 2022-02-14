@@ -670,18 +670,23 @@ void printFullyOpenedBook()
 	std::cout << "                                                        \\ /                                                      ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	for (int i = 0; i < 31; i++)
+	outputPosition(19, counter + 5);
+	std::cout << (char)CHARACTERS::VERTICAL_LINE;
+	std::cout << "      .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..    |                                                       ";
+	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
+	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
+	for (int i = 0; i < 30; i++)
 	{
-		outputPosition(19, counter + 5 + i);
+		outputPosition(19, counter + 6 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE;
-		std::cout << "                                                         |                                                       ";
+		std::cout << "     :                                              :    |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
 	}
 	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
-	std::cout << "                                                         |         . ";
+	std::cout << "     :                                              :    |         . ";
 	std::cout << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -692,7 +697,7 @@ void printFullyOpenedBook()
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
-	std::cout << "                                                         |  . ";
+	std::cout << "     .. .. .. .. ..  .. .. .. .. .. .. .. .. .. .. ..    |  . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "    . " << (char)CHARACTERS::DOT;
 	std::cout << " ' " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
