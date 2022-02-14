@@ -89,21 +89,29 @@ int DateManager::getDifference(tm dt1, tm dt2)
 
 bool DateManager::areDatesInOrder(tm firstDate, tm secondDate)
 {
-	if (firstDate.tm_mon < secondDate.tm_mon)
+	if ((firstDate.tm_year + 1900) < (secondDate.tm_year + 1900))
 	{
 		return true;
 	}
 
+	if (firstDate.tm_year == secondDate.tm_year)
+	{
+		if (firstDate.tm_mon < secondDate.tm_mon)
+		{
+			return true;
+		}
+	}
+
 	if (firstDate.tm_mon == secondDate.tm_mon)
 	{
-		if (firstDate.tm_mday < secondDate.tm_mday ||
-			firstDate.tm_mday == secondDate.tm_mday)
+		if (firstDate.tm_mday < secondDate.tm_mday)
 		{
 			return true;
 		}
 	}
 
 	return false;
+
 }
 
 bool DateManager::isDateBetweenTwoDates(tm firstDate, tm middleDate, tm lastDate)

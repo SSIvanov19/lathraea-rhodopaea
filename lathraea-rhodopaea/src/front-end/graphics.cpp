@@ -743,13 +743,13 @@ void printFullyOpenedBook()
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE << "'" << std::endl;
 }
-
 /**
  * @brief Function for printing the opened book
 */
 void printOpenedBook()
 {
-	outputPosition(4, 6);
+	int counter = 4;
+	outputPosition(19, counter + 1);
 	std::cout << "                         . " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -764,14 +764,14 @@ void printOpenedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
-	outputPosition(4, 7);
+	outputPosition(19, counter + 2);
 	std::cout << "                   " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " '                         " << "' ' " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " .     . " << (char)CHARACTERS::HORIZONTAL_LINE << " ' '                         ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
-	outputPosition(4, 8);
+	outputPosition(19, counter + 3);
 	std::cout << "  " << (char)CHARACTERS::DOUBLE_UPPER_LEFT_CORNER << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -784,23 +784,23 @@ void printOpenedBook()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 9);
+	outputPosition(19, counter + 4);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << "                                                      \\ /                                                      ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	for (int i = 0; i < 29; i++)
+	for (int i = 0; i < 30; i++)
 	{
-		outputPosition(4, 10 + i);
+		outputPosition(19, counter + 5 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 		std::cout << "                                                       |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
-	outputPosition(4, 39);
+	outputPosition(19, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 40);
+	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                   " << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -815,7 +815,7 @@ void printOpenedBook()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ' " << (char)CHARACTERS::DOT;
 	std::cout << "                   " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 41);
+	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -840,7 +840,7 @@ void printOpenedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 42);
+	outputPosition(19, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_LOWER_LEFT_CORNER;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -858,7 +858,7 @@ void printOpenedBook()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 43);
+	outputPosition(19, counter + 39);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 25; i++) {
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -868,7 +868,7 @@ void printOpenedBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 44);
+	outputPosition(19, counter + 40);
 	std::cout << "                                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -880,7 +880,8 @@ void printOpenedBook()
 */
 void printOnePageLeafedBook()
 {
-	outputPosition(4, 6);
+	int counter = 4;
+	outputPosition(19, counter + 1);
 	std::cout << "                         . " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -894,13 +895,13 @@ void printOnePageLeafedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
-	outputPosition(4, 7);
+	outputPosition(19, counter + 2);
 	std::cout << "                   " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " '                         " << "' ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .     . " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ' '                         ' " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
-	outputPosition(4, 8);
+	outputPosition(19, counter + 3);
 	std::cout << "  " << (char)CHARACTERS::DOUBLE_UPPER_LEFT_CORNER << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -913,24 +914,24 @@ void printOnePageLeafedBook()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 9);
+	outputPosition(19, counter + 4);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << "                                                      \\ /                                                      ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
 
-	for (int i = 0; i < 29; i++)
+	for (int i = 0; i < 30; i++)
 	{
-		outputPosition(4, 10 + i);
+		outputPosition(19, counter + 5 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 		std::cout << "                                                       |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
-	outputPosition(4, 39);
+	outputPosition(19, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 40);
+	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |         . ";
 	std::cout << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -940,7 +941,7 @@ void printOnePageLeafedBook()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ' " << (char)CHARACTERS::DOT << "                   " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 41);
+	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -966,7 +967,7 @@ void printOnePageLeafedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "              " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 42);
+	outputPosition(19, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_LOWER_LEFT_CORNER;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -982,7 +983,7 @@ void printOnePageLeafedBook()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 43);
+	outputPosition(19, counter + 39);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 25; i++) {
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -992,7 +993,7 @@ void printOnePageLeafedBook()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 44);
+	outputPosition(19, counter + 40);
 	std::cout << "                                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1004,9 +1005,10 @@ void printOnePageLeafedBook()
 */
 void pageLeafingLeft1()
 {
-	outputPosition(4, 4);
+	int counter = 3;
+	outputPosition(19, counter + 1);
 	std::cout << "         /" << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 5);
+	outputPosition(19, counter + 2);
 	std::cout << "        " << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                                           . ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1015,7 +1017,7 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
-	outputPosition(4, 6);
+	outputPosition(19, counter + 3);
 	std::cout << "        " << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
 	for (int i = 0; i < 14; i++)
 	{
@@ -1024,7 +1026,7 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .     . " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ' '                         ' " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
-	outputPosition(4, 7);
+	outputPosition(19, counter + 4);
 	std::cout << "        " << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                                             \\   /                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -1033,7 +1035,7 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 8);
+	outputPosition(19, counter + 5);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1044,20 +1046,20 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
 	for (int i = 0; i < 29; i++)
 	{
-		outputPosition(4, 9 + i);
+		outputPosition(19, counter + 6 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "       " << (char)CHARACTERS::VERTICAL_LINE;
 		std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << "                                               |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
-	outputPosition(4, 38);
+	outputPosition(19, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "       " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << "                                               |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 39);
+	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "       " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "/                                                |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 40);
+	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "        \\                                                |         . ";
 	std::cout << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -1065,7 +1067,7 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' " << (char)CHARACTERS::DOT << "                   ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 41);
+	outputPosition(19, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "         '" << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 8; i++)
 	{
@@ -1083,7 +1085,7 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " '    " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 42);
+	outputPosition(19, counter + 39);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                       \\ | /  . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << "                     " << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -1094,7 +1096,7 @@ void pageLeafingLeft1()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 43);
+	outputPosition(19, counter + 40);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 25; i++)
 	{
@@ -1106,7 +1108,7 @@ void pageLeafingLeft1()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 44);
+	outputPosition(19, counter + 41);
 	std::cout << "                                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1119,10 +1121,11 @@ void pageLeafingLeft1()
 */
 void pageLeafingRight1()
 {
-	outputPosition(4, 5);
+	int counter = 3;
+	outputPosition(19, counter + 1);
 	std::cout << "                                                                                                           /";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 6);
+	outputPosition(19, counter + 2);
 	std::cout << "                         . " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1131,7 +1134,7 @@ void pageLeafingRight1()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .                                                           ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 7);
+	outputPosition(19, counter + 3);
 	std::cout << "                   " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " '                         " << "' ' " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1142,7 +1145,7 @@ void pageLeafingRight1()
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 8);
+	outputPosition(19, counter + 4);
 	std::cout << "  " << (char)CHARACTERS::DOUBLE_UPPER_LEFT_CORNER;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -1151,7 +1154,7 @@ void pageLeafingRight1()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " '                                      \\   /                                             ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 9);
+	outputPosition(19, counter + 5);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << "                                                      \\ /                                              ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
@@ -1162,22 +1165,22 @@ void pageLeafingRight1()
 
 	for (int i = 0; i < 29; i++)
 	{
-		outputPosition(4, 10 + i);
+		outputPosition(19, counter + 6 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 		std::cout << "                                                       |                                               ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
 		std::cout << "       " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
-	outputPosition(4, 38);
+	outputPosition(19, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                               ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 39);
+	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                                \\";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "       " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 40);
+	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                   " << (char)CHARACTERS::DOT << " ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1187,7 +1190,7 @@ void pageLeafingRight1()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ' " << (char)CHARACTERS::DOT;
 	std::cout << " .         |                                                /        ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 41);
+	outputPosition(19, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1210,7 +1213,7 @@ void pageLeafingRight1()
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "'         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 42);
+	outputPosition(19, counter + 39);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_LOWER_LEFT_CORNER;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -1219,7 +1222,7 @@ void pageLeafingRight1()
 	std::cout << " ' " << "                              " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::DOT << " .  \\ | /                                                       ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 43);
+	outputPosition(19, counter + 40);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 25; i++)
 	{
@@ -1231,7 +1234,7 @@ void pageLeafingRight1()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 44);
+	outputPosition(19, counter + 41);
 	std::cout << "                                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1243,19 +1246,20 @@ void pageLeafingRight1()
 */
 void pageLeafingLeft2()
 {
-	outputPosition(4, 1);
+	int counter = -2;
+	outputPosition(19, counter + 1);
 	std::cout << "                         /" << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 2);
+	outputPosition(19, counter + 2);
 	std::cout << "                        / " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 3);
+	outputPosition(19, counter + 3);
 	std::cout << "                       /  " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 4);
+	outputPosition(19, counter + 4);
 	std::cout << "                      /   " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 5);
+	outputPosition(19, counter + 5);
 	std::cout << "                     /    " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 6);
+	outputPosition(19, counter + 6);
 	std::cout << "                    " << (char)CHARACTERS::DOT << "     " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 7);
+	outputPosition(19, counter + 7);
 	std::cout << "                    " << (char)CHARACTERS::VERTICAL_LINE << "     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                           . ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1265,7 +1269,7 @@ void pageLeafingLeft2()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ." << std::endl;
-	outputPosition(4, 8);
+	outputPosition(19, counter + 8);
 	std::cout << "                    " << (char)CHARACTERS::VERTICAL_LINE << "     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 13; i++)
@@ -1275,7 +1279,7 @@ void pageLeafingLeft2()
 	std::cout << " .     . " << (char)CHARACTERS::HORIZONTAL_LINE << " ' '                         ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
-	outputPosition(4, 9);
+	outputPosition(19, counter + 9);
 	std::cout << "                    " << (char)CHARACTERS::VERTICAL_LINE << "     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                             \\   /                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1284,7 +1288,7 @@ void pageLeafingLeft2()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_UPPER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 10);
+	outputPosition(19, counter + 10);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 9; i++)
 	{
@@ -1295,53 +1299,53 @@ void pageLeafingLeft2()
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
 
-	for (int i = 0; i < 23; i++)
+	for (int i = 0; i < 24; i++)
 	{
-		outputPosition(4, 11 + i);
+		outputPosition(19, counter + 11 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "     ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                               |                                                       ";
 		std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
-	outputPosition(4, 33);
+	outputPosition(19, counter + 35);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "     " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                               |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 34);
+	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "    .'";
 	std::cout << "                               |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 35);
+	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  " << (char)CHARACTERS::DOT;
 	std::cout << "'                                 |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << std::endl;
-	outputPosition(4, 36);
+	outputPosition(19, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " /                                   |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 37);
+	outputPosition(19, counter + 39);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "/                                    |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 38);
+	outputPosition(19, counter + 40);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                    \\                                    |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 39);
+	outputPosition(19, counter + 41);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                     \\                                   |                                                       ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 40);
+	outputPosition(19, counter + 42);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                      '";
 	std::cout << (char)CHARACTERS::DOT << "_                                |         . ";
 	std::cout << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
@@ -1351,7 +1355,7 @@ void pageLeafingLeft2()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " ' " << (char)CHARACTERS::DOT << "                   " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 41);
+	outputPosition(19, counter + 43);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                         '";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1376,7 +1380,7 @@ void pageLeafingLeft2()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "              ";
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << " ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 42);
+	outputPosition(19, counter + 44);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                       \\ | /  . ";
 	std::cout << (char)CHARACTERS::DOT << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "                     ";
@@ -1388,7 +1392,7 @@ void pageLeafingLeft2()
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_LOWER_RIGHT_CORNER;
 	std::cout << " " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 43);
+	outputPosition(19, counter + 45);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 25; i++)
 	{
@@ -1400,7 +1404,7 @@ void pageLeafingLeft2()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 44);
+	outputPosition(19, counter + 46);
 	std::cout << "                                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1412,27 +1416,28 @@ void pageLeafingLeft2()
 */
 void pageLeafingRight2()
 {
-	outputPosition(4, 1);
+	int counter = -2;
+	outputPosition(19, counter + 1);
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "\\" << std::endl;
-	outputPosition(4, 2);
+	outputPosition(19, counter + 2);
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " \\" << std::endl;
-	outputPosition(4, 3);
+	outputPosition(19, counter + 3);
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "  \\" << std::endl;
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "   \\" << std::endl;
-	outputPosition(4, 4);
+	outputPosition(19, counter + 4);
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "    \\" << std::endl;
-	outputPosition(4, 5);
+	outputPosition(19, counter + 5);
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "     \\" << std::endl;
-	outputPosition(4, 6);
+	outputPosition(19, counter + 6);
 	std::cout << "                                                                                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "      " << (char)CHARACTERS::DOT << std::endl;
-	outputPosition(4, 7);
+	outputPosition(19, counter + 7);
 	std::cout << "                         . " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1441,7 +1446,7 @@ void pageLeafingRight2()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .                                          ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 8);
+	outputPosition(19, counter + 8);
 	std::cout << "                   " << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " '                         " << "' ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .     . " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1451,7 +1456,7 @@ void pageLeafingRight2()
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 9);
+	outputPosition(19, counter + 9);
 	std::cout << "  " << (char)CHARACTERS::DOUBLE_UPPER_LEFT_CORNER;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -1460,7 +1465,7 @@ void pageLeafingRight2()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " '                                      \\   /                            ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 10);
+	outputPosition(19, counter + 10);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_VERTICAL_LINE << "                                                      \\ /                             ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "      " << (char)CHARACTERS::VERTICAL_LINE;
@@ -1469,46 +1474,46 @@ void pageLeafingRight2()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
-	for (int i = 0; i < 24; i++)
+	for (int i = 0; i < 26; i++)
 	{
-		outputPosition(4, 11 + i);
+		outputPosition(19, counter + 11 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 		std::cout << "                                                       |                              ";
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "      " << (char)CHARACTERS::VERTICAL_LINE;
 		std::cout << "                   " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
-	outputPosition(4, 34);
+	outputPosition(19, counter + 36);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                              ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "      " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "                   " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 35);
+	outputPosition(19, counter + 37);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                               '.    ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 36);
+	outputPosition(19, counter + 38);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                 '.  ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 37);
+	outputPosition(19, counter + 39);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                   \\ ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 38);
+	outputPosition(19, counter + 40);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                    \\";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                   ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 39);
+	outputPosition(19, counter + 41);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                                                       |                                    /                    ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	std::cout << "                                                       |                                   /                     ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 40);
+	outputPosition(19, counter + 42);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "                   " << (char)CHARACTERS::DOT << " ' " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1518,7 +1523,7 @@ void pageLeafingRight2()
 	std::cout << " ' " << (char)CHARACTERS::DOT << " .         |                                _";
 	std::cout << (char)CHARACTERS::DOT << "'                      ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 41);
+	outputPosition(19, counter + 43);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_VERTICAL_LINE;
 	std::cout << "              " << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1543,7 +1548,7 @@ void pageLeafingRight2()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "'                         ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 42);
+	outputPosition(19, counter + 44);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << " " << (char)CHARACTERS::DOUBLE_LOWER_LEFT_CORNER;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE << (char)CHARACTERS::DOUBLE_HORIZONTAL_LINE;
@@ -1555,7 +1560,7 @@ void pageLeafingRight2()
 	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::DOT;
 	std::cout << " .  \\ | /                                                       ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(4, 43);
+	outputPosition(19, counter + 45);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 25; i++)
 	{
@@ -1567,7 +1572,7 @@ void pageLeafingRight2()
 		std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::LOWER_RIGHT_CORNER << std::endl;
-	outputPosition(4, 44);
+	outputPosition(19, counter + 46);
 	std::cout << "                                                      ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1740,7 +1745,7 @@ void printPopUp()
 void printMapPopUp()
 {
 	int counter = 9;
-	outputPosition(33, counter + 1 );
+	outputPosition(33, counter + 1);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 42; i++)
 	{

@@ -34,8 +34,16 @@ struct Application
 	LoggerManager loggerManager;
 
 	/**
+	 * @brief Function for initialising
+	 * @param accountManager Account manager
+	 * @param eventManager Event manager
+	*/
+	void init(AccountManager& accountManager, EventManager& eventManager);
+
+	/**
 	 * @brief Entry point for the application
 	 * @param accountManager Account manager
+	 * @param eventManager Event manager
 	*/
-	void run(AccountManager accountManager, EventManager eventManager);
+	void run(AccountManager& accountManager, EventManager& eventManager);
 };
