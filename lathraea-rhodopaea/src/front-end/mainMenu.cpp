@@ -1637,56 +1637,97 @@ void printAsMap(EventManager* eventManager)
 void printAsTimeline(StorylineManager* storylineManager)
 {
 	std::vector<Storyline> allEvents = storylineManager->getAllStorylines(0);
-	int selectedOption = 1;
-	char pressedKey = ' ';
+	EventManager ev;
 
-	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	for (size_t i = 0; i < allEvents.size(); i++)
 	{
-		for (int i = 0; i < allEvents.size(); i++)
-		{
-			if (i + 1 == selectedOption)
-			{
-				outputPosition(81, 10 + i * 2);
-				std::cout << "-> ";
-			}
-			else
-			{
-				outputPosition(81, 10 + i * 2);
-				std::cout << "   ";
-			}
-			outputPosition(84, 10 + i * 2);
-			std::cout << allEvents[i].title << std::endl;
-		}
-		pressedKey = _getch();
-		switch (pressedKey)
-		{
-		case (int)ARROW_KEYS::KEY_UP:
-			selectedOption--;
-			if (selectedOption == 0)
-			{
-				selectedOption += 1;
-			}
-			break;
+		allEvents[i].events = ev.sortAndGetAllEventsByTimeOfCreation(allEvents[i].events);
+	}
 
-		case (int)ARROW_KEYS::KEY_DOWN:
-			selectedOption++;
-			if (selectedOption == allEvents.size() + 1)
-			{
-				selectedOption -= 1;
-			}
-			break;
-		case (int)ARROW_KEYS::KEY_ENTER:
-			printSwordTimelinePopUp();
-			printSwordTimeline();			
+	if (allEvents.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+	}
+	else
+	{
+		int selectedOption = 1;
+		char pressedKey = ' ';
 
-			_getch();
-			system("CLS");
-			printClosedBook();
-			prinyBookDecorations();
-			printSnakeSword();
-			printTeamLogo();
+		while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+		{
+			for (int i = 0; i < allEvents.size(); i++)
+			{
+				if (i + 1 == selectedOption)
+				{
+					outputPosition(81, 10 + i * 2);
+					std::cout << "-> ";
+				}
+				else
+				{
+					outputPosition(81, 10 + i * 2);
+					std::cout << "   ";
+				}
+				outputPosition(84, 10 + i * 2);
+				std::cout << allEvents[i].title << std::endl;
+			}
+			pressedKey = _getch();
+			switch (pressedKey)
+			{
+			case (int)ARROW_KEYS::KEY_UP:
+				selectedOption--;
+				if (selectedOption == 0)
+				{
+					selectedOption += 1;
+				}
+				break;
+
+			case (int)ARROW_KEYS::KEY_DOWN:
+				selectedOption++;
+				if (selectedOption == allEvents.size() + 1)
+				{
+					selectedOption -= 1;
+				}
+				break;
+			case (int)ARROW_KEYS::KEY_ENTER:
+				printSwordTimelinePopUp();
+				printSwordTimeline();
+				for (size_t i = 0; i < allEvents[selectedOption - 1].events.size(); i++)
+				{
+					switch (i)
+					{
+					case 0:
+						outputPosition(55, 20);
+						break;
+					case 1:
+						outputPosition(63, 27);
+						break;
+					case 2:
+						outputPosition(71, 20);
+						break;
+					case 3:
+						outputPosition(79, 27);
+						break;
+					case 4:
+						outputPosition(87, 20);
+						break;
+					case 5:
+						outputPosition(95, 27);
+						break;
+					}
+					std::cout << allEvents[selectedOption - 1].events[i].period[0].tm_year + 1900;
+				}
+			}
 		}
 	}
+	_getch();
+	system("CLS");
+	printClosedBook();
+	prinyBookDecorations();
+	printSnakeSword();
+	printTeamLogo();
 }
 
 /**
