@@ -1068,141 +1068,184 @@ void displayEvent(const Event& e)
 	switch (e.type)
 	{
 	case TypeOfEvent::UPRISING:
+		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Time of creation: " << e.timeOfCreation;
+		outputPosition(81, 16);
+		std::cout << "Type: Uprising";
+		std::cout << "Epoch: ";
+		for (int i = 0; i < e.epochs.size(); i++)
+		{
+			std::cout << e.epochs[i];
+		}
 		if (e.period.size() == 2)
 		{
-			outputPosition(81, 14);
-			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
-			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
-			outputPosition(81, 18);
-			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 20);
+			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
+			outputPosition(81, 22);
+			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
+			outputPosition(81, 24);
+			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
+			outputPosition(81, 26);
 			std::cout << "Success: ";
 			switch (e.isItSuccessful)
 			{
 			case 0: std::cout << "No";
 			case 1: std::cout << "Yes";
 			}
-			outputPosition(81, 22);
+			outputPosition(81, 28);
 			std::cout << "Number of rebilions: " << e.numberOfRebelions;
-			outputPosition(81, 24);
+			outputPosition(81, 30);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 		else
 		{
-			outputPosition(81, 14);
+			outputPosition(81, 20);
 			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
+			outputPosition(81, 22);
 			std::cout << "Success: ";
 			switch (e.isItSuccessful)
 			{
 			case 0: std::cout << "No";
 			case 1: std::cout << "Yes";
 			}
-			outputPosition(81, 18);
+			outputPosition(81, 24);
 			std::cout << "Number of rebilions: " << e.numberOfRebelions;
-			outputPosition(81, 20);
+			outputPosition(81, 26);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 
 		break;
 	case TypeOfEvent::WAR:
+		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Time of creation: " << e.timeOfCreation;
+		outputPosition(81, 16);
+		std::cout << "Type: War";
+		outputPosition(81, 18);
+		std::cout << "Epoch: ";
+		for (int i = 0; i < e.epochs.size(); i++)
+		{
+			std::cout << e.epochs[i];
+		}
 		if (e.period.size() == 2)
 		{
-			outputPosition(81, 14);
-			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
-			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
-			outputPosition(81, 18);
-			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 20);
-			std::cout << "Participting countries: " << separate(e.participatingCountries);
+			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
 			outputPosition(81, 22);
-			std::cout << "Winner:  " << e.winner;
+			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
 			outputPosition(81, 24);
-			std::cout << "Reason " << e.reason;
+			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 26);
-			std::cout << "Rulers: " << separate(e.rulers);
+			std::cout << "Participting countries: " << separate(e.participatingCountries);
 			outputPosition(81, 28);
+			std::cout << "Winner: " << e.winner;
+			outputPosition(81, 30);
+			std::cout << "Reason " << e.reason;
+			outputPosition(81, 32);
+			std::cout << "Rulers: " << separate(e.rulers);
+			outputPosition(81, 34);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 		else
 		{
-			outputPosition(81, 14);
-			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
-			std::cout << "Participting countries: " << separate(e.participatingCountries);
-			outputPosition(81, 18);
-			std::cout << "Winner:  " << e.winner;
 			outputPosition(81, 20);
-			std::cout << "Reason " << e.reason;
+			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
 			outputPosition(81, 22);
-			std::cout << "Rulers: " << separate(e.rulers);
+			std::cout << "Participting countries: " << separate(e.participatingCountries);
 			outputPosition(81, 24);
+			std::cout << "Winner:  " << e.winner;
+			outputPosition(81, 26);
+			std::cout << "Reason " << e.reason;
+			outputPosition(81, 28);
+			std::cout << "Rulers: " << separate(e.rulers);
+			outputPosition(81, 30);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 
 		break;
 	case TypeOfEvent::MOVEMENT:
+		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Time of creation: " << e.timeOfCreation;
+		outputPosition(81, 16);
+		std::cout << "Type: Movement";
+		outputPosition(81, 18);
+		std::cout << "Epoch: ";
+		for (int i = 0; i < e.epochs.size(); i++)
+		{
+			std::cout << e.epochs[i];
+		}
 		if (e.period.size() == 2)
 		{
-			outputPosition(81, 14);
-			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
-			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
-			outputPosition(81, 18);
-			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 20);
-			std::cout << "How it started: " << e.howItStarted;
+			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
 			outputPosition(81, 22);
-			std::cout << "Ideas " << e.ideas;
+			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
 			outputPosition(81, 24);
-			std::cout << "Aims " << e.aims;
+			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 26);
-			std::cout << "Representatives: " << separate(e.representatives);
+			std::cout << "How it started: " << e.howItStarted;
 			outputPosition(81, 28);
+			std::cout << "Ideas " << e.ideas;
+			outputPosition(81, 30);
+			std::cout << "Aims " << e.aims;
+			outputPosition(81, 32);
+			std::cout << "Representatives: " << separate(e.representatives);
+			outputPosition(81, 34);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 		else
 		{
-			outputPosition(81, 14);
-			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
-			std::cout << "How it started: " << e.howItStarted;
-			outputPosition(81, 18);
-			std::cout << "Ideas " << e.ideas;
 			outputPosition(81, 20);
-			std::cout << "Aims " << e.aims;
+			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
 			outputPosition(81, 22);
-			std::cout << "Representatives: " << separate(e.representatives);
+			std::cout << "How it started: " << e.howItStarted;
 			outputPosition(81, 24);
+			std::cout << "Ideas " << e.ideas;
+			outputPosition(81, 26);
+			std::cout << "Aims " << e.aims;
+			outputPosition(81, 28);
+			std::cout << "Representatives: " << separate(e.representatives);
+			outputPosition(81, 30);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 	case TypeOfEvent::OTHER:
+		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		outputPosition(81, 14);
+		std::cout << "Time of creation: " << e.timeOfCreation;
+		outputPosition(81, 16);
+		std::cout << "Type: Other";
+		outputPosition(81, 18);
+		std::cout << "Epoch: ";
+		for (int i = 0; i < e.epochs.size(); i++)
+		{
+			std::cout << e.epochs[i];
+		}
 		if (e.period.size() == 2)
 		{
-			outputPosition(81, 14);
-			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
-			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
-			outputPosition(81, 18);
-			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 20);
+			std::cout << "Start date: " << std::put_time(&e.period[0], "%x") << std::endl;
+			outputPosition(81, 22);
+			std::cout << "End date: " << std::put_time(&e.period[1], "%x") << std::endl;
+			outputPosition(81, 24);
+			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
+			outputPosition(81, 26);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 		else
 		{
-			outputPosition(81, 14);
+			outputPosition(81, 20);
 			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
-			outputPosition(81, 16);
+			outputPosition(81, 22);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
 
@@ -1526,7 +1569,10 @@ void printBy(EventManager* eventManager)
 	}
 }
 
-
+/**
+ * @brief Function for printing event coordinates on map
+ * @param eventManager Variable for an event manager
+*/
 void printAsMap(EventManager* eventManager)
 {
 	std::vector<Event> allEvents = eventManager->getAllEvents(0);
@@ -1578,25 +1624,76 @@ void printAsMap(EventManager* eventManager)
 			printBulgarianMap();
 			outputPosition((allEvents[selectedOption - 1].coordinates.X), (allEvents[selectedOption - 1].coordinates.Y));
 			std::cout << char(254);
-			if (_getch())
-			{
-				return;
-				system("CLS");
-				printClosedBook();
-				prinyBookDecorations();
-				printSnakeSword();
-				printTeamLogo();
-			}
+			_getch();
+			system("CLS");
+			printClosedBook();
+			prinyBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
 		}
 	}
 }
 
+void printAsTimeline(StorylineManager* storylineManager)
+{
+	std::vector<Storyline> allEvents = storylineManager->getAllStorylines(0);
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < allEvents.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 10 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 10 + i * 2);
+				std::cout << "   ";
+			}
+			outputPosition(84, 10 + i * 2);
+			std::cout << allEvents[i].title << std::endl;
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == allEvents.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			printSwordTimelinePopUp();
+			printSwordTimeline();			
+
+			_getch();
+			system("CLS");
+			printClosedBook();
+			prinyBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+		}
+	}
+}
 
 /**
  * @brief Function for choosing the way of printing the events
  * @param eventManager Variable for an event manager
 */
-void displayEvents(EventManager* eventManager)
+void displayEvents(EventManager* eventManager, StorylineManager* storylineManager)
 {
 	outputPosition(81, 10);
 	std::cout << "How you want to display the events?" << std::endl;
@@ -1651,6 +1748,7 @@ void displayEvents(EventManager* eventManager)
 				break;
 			case 2:
 				printFullyOpenedBook();
+				printAsTimeline(storylineManager);
 				break;
 			case 3:
 				printFullyOpenedBook();
@@ -1886,14 +1984,14 @@ void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineMa
 		case 4:
 			system("CLS");
 			bookOpeningAnimation();
-			displayEvents(eventManager);
+			displayEvents(eventManager, storylineManager);
 			break;
 		case 5:
 			system("CLS");
 			bookOpeningAnimation();
 			createStoryline(eventManager, storylineManager, true);
 			break;
-		case 6 :
+		case 6:
 			system("CLS");
 			printaboutUs();
 			printText();
