@@ -22,7 +22,7 @@ void addEvent(EventManager* eventManager); // Function for adding historical eve
 void deleteEvent(EventManager* eventManager); // Function for deleting historical events
 std::string separate(const std::vector<std::string> information); // Function for converting information in vector to string
 void displayEvent(const Event& e); // Function for displaying information about a particular event
-void print(const std::vector<Event> events, int output); // Function for choosing event to display
+void printEventInfo(const std::vector<Event> events, int output); // Function for choosing event to display
 void displayAllEvents(EventManager* eventManager, int sorting, int& type); // Function for displaying all the events
 void chooseSorting(EventManager* eventManager, int type); // Function for choosing the way of sorting the events by year
 void printBy(EventManager* eventManager); // Function for choosing the type of printing the events

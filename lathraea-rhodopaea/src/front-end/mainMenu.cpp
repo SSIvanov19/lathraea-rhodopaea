@@ -1079,8 +1079,8 @@ void displayEvent(const Event& e)
 			outputPosition(81, 18);
 			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 20);
-			std::cout << "Success: "; 
-			switch (e.isItSuccessful) 
+			std::cout << "Success: ";
+			switch (e.isItSuccessful)
 			{
 			case 0: std::cout << "No";
 			case 1: std::cout << "Yes";
@@ -1106,11 +1106,11 @@ void displayEvent(const Event& e)
 			outputPosition(81, 20);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
-		
+
 		break;
 	case TypeOfEvent::WAR:
 		outputPosition(81, 12);
-		std::cout << "Title: " << e.title;		
+		std::cout << "Title: " << e.title;
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 14);
@@ -1145,11 +1145,11 @@ void displayEvent(const Event& e)
 			outputPosition(81, 24);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
-		
+
 		break;
 	case TypeOfEvent::MOVEMENT:
 		outputPosition(81, 12);
-		std::cout << "Title: " << e.title;		
+		std::cout << "Title: " << e.title;
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 14);
@@ -1186,7 +1186,7 @@ void displayEvent(const Event& e)
 		}
 	case TypeOfEvent::OTHER:
 		outputPosition(81, 12);
-		std::cout << "Title: " << e.title;		
+		std::cout << "Title: " << e.title;
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 14);
@@ -1205,7 +1205,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 16);
 			std::cout << "Additional notes: " << e.additionalNotes;
 		}
-		
+
 		break;
 	}
 
@@ -1222,7 +1222,7 @@ void displayEvent(const Event& e)
  * @param events Vector with all the events to show
  * @param output The way the events should be displayed
 */
-void print(const std::vector<Event> events, int output)
+void printEventInfo(const std::vector<Event> events, int output)
 {
 	int selectedOption = 1;
 	char pressedKey = ' ';
@@ -1337,7 +1337,7 @@ void displayAllEvents(EventManager* eventManager, int sorting, int& type)
 		allEvents = eventManager->sortAndGetAllEventsByTimeOfCreation(allEvents);
 		reverse(allEvents.begin(), allEvents.end());
 	}
-	print(allEvents, output);
+	printEventInfo(allEvents, output);
 }
 
 
@@ -1421,7 +1421,7 @@ void chooseSorting(EventManager* eventManager, int type)
 				}
 				std::cout << timeAddedSortingOptions[i] << std::endl << std::endl;
 			}
-		}		
+		}
 		pressedKey = _getch();
 		switch (pressedKey)
 		{
@@ -1517,7 +1517,7 @@ void printBy(EventManager* eventManager)
 				printFullyOpenedBook();
 				chooseSorting(eventManager, 2);
 				break;
-			case 3: 
+			case 3:
 				printFullyOpenedBook();
 				chooseSorting(eventManager, 3);
 				break;
@@ -1525,6 +1525,72 @@ void printBy(EventManager* eventManager)
 		}
 	}
 }
+
+
+void printAsMap(EventManager* eventManager)
+{
+	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < allEvents.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 10 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 10 + i * 2);
+				std::cout << "   ";
+			}
+
+			for (int j = 0; j < allEvents[i].period.size(); j++)
+			{
+				outputPosition(84, 10 + i * 2);
+				std::cout << allEvents[i].title << " - " << allEvents[i].period[j].tm_mday << " " << allEvents[i].period[j].tm_mon + 1 << " " << allEvents[i].period[j].tm_year + 1900 << std::endl;
+			}
+
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == allEvents.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			printMapPopUp();
+			printBulgarianMap();
+			outputPosition((allEvents[selectedOption - 1].coordinates.X), (allEvents[selectedOption - 1].coordinates.Y));
+			std::cout << char(254);
+			if (_getch())
+			{
+				return;
+				system("CLS");
+				printClosedBook();
+				prinyBookDecorations();
+				printSnakeSword();
+				printTeamLogo();
+			}
+		}
+	}
+}
+
 
 /**
  * @brief Function for choosing the way of printing the events
@@ -1581,6 +1647,7 @@ void displayEvents(EventManager* eventManager)
 			{
 			case 1:
 				printFullyOpenedBook();
+				printAsMap(eventManager);
 				break;
 			case 2:
 				printFullyOpenedBook();
