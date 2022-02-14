@@ -1812,7 +1812,8 @@ void printTimelinePopUp()
 */
 void printSwordTimelinePopUp()
 {
-	outputPosition(2, 1);
+	int counter = 17;
+	outputPosition(32, counter + 1);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 42; i++)
 	{
@@ -1820,19 +1821,19 @@ void printSwordTimelinePopUp()
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
 
-	outputPosition(2, 2);
+	outputPosition(32, counter + 2);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                   X  " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
 	for (int i = 0; i < 10; i++)
 	{
-		outputPosition(2, 3 + i);
+		outputPosition(32, counter + 3 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
 
-	outputPosition(2, 13);
+	outputPosition(32, counter + 13);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                                      " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
-	outputPosition(2, 14);
+	outputPosition(32, counter + 14);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 42; i++)
 	{
@@ -1846,18 +1847,19 @@ void printSwordTimelinePopUp()
 */
 void printSwordTimeline()
 {
-	outputPosition(6, 4);
+	int counter = 19;
+	outputPosition(35, counter + 1);
 	std::cout << "                    " << "1987" << "            " << "1987" << "            " << "1987" << "            " << "1987" << std::endl;
 
-	outputPosition(24, 6);
+	outputPosition(53, counter + 3);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                  " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "               " << (char)CHARACTERS::VERTICAL_LINE << "               ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
-	outputPosition(6, 6);
+	outputPosition(35, counter + 3);
 	std::cout << "              /\\     " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
-	outputPosition(6, 7);
+	outputPosition(35, counter + 4);
 	std::cout << "/VVVVVVVVVVVVVV|" << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1890,7 +1892,7 @@ void printSwordTimeline()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "\\" << std::endl;
 
-	outputPosition(6, 8);
+	outputPosition(35, counter + 5);
 	std::cout << "`^^^^^^^^^^^^^^|" << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -1923,11 +1925,11 @@ void printSwordTimeline()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE << "/" << std::endl;
 
-	outputPosition(6, 9);
+	outputPosition(35, counter + 6);
 	std::cout << "              \\/" << std::endl;
-	outputPosition(35, 9);
+	outputPosition(64, counter + 6);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "               " << (char)CHARACTERS::VERTICAL_LINE << "               " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
-	outputPosition(6, 11);
+	outputPosition(35, counter + 8);
 	std::cout << "                            1987            1876            1967" << std::endl;
 }
 
