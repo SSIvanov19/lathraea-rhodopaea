@@ -1094,7 +1094,12 @@ void displayEvent(const Event& e)
 			outputPosition(81, 18);
 			std::cout << "Duration in days: " << dateManager.getDifference(e.period[0], e.period[1]) << std::endl;
 			outputPosition(81, 20);
-			std::cout << "Success: " << e.isItSuccessful;
+			std::cout << "Success: "; 
+			switch (e.isItSuccessful) 
+			{
+			case 0: std::cout << "No";
+			case 1: std::cout << "Yes";
+			}
 			outputPosition(81, 22);
 			std::cout << "Number of rebilions: " << e.numberOfRebelions;
 			outputPosition(81, 24);
@@ -1105,7 +1110,12 @@ void displayEvent(const Event& e)
 			outputPosition(81, 14);
 			std::cout << "Date: " << std::put_time(&e.period[0], "%x") << std::endl;
 			outputPosition(81, 16);
-			std::cout << "Success: " << e.isItSuccessful;
+			std::cout << "Success: ";
+			switch (e.isItSuccessful)
+			{
+			case 0: std::cout << "No";
+			case 1: std::cout << "Yes";
+			}
 			outputPosition(81, 18);
 			std::cout << "Number of rebilions: " << e.numberOfRebelions;
 			outputPosition(81, 20);

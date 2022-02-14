@@ -21,20 +21,23 @@ void delay(int seconds)
 */
 void bookAnimation()
 {
+	printOpenedBook();
+	delay(120);
+	system("CLS");
 	printOnePageLeafedBook();
-	delay(70);
+	delay(120);
 	system("CLS");
 	pageLeafingLeft1();
-	delay(70);
+	delay(120);
 	system("CLS");
 	pageLeafingLeft2();
-	delay(70);
+	delay(120);
 	system("CLS");
 	pageLeafingRight2();
-	delay(70);
+	delay(120);
 	system("CLS");
 	pageLeafingRight1();
-	delay(70);
+	delay(120);
 	system("CLS");
 	printOpenedBook();
 }
