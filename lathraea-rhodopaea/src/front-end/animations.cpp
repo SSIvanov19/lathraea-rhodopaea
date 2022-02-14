@@ -42,6 +42,28 @@ void bookAnimation()
 	printOpenedBook();
 }
 
+void reverseBookAnimation() {
+	printOpenedBook();
+	system("CLS");
+	delay(120);
+	pageLeafingRightOne();
+	system("CLS");
+	delay(120);
+	pageLeafingRightTwo();
+	system("CLS");
+	delay(120);
+	pageLeafingLeftTwo();
+	system("CLS");
+	delay(120);
+	pageLeafingLeftOne();
+	system("CLS");
+	delay(120);
+	printOnePageLeafedBook();
+	system("CLS");
+	delay(120);
+	printOpenedBook();
+}
+
 void bookOpeningAnimation()
 {
 	printSlightlyOpenBook();
@@ -55,4 +77,18 @@ void bookOpeningAnimation()
 	system("CLS");
 	printFullyOpenedBook();
 	delay(120);
+}
+
+void reverseBookOpeningAnimation() {
+	delay(120);
+	printFullyOpenedBook();
+	system("CLS");
+	delay(120);
+	printAlmostOpenedBook();
+	system("CLS");
+	delay(120);
+	printHalfOpenBook();
+	system("CLS");
+	delay(120);
+	printSlightlyOpenBook();
 }
