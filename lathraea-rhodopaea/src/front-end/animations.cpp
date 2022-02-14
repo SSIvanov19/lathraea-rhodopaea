@@ -8,7 +8,7 @@
 
 
 /**
- * @brief Function for setting the delay time 
+ * @brief Function for setting the delay time.
  * @param seconds The seconds of delay
 */
 void delay(int seconds)
@@ -17,7 +17,7 @@ void delay(int seconds)
 }
 
 /**
- * @brief Function for printing book leafing animation
+ * @brief Function for printing book leafing animation.
 */
 void bookAnimation()
 {
@@ -42,7 +42,11 @@ void bookAnimation()
 	printOpenedBook();
 }
 
-void reverseBookAnimation() {
+/**
+ * @brief Function for printing reverse book animation.
+*/
+void reverseBookAnimation() 
+{
 	printOpenedBook();
 	system("CLS");
 	delay(120);
@@ -64,6 +68,9 @@ void reverseBookAnimation() {
 	printOpenedBook();
 }
 
+/**
+ * @brief Function for printing book opening animation.
+*/
 void bookOpeningAnimation()
 {
 	printSlightlyOpenBook();
@@ -79,6 +86,9 @@ void bookOpeningAnimation()
 	delay(120);
 }
 
+/**
+ * @brief Function for printing reverse book opening animation.
+*/
 void reverseBookOpeningAnimation() {
 	delay(120);
 	printFullyOpenedBook();
