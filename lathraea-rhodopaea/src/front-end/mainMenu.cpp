@@ -1597,6 +1597,11 @@ void switchMenuOptions(EventManager* eventManager, char key, int& selectedOption
 			bookOpeningAnimation();
 			displayEvents(eventManager);
 			break;
+		case 6 :
+			system("CLS");
+			printaboutUs();
+			printText();
+			break;
 		case 7:
 			system("CLS");
 			exit(0);
