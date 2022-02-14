@@ -1119,7 +1119,7 @@ void pageLeafingLeftOne()
 /**
  * @brief Function for printing the first part of the book's leafing to the right
 */
-void pageLeafingRight1()
+void pageLeafingRightOne()
 {
 	int counter = 3;
 	outputPosition(19, counter + 1);

@@ -36,7 +36,7 @@ void bookAnimation()
 	pageLeafingRight2();
 	delay(120);
 	system("CLS");
-	pageLeafingRight1();
+	pageLeafingRightOne();
 	delay(120);
 	system("CLS");
 	printOpenedBook();
