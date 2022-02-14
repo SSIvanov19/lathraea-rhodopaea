@@ -1244,7 +1244,7 @@ void pageLeafingRightOne()
 /**
  * @brief Function for printing the second part of the book's leafing to the left
 */
-void pageLeafingLeft2()
+void pageLeafingLeftTwo()
 {
 	int counter = -2;
 	outputPosition(19, counter + 1);
