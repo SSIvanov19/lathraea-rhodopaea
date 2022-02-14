@@ -1036,21 +1036,6 @@ void deleteEvent(EventManager* eventManager)
 	}
 }
 
-///**
-// * @brief Function for converting date form vector to string 
-// * @param period Date as vector
-// * @return Date as string
-//*/
-//std::string getEventPeriod(const std::vector<tm> period)
-//{
-//	std::string date = "";
-//	for (size_t i = 0; i < period.size(); i++)
-//	{
-//		date += std::to_string(period[i].tm_mday) + "/" + std::to_string((period[i].tm_mon + 1)) + "/" + std::to_string((period[i].tm_year + 1900)) + '\n';
-//	}
-//	return date;
-//}
-
 /**
  * @brief Function for converting information in vector to string
  * @param information Given vector
@@ -1237,7 +1222,7 @@ void displayEvent(const Event& e)
  * @param events Vector with all the events to show
  * @param output The way the events should be displayed
 */
-void choose(const std::vector<Event> events, int output)
+void print(const std::vector<Event> events, int output)
 {
 	int selectedOption = 1;
 	char pressedKey = ' ';
@@ -1257,17 +1242,20 @@ void choose(const std::vector<Event> events, int output)
 				std::cout << "   ";
 			}
 			if (output == 1) {
-				std::cout << events[i].title << std::endl << std::endl;
+				for (int j = 0; j < events[i].period.size(); j++)
+				{
+					outputPosition(84, 10 + i * 2);
+					std::cout << events[i].title << " - " << events[i].period[j].tm_mday << " " << events[i].period[j].tm_mon + 1 << " " << events[i].period[j].tm_year + 1900 << std::endl;
+				}
 			}
 			else if (output == 2)
 			{
 				for (int i = 0; i < events.size(); i++)
 				{
-					outputPosition(81, 10 + i * 2);
 					for (int j = 0; j < events[i].period.size(); j++)
 					{
-						outputPosition(81, 10 + i * 2);
-						std::cout << events[i].period[j].tm_mday << " " << events[i].period[j].tm_mon + 1 << " " << events[i].period[j].tm_year + 1900;
+						outputPosition(84, 10 + i * 2);
+						std::cout << events[i].period[j].tm_mday << " " << events[i].period[j].tm_mon + 1 << " " << events[i].period[j].tm_year + 1900 << " - " << events[i].title;
 					}
 				}
 			}
@@ -1297,10 +1285,12 @@ void choose(const std::vector<Event> events, int output)
 }
 
 /**
- * @brief Function for displaying all the events by their title
+ * @brief Function for displaying all the events
  * @param eventManager Variable for an event manager
+ * @param sorting The way of sorting
+ * @param type The parameter we sort
 */
-void displayAllEventsByTitle(EventManager* eventManager, int sorting)
+void displayAllEvents(EventManager* eventManager, int sorting, int& type)
 {
 	std::vector<Event> allEvents = eventManager->getAllEvents(0);
 	if (allEvents.empty())
@@ -1317,129 +1307,45 @@ void displayAllEventsByTitle(EventManager* eventManager, int sorting)
 		printTeamLogo();
 		return;
 	}
-	if (sorting == 1)
+	int output = 1;
+	if (sorting == 1 && type == 1)
 	{
 		allEvents = eventManager->sortAndGetAllEventsByTitle(allEvents);
 	}
-	else if (sorting == 2)
+	else if (sorting == 1 && type == 2)
+	{
+		allEvents = eventManager->sortAndGetAllEventsByDate(allEvents);
+		output++;
+	}
+	else if (sorting == 1 && type == 3)
+	{
+		allEvents = eventManager->sortAndGetAllEventsByTimeOfCreation(allEvents);
+	}
+	else if (sorting == 2 && type == 1)
 	{
 		allEvents = eventManager->sortAndGetAllEventsByTitle(allEvents);
 		reverse(allEvents.begin(), allEvents.end());
 	}
-
-	choose(allEvents, 1);
-}
-
-/**
- * @brief Function for displaying all the events by their period
- * @param eventManager Variable for an event manager
-*/
-void displayAllEventsByYear(EventManager* eventManager, int sorting)
-{
-	std::vector<Event> allEvents = eventManager->getAllEvents(0);
-	if (allEvents.empty())
-	{
-		outputPosition(81, 10);
-		std::cout << "There are no events to display";
-		outputPosition(81, 11);
-		std::cout << "Press any key to go back!";
-		_getch();
-		system("CLS");
-		printClosedBook();
-		prinyBookDecorations();
-		printSnakeSword();
-		printTeamLogo();
-		return;
-	}
-	if (sorting == 1)
-	{
-		allEvents = eventManager->sortAndGetAllEventsByDate(allEvents);
-	}
-	else if (sorting == 2)
+	else if (sorting == 2 && type == 2)
 	{
 		allEvents = eventManager->sortAndGetAllEventsByDate(allEvents);
 		reverse(allEvents.begin(), allEvents.end());
+		output++;
 	}
-
-	choose(allEvents, 2);
+	else if (sorting == 2 && type == 3)
+	{
+		allEvents = eventManager->sortAndGetAllEventsByTimeOfCreation(allEvents);
+		reverse(allEvents.begin(), allEvents.end());
+	}
+	print(allEvents, output);
 }
 
-/**
- * @brief Function for choosing the way of sorting the events by title
- * @param eventManager Variable for an event manager
-*/
-void chooseTitleSorting(EventManager* eventManager)
-{
-	printFullyOpenedBook();
-	outputPosition(81, 10);
-	std::cout << "How do you want to sort the events?" << std::endl;
-	int selectedOption = 1;
-	char pressedKey = ' ';
-	const std::vector<std::string> titleSortingOptions =
-	{
-		"A -> Z",
-		"Z -> A",
-		"Time added"
-	};
-	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
-	{
-		for (int i = 0; i < titleSortingOptions.size(); i++)
-		{
-			if (i + 1 == selectedOption)
-			{
-				outputPosition(81, 12 + i * 2);
-				std::cout << "-> ";
-			}
-			else
-			{
-				outputPosition(81, 12 + i * 2);
-				std::cout << "   ";
-			}
-			std::cout << titleSortingOptions[i] << std::endl << std::endl;
-		}
-		pressedKey = _getch();
-		switch (pressedKey)
-		{
-		case (int)ARROW_KEYS::KEY_UP:
-			selectedOption--;
-			if (selectedOption == 0)
-			{
-				selectedOption += 1;
-			}
-			break;
-
-		case (int)ARROW_KEYS::KEY_DOWN:
-			selectedOption++;
-			if (selectedOption == titleSortingOptions.size() + 1)
-			{
-				selectedOption -= 1;
-			}
-			break;
-		case (int)ARROW_KEYS::KEY_ENTER:
-			switch (selectedOption)
-			{
-			case 1:
-				printFullyOpenedBook();
-				displayAllEventsByTitle(eventManager, 1);
-				break;
-			case 2:
-				printFullyOpenedBook();
-				displayAllEventsByTitle(eventManager, 2);
-				break;
-			case 3:
-				printFullyOpenedBook();
-				displayAllEventsByTitle(eventManager, 3);
-				break;
-			}
-		}
-	}
-}
 
 /**
  * @brief Function for choosing the way of sorting the events by year
  * @param eventManager Variable for an event manager
 */
-void chooseYearSorting(EventManager* eventManager)
+void chooseSorting(EventManager* eventManager, int type)
 {
 	printFullyOpenedBook();
 	outputPosition(81, 10);
@@ -1450,24 +1356,72 @@ void chooseYearSorting(EventManager* eventManager)
 	{
 		"Ascending",
 		"Descending",
-		"Time added"
+	};
+
+	const std::vector<std::string> titleSortingOptions =
+	{
+		"A -> Z",
+		"Z -> A",
+	};
+
+	const std::vector<std::string> timeAddedSortingOptions =
+	{
+		"Newer -> Older",
+		"Older -> Newer",
 	};
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
-		for (int i = 0; i < yåarSortingOptions.size(); i++)
+		if (type == 1)
 		{
-			if (i + 1 == selectedOption)
+			for (int i = 0; i < titleSortingOptions.size(); i++)
 			{
-				outputPosition(81, 12 + i * 2);
-				std::cout << "-> ";
+				if (i + 1 == selectedOption)
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "-> ";
+				}
+				else
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "   ";
+				}
+				std::cout << titleSortingOptions[i] << std::endl << std::endl;
 			}
-			else
-			{
-				outputPosition(81, 12 + i * 2);
-				std::cout << "   ";
-			}
-			std::cout << yåarSortingOptions[i] << std::endl << std::endl;
 		}
+		else if (type == 2)
+		{
+			for (int i = 0; i < yåarSortingOptions.size(); i++)
+			{
+				if (i + 1 == selectedOption)
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "-> ";
+				}
+				else
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "   ";
+				}
+				std::cout << yåarSortingOptions[i] << std::endl << std::endl;
+			}
+		}
+		else if (type == 3)
+		{
+			for (int i = 0; i < timeAddedSortingOptions.size(); i++)
+			{
+				if (i + 1 == selectedOption)
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "-> ";
+				}
+				else
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "   ";
+				}
+				std::cout << timeAddedSortingOptions[i] << std::endl << std::endl;
+			}
+		}		
 		pressedKey = _getch();
 		switch (pressedKey)
 		{
@@ -1491,17 +1445,13 @@ void chooseYearSorting(EventManager* eventManager)
 			{
 			case 1:
 				printFullyOpenedBook();
-				displayAllEventsByYear(eventManager, 1);
+				displayAllEvents(eventManager, 1, type);
 				break;
 			case 2:
 				printFullyOpenedBook();
-				displayAllEventsByYear(eventManager, 2);
+				displayAllEvents(eventManager, 2, type);
 				break;
 			}
-		case 3:
-			printFullyOpenedBook();
-			displayAllEventsByYear(eventManager, 3);
-			break;
 		}
 	}
 }
@@ -1513,13 +1463,14 @@ void chooseYearSorting(EventManager* eventManager)
 void printBy(EventManager* eventManager)
 {
 	outputPosition(81, 10);
-	std::cout << "How do you want to see the events?" << std::endl;
+	std::cout << "How do you want to sort the events?" << std::endl;
 	int selectedOption = 1;
 	char pressedKey = ' ';
 	const std::vector<std::string> printByOptions =
 	{
 		"By title",
 		"By year, month and day",
+		"By time added"
 	};
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
@@ -1560,11 +1511,15 @@ void printBy(EventManager* eventManager)
 			{
 			case 1:
 				printFullyOpenedBook();
-				chooseTitleSorting(eventManager);
+				chooseSorting(eventManager, 1);
 				break;
 			case 2:
 				printFullyOpenedBook();
-				chooseYearSorting(eventManager);
+				chooseSorting(eventManager, 2);
+				break;
+			case 3: 
+				printFullyOpenedBook();
+				chooseSorting(eventManager, 3);
 				break;
 			}
 		}
@@ -1626,11 +1581,9 @@ void displayEvents(EventManager* eventManager)
 			{
 			case 1:
 				printFullyOpenedBook();
-				displayAllEventsByTitle(eventManager, 1);
 				break;
 			case 2:
 				printFullyOpenedBook();
-				displayAllEventsByTitle(eventManager, 2);
 				break;
 			case 3:
 				printFullyOpenedBook();
