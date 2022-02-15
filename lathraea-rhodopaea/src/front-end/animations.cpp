@@ -5,6 +5,7 @@
 #include <iostream>
 #include <windows.h>
 #include <front-end/graphics.h>
+#include <front-end/output.h>
 
 
 /**
@@ -48,23 +49,23 @@ void bookAnimation()
 void reverseBookAnimation() 
 {
 	printOpenedBook();
-	system("CLS");
 	delay(120);
+	system("CLS");	
 	pageLeafingRightOne();
-	system("CLS");
 	delay(120);
+	system("CLS");	
 	pageLeafingRightTwo();
-	system("CLS");
 	delay(120);
+	system("CLS");	
 	pageLeafingLeftTwo();
-	system("CLS");
 	delay(120);
+	system("CLS");	
 	pageLeafingLeftOne();
-	system("CLS");
 	delay(120);
+	system("CLS");	
 	printOnePageLeafedBook();
-	system("CLS");
 	delay(120);
+	system("CLS");	
 	printOpenedBook();
 }
 
@@ -101,4 +102,29 @@ void reverseBookOpeningAnimation() {
 	system("CLS");
 	delay(120);
 	printSlightlyOpenBook();
+}
+
+/**
+ * @brief Function for printing loading animation
+*/
+void loadingAnimation()
+{
+	delay(1000);
+	outputPosition(90, 15);
+	std::cout << (char)254;
+	delay(1000);
+	outputPosition(92, 15);
+	std::cout << (char)254;
+	delay(1000);
+	outputPosition(94, 15);
+	std::cout << (char)254;
+	delay(1000);
+	outputPosition(96, 15);
+	std::cout << (char)254;
+	delay(1000);
+	outputPosition(98, 15);
+	std::cout << (char)254;
+	delay(320);
+	outputPosition(84, 17);
+	std::cout << "PRESS ENTER TO START!";
 }

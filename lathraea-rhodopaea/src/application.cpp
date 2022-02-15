@@ -8,6 +8,7 @@
 #include <conio.h>
 #include <front-end/mainMenu.h>
 #include <front-end/graphics.h>
+#include <front-end/animations.h>
 #include <front-end/loginMenu.h>
 #include <front-end/output.h>
 
@@ -79,6 +80,11 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 {
 	try
 	{
+		printMainPage();
+		loadingAnimation();
+
+		_getch();
+		system("CLS");
 		const std::vector<std::string> loginOptions =
 		{
 			"Login",
