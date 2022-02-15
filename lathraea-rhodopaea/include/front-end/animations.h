@@ -6,5 +6,5 @@
 void bookAnimation();// Function for printing book animation.
 void reverseBookAnimation();// Function for printing reverse book animation.
 void bookOpeningAnimation();// Function for printing book opening animation.
-void bookOpeningAnimation();// Function for printing reverse book opening animation.
+void reverseBookOpeningAnimation();// Function for printing reverse book opening animation.
 void loadingAnimation(); // Function for printing loading animation.

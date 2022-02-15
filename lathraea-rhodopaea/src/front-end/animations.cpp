@@ -99,6 +99,10 @@ void reverseBookOpeningAnimation() {
 	system("CLS");
 	delay(120);
 	printSlightlyOpenBook();
+	printClosedBook();
+	prinyBookDecorations();
+	printSnakeSword();
+	printTeamLogo();
 }
 
 /**

@@ -527,20 +527,19 @@ void addUprisingEvent(EventManager* eventManager)
 	}
 
 	int numberOfRebelions;
-	printFullyOpenedBook();
+	printOpenedBook();
 	outputPosition(81, 10);
 	std::cout << "Enter the number of rebilions of the event: ";
 	outputPosition(81, 12);
 	std::cin >> numberOfRebelions;
 
 	std::string additionalNotes;
-	printFullyOpenedBook();
+	printOpenedBook();
 	outputPosition(81, 10);
 	std::cout << "Enter some additional notes for the event, if any: ";
 	outputPosition(81, 12);
 	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
-
 	try
 	{
 		eventManager->addUprisingEvent(title, separateDates(period), coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
@@ -962,19 +961,15 @@ void addEvent(EventManager* eventManager)
 			switch (selectedOption)
 			{
 			case 1:
-				reverseBookAnimation();
 				addUprisingEvent(eventManager);
 				break;
 			case 2:
-				bookAnimation();
 				addWarEvent(eventManager);
 				break;
 			case 3:
-				bookAnimation();
 				addMovementEvent(eventManager);
 				break;
 			case 4:
-				bookAnimation();
 				addOtherEvent(eventManager);
 				break;
 			}
@@ -1961,6 +1956,8 @@ void printAsTimeline(StorylineManager* storylineManager)
 	}
 	else
 	{
+		outputPosition(81, 10);
+		std::cout << "Which storyline do you want to display?";
 		int selectedOption = 1;
 		char pressedKey = ' ';
 
@@ -1970,15 +1967,15 @@ void printAsTimeline(StorylineManager* storylineManager)
 			{
 				if (i + 1 == selectedOption)
 				{
-					outputPosition(81, 10 + i * 2);
+					outputPosition(81, 12 + i * 2);
 					std::cout << "-> ";
 				}
 				else
 				{
-					outputPosition(81, 10 + i * 2);
+					outputPosition(81, 12 + i * 2);
 					std::cout << "   ";
 				}
-				outputPosition(84, 10 + i * 2);
+				outputPosition(84, 12 + i * 2);
 				std::cout << allEvents[i].title << std::endl;
 			}
 			pressedKey = _getch();
@@ -2000,29 +1997,29 @@ void printAsTimeline(StorylineManager* storylineManager)
 				}
 				break;
 			case (int)ARROW_KEYS::KEY_ENTER:
-				printSwordTimelinePopUp();
-				printSwordTimeline();
+				printTimelinePopUp();
+				printTimeline();
 				for (size_t i = 0; i < allEvents[selectedOption - 1].events.size(); i++)
 				{
 					switch (i)
 					{
 					case 0:
-						outputPosition(55, 20);
+						outputPosition(49, 28);
 						break;
 					case 1:
-						outputPosition(63, 27);
+						outputPosition(57, 22);
 						break;
 					case 2:
-						outputPosition(71, 20);
+						outputPosition(65, 28);
 						break;
 					case 3:
-						outputPosition(79, 27);
+						outputPosition(73, 22);
 						break;
 					case 4:
-						outputPosition(87, 20);
+						outputPosition(81, 28);
 						break;
 					case 5:
-						outputPosition(95, 27);
+						outputPosition(89, 22);
 						break;
 					}
 					std::cout << allEvents[selectedOption - 1].events[i].period[0].tm_year + 1900;
@@ -2235,6 +2232,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 			std::string desc;
 			outputPosition(81, 14);
 			std::cout << "Please, enter description for the new storyline";
+			outputPosition(81, 16);
 			outputPosition(81, 16);
 			getline(std::cin, desc);
 

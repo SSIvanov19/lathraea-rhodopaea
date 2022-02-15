@@ -1866,7 +1866,7 @@ void printMapPopUp()
 */
 void printTimelinePopUp()
 {
-	outputPosition(33, 17);
+	outputPosition(38, 17);
 	std::cout << (char)CHARACTERS::UPPER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 35; i++)
 	{
@@ -1874,19 +1874,19 @@ void printTimelinePopUp()
 	}
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::UPPER_RIGHT_CORNER << std::endl;
 
-	outputPosition(33, 19);
+	outputPosition(38, 18);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                     X  " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
 	for (int i = 0; i < 12; i++)
 	{
-		outputPosition(33, 20 + i);
+		outputPosition(38, 19 + i);
 		std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                        " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 	}
 
-	outputPosition(33, 32);
+	outputPosition(38, 31);
 	std::cout << (char)CHARACTERS::VERTICAL_LINE << "                                                                        " << (char)CHARACTERS::VERTICAL_LINE << std::endl;
 
-	outputPosition(33, 34);
+	outputPosition(38, 32);
 	std::cout << (char)CHARACTERS::LOWER_LEFT_CORNER << (char)CHARACTERS::HORIZONTAL_LINE;
 	for (int i = 0; i < 35; i++)
 	{
@@ -2022,16 +2022,13 @@ void printSwordTimeline()
 */
 void printTimeline()
 {
-	outputPosition(53, 22);
-	std::cout << "               1987            1989            1991" << std::endl;
-
-	outputPosition(53, 23);
+	outputPosition(42, 24);
 	std::cout << "                " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "               " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "               " << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "               \\" << std::endl;
 
-	outputPosition(53, 24);
+	outputPosition(42, 25);
 	std::cout << (char)CHARACTERS::BLOCK << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -2068,14 +2065,12 @@ void printTimeline()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << ")" << std::endl;
-	outputPosition(53, 25);
+	outputPosition(42, 26);
 	std::cout << "        " << (char)CHARACTERS::VERTICAL_LINE << "               ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "               " << (char)CHARACTERS::VERTICAL_LINE << "               ";
 	std::cout << (char)CHARACTERS::VERTICAL_LINE;
 	std::cout << "       /" << std::endl;
-	outputPosition(5, 26);
-	std::cout << "       1986            1988            1990            1991" << std::endl;
 }
 
 /**

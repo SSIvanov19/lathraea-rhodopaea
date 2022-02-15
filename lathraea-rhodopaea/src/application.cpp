@@ -80,11 +80,10 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 {
 	try
 	{
-		printMainPage();
+		/*printMainPage();
 		loadingAnimation();
-
 		_getch();
-		system("CLS");
+		system("CLS");*/
 		const std::vector<std::string> loginOptions =
 		{
 			"Login",
