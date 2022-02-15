@@ -8,6 +8,7 @@
 */
 enum class CHARACTERS
 {
+
 	DOT = 250, /*Space dot*/
 	BLOCK = 219, /*Block*/
 	T = 194, /*T*/

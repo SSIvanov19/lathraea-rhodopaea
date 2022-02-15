@@ -113,7 +113,7 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 				if (firstTime)
 				{
 					printClosedBook();
-					prinyBookDecorations();
+					printBookDecorations();
 					printSnakeSword();
 					printTeamLogo();
 					firstTime = false;
