@@ -1399,7 +1399,7 @@ void chooseSorting(EventManager* eventManager, int type)
 	std::cout << "How do you want to sort the events?" << std::endl;
 	int selectedOption = 1;
 	char pressedKey = ' ';
-	const std::vector<std::string> yåarSortingOptions =
+	const std::vector<std::string> yï¿½arSortingOptions =
 	{
 		"Ascending",
 		"Descending",
@@ -1437,7 +1437,7 @@ void chooseSorting(EventManager* eventManager, int type)
 		}
 		else if (type == 2)
 		{
-			for (int i = 0; i < yåarSortingOptions.size(); i++)
+			for (int i = 0; i < yï¿½arSortingOptions.size(); i++)
 			{
 				if (i + 1 == selectedOption)
 				{
@@ -1449,7 +1449,7 @@ void chooseSorting(EventManager* eventManager, int type)
 					outputPosition(81, 12 + i * 2);
 					std::cout << "   ";
 				}
-				std::cout << yåarSortingOptions[i] << std::endl << std::endl;
+				std::cout << yï¿½arSortingOptions[i] << std::endl << std::endl;
 			}
 		}
 		else if (type == 3)
@@ -1482,7 +1482,7 @@ void chooseSorting(EventManager* eventManager, int type)
 
 		case (int)ARROW_KEYS::KEY_DOWN:
 			selectedOption++;
-			if (selectedOption == yåarSortingOptions.size() + 1)
+			if (selectedOption == yï¿½arSortingOptions.size() + 1)
 			{
 				selectedOption -= 1;
 			}
