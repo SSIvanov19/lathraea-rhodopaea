@@ -81,7 +81,7 @@
     <ClCompile Include="src\back-end\storylineManager.cpp">
       <Filter>Source Files\back-end</Filter>
     </ClCompile>
-    <ClCompile Include="include\front-end\loginMenu.cpp">
+    <ClCompile Include="src\front-end\loginMenu.cpp">
       <Filter>Source Files\front-end</Filter>
     </ClCompile>
   </ItemGroup>

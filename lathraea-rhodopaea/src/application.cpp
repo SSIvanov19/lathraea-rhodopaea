@@ -11,14 +11,17 @@
 #include <front-end/animations.h>
 #include <front-end/loginMenu.h>
 #include <front-end/output.h>
+#include <front-end/enumerations.h>
 
 void Application::init(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager)
 {
 	// Hide the cursor
-	setCursor(false);
+	setCursorVisibilityTo(false);
 
-	// Premade events
+	//setConsoleColorTo((int)COLORS::WHITE);
+
 	/*
+	// Premade events
 	eventManager.addUprisingEvent(
 		"April Uprising",
 		{ "20 apr 1876", "15 may 1876" },
@@ -109,7 +112,7 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 		printMainPage();
 		loadingAnimation();
 		_getch();
-		system("CLS");
+		clearConsole();
 
 		const std::vector<std::string> loginOptions =
 		{
@@ -149,8 +152,8 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 		);
 
 		accountManager.loginUser(
-			"admin@cb.bg",
-			"password123"
+			"SSIvanov19@cb.bg",
+			"Password123"
 		);
 		*/
 

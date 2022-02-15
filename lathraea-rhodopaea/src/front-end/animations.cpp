@@ -24,22 +24,22 @@ void bookAnimation()
 {
 	printOpenedBook();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	printOnePageLeafedBook();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	pageLeafingLeftOne();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	pageLeafingLeftTwo();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	pageLeafingRightTwo();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	pageLeafingRightOne();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	printOpenedBook();
 }
 
@@ -50,19 +50,19 @@ void reverseBookAnimation()
 {
 	pageLeafingRightOne();
 	delay(120);
-	system("CLS");	
+	clearConsole();	
 	pageLeafingRightTwo();
 	delay(120);
-	system("CLS");	
+	clearConsole();	
 	pageLeafingLeftTwo();
 	delay(120);
-	system("CLS");	
+	clearConsole();	
 	pageLeafingLeftOne();
 	delay(120);
-	system("CLS");	
+	clearConsole();	
 	printOnePageLeafedBook();
 	delay(120);
-	system("CLS");	
+	clearConsole();	
 	printOpenedBook();
 }
 
@@ -73,13 +73,13 @@ void bookOpeningAnimation()
 {
 	printSlightlyOpenBook();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	printHalfOpenBook();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	printAlmostOpenedBook();
 	delay(120);
-	system("CLS");
+	clearConsole();
 	printFullyOpenedBook();
 	delay(120);
 }
@@ -90,13 +90,13 @@ void bookOpeningAnimation()
 void reverseBookOpeningAnimation() {
 	delay(120);
 	printFullyOpenedBook();
-	system("CLS");
+	clearConsole();
 	delay(120);
 	printAlmostOpenedBook();
-	system("CLS");
+	clearConsole();
 	delay(120);
 	printHalfOpenBook();
-	system("CLS");
+	clearConsole();
 	delay(120);
 	printSlightlyOpenBook();
 	printClosedBook();
