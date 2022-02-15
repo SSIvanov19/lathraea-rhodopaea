@@ -116,7 +116,7 @@ std::vector<std::string> enterLoginData()
 
     loginData.push_back(email);
     loginData.push_back(password);
-     printBlankSpace(6, 18);
+    printBlankSpace(6, 18);
     return loginData;
 }
 
@@ -188,7 +188,7 @@ bool switchLoginOptions(AccountManager* accountManager, char key, int& selectedO
  * @brief Function for login and register
  * @param accountManager Variable for an accouunt manager
 */
-void accountMenu(AccountManager accountManager)
+void accountMenu(AccountManager& accountManager)
 {
     bool isLoginSuccessful;
 
@@ -209,6 +209,8 @@ void accountMenu(AccountManager accountManager)
         if (firstTime)
         {
             printClosedBook();
+            printBookDecorations();
+            printSnakeSword();
             printTeamLogo();
             firstTime = false;
         }

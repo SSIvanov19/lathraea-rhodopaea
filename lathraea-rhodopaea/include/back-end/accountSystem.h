@@ -6,6 +6,7 @@
 #include <back-end/validations.h>
 #include <back-end/env.h>
 #include <back-end/encryption.h>
+#include <algorithm>
 
 /**
  * @brief An enum for the different roles
@@ -44,11 +45,6 @@ struct Account
 	 * @brief Default constructor for Account
 	*/
 	Account();
-
-
-	// Only for debugging purposes
-	// Should not be used in the final product
-	void displayUserInfo();
 };
 
 /**
@@ -72,10 +68,6 @@ struct AccountList
 	*/
 	void addUser(Account data);
 
-	// Only for debugging purposes
-	// Should not be used in the final product
-	void displayAllUsers();
-
 	/**
 	 * @brief Function that check if user exists
 	 * @param emailToCheck The email to be checked
@@ -96,7 +88,7 @@ struct AccountManager
 	/**
 	 * @brief A Linked list that holds all of the accounts
 	*/
-	AccountList* accountNode;
+	AccountList* accountList;
 
 	/**
 	 * @brief Pointer to the account that is currently logged in
@@ -160,8 +152,32 @@ struct AccountManager
 	bool isUserLoggedIn();
 
 	/**
+	 * @brief Function that checks if the logged in user is admin
+	 * @return Is logged in user admin
+	*/
+	bool isAdmin();
+
+	/**
 	 * @brief Function for getting logged in user data
 	 * @return Logged in user data
 	*/
 	Account getLoggedInUserData();
+
+	/**
+	 * @brief 
+	 * @return 
+	*/
+	std::vector<Account> getAllUserData();
+
+	/**
+	 * @brief 
+	 * @param email 
+	*/
+	void changeUserRoleToAdmin(std::string email);
+
+	/**
+	 * @brief 
+	 * @param email 
+	*/
+	bool removeAccount(AccountList** accountList, std::string email);
 };

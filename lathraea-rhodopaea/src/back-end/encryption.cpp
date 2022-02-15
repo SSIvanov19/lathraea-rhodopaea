@@ -16,24 +16,6 @@ int applyGrayCode(const int n)
 	return n ^ (n >> 1);
 }
 
-/**
- * @brief Function for converting from gray code to decimal
- * @param n The number in gray code
- * @return The number in decimal
-*/
-int inversegrayCode(int n)
-{
-	int inv = 0;
-
-	// Taking xor until n becomes zero
-	for (; n; n = n >> 1)
-	{
-		inv ^= n;
-	}
-
-	return inv;
-}
-
 std::vector<int> EncryptionManager::encrypt(const std::string str)
 {
 	std::vector<int> returnVal;

@@ -71,10 +71,6 @@ struct StorylineList
 	 * @param titleToCheck Title of the storyline to be checked
 	*/
 	bool doesStorylineExist(StorylineList* head, std::string titleToCheck);
-
-	// Only for debugging purposes
-	// Should not be used in the final product
-	void displayAllStorylines(StorylineList* head);
 };
 
 /**
@@ -95,6 +91,20 @@ struct StorylineManager
 		std::vector<Event> events,
 		std::string desc = ""
 	);
+
+	/**
+	 * @brief Function for deleting a node from the list
+	 * @param head Head of the list
+	 * @param searchTitle Title to be looked up
+	 * @return Is removeing successful
+	*/
+	bool removeStoryline(StorylineList** head, std::string searchTitle);
+
+	/**
+	 * @brief 
+	 * @param title 
+	*/
+	void approveStoryline(std::string title);
 
 	/**
 	 * @brief Function for getting all storylines that are approved/unapproved

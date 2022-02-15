@@ -146,10 +146,6 @@ struct Event
 	 * @brief Default constructor for a Event
 	*/
 	Event();
-
-	// Only for debugging purposes
-	// Should not be used in the final product
-	void displayEventInfo();
 };
 
 /**
@@ -185,10 +181,6 @@ struct EventList
 	 * @param titleToCheck Title of the event to be checked
 	*/
 	bool doesEventExist(std::string titleToCheck);
-
-	// Only for debugging purposes
-	// Should not be used in the final product
-	void displayAllEvents();
 };
 
 /**

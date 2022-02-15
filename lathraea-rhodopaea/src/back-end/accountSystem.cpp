@@ -6,8 +6,6 @@
 #include <back-end/env.h>
 #include <back-end/encryption.h>
 #include <back-end/logs.h>
-#include <string>
-#include <iostream>
 
 Account::Account(
 	std::string uname_,
@@ -23,14 +21,6 @@ Account::Account(
 }
 
 Account::Account() = default;
-
-void Account::displayUserInfo()
-{
-	std::cout << "Username: " << uname << std::endl;
-	std::cout << "Email: " << email << std::endl;
-	//std::cout << "Password: " << encryptionManager.decrypt(pass) << std::endl;
-	std::cout << "Roles: " << int(role) << std::endl;
-}
 
 AccountList::AccountList(Account user_, AccountList * next_)
 {
@@ -79,22 +69,10 @@ bool AccountList::doesUserExist(std::string emailToCheck, Account * *accountData
 	return false;
 }
 
-void AccountList::displayAllUsers()
-{
-	AccountList* temp = this;
-
-	while (temp != NULL)
-	{
-		temp->user.displayUserInfo();
-		std::cout << std::endl;
-		temp = temp->next;
-	}
-}
-
 AccountManager::AccountManager()
 {
 	// Create the first Account
-	accountNode = new AccountList(
+	accountList = new AccountList(
 		Account(
 			envManager.getEnv("ADMIN_USERNAME"),
 			envManager.getEnv("ADMIN_EMAIL"),
@@ -111,6 +89,9 @@ void AccountManager::registerUser(
 	Roles role
 )
 {
+	//Make email in lower case
+	std::transform(email.begin(), email.end(), email.begin(), ::tolower);
+
 	LoggerManager loggerManager;
 	loggerManager.log(
 		LogSeverity::INFO,
@@ -150,8 +131,9 @@ void AccountManager::registerUser(
 		throw std::string("The password is invalid");
 	}
 
+
 	//Check for duplicate email
-	if (accountNode->doesUserExist(email))
+	if (accountList->doesUserExist(email))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,
@@ -162,7 +144,7 @@ void AccountManager::registerUser(
 	}
 
 	//Create and save the user
-	accountNode->addUser(
+	accountList->addUser(
 		Account(uname, email, encryptionManager.encrypt(pass), role)
 	);
 
@@ -170,19 +152,13 @@ void AccountManager::registerUser(
 		LogSeverity::INFO,
 		"User with email: " + email + "is successfully registered"
 	);
-
-	//	// Only for debugging purposes
-	//	// Should not be used in the final product
-	//	std::cout << "Added new user. All users are:\n";
-	//
-	//	// Only for debugging purposes
-	//	// Should not be used in the final product
-	//	accountNode->displayAllUsers(accountNode);
-	//
 }
 
 void AccountManager::loginUser(std::string email, std::string pass)
 {
+	//Make email in lower case
+	std::transform(email.begin(), email.end(), email.begin(), ::tolower);
+
 	LoggerManager loggerManager;
 	loggerManager.log(
 		LogSeverity::INFO,
@@ -201,7 +177,7 @@ void AccountManager::loginUser(std::string email, std::string pass)
 
 	Account* user = nullptr;
 
-	if (!accountNode->doesUserExist(email, &user))
+	if (!accountList->doesUserExist(email, &user))
 	{
 		loggerManager.log(
 			LogSeverity::NOTICE,
@@ -256,7 +232,133 @@ bool AccountManager::isUserLoggedIn()
 	return this->activeUser != nullptr;
 }
 
+bool AccountManager::isAdmin()
+{
+	if (this->isUserLoggedIn())
+	{
+		return this->getLoggedInUserData().role == Roles::ADMIN;
+	}
+
+	return false;
+}
+
 Account AccountManager::getLoggedInUserData()
 {
 	return *this->activeUser;
+}
+
+std::vector<Account> AccountManager::getAllUserData()
+{
+	LoggerManager loggerManager;
+	std::vector<Account> allAccounts;
+
+	AccountList* temp = this->accountList;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Getting all users"
+	);
+
+	while (temp)
+	{
+		allAccounts.push_back(temp->user);
+
+		temp = temp->next;
+	}
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Found " + std::to_string(allAccounts.size()) + " events."
+	);
+
+	return allAccounts;
+}
+
+void AccountManager::changeUserRoleToAdmin(std::string email)
+{
+	LoggerManager loggerManager;
+
+	AccountList* temp = this->accountList;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Changing role of user with email: " + email + " to Admin"
+	);
+
+	while (temp)
+	{
+		if (temp->user.email == email)
+		{
+			temp->user.role = Roles::ADMIN;
+			
+			loggerManager.log(
+				LogSeverity::INFO,
+				"Role changed successfully."
+			);
+			return;
+		}
+
+		temp = temp->next;
+	}
+
+	loggerManager.log(
+		LogSeverity::NOTICE,
+		"Couldn't find account with such email: " + email
+	);
+}
+
+bool AccountManager::removeAccount(AccountList** head, std::string email)
+{
+	LoggerManager loggerManager;
+
+	AccountList* temp = *head;
+	AccountList* prev = NULL;
+
+	if (temp != NULL && temp->user.email == email)
+	{
+		*head = temp->next;
+
+		loggerManager.log(
+			LogSeverity::INFO,
+			"User with email: " +
+			email +
+			" is successfully deleted."
+		);
+
+		delete temp;
+		return true;
+	}
+	else
+	{
+		while (temp != NULL && temp->user.email != email)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+
+		if (temp == NULL)
+		{
+			loggerManager.log(
+				LogSeverity::NOTICE,
+				"User with email: " +
+				email +
+				" can not be deleted, because there is not an user with such email."
+			);
+
+			return false;
+		}
+
+		prev->next = temp->next;
+
+		loggerManager.log(
+			LogSeverity::INFO,
+			"User with email: " +
+			email +
+			" is successfully deleted."
+		);
+
+		delete temp;
+	}
+
+	return true;
 }

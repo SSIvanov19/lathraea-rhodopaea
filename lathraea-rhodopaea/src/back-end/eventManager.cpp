@@ -22,7 +22,7 @@ std::string getTheEpoch(tm d)
 
 	if (year >= 681 && year <= 1018)
 	{
-		return "Bulgarian Middle Ages -> First Bulgarian country(681 - 1018)";
+		return "Bulgarian Middle Ages -> First Bulgarian country (681 - 1018)";
 	}
 
 	if (year > 1018 && year <= 1185)
@@ -213,24 +213,6 @@ Event::Event(
 
 Event::Event() = default;
 
-void Event::displayEventInfo()
-{
-	std::cout << "Title: " << title << std::endl;
-
-	if (period.size() == 2)
-	{
-		std::cout << "Start date: " << std::put_time(&period[0], "%x") << std::endl;
-		std::cout << "End date: " << std::put_time(&period[1], "%x") << std::endl;
-		std::cout << "Duration in days: " << dateManager.getDifference(period[0], period[1]) << std::endl;
-	}
-	else
-	{
-		std::cout << "Date: " << period[0].tm_mday << "." << 1 + period[0].tm_mon << "." << 1900 + period[0].tm_year << std::endl;
-	}
-
-	std::cout << "Type: " << int(type);
-}
-
 EventList::EventList(Event event_, EventList * next_)
 {
 	event = event_;
@@ -279,18 +261,6 @@ bool EventList::doesEventExist(std::string titleToCheck)
 	}
 
 	return false;
-}
-
-void EventList::displayAllEvents()
-{
-	EventList* temp = this;
-
-	while (temp != NULL)
-	{
-		temp->event.displayEventInfo();
-		std::cout << std::endl << std::endl;
-		temp = temp->next;
-	}
 }
 
 void EventManager::addUprisingEvent(

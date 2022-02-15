@@ -77,16 +77,6 @@ bool StorylineList::doesStorylineExist(StorylineList* head, std::string titleToC
 	return false;
 }
 
-void StorylineList::displayAllStorylines(StorylineList* head)
-{
-	while (head != NULL)
-	{
-		head->storyline.displayStoryline();
-		std::cout << std::endl << std::endl;
-		head = head->next;
-	}
-}
-
 void StorylineManager::addStoryline(
 	std::string title,
 	std::vector<Event> events, 
@@ -165,11 +155,97 @@ void StorylineManager::addStoryline(
 		LogSeverity::INFO,
 		"Storyline with title: " + title + " is registered successfully."
 	);
+}
 
-	//Should be removed
-	std::cout << "Storyline added successfully. All Storylines data:\n\n";
-	storylineList->displayAllStorylines(storylineList);
-	std::cout << std::endl;
+bool StorylineManager::removeStoryline(StorylineList** head, std::string searchTitle)
+{
+	LoggerManager loggerManager;
+
+	StorylineList* temp = *head;
+	StorylineList* prev = NULL;
+
+	if (temp != NULL && temp->storyline.title == searchTitle)
+	{
+		*head = temp->next;
+
+		loggerManager.log(
+			LogSeverity::INFO,
+			"Event with title: " +
+			searchTitle +
+			" is successfully deleted."
+		);
+
+		delete temp;
+		return true;
+	}
+	else
+	{
+		while (temp != NULL && temp->storyline.title != searchTitle)
+		{
+			prev = temp;
+			temp = temp->next;
+		}
+
+		if (temp == NULL)
+		{
+			loggerManager.log(
+				LogSeverity::NOTICE,
+				"Storyline with title: " +
+				searchTitle +
+				" can not be deleted, because there is not a Storyline with such title."
+			);
+
+			return false;
+		}
+
+		prev->next = temp->next;
+
+		loggerManager.log(
+			LogSeverity::INFO,
+			"Storyline with title: " +
+			searchTitle +
+			" is successfully deleted."
+		);
+
+		delete temp;
+	}
+
+	return true;
+}
+
+void StorylineManager::approveStoryline(std::string title)
+{
+	LoggerManager loggerManager;
+	StorylineList* temp = this->storylineList;
+
+	loggerManager.log(
+		LogSeverity::INFO,
+		"Looking to approve storyline with title: " + title
+	);
+
+	while (temp)
+	{
+		if (temp->storyline.title == title)
+		{
+			temp->storyline.isApproved = true;
+
+			loggerManager.log(
+				LogSeverity::INFO,
+				"Storyline with title: " + title + " is successfully approved."
+			);
+
+			return;
+		}
+
+		temp = temp->next;
+	}
+
+	loggerManager.log(
+		LogSeverity::NOTICE,
+		"There is no storyline with title: " + title
+	);
+
+	throw std::string("There is no storyline with such title: " + title);
 }
 
 std::vector<Storyline> StorylineManager::getAllStorylines(bool isApproved)
@@ -181,7 +257,7 @@ std::vector<Storyline> StorylineManager::getAllStorylines(bool isApproved)
 
 	loggerManager.log(
 		LogSeverity::INFO,
-		"Getting all events that are " +
+		"Getting all Storylines that are " +
 		isApproved ? "approved." : "unapproved."
 	);
 
@@ -198,7 +274,7 @@ std::vector<Storyline> StorylineManager::getAllStorylines(bool isApproved)
 	loggerManager.log(
 		LogSeverity::INFO,
 		"Found " + std::to_string(returnVal.size()) +
-		" events that are " + (isApproved ? "approved." : "unapproved.")
+		" storylines that are " + (isApproved ? "approved." : "unapproved.")
 	);
 
 	return returnVal;

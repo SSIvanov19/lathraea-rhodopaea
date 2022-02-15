@@ -31,6 +31,7 @@ void outputOptions(std::vector<std::string> possibleOptions, int& selectedOption
 			outputPosition(6, 18 + i * 2);
 			std::cout << "   ";
 		}
+
 		std::cout << possibleOptions[i] << std::endl << std::endl;
 	}
 }
@@ -254,7 +255,7 @@ std::vector <std::string> separateDates(std::string str)
  * @brief Function for adding events of type "other"
  * @param eventManager Variable for an event manager
 */
-void addOtherEvent(EventManager* eventManager)
+void addOtherEvent(EventManager* eventManager, bool approve)
 {
 	printFullyOpenedBook();
 	std::string title;
@@ -361,7 +362,7 @@ void addOtherEvent(EventManager* eventManager)
  * @brief Function for adding events of type "uprising"
  * @param eventManager Variable for an event manager
 */
-void addUprisingEvent(EventManager* eventManager)
+void addUprisingEvent(EventManager* eventManager, bool approve)
 {
 	std::string title;
 	printFullyOpenedBook();
@@ -527,22 +528,27 @@ void addUprisingEvent(EventManager* eventManager)
 	}
 
 	int numberOfRebelions;
-	printOpenedBook();
+	printFullyOpenedBook();
 	outputPosition(81, 10);
 	std::cout << "Enter the number of rebilions of the event: ";
 	outputPosition(81, 12);
 	std::cin >> numberOfRebelions;
 
 	std::string additionalNotes;
-	printOpenedBook();
+	printFullyOpenedBook();
 	outputPosition(81, 10);
 	std::cout << "Enter some additional notes for the event, if any: ";
 	outputPosition(81, 12);
 	std::cin.ignore(INT_MAX, '\n');
 	getline(std::cin, additionalNotes);
+
 	try
 	{
 		eventManager->addUprisingEvent(title, separateDates(period), coordinates, organizersV, isItSuccessful, numberOfRebelions, additionalNotes);
+		if (approve)
+		{
+			eventManager->approveEvent(title);
+		}
 	}
 	catch (std::string errorMessage)
 	{
@@ -554,7 +560,7 @@ void addUprisingEvent(EventManager* eventManager)
  * @brief Function for adding events of type "war"
  * @param eventManager Variable for an event manager
 */
-void addWarEvent(EventManager* eventManager)
+void addWarEvent(EventManager* eventManager, bool approve)
 {
 	printFullyOpenedBook();
 	std::string title;
@@ -716,6 +722,10 @@ void addWarEvent(EventManager* eventManager)
 	try
 	{
 		eventManager->addWarEvent(title, separateDates(period), coordinates, participatingCountriesV, winner, reasons, rulersV, additionalNotes);
+		if (approve)
+		{
+			eventManager->approveEvent(title);
+		}
 	}
 	catch (std::string errorMessage)
 	{
@@ -727,7 +737,7 @@ void addWarEvent(EventManager* eventManager)
  * @brief Function for adding events of type "movement"
  * @param eventManager Variable for an event manager
 */
-void addMovementEvent(EventManager* eventManager)
+void addMovementEvent(EventManager* eventManager, bool approve)
 {
 	printFullyOpenedBook();
 	std::string title;
@@ -897,6 +907,10 @@ void addMovementEvent(EventManager* eventManager)
 	try
 	{
 		eventManager->addMovementEvent(title, separateDates(period), coordinates, howItStarted, ideas, aims, representativesV, additionalNotes);
+		if (approve)
+		{
+			eventManager->approveEvent(title);
+		}
 	}
 	catch (std::string errorMessage)
 	{
@@ -908,7 +922,7 @@ void addMovementEvent(EventManager* eventManager)
  * @brief Function for adding historical events
  * @param eventManager Variable for an event manager
 */
-void addEvent(EventManager* eventManager)
+void addEvent(EventManager* eventManager, bool approve)
 {
 	outputPosition(81, 10);
 	std::cout << "Choose the type of event you want to add!";
@@ -961,16 +975,16 @@ void addEvent(EventManager* eventManager)
 			switch (selectedOption)
 			{
 			case 1:
-				addUprisingEvent(eventManager);
+				addUprisingEvent(eventManager, approve);
 				break;
 			case 2:
-				addWarEvent(eventManager);
+				addWarEvent(eventManager, approve);
 				break;
 			case 3:
-				addMovementEvent(eventManager);
+				addMovementEvent(eventManager, approve);
 				break;
 			case 4:
-				addOtherEvent(eventManager);
+				addOtherEvent(eventManager, approve);
 				break;
 			}
 		}
@@ -992,36 +1006,88 @@ void addEvent(EventManager* eventManager)
 */
 void deleteEvent(EventManager* eventManager)
 {
-	printFullyOpenedBook();
-	std::string title;
-	outputPosition(81, 10);
-	std::cout << "Enter the title of the event you want to remove: ";
-	outputPosition(81, 12);
-	getline(std::cin, title);
+	std::vector<Event> approveEvents = eventManager->getAllEvents(1);
+	std::vector<Event> unApproveEvents = eventManager->getAllEvents(0);
+	
+	approveEvents.insert(approveEvents.end(), unApproveEvents.begin(), unApproveEvents.end());
 
-	if (eventManager->removeEvent(&eventManager->eventList, title))
+	if (approveEvents.empty())
 	{
-		outputPosition(81, 14);
-		std::cout << "You've successfully deleted the event!";
+		outputPosition(81, 10);
+		std::cout << "There are no sorylines to display";
+		outputPosition(81, 11);
+		std::cout << "Press any key to go back!";
+		_getch();
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+		return;
 	}
-	else
-	{
-		outputPosition(81, 14);
-		std::cout << "The event wasn't found";
-		while (!eventManager->removeEvent(&eventManager->eventList, title))
-		{
-			outputPosition(81, 16);
-			std::cout << "Enter the title of the event you want to remove: ";
 
-			outputPosition(81, 18);
-			std::cout << "                                                  ";
-			outputPosition(81, 18);
-			getline(std::cin, title);
-			if (eventManager->removeEvent(&eventManager->eventList, title))
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose event that you want to remove:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < approveEvents.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << approveEvents[i].title;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == approveEvents.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+			if (!eventManager->removeEvent(&eventManager->eventList, approveEvents[selectedOption - 1].title))
 			{
 				outputPosition(81, 20);
-				std::cout << "You've successfully deleted the event!";
+				std::cout << "The event wasn't found";
 			}
+
+			return;
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
 		}
 	}
 
@@ -1047,9 +1113,8 @@ std::string separate(const std::vector<std::string> information)
 	for (size_t i = 0; i < information.size(); i++)
 	{
 		result += information[i];
+		result += ", ";
 	}
-
-	result += " ";
 
 	return result;
 }
@@ -1058,15 +1123,16 @@ std::string separate(const std::vector<std::string> information)
  * @brief Function for displaying information about a particular event
  * @param e Given event
 */
-void displayEvent(const Event& e)
+void displayEvent(const Event& e, bool approve = false, EventManager* eventManager = nullptr)
 {
 	DateManager  dateManager;
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Press ESC if you want to go back!";
 	switch (e.type)
 	{
 	case TypeOfEvent::UPRISING:
 		printFullyOpenedBook();
-		outputPosition(81, 10);
-		std::cout << "Press Enter if you want to go back!";
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
 		outputPosition(81, 14);
@@ -1119,8 +1185,6 @@ void displayEvent(const Event& e)
 		break;
 	case TypeOfEvent::WAR:
 		printFullyOpenedBook();
-		outputPosition(81, 10);
-		std::cout << "Press Enter if you want to go back!";
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
 		outputPosition(81, 14);
@@ -1171,8 +1235,6 @@ void displayEvent(const Event& e)
 		break;
 	case TypeOfEvent::MOVEMENT:
 		printFullyOpenedBook();
-		outputPosition(81, 10);
-		std::cout << "Press Enter if you want to go back!";
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
 		outputPosition(81, 14);
@@ -1221,8 +1283,6 @@ void displayEvent(const Event& e)
 		}
 	case TypeOfEvent::OTHER:
 		printFullyOpenedBook();
-		outputPosition(81, 10);
-		std::cout << "Press Enter if you want to go back!";
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
 		outputPosition(81, 14);
@@ -1253,15 +1313,101 @@ void displayEvent(const Event& e)
 			outputPosition(81, 24);
 			std::cout << e.additionalNotes;
 		}
+
 		break;
 	}
+	if (approve)
+	{
+		int xCord;
 
-	_getch();
-	system("CLS");
-	printClosedBook();
-	printBookDecorations();
-	printSnakeSword();
-	printTeamLogo();
+		switch (e.type)
+		{
+		case TypeOfEvent::UPRISING:
+			xCord = 26;
+			break;
+		case TypeOfEvent::WAR:
+			xCord = 30;
+			break;
+		case TypeOfEvent::MOVEMENT:
+			xCord = 30;
+			break;
+		case TypeOfEvent::OTHER:
+			xCord = 22;
+			break;
+		default:
+			xCord = 30;
+			break;
+		}
+
+		std::vector<std::string> options = {
+			"Approve",
+			"Disapprove (deleate)"
+		};
+
+		char pressedKey = ' ';
+		int selectedOption = 1;
+
+		outputPosition(81, xCord);
+		std::cout << "Choose option:";
+
+		while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+		{
+			for (int i = 0; i < options.size(); i++)
+			{
+				if (i + 1 == selectedOption)
+				{
+					outputPosition(81, xCord + i + 1);
+					std::cout << "-> ";
+				}
+				else
+				{
+					outputPosition(81, xCord + i + 1);
+					std::cout << "   ";
+				}
+				std::cout << options[i] << std::endl << std::endl;
+			}
+
+			pressedKey = _getch();
+
+			switch (pressedKey)
+			{
+			case (int)ARROW_KEYS::KEY_UP:
+				selectedOption--;
+				if (selectedOption == 0)
+				{
+					selectedOption += 1;
+				}
+				break;
+
+			case (int)ARROW_KEYS::KEY_DOWN:
+				selectedOption++;
+				if (selectedOption == options.size() + 1)
+				{
+					selectedOption -= 1;
+				}
+				break;
+			case (int)ARROW_KEYS::KEY_ENTER:
+				switch (selectedOption)
+				{
+				case 1:
+					eventManager->approveEvent(e.title);
+					break;
+				case 2:
+					eventManager->removeEvent(&eventManager->eventList, e.title);
+					break;
+				}
+			}
+		}
+	}
+	else
+	{
+		_getch();
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
 }
 
 /**
@@ -1337,9 +1483,15 @@ void printEventInfo(const std::vector<Event> events, int output)
  * @param sorting The way of sorting
  * @param type The parameter we sort
 */
-void displayAllEvents(EventManager* eventManager, int sorting, int& type)
+void displayAllEvents(EventManager* eventManager, int sorting, int& type, bool getAllEvents = false)
 {
-	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	std::vector<Event> allEvents = eventManager->getAllEvents(true);
+	if (getAllEvents)
+	{
+		std::vector<Event> events = eventManager->getAllEvents(false);
+		allEvents.insert(allEvents.end(), events.begin(), events.end());
+	}
+
 	if (allEvents.empty())
 	{
 		outputPosition(81, 10);
@@ -1392,7 +1544,7 @@ void displayAllEvents(EventManager* eventManager, int sorting, int& type)
  * @brief Function for choosing the way of sorting the events by year
  * @param eventManager Variable for an event manager
 */
-void chooseSorting(EventManager* eventManager, int type)
+void chooseSorting(EventManager* eventManager, int type, bool getAllEvents = false)
 {
 	printFullyOpenedBook();
 	outputPosition(81, 10);
@@ -1492,11 +1644,11 @@ void chooseSorting(EventManager* eventManager, int type)
 			{
 			case 1:
 				printFullyOpenedBook();
-				displayAllEvents(eventManager, 1, type);
+				displayAllEvents(eventManager, 1, type, getAllEvents);
 				break;
 			case 2:
 				printFullyOpenedBook();
-				displayAllEvents(eventManager, 2, type);
+				displayAllEvents(eventManager, 2, type, getAllEvents);
 				break;
 			}
 		}
@@ -1507,7 +1659,7 @@ void chooseSorting(EventManager* eventManager, int type)
  * @brief Function for choosing the type of printing the events
  * @param eventManager Variable for an event manager
 */
-void printBy(EventManager* eventManager)
+void printBy(EventManager* eventManager, bool getAllEvents = false)
 {
 	outputPosition(81, 10);
 	std::cout << "How do you want to sort the events?" << std::endl;
@@ -1558,15 +1710,15 @@ void printBy(EventManager* eventManager)
 			{
 			case 1:
 				printFullyOpenedBook();
-				chooseSorting(eventManager, 1);
+				chooseSorting(eventManager, 1, getAllEvents);
 				break;
 			case 2:
 				printFullyOpenedBook();
-				chooseSorting(eventManager, 2);
+				chooseSorting(eventManager, 2, getAllEvents);
 				break;
 			case 3:
 				printFullyOpenedBook();
-				chooseSorting(eventManager, 3);
+				chooseSorting(eventManager, 3, getAllEvents);
 				break;
 			}
 		}
@@ -1577,9 +1729,26 @@ void printBy(EventManager* eventManager)
  * @brief Function for printing event coordinates on map
  * @param eventManager Variable for an event manager
 */
-void printAsMap(EventManager* eventManager)
+void printAsMap(EventManager* eventManager, bool getAllEvents = false)
 {
-	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	std::vector<Event> allEvents = eventManager->getAllEvents(true);
+
+	if (getAllEvents)
+	{
+		std::vector<Event> unApproveEvents = eventManager->getAllEvents(false);
+		allEvents.insert(allEvents.end(), unApproveEvents.begin(), unApproveEvents.end());
+	}
+
+	if (allEvents.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
 	int selectedOption = 1;
 	char pressedKey = ' ';
 
@@ -1628,26 +1797,44 @@ void printAsMap(EventManager* eventManager)
 			printBulgarianMap();
 			outputPosition((allEvents[selectedOption - 1].coordinates.X), (allEvents[selectedOption - 1].coordinates.Y));
 			std::cout << char(254);
-			_getch();
-			system("CLS");
-			printClosedBook();
-			printBookDecorations();
-			printSnakeSword();
-			printTeamLogo();
+			if (_getch())
+			{
+				return;
+				system("CLS");
+				printClosedBook();
+				printBookDecorations();
+				printSnakeSword();
+				printTeamLogo();
+			}
 		}
 	}
 }
 
 void editEvent(EventManager* eventManager)
 {
-	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	std::vector<Event> approveEvents = eventManager->getAllEvents(1);
+	std::vector<Event> unApproveEvents = eventManager->getAllEvents(0);
+
+	approveEvents.insert(approveEvents.end(), unApproveEvents.begin(), unApproveEvents.end());
+
+
+	if (approveEvents.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
 	int selectedOption = 1;
 	char pressedKey = ' ';
 	outputPosition(81, 10);
 	std::cout << "Choose the event you want to edit!";
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
-		for (int i = 0; i < allEvents.size(); i++)
+		for (int i = 0; i < approveEvents.size(); i++)
 		{
 			if (i + 1 == selectedOption)
 			{
@@ -1660,10 +1847,10 @@ void editEvent(EventManager* eventManager)
 				std::cout << "   ";
 			}
 
-			for (int j = 0; j < allEvents[i].period.size(); j++)
+			for (int j = 0; j < approveEvents[i].period.size(); j++)
 			{
 				outputPosition(84, 12 + i * 2);
-				std::cout << allEvents[i].title << " - " << allEvents[i].period[j].tm_mday << " " << allEvents[i].period[j].tm_mon + 1 << " " << allEvents[i].period[j].tm_year + 1900 << std::endl;
+				std::cout << approveEvents[i].title << " - " << approveEvents[i].period[j].tm_mday << " " << approveEvents[i].period[j].tm_mon + 1 << " " << approveEvents[i].period[j].tm_year + 1900 << std::endl;
 			}
 
 		}
@@ -1680,7 +1867,7 @@ void editEvent(EventManager* eventManager)
 
 		case (int)ARROW_KEYS::KEY_DOWN:
 			selectedOption++;
-			if (selectedOption == allEvents.size() + 1)
+			if (selectedOption == approveEvents.size() + 1)
 			{
 				selectedOption -= 1;
 			}
@@ -1727,7 +1914,7 @@ void editEvent(EventManager* eventManager)
 				"Date",
 				"Coordinates",
 			};
-			if ((allEvents[selectedOption - 1].type == TypeOfEvent::UPRISING))
+			if ((approveEvents[selectedOption - 1].type == TypeOfEvent::UPRISING))
 			{
 				printFullyOpenedBook();
 				outputPosition(81, 10);
@@ -1769,6 +1956,7 @@ void editEvent(EventManager* eventManager)
 						std::cout << uprisingOptions[i];
 
 					}
+					
 					pressedKey1 = _getch();
 					switch (pressedKey1)
 					{
@@ -1782,7 +1970,7 @@ void editEvent(EventManager* eventManager)
 
 					case (int)ARROW_KEYS::KEY_DOWN:
 						selectedOption1++;
-						if (selectedOption1 == allEvents.size() + 1)
+						if (selectedOption1 == uprisingOptions.size() + 1)
 						{
 							selectedOption1 -= 1;
 						}
@@ -1807,7 +1995,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->title, title);
 							break;
 						case 2:
 							printFullyOpenedBook();
@@ -1832,7 +2020,7 @@ void editEvent(EventManager* eventManager)
 								std::cout << "Changes saved successfully!";
 							}
 							DateManager dateManager;
-							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							eventManager->setMultiValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
 							break;
 						case 3:
 							printFullyOpenedBook();
@@ -1877,8 +2065,8 @@ void editEvent(EventManager* eventManager)
 									break;
 								}
 							}
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
 							break;
 						case 4:
 							printFullyOpenedBook();
@@ -1897,7 +2085,7 @@ void editEvent(EventManager* eventManager)
 
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
-							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->organizers, { organizers });
+							eventManager->setMultiValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->organizers, { organizers });
 							break;
 						case 5:
 							printFullyOpenedBook();
@@ -1908,7 +2096,7 @@ void editEvent(EventManager* eventManager)
 
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->numberOfRebelions, rebilions);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->numberOfRebelions, rebilions);
 							break;
 						case 6:
 							printFullyOpenedBook();
@@ -1965,13 +2153,13 @@ void editEvent(EventManager* eventManager)
 									}
 								}
 							}
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->isItSuccessful, isItSuccessful);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->isItSuccessful, isItSuccessful);
 							break;
 						}
 					}
 				}
 			}
-			else if ((allEvents[selectedOption - 1].type == TypeOfEvent::WAR))
+			else if ((approveEvents[selectedOption - 1].type == TypeOfEvent::WAR))
 			{
 				printFullyOpenedBook();
 				outputPosition(81, 10);
@@ -2021,7 +2209,7 @@ void editEvent(EventManager* eventManager)
 
 					case (int)ARROW_KEYS::KEY_DOWN:
 						selectedOption1++;
-						if (selectedOption1 == allEvents.size() + 1)
+						if (selectedOption1 == approveEvents.size() + 1)
 						{
 							selectedOption1 -= 1;
 						}
@@ -2045,7 +2233,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->title, title);
 							break;
 						case 2:
 							printFullyOpenedBook();
@@ -2070,7 +2258,7 @@ void editEvent(EventManager* eventManager)
 								std::cout << "Changes saved successfully!";
 							}
 							DateManager dateManager;
-							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							eventManager->setMultiValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
 							break;
 						case 3:
 							printFullyOpenedBook();
@@ -2115,8 +2303,8 @@ void editEvent(EventManager* eventManager)
 									break;
 								}
 							}
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
 							break;
 						case 4:
 							printFullyOpenedBook();
@@ -2135,7 +2323,7 @@ void editEvent(EventManager* eventManager)
 
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
-							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->participatingCountries, { participatingCountries });
+							eventManager->setMultiValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->participatingCountries, { participatingCountries });
 							break;
 						case 5:
 							printFullyOpenedBook();
@@ -2154,7 +2342,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->winner, winner);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->winner, winner);
 							break;
 						case 6:
 							printFullyOpenedBook();
@@ -2173,7 +2361,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->reason, reasons);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->reason, reasons);
 							break;
 						case 7:
 							printFullyOpenedBook();
@@ -2192,13 +2380,13 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->rulers, { rulers });
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->rulers, { rulers });
 							break;
 						}
 					}
 				}
 			}
-			else if ((allEvents[selectedOption - 1].type == TypeOfEvent::MOVEMENT))
+			else if ((approveEvents[selectedOption - 1].type == TypeOfEvent::MOVEMENT))
 			{
 				printFullyOpenedBook();
 				outputPosition(81, 10);
@@ -2249,7 +2437,7 @@ void editEvent(EventManager* eventManager)
 
 					case (int)ARROW_KEYS::KEY_DOWN:
 						selectedOption1++;
-						if (selectedOption1 == allEvents.size() + 1)
+						if (selectedOption1 == approveEvents.size() + 1)
 						{
 							selectedOption1 -= 1;
 						}
@@ -2274,7 +2462,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->title, title);
 							break;
 						case 2:
 							printFullyOpenedBook();
@@ -2299,7 +2487,7 @@ void editEvent(EventManager* eventManager)
 								std::cout << "Changes saved successfully!";
 							}
 							DateManager dateManager;
-							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							eventManager->setMultiValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
 							break;
 						case 3:
 							printFullyOpenedBook();
@@ -2344,8 +2532,8 @@ void editEvent(EventManager* eventManager)
 									break;
 								}
 							}
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
 							break;
 						case 4:
 							printFullyOpenedBook();
@@ -2364,7 +2552,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->howItStarted, howItStarted);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->howItStarted, howItStarted);
 							break;
 						case 5:
 							printFullyOpenedBook();
@@ -2383,7 +2571,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->ideas, ideas);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->ideas, ideas);
 							break;
 						case 6:
 							printFullyOpenedBook();
@@ -2402,7 +2590,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->aims, aims);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->aims, aims);
 							break;
 						case 7:
 							printFullyOpenedBook();
@@ -2421,13 +2609,13 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->representatives, { representatives });
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->representatives, { representatives });
 							break;
 						}
 					}
 				}
 			}
-			else if ((allEvents[selectedOption - 1].type == TypeOfEvent::OTHER))
+			else if ((approveEvents[selectedOption - 1].type == TypeOfEvent::OTHER))
 			{
 				printFullyOpenedBook();
 				outputPosition(81, 10);
@@ -2474,7 +2662,7 @@ void editEvent(EventManager* eventManager)
 
 					case (int)ARROW_KEYS::KEY_DOWN:
 						selectedOption1++;
-						if (selectedOption1 == allEvents.size() + 1)
+						if (selectedOption1 == approveEvents.size() + 1)
 						{
 							selectedOption1 -= 1;
 						}
@@ -2501,7 +2689,7 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
 
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->title, title);
 							break;
 						case 2:
 							printFullyOpenedBook();
@@ -2526,7 +2714,7 @@ void editEvent(EventManager* eventManager)
 								std::cout << "Changes saved successfully!";
 							}
 							DateManager dateManager;
-							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							eventManager->setMultiValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
 							break;
 						case 3:
 							printFullyOpenedBook();
@@ -2571,8 +2759,8 @@ void editEvent(EventManager* eventManager)
 									break;
 								}
 							}
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
-							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(approveEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
 							break;
 						}
 					}
@@ -2587,18 +2775,30 @@ void editEvent(EventManager* eventManager)
 		}
 	}
 }
-/**
- * @brief Function for printing events as a timeline
- * @param storylineManager Variable for an storyline manager
-*/
-void printAsTimeline(StorylineManager* storylineManager)
-{
-	std::vector<Storyline> allEvents = storylineManager->getAllStorylines(0);
 
-	if (allEvents.empty())
+void printStorylineOnMap(StorylineManager* storylineManager, bool getAllEvents = false)
+{
+	std::vector<Storyline> allStorylines = storylineManager->getAllStorylines(true);
+	if (getAllEvents)
+	{
+		std::vector<Storyline> unApproveStorylines = storylineManager->getAllStorylines(false);
+		allStorylines.insert(allStorylines.end(), unApproveStorylines.begin(), unApproveStorylines.end());
+	}
+
+	if (allStorylines.empty())
 	{
 		outputPosition(81, 10);
-		std::cout << "There are no events to display";
+		std::cout << "There are no storylines to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
+	if (allStorylines.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no storylines to display";
 		outputPosition(81, 12);
 		std::cout << "Press Enter to go back!";
 	}
@@ -2611,7 +2811,7 @@ void printAsTimeline(StorylineManager* storylineManager)
 
 		while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 		{
-			for (int i = 0; i < allEvents.size(); i++)
+			for (int i = 0; i < allStorylines.size(); i++)
 			{
 				if (i + 1 == selectedOption)
 				{
@@ -2624,7 +2824,7 @@ void printAsTimeline(StorylineManager* storylineManager)
 					std::cout << "   ";
 				}
 				outputPosition(84, 12 + i * 2);
-				std::cout << allEvents[i].title << std::endl;
+				std::cout << allStorylines[i].title << std::endl;
 			}
 			pressedKey = _getch();
 			switch (pressedKey)
@@ -2639,7 +2839,102 @@ void printAsTimeline(StorylineManager* storylineManager)
 
 			case (int)ARROW_KEYS::KEY_DOWN:
 				selectedOption++;
-				if (selectedOption == allEvents.size() + 1)
+				if (selectedOption == allStorylines.size() + 1)
+				{
+					selectedOption -= 1;
+				}
+				break;
+			case (int)ARROW_KEYS::KEY_ENTER:
+				printTimelinePopUp();
+				printMapPopUp();
+				printBulgarianMap();
+				for (size_t i = 0; i < allStorylines[selectedOption - 1].events.size(); i++)
+				{
+					size_t middlePos = allStorylines[selectedOption - 1].events[i].title.size() / 2;
+
+					outputPosition(
+						allStorylines[selectedOption - 1].events[i].coordinates.X  - middlePos,
+						allStorylines[selectedOption - 1].events[i].coordinates.Y - 1
+					);
+					ShowCursor(true);
+					std::cout << allStorylines[selectedOption - 1].events[i].title;
+
+					outputPosition(
+						allStorylines[selectedOption - 1].events[i].coordinates.X,
+						allStorylines[selectedOption - 1].events[i].coordinates.Y
+					);
+					std::cout << char(254);
+				}
+			}
+		}
+	}
+	_getch();
+	system("CLS");
+	printClosedBook();
+	printBookDecorations();
+	printSnakeSword();
+	printTeamLogo();
+}
+
+/**
+ * @brief Function for printing events as a timeline
+ * @param storylineManager Variable for an storyline manager
+*/
+void printAsTimeline(StorylineManager* storylineManager, bool getAllEvents = false)
+{
+	std::vector<Storyline> allStorylines = storylineManager->getAllStorylines(true);
+	if (getAllEvents)
+	{
+		std::vector<Storyline> unApproveStorylines = storylineManager->getAllStorylines(false);
+		allStorylines.insert(allStorylines.end(), unApproveStorylines.begin(), unApproveStorylines.end());
+	}
+
+
+	if (allStorylines.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no storylines to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+	}
+	else
+	{
+		outputPosition(81, 10);
+		std::cout << "Which storyline do you want to display?";
+		int selectedOption = 1;
+		char pressedKey = ' ';
+
+		while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+		{
+			for (int i = 0; i < allStorylines.size(); i++)
+			{
+				if (i + 1 == selectedOption)
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "-> ";
+				}
+				else
+				{
+					outputPosition(81, 12 + i * 2);
+					std::cout << "   ";
+				}
+				outputPosition(84, 12 + i * 2);
+				std::cout << allStorylines[i].title << std::endl;
+			}
+			pressedKey = _getch();
+			switch (pressedKey)
+			{
+			case (int)ARROW_KEYS::KEY_UP:
+				selectedOption--;
+				if (selectedOption == 0)
+				{
+					selectedOption += 1;
+				}
+				break;
+
+			case (int)ARROW_KEYS::KEY_DOWN:
+				selectedOption++;
+				if (selectedOption == allStorylines.size() + 1)
 				{
 					selectedOption -= 1;
 				}
@@ -2647,30 +2942,56 @@ void printAsTimeline(StorylineManager* storylineManager)
 			case (int)ARROW_KEYS::KEY_ENTER:
 				printTimelinePopUp();
 				printTimeline();
-				for (size_t i = 0; i < allEvents[selectedOption - 1].events.size(); i++)
+				for (size_t i = 0; i < allStorylines[selectedOption - 1].events.size(); i++)
 				{
+					int xY;
+					int yY;
+
 					switch (i)
 					{
 					case 0:
-						outputPosition(49, 28);
+						xY = 49;
+						yY = 28;
 						break;
 					case 1:
-						outputPosition(57, 22);
+						xY = 57;
+						yY = 22;
 						break;
 					case 2:
-						outputPosition(65, 28);
+						xY = 65;
+						yY = 28;
 						break;
 					case 3:
-						outputPosition(73, 22);
+						xY = 73;
+						yY = 22;
 						break;
 					case 4:
-						outputPosition(81, 28);
+						xY = 81;
+						yY = 28;
 						break;
 					case 5:
-						outputPosition(89, 22);
+						xY = 89;
+						yY = 22;
 						break;
 					}
-					std::cout << allEvents[selectedOption - 1].events[i].period[0].tm_year + 1900;
+
+					size_t sizeOfTitle = allStorylines[selectedOption - 1].events[i].title.size();
+
+					if (sizeOfTitle <= 14)
+					{
+						size_t middlePos = sizeOfTitle / 2;
+						
+						outputPosition(xY - middlePos + 2, yY - 1);
+						std::cout << allStorylines[selectedOption - 1].events[i].title;
+						
+						outputPosition(xY, yY);
+						std::cout << allStorylines[selectedOption - 1].events[i].period[0].tm_year + 1900;
+					}
+					else
+					{
+						outputPosition(xY, yY);
+						std::cout << allStorylines[selectedOption - 1].events[i].period[0].tm_year + 1900;
+					}
 				}
 			}
 		}
@@ -2687,18 +3008,18 @@ void printAsTimeline(StorylineManager* storylineManager)
  * @brief Function for choosing the way of printing the events
  * @param eventManager Variable for an event manager
 */
-void displayEvents(EventManager* eventManager, StorylineManager* storylineManager)
+void displayStoryline(StorylineManager* storylineManager, bool getAllEvents = false)
 {
 	outputPosition(81, 10);
-	std::cout << "How you want to display the events?" << std::endl;
+	std::cout << "How you want to display the storylines?" << std::endl;
 	int selectedOption = 1;
 	char pressedKey = ' ';
 	const std::vector<std::string> visualizationOptions =
 	{
-		"As a map",
 		"As a timeline",
-		"As an encyclopedia"
+		"As a map"
 	};
+
 	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
 	{
 		for (int i = 0; i < visualizationOptions.size(); i++)
@@ -2738,15 +3059,76 @@ void displayEvents(EventManager* eventManager, StorylineManager* storylineManage
 			{
 			case 1:
 				printFullyOpenedBook();
-				printAsMap(eventManager);
+				printAsTimeline(storylineManager, getAllEvents);
 				break;
 			case 2:
 				printFullyOpenedBook();
-				printAsTimeline(storylineManager);
-				break;
-			case 3:
+				printStorylineOnMap(storylineManager, getAllEvents);
+			}
+		}
+	}
+}
+
+/**
+ * @brief Function for choosing the way of printing the events
+ * @param eventManager Variable for an event manager
+*/
+void displayEvents(EventManager* eventManager, bool getAllEvents = false)
+{
+	outputPosition(81, 10);
+	std::cout << "How you want to display the events?" << std::endl;
+	int selectedOption = 1;
+	char pressedKey = ' ';
+	const std::vector<std::string> visualizationOptions =
+	{
+		"As a map",
+		"As an encyclopedia"
+	};
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < visualizationOptions.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << visualizationOptions[i] << std::endl << std::endl;
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == visualizationOptions.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			switch (selectedOption)
+			{
+			case 1:
 				printFullyOpenedBook();
-				printBy(eventManager);
+				printAsMap(eventManager, getAllEvents);
+				break;
+			case 2:
+				printFullyOpenedBook();
+				printBy(eventManager, getAllEvents);
 				break;
 			}
 		}
@@ -2768,9 +3150,25 @@ int getNumberOfSelectedEvents(std::vector<int> v)
 	return counter;
 }
 
-void createStoryline(EventManager* eventManager, StorylineManager* storylineManager, bool getEvents = false)
+void createStoryline(EventManager* eventManager, StorylineManager* storylineManager, AccountManager* accountManager, bool getEvents = false)
 {
-	std::vector<Event> events = eventManager->getAllEvents(false);
+	std::vector<Event> events = eventManager->getAllEvents(true);
+	if (accountManager->isAdmin())
+	{
+		std::vector<Event> eventsForApproving = eventManager->getAllEvents(false);
+		events.insert(events.end(), eventsForApproving.begin(), eventsForApproving.end());
+	}
+
+	if (events.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to add to storyline";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
 	static std::vector<int> indexSelectedEvents(events.size(), 0);
 
 	if (getEvents)
@@ -2785,7 +3183,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 
 	for (size_t i = 0; i < events.size(); i++)
 	{
-		outputPosition(81, 12 + i * 2);
+		outputPosition(81, 12 + i);
 		selectedOptions == i ? std::cout << " -> " : std::cout << "    ";
 
 		std::cout << events[i].title;
@@ -2800,7 +3198,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		}
 	}
 
-	outputPosition(81, 12 + events.size() * 2);
+	outputPosition(81, 12 + events.size());
 
 	int numOfSelEvents = getNumberOfSelectedEvents(indexSelectedEvents);
 
@@ -2818,7 +3216,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 	{
 	case (int)ARROW_KEYS::KEY_UP:
 		if (selectedOptions != 0) selectedOptions--;
-		createStoryline(eventManager, storylineManager);
+		createStoryline(eventManager, storylineManager, accountManager);
 		break;
 
 	case (int)ARROW_KEYS::KEY_DOWN:
@@ -2830,7 +3228,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		{
 			if (selectedOptions != events.size() - 1) selectedOptions++;
 		}
-		createStoryline(eventManager, storylineManager);
+		createStoryline(eventManager, storylineManager, accountManager);
 		break;
 	case (int)ARROW_KEYS::KEY_ENTER:
 		if (selectedOptions >= 0 && selectedOptions < events.size())
@@ -2841,12 +3239,12 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 				if (indexSelectedEvents[selectedOptions] == 1)
 				{
 					indexSelectedEvents[selectedOptions] = 0;
-					outputPosition(81, 13 + events.size() * 2);
+					outputPosition(81, 13 + events.size());
 					std::cout << "                                                  ";
 				}
 				else
 				{
-					outputPosition(81, 13 + events.size() * 2);
+					outputPosition(81, 13 + events.size());
 					std::cout << "Can not add more than 6 events to single storyline";
 				}
 			}
@@ -2863,25 +3261,23 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 			std::cout << "                                                  ";
 
 			std::string title;
-			printFullyOpenedBook();
-			outputPosition(81, 10);
+			outputPosition(81, 13 + events.size());
 			std::cout << "Please, enter title for the new storyline";
-			outputPosition(81, 12);
+			outputPosition(81, 14 + events.size());
 			getline(std::cin, title);
 
 			while (title.empty())
 			{
-				outputPosition(81, 10);
+				outputPosition(81, 13 + events.size());
 				std::cout << "Please, enter title for the new storyline";
-				outputPosition(81, 12);
+				outputPosition(81, 14 + events.size());
 				getline(std::cin, title);
 			}
 
 			std::string desc;
-			outputPosition(81, 14);
+			outputPosition(81, 15 + events.size());
 			std::cout << "Please, enter description for the new storyline";
-			outputPosition(81, 16);
-			outputPosition(81, 16);
+			outputPosition(81, 16 + events.size());
 			getline(std::cin, desc);
 
 			std::vector<Event> storylineEvents;
@@ -2899,6 +3295,10 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 			try
 			{
 				storylineManager->addStoryline(title, storylineEvents, desc);
+				if (accountManager->isAdmin())
+				{
+					storylineManager->approveStoryline(title);
+				}
 				indexSelectedEvents.clear();
 				selectedOptions = 0;
 				system("CLS");
@@ -2920,11 +3320,11 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 					outputPosition(81, 13 + events.size() + i);
 				}
 
-				createStoryline(eventManager, storylineManager);
+				createStoryline(eventManager, storylineManager, accountManager);
 			}
 		}
 
-		createStoryline(eventManager, storylineManager);
+		createStoryline(eventManager, storylineManager, accountManager);
 		break;
 	case (int)ARROW_KEYS::KEY_ESC:
 		indexSelectedEvents.clear();
@@ -2936,7 +3336,827 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		printTeamLogo();
 		return;
 	default:
-		createStoryline(eventManager, storylineManager);
+		createStoryline(eventManager, storylineManager, accountManager);
+	}
+}
+
+void approveEvent(EventManager* eventManager)
+{
+	std::vector<Event> allUnapprovedEvents = eventManager->getAllEvents(false);
+
+	if (allUnapprovedEvents.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no events to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose events that you want to approve:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < allUnapprovedEvents.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << allUnapprovedEvents[i].title << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == allUnapprovedEvents.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			displayEvent(allUnapprovedEvents[selectedOption - 1], true, eventManager);
+			return;
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+void adminEventManagment(EventManager* eventManager, StorylineManager* storylineManager)
+{
+	const std::vector<std::string> options{
+		"Add new history event",
+		"Approve event",
+		"Display event",
+		"Edit event",
+		"Remove event"
+	};
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose what do you want to do:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < options.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << options[i] << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == options.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+
+			switch (selectedOption)
+			{
+			case 1:
+				// Add new history event
+				addEvent(eventManager, true);
+				break;
+			case 2:
+				// Approve event
+				approveEvent(eventManager);
+				break;
+			case 3:
+				// Display event
+				displayEvents(eventManager, true);
+				break;
+			case 4:
+				// Edit event
+				editEvent(eventManager);
+				break;
+			case 5:
+				// Remove event
+				deleteEvent(eventManager);
+				break;
+			}
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+void approveStoryline(StorylineManager* storylineManager)
+{
+	std::vector<Storyline> storylines = storylineManager->getAllStorylines(false);
+
+	if (storylines.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no storylines to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose events that you want to approve:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < storylines.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << storylines[i].title << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == storylines.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			try
+			{
+				storylineManager->approveStoryline(storylines[selectedOption - 1].title);
+				return;
+			}
+			catch (std::string msg)
+			{
+				outputPosition(81, 18);
+				std::cout << "There was problem approving the storyline:";
+				outputPosition(81, 19);
+				std::cout << msg;
+				outputPosition(81, 20);
+				std::cout << "Plese try again!";
+				_getch();
+			}
+
+			return;
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+/**
+ * @brief Function for deleting historical events
+ * @param eventManager Variable for an event manager
+*/
+void deleteStoryline(StorylineManager* storylineManager)
+{
+	std::vector<Storyline> approveStorylines = storylineManager->getAllStorylines(1);
+	std::vector<Storyline> unApproveStorylines = storylineManager->getAllStorylines(0);
+
+	approveStorylines.insert(approveStorylines.end(), unApproveStorylines.begin(), unApproveStorylines.end());
+
+	if (approveStorylines.empty())
+	{
+		outputPosition(81, 10);
+		std::cout << "There are no storylines to display";
+		outputPosition(81, 12);
+		std::cout << "Press Enter to go back!";
+		_getch();
+		return;
+	}
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose storyline that you want to remove:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < approveStorylines.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << approveStorylines[i].title;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == approveStorylines.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+			if (!storylineManager->removeStoryline(&storylineManager->storylineList, approveStorylines[selectedOption - 1].title))
+			{
+				outputPosition(81, 20);
+				std::cout << "The storyline wasn't found";
+			}
+
+			return;
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+void adminStorylineManagment(EventManager* eventManager, StorylineManager* storylineManager, AccountManager* accountManager)
+{
+	const std::vector<std::string> options{
+		"Add new storyline",
+		"Approve storyline",
+		"Display storyline",
+		"Remove storyline"
+	};
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose what do you want to do:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < options.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << options[i] << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == options.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+
+			switch (selectedOption)
+			{
+			case 1:
+				// Add new storyline
+				createStoryline(eventManager, storylineManager, accountManager, true);
+				break;
+			case 2:
+				// Approve storyline
+				approveStoryline(storylineManager);
+				break;
+			case 3:
+				// Display storylines
+				displayStoryline(storylineManager, true);
+				break;
+			case 5:
+				deleteStoryline(storylineManager);
+				break;
+			}
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+std::string enumToString(Roles role)
+{
+	switch (role)
+	{
+	case Roles::USER:
+		return "User";
+		break;
+	case Roles::ADMIN:
+		return "Admin";
+		break;
+	default:
+		return "User";
+		break;
+	}
+}
+
+void showUserInfo(Account account, AccountManager* accountManager)
+{
+	std::vector<std::string> options = {
+		"Make admin",
+		"Remove user",
+		"Back"
+	};
+
+	outputPosition(81, 10);
+	std::cout << "Account info:";
+	outputPosition(81, 11);
+	std::cout << "Username: " << account.uname;
+	outputPosition(81, 12);
+	std::cout << "Email: " << account.email;
+	outputPosition(81, 13);
+	std::cout << "Role: " << enumToString(account.role);
+	outputPosition(81, 15);
+	std::cout << "Choose actions:";
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < options.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 16 + i);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 16 + i);
+				std::cout << "   ";
+			}
+			std::cout << options[i] << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == options.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+
+			switch (selectedOption)
+			{
+			case 1:
+				// Make admin
+				accountManager->changeUserRoleToAdmin(account.email);
+				return;
+				break;
+			case 2:
+				if (!accountManager->removeAccount(&accountManager->accountList, account.email))
+				{
+					throw std::string("There was a problem with the program. Error deleteing user");
+				}
+
+				return;
+				break;
+			case 3:
+				// Back
+				return;
+				break;
+			}
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+void viewAllUsers(AccountManager* accountManager)
+{
+	std::vector<Account> allAccounts = accountManager->getAllUserData();
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose which user you want to view:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < allAccounts.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << allAccounts[i].uname << " - " << allAccounts[i].email << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == allAccounts.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+			showUserInfo(allAccounts[selectedOption - 1], accountManager);
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
+	}
+}
+
+void addNewAdmin(AccountManager* accountManager)
+{
+	Validations validations;
+
+	std::string email;
+	std::string uname;
+	std::string password;
+
+	outputPosition(81, 10);
+	std::cout << "Enter an email: ";
+
+	std::getline(std::cin, email);
+
+	while (!validations.isEmailValid(email))
+	{
+		outputPosition(81, 12);
+		std::cout << "Please, enter a valid email: ";
+		std::getline(std::cin, email);
+		std::cout << std::endl;
+		outputPosition(81, 12);
+		std::cout << "                                                    " << std::endl;
+	}
+
+	std::cout << std::endl;
+	outputPosition(81, 12);
+	std::cout << "Enter a username: ";
+	std::getline(std::cin, uname);
+	while (!validations.isUnameValid(uname))
+	{
+		outputPosition(81, 14);
+		std::cout << "Please, enter a valid uname: ";
+		std::getline(std::cin, uname);
+		std::cout << std::endl;
+		outputPosition(81, 14);
+		std::cout << "                                                    " << std::endl;
+	}
+
+	std::cout << std::endl;
+	outputPosition(81, 14);
+	std::cout << "Enter a password: ";
+	std::getline(std::cin, password);
+	while (!validations.isPassValid(password))
+	{
+		outputPosition(81, 16);
+		std::cout << "Please, enter a valid password: ";
+		std::getline(std::cin, password);
+		std::cout << std::endl;
+		outputPosition(81, 16);
+		std::cout << "                                                    " << std::endl;
+	}
+
+	try
+	{
+		accountManager->registerUser(uname, email, password, Roles::ADMIN);
+	}
+	catch (std::string msg)
+	{
+		outputPosition(81, 18);
+		std::cout << "There was problem with the regestration:";
+		outputPosition(81, 19);
+		std::cout << msg;
+		outputPosition(81, 20);
+		std::cout << "Plese try again!";
+		_getch();
+	}
+
+}
+
+void adminUserManagment(AccountManager* accountManager)
+{
+	const std::vector<std::string> options{
+		"View all users",
+		"Add new admin"
+	};
+
+	printFullyOpenedBook();
+	outputPosition(81, 10);
+	std::cout << "Choose what do you want to do:";
+
+	int selectedOption = 1;
+	char pressedKey = ' ';
+
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < options.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+			std::cout << options[i] << std::endl << std::endl;
+		}
+
+		pressedKey = _getch();
+
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == options.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			system("CLS");
+			printFullyOpenedBook();
+
+			switch (selectedOption)
+			{
+			case 1:
+				// View all users
+				viewAllUsers(accountManager);
+				break;
+			case 2:
+				// Add new admin
+				addNewAdmin(accountManager);
+				break;
+			}
+		case (int)ARROW_KEYS::KEY_ESC:
+			// Return to main menu
+			system("CLS");
+			printClosedBook();
+			printBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+			return;
+			break;
+		}
+	}
+
+	if (_getch())
+	{
+		system("CLS");
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
 	}
 }
 
@@ -2947,7 +4167,14 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
  * @param selectedOption The selected option
  * @param possibleOptions The possible options
 */
-void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineManager, char key, int& selectedOption, std::vector<std::string> possibleOptions)
+void switchMenuOptions(
+	EventManager* eventManager,
+	StorylineManager* storylineManager,
+	AccountManager* accountManager,
+	char key,
+	int& selectedOption,
+	std::vector<std::string> possibleOptions
+)
 {
 	switch (key)
 	{
@@ -2967,49 +4194,83 @@ void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineMa
 		}
 		break;
 	case (int)ARROW_KEYS::KEY_ENTER:
-		switch (selectedOption)
+		system("CLS");
+
+		if (accountManager->isAdmin())
 		{
-		case 1:
-			system("CLS");
-			bookOpeningAnimation();
-			addEvent(eventManager);
-			break;
-		case 2:
-			system("CLS");
-			bookOpeningAnimation();
-			deleteEvent(eventManager);
-			break;
-		case 3:
-			system("CLS");
-			bookOpeningAnimation();
-			editEvent(eventManager);
-			break;
-		case 4:
-			system("CLS");
-			bookOpeningAnimation();
-			displayEvents(eventManager, storylineManager);
-			break;
-		case 5:
-			system("CLS");
-			bookOpeningAnimation();
-			createStoryline(eventManager, storylineManager, true);
-			break;
-		case 6:
-			system("CLS");
-			printaboutUs();
-			printText();
-			_getch();
-			system("CLS");
-			printClosedBook();
-			printBookDecorations();
-			printSnakeSword();
-			printTeamLogo();
-			break;
-		case 7:
-			system("CLS");
-			exit(0);
-			break;
+			switch (selectedOption)
+			{
+			case 1:
+				//Event Managment
+				bookOpeningAnimation();
+				adminEventManagment(eventManager, storylineManager);
+				break;
+			case 2:
+				//Storyline managment
+				bookOpeningAnimation();
+				adminStorylineManagment(eventManager, storylineManager, accountManager);
+				break;
+			case 3:
+				// User Managment
+				bookOpeningAnimation();
+				adminUserManagment(accountManager);
+				break;
+			case 4:
+				// Log out
+				accountManager->logoutUser();
+				break;
+			case 5:
+				// Exit
+				system("CLS");
+				exit(0);
+				break;
+			}
+		}
+		else
+		{
+			switch (selectedOption)
+			{
+			case 1:
+				// Add events
+				bookOpeningAnimation();
+				addEvent(eventManager, false);
+				break;
+			case 2:
+				// Visualise event
+				bookOpeningAnimation();
+				displayEvents(eventManager);
+				break;
+			case 3:
+				// Create Storyline
+				bookOpeningAnimation();
+				createStoryline(eventManager, storylineManager, accountManager, true);
+				break;
+			case 4:;
+				//Visualisation of storyline
+				bookOpeningAnimation();
+				displayStoryline(storylineManager);
+				break;
+			case 5:
+				//Log out
+				accountManager->logoutUser();
+				break;
+			case 6:
+				// About us
+				system("CLS");
+				printaboutUs();
+				printText();
+				_getch();
+				printClosedBook();
+				printBookDecorations();
+				printSnakeSword();
+				printTeamLogo();
+				break;
+			case 7:
+				// Exit 
+				system("CLS");
+				exit(0);
+				break;
+			}
 		}
 	}
-
 }
