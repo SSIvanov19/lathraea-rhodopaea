@@ -1,38 +1,8 @@
 /*! @file output.cpp
 *   @brief A source file for setting the output color and position.
 */
-#include <windows.h>
-#include <string>
 
-/**
- * @brief Function for setting the output position
- * @param x The X coordinates
- * @param y The Y coordinates
-*/
-void outputPosition(int x, int y)
-{
-	COORD position;
-	position.X = x;
-	position.Y = y;
-	if (SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), position))
-	{
-		return;
-	}
-	else {}
-}
-
-/**
- * @brief Function for setting the output color
- * @param color The set color
-*/
-void color(int color)
-{
-	if (SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color))
-	{
-		return;
-	}
-	else {}
-}
+#include <back-end/errorManager.h>
 
 /**
  * @brief Check if the output that was returned from getOutputHandle() is INVALID_HANDLE_VALUE.
@@ -45,18 +15,95 @@ bool checkForInvalidHandle(HANDLE handle)
 }
 
 /**
- * @brief Function for showing/hideing the cursor
- * @param shown bool show/hide
+ * @brief A function that get the output handle.
+ * @return HANDLE
 */
-void setCursor(bool shown)
+HANDLE getOutputHandle()
 {
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	if (checkForInvalidHandle(handle))
+	{
+		throw ErrorHandler("output.cpp", "getOutputHandle()", GetLastError());
+	}
+
+	return handle;
+}
+
+
+/**
+ * @brief Function for setting the output position
+ * @param x The X coordinates
+ * @param y The Y coordinates
+*/
+void outputPosition(int x, int y)
+{
+	HANDLE STD_OUTPUT = getOutputHandle();
+	COORD cords;
+	cords.X = x;
+	cords.Y = y;
+
+	if (SetConsoleCursorPosition(STD_OUTPUT, cords) == 0)
+	{
+		throw ErrorHandler("output.cpp", "outputPosition()", GetLastError());
+	}
+}
+
+/**
+ * @brief Function for setting the output color
+ * @param color The set color
+*/
+void setConsoleColorTo(int color)
+{
+	HANDLE STD_OUTPUT = getOutputHandle();
+	
+	if (SetConsoleTextAttribute(STD_OUTPUT, color) == 0)
+	{
+		throw ErrorHandler("output.cpp", "setConsoleColorTo()", GetLastError());
+	}
+}
+
+
+
+void setCursorVisibilityTo(bool shown)
+{
+	HANDLE consoleHandle = getOutputHandle();
 	CONSOLE_CURSOR_INFO info;
 	info.dwSize = 100;
 	info.bVisible = shown;
 
 	if (SetConsoleCursorInfo(consoleHandle, &info) == 0)
 	{
-		//Add error handaling
+		throw ErrorHandler("output.cpp", "SetConsoleCursorInfo()", GetLastError());
 	}
+}
+
+void clearConsole()
+{
+	COORD topLeft = { 0, 0 };
+	HANDLE console = getOutputHandle();
+	CONSOLE_SCREEN_BUFFER_INFO screen;
+	DWORD written;
+
+	if (GetConsoleScreenBufferInfo(console, &screen) == 0)
+	{
+		throw ErrorHandler("output.cpp", "setCursorVisibilityTo()", GetLastError());
+	}
+
+	if (FillConsoleOutputCharacterA(
+		console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+	) == 0)
+	{
+		throw ErrorHandler("output.cpp", "setCursorVisibilityTo()", GetLastError());
+	}
+
+	if (FillConsoleOutputAttribute(
+		console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+		screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+	) == 0)
+	{
+		throw ErrorHandler("output.cpp", "setCursorVisibilityTo()", GetLastError());
+	}
+
+	outputPosition(topLeft.X, topLeft.Y);
 }

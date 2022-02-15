@@ -992,7 +992,7 @@ void addEvent(EventManager* eventManager, bool approve)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -1018,7 +1018,7 @@ void deleteEvent(EventManager* eventManager)
 		outputPosition(81, 11);
 		std::cout << "Press any key to go back!";
 		_getch();
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -1070,7 +1070,7 @@ void deleteEvent(EventManager* eventManager)
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 			if (!eventManager->removeEvent(&eventManager->eventList, approveEvents[selectedOption - 1].title))
 			{
@@ -1081,7 +1081,7 @@ void deleteEvent(EventManager* eventManager)
 			return;
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -1093,7 +1093,7 @@ void deleteEvent(EventManager* eventManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -1402,7 +1402,7 @@ void displayEvent(const Event& e, bool approve = false, EventManager* eventManag
 	else
 	{
 		_getch();
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -1499,7 +1499,7 @@ void displayAllEvents(EventManager* eventManager, int sorting, int& type, bool g
 		outputPosition(81, 11);
 		std::cout << "Press any key to go back!";
 		_getch();
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -1800,7 +1800,7 @@ void printAsMap(EventManager* eventManager, bool getAllEvents = false)
 			if (_getch())
 			{
 				return;
-				system("CLS");
+				clearConsole();
 				printClosedBook();
 				printBookDecorations();
 				printSnakeSword();
@@ -2767,7 +2767,7 @@ void editEvent(EventManager* eventManager)
 				}
 			}
 			_getch();
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -2869,7 +2869,7 @@ void printStorylineOnMap(StorylineManager* storylineManager, bool getAllEvents =
 		}
 	}
 	_getch();
-	system("CLS");
+	clearConsole();
 	printClosedBook();
 	printBookDecorations();
 	printSnakeSword();
@@ -2997,7 +2997,7 @@ void printAsTimeline(StorylineManager* storylineManager, bool getAllEvents = fal
 		}
 	}
 	_getch();
-	system("CLS");
+	clearConsole();
 	printClosedBook();
 	printBookDecorations();
 	printSnakeSword();
@@ -3133,6 +3133,12 @@ void displayEvents(EventManager* eventManager, bool getAllEvents = false)
 			}
 		}
 	}
+
+	clearConsole();
+	printClosedBook();
+	printBookDecorations();
+	printSnakeSword();
+	printTeamLogo();
 }
 
 int getNumberOfSelectedEvents(std::vector<int> v)
@@ -3166,6 +3172,11 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		outputPosition(81, 12);
 		std::cout << "Press Enter to go back!";
 		_getch();
+		clearConsole();
+		printClosedBook();
+		printBookDecorations();
+		printSnakeSword();
+		printTeamLogo();
 		return;
 	}
 
@@ -3301,7 +3312,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 				}
 				indexSelectedEvents.clear();
 				selectedOptions = 0;
-				system("CLS");
+				clearConsole();
 				printClosedBook();
 				printBookDecorations();
 				printSnakeSword();
@@ -3329,7 +3340,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 	case (int)ARROW_KEYS::KEY_ESC:
 		indexSelectedEvents.clear();
 		selectedOptions = 0;
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3402,7 +3413,7 @@ void approveEvent(EventManager* eventManager)
 			return;
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3414,7 +3425,7 @@ void approveEvent(EventManager* eventManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3476,7 +3487,7 @@ void adminEventManagment(EventManager* eventManager, StorylineManager* storyline
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 
 			switch (selectedOption)
@@ -3504,7 +3515,7 @@ void adminEventManagment(EventManager* eventManager, StorylineManager* storyline
 			}
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3516,7 +3527,7 @@ void adminEventManagment(EventManager* eventManager, StorylineManager* storyline
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3601,7 +3612,7 @@ void approveStoryline(StorylineManager* storylineManager)
 			return;
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3613,7 +3624,7 @@ void approveStoryline(StorylineManager* storylineManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3686,7 +3697,7 @@ void deleteStoryline(StorylineManager* storylineManager)
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 			if (!storylineManager->removeStoryline(&storylineManager->storylineList, approveStorylines[selectedOption - 1].title))
 			{
@@ -3697,7 +3708,7 @@ void deleteStoryline(StorylineManager* storylineManager)
 			return;
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3709,7 +3720,7 @@ void deleteStoryline(StorylineManager* storylineManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3770,7 +3781,7 @@ void adminStorylineManagment(EventManager* eventManager, StorylineManager* story
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 
 			switch (selectedOption)
@@ -3793,7 +3804,7 @@ void adminStorylineManagment(EventManager* eventManager, StorylineManager* story
 			}
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3805,7 +3816,7 @@ void adminStorylineManagment(EventManager* eventManager, StorylineManager* story
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3887,7 +3898,7 @@ void showUserInfo(Account account, AccountManager* accountManager)
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 
 			switch (selectedOption)
@@ -3912,7 +3923,7 @@ void showUserInfo(Account account, AccountManager* accountManager)
 			}
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3924,7 +3935,7 @@ void showUserInfo(Account account, AccountManager* accountManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -3980,12 +3991,12 @@ void viewAllUsers(AccountManager* accountManager)
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 			showUserInfo(allAccounts[selectedOption - 1], accountManager);
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -3997,7 +4008,7 @@ void viewAllUsers(AccountManager* accountManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -4124,7 +4135,7 @@ void adminUserManagment(AccountManager* accountManager)
 			}
 			break;
 		case (int)ARROW_KEYS::KEY_ENTER:
-			system("CLS");
+			clearConsole();
 			printFullyOpenedBook();
 
 			switch (selectedOption)
@@ -4140,7 +4151,7 @@ void adminUserManagment(AccountManager* accountManager)
 			}
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
-			system("CLS");
+			clearConsole();
 			printClosedBook();
 			printBookDecorations();
 			printSnakeSword();
@@ -4152,7 +4163,7 @@ void adminUserManagment(AccountManager* accountManager)
 
 	if (_getch())
 	{
-		system("CLS");
+		clearConsole();
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();
@@ -4194,7 +4205,7 @@ void switchMenuOptions(
 		}
 		break;
 	case (int)ARROW_KEYS::KEY_ENTER:
-		system("CLS");
+		clearConsole();
 
 		if (accountManager->isAdmin())
 		{
@@ -4221,7 +4232,7 @@ void switchMenuOptions(
 				break;
 			case 5:
 				// Exit
-				system("CLS");
+				clearConsole();
 				exit(0);
 				break;
 			}
@@ -4256,10 +4267,11 @@ void switchMenuOptions(
 				break;
 			case 6:
 				// About us
-				system("CLS");
+				clearConsole();
 				printaboutUs();
 				printText();
 				_getch();
+				clearConsole();
 				printClosedBook();
 				printBookDecorations();
 				printSnakeSword();
@@ -4267,7 +4279,7 @@ void switchMenuOptions(
 				break;
 			case 7:
 				// Exit 
-				system("CLS");
+				clearConsole();
 				exit(0);
 				break;
 			}

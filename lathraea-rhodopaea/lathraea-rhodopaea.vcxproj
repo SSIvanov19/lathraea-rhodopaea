@@ -145,7 +145,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="include\front-end\loginMenu.cpp" />
     <ClCompile Include="lathraeaRhodopaea.cpp" />
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\back-end\accountSystem.cpp" />
@@ -160,6 +159,7 @@
     <ClCompile Include="src\external\strptime.cpp" />
     <ClCompile Include="src\front-end\animations.cpp" />
     <ClCompile Include="src\front-end\graphics.cpp" />
+    <ClCompile Include="src\front-end\loginMenu.cpp" />
     <ClCompile Include="src\front-end\mainMenu.cpp" />
     <ClCompile Include="src\front-end\output.cpp" />
   </ItemGroup>

@@ -72,8 +72,6 @@ std::vector<std::string> enterRegisterData()
     accountInformation.push_back(uname);
     accountInformation.push_back(password);
 
-     printBlankSpace(6, 18);
-
     return accountInformation;
 }
 
@@ -87,10 +85,14 @@ void registerUser(AccountManager* accountManager)
     try
     {
         accountManager->registerUser(newAccount[1], newAccount[0], newAccount[2], Roles::USER);
+        printBlankSpace(7, 18);
     }
     catch (std::string errorMessage)
     {
+        outputPosition(7, 26);
         std::cout << errorMessage;
+        _getch();
+        printBlankSpace(7, 18);
     }
 }
 
@@ -104,7 +106,7 @@ std::vector<std::string> enterLoginData()
 
     std::string email, password;
 
-     printBlankSpace(6, 18);
+    printBlankSpace(6, 18);
     outputPosition(7, 18);
     std::cout << "Enter an email: ";
     std::getline(std::cin, email);
@@ -116,7 +118,6 @@ std::vector<std::string> enterLoginData()
 
     loginData.push_back(email);
     loginData.push_back(password);
-    printBlankSpace(6, 18);
     return loginData;
 }
 
@@ -132,11 +133,15 @@ bool isUserLogedIn(AccountManager* accountManager)
     try
     {
         accountManager->loginUser(loginData[0], loginData[1]);
+        printBlankSpace(6, 18);
         return true;
     }
     catch (std::string errorMessage)
     {
+        outputPosition(7, 22);
         std::cout << errorMessage;
+        _getch();
+        printBlankSpace(7, 18);
         return false;
     }
 }
@@ -176,7 +181,7 @@ bool switchLoginOptions(AccountManager* accountManager, char key, int& selectedO
         case 2: registerUser(accountManager);
             break;
         case 3:
-            system("CLS");
+            clearConsole();
             exit(0);
             break;
         }
