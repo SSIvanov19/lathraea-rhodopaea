@@ -2113,9 +2113,13 @@ void printTeamLogo()
  * @brief Function for printing text for about us page
 */
 void printText() {
+	outputPosition(9, 11);
 	std::cout << "Hello, we are team from five people, making a program for historical events!" << std::endl;
+	outputPosition(9, 14);
 	std::cout << "1. Use your arrow keys to navigate through the options given in the menu" << std::endl;
+	outputPosition(9, 17);
 	std::cout << "2. From the menu, you can choose either to remove, edit or add an event" << std::endl;
+	outputPosition(9, 20);
 	std::cout << "3. Fill your progress about the event, providing details (date, period, year, type, ect.)" << std::endl;
 }
 
