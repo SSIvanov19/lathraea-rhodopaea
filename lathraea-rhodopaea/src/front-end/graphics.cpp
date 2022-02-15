@@ -2109,13 +2109,15 @@ void printTeamLogo()
  * @brief Function for printing text for about us page
 */
 void printText() {
-	outputPosition(9, 11);
-	std::cout << "Hello, we are team from five people, making a program for historical events!" << std::endl;
-	outputPosition(9, 14);
+	outputPosition(45, 14);
+	std::cout << "Hello, we are team from five people, making a program";
+	outputPosition(57, 15);
+	std::cout<<" for historical events!" << std::endl;
+	outputPosition(20, 18);
 	std::cout << "1. Use your arrow keys to navigate through the options given in the menu" << std::endl;
-	outputPosition(9, 17);
+	outputPosition(20, 22);
 	std::cout << "2. From the menu, you can choose either to remove, edit or add an event" << std::endl;
-	outputPosition(9, 20);
+	outputPosition(20, 26);
 	std::cout << "3. Fill your progress about the event, providing details (date, period, year, type, ect.)" << std::endl;
 }
 
@@ -2127,7 +2129,7 @@ void printaboutUs() {
 	outputPosition(35, counter + 1);
 	std::cout << "  ________________________________________________________________" << std::endl;
 	outputPosition(35, counter + 2);
-	std::cout << " / \                                                               \\. " << std::endl;
+	std::cout << " / \\                                                              \\. " << std::endl;
 	outputPosition(35, counter + 3);
 	std::cout << "|   |                                                              \\. " << std::endl;
 	outputPosition(35, counter + 4);
