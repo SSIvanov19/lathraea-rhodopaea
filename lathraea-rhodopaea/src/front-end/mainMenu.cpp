@@ -1788,9 +1788,9 @@ void editEvent(EventManager* eventManager)
 						}
 						break;
 					case (int)ARROW_KEYS::KEY_ENTER:
-						switch (selectedOption)
+						switch (selectedOption1)
 						{
-						case 2:
+						case 1:
 							printFullyOpenedBook();
 							outputPosition(81, 10);
 							std::cout << "Enter the title of the event: " << std::endl;
@@ -1806,9 +1806,10 @@ void editEvent(EventManager* eventManager)
 							}
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
-							eventManager->setSingleValueField(eventManager->eventList->event.title, title);
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
 							break;
-						case 3:
+						case 2:
 							printFullyOpenedBook();
 
 							outputPosition(81, 10);
@@ -1831,12 +1832,12 @@ void editEvent(EventManager* eventManager)
 								std::cout << "Changes saved successfully!";
 							}
 							DateManager dateManager;
-							eventManager->setMultiValueField(eventManager->eventList->event.period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
 							break;
-						case 4:
+						case 3:
 							printFullyOpenedBook();
 							printMapPopUp();
-							printBulgarianMap();							
+							printBulgarianMap();
 							outputPosition(x, y);
 							std::cout << char(254);
 							while ((key = _getch()) != (char)ARROW_KEYS::KEY_ENTER)
@@ -1876,10 +1877,10 @@ void editEvent(EventManager* eventManager)
 									break;
 								}
 							}
-							eventManager->setSingleValueField<short>(eventManager->eventList->event.coordinates.X, x);
-							eventManager->setSingleValueField<short>(eventManager->eventList->event.coordinates.Y, y);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
 							break;
-						case 5:
+						case 4:
 							printFullyOpenedBook();
 							outputPosition(81, 10);
 							std::cout << "Enter the organizers of the event: " << std::endl;
@@ -1896,9 +1897,9 @@ void editEvent(EventManager* eventManager)
 
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
-							eventManager->setMultiValueField(eventManager->eventList->event.organizers, { organizers });
+							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->organizers, { organizers });
 							break;
-						case 6:
+						case 5:
 							printFullyOpenedBook();
 							outputPosition(81, 10);
 							std::cout << "Enter the numbers of rebilions: " << std::endl;
@@ -1907,9 +1908,9 @@ void editEvent(EventManager* eventManager)
 
 							outputPosition(81, 14);
 							std::cout << "Changes saved successfully!";
-							eventManager->setSingleValueField(eventManager->eventList->event.numberOfRebelions, rebilions);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->numberOfRebelions, rebilions);
 							break;
-						case 7:
+						case 6:
 							printFullyOpenedBook();
 							outputPosition(81, 10);
 							std::cout << "Is the event successful?";
@@ -1964,7 +1965,7 @@ void editEvent(EventManager* eventManager)
 									}
 								}
 							}
-							eventManager->setSingleValueField(eventManager->eventList->event.isItSuccessful, isItSuccessful);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->isItSuccessful, isItSuccessful);
 							break;
 						}
 					}
@@ -1975,6 +1976,17 @@ void editEvent(EventManager* eventManager)
 				printFullyOpenedBook();
 				outputPosition(81, 10);
 				std::cout << "What do you want to edit?";
+
+				std::string title;
+				std::string period;
+				std::string participatingCountries;
+				std::string winner;
+				std::string reasons;
+				std::string rulers;
+				int x = 56;
+				int y = 20;
+				char key;
+
 				int selectedOption1 = 1;
 				char pressedKey1 = ' ';
 
@@ -2015,7 +2027,174 @@ void editEvent(EventManager* eventManager)
 						}
 						break;
 					case (int)ARROW_KEYS::KEY_ENTER:
-						break;
+						switch (selectedOption1) {
+						case 1:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the title of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, title);
+
+							while (title.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Title can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, title);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							break;
+						case 2:
+							printFullyOpenedBook();
+
+							outputPosition(81, 10);
+							std::cout << "Enter the starting and ending year and date";
+							outputPosition(81, 12);
+							std::cout << "Example - (20 apr 1876, 15 may 1876)";
+							outputPosition(81, 14);
+							getline(std::cin, period);
+							outputPosition(81, 16);
+							std::cout << "Changes saved successfully!";
+							while (!checkDatesValidation(period))
+							{
+								outputPosition(81, 14);
+								std::cout << "The data you've entered is incorrect!";
+								outputPosition(81, 16);
+								std::cout << "Please enter a date/s - ex(24 apr 809, 27 apr 810)";
+								outputPosition(81, 18);
+								getline(std::cin, period);
+								outputPosition(81, 20);
+								std::cout << "Changes saved successfully!";
+							}
+							DateManager dateManager;
+							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							break;
+						case 3:
+							printFullyOpenedBook();
+							printMapPopUp();
+							printBulgarianMap();
+							outputPosition(x, y);
+							std::cout << char(254);
+							while ((key = _getch()) != (char)ARROW_KEYS::KEY_ENTER)
+							{
+								switch (key)
+								{
+								case (char)ARROW_KEYS::KEY_UP:
+									outputPosition(x, y);
+									std::cout << " ";
+									y -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_DOWN:
+									outputPosition(x, y);
+									std::cout << " ";
+									y += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_LEFT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_RIGHT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_ENTER:
+									printFullyOpenedBook();
+									break;
+								}
+							}
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							break;
+						case 4:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the participating countries of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, participatingCountries);
+
+							while (participatingCountries.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Participating countries can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, participatingCountries);
+							}
+
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->participatingCountries, { participatingCountries });
+							break;
+						case 5:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the winner of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, winner);
+
+							while (winner.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Winner can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, winner);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->winner, winner);
+							break;
+						case 6:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the reasons of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, reasons);
+
+							while (reasons.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Reasons can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, reasons);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->reason, reasons);
+							break;
+						case 7:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the rulers of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, rulers);
+
+							while (rulers.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Rulers can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, rulers);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->rulers, { rulers });
+							break;
+						}
 					}
 				}
 			}
@@ -2024,8 +2203,20 @@ void editEvent(EventManager* eventManager)
 				printFullyOpenedBook();
 				outputPosition(81, 10);
 				std::cout << "What do you want to edit?";
+
+				std::string title;
+				std::string period;
+				std::string howItStarted;
+				std::string ideas;
+				std::string aims;
+				std::string representatives;
+				int x = 56;
+				int y = 20;
+				char key;
+
 				int selectedOption1 = 1;
 				char pressedKey1 = ' ';
+
 
 				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
 				{
@@ -2064,7 +2255,175 @@ void editEvent(EventManager* eventManager)
 						}
 						break;
 					case (int)ARROW_KEYS::KEY_ENTER:
-						break;
+						switch (selectedOption1)
+						{
+						case 1:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the title of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, title);
+
+							while (title.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Title can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, title);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							break;
+						case 2:
+							printFullyOpenedBook();
+
+							outputPosition(81, 10);
+							std::cout << "Enter the starting and ending year and date";
+							outputPosition(81, 12);
+							std::cout << "Example - (20 apr 1876, 15 may 1876)";
+							outputPosition(81, 14);
+							getline(std::cin, period);
+							outputPosition(81, 16);
+							std::cout << "Changes saved successfully!";
+							while (!checkDatesValidation(period))
+							{
+								outputPosition(81, 14);
+								std::cout << "The data you've entered is incorrect!";
+								outputPosition(81, 16);
+								std::cout << "Please enter a date/s - ex(24 apr 809, 27 apr 810)";
+								outputPosition(81, 18);
+								getline(std::cin, period);
+								outputPosition(81, 20);
+								std::cout << "Changes saved successfully!";
+							}
+							DateManager dateManager;
+							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							break;
+						case 3:
+							printFullyOpenedBook();
+							printMapPopUp();
+							printBulgarianMap();
+							outputPosition(x, y);
+							std::cout << char(254);
+							while ((key = _getch()) != (char)ARROW_KEYS::KEY_ENTER)
+							{
+								switch (key)
+								{
+								case (char)ARROW_KEYS::KEY_UP:
+									outputPosition(x, y);
+									std::cout << " ";
+									y -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_DOWN:
+									outputPosition(x, y);
+									std::cout << " ";
+									y += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_LEFT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_RIGHT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_ENTER:
+									printFullyOpenedBook();
+									break;
+								}
+							}
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							break;
+						case 4:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the way the event started: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, howItStarted);
+
+							while (howItStarted.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "The way the event started can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, howItStarted);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->howItStarted, howItStarted);
+							break;
+						case 5:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the ideas of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, ideas);
+
+							while (ideas.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "The ideas can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, ideas);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->ideas, ideas);
+							break;
+						case 6:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the aims of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, aims);
+
+							while (aims.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "The aims can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, aims);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->aims, aims);
+							break;
+						case 7:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the representatives of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, representatives);
+
+							while (representatives.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "The representatives can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, representatives);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->representatives, { representatives });
+							break;
+						}
 					}
 				}
 			}
@@ -2073,12 +2432,20 @@ void editEvent(EventManager* eventManager)
 				printFullyOpenedBook();
 				outputPosition(81, 10);
 				std::cout << "What do you want to edit?";
+
+				std::string title;
+				std::string period;
+				int x = 56;
+				int y = 20;
+				char key;
+
 				int selectedOption1 = 1;
 				char pressedKey1 = ' ';
 
+
 				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
 				{
-					for (int i = 0; i < otherOptions.size(); i++)
+					for (int i = 0; i < movementOptions.size(); i++)
 					{
 						if (i + 1 == selectedOption1)
 						{
@@ -2090,9 +2457,8 @@ void editEvent(EventManager* eventManager)
 							outputPosition(81, 12 + i * 2);
 							std::cout << "   ";
 						}
-
 						outputPosition(84, 12 + i * 2);
-						std::cout << otherOptions[i];
+						std::cout << movementOptions[i];
 
 					}
 					pressedKey1 = _getch();
@@ -2114,7 +2480,101 @@ void editEvent(EventManager* eventManager)
 						}
 						break;
 					case (int)ARROW_KEYS::KEY_ENTER:
-						break;
+						switch (selectedOption1)
+						{
+
+
+						case 1:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the title of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, title);
+
+							while (title.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Title can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, title);
+							}
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->title, title);
+							break;
+						case 2:
+							printFullyOpenedBook();
+
+							outputPosition(81, 10);
+							std::cout << "Enter the starting and ending year and date";
+							outputPosition(81, 12);
+							std::cout << "Example - (20 apr 1876, 15 may 1876)";
+							outputPosition(81, 14);
+							getline(std::cin, period);
+							outputPosition(81, 16);
+							std::cout << "Changes saved successfully!";
+							while (!checkDatesValidation(period))
+							{
+								outputPosition(81, 14);
+								std::cout << "The data you've entered is incorrect!";
+								outputPosition(81, 16);
+								std::cout << "Please enter a date/s - ex(24 apr 809, 27 apr 810)";
+								outputPosition(81, 18);
+								getline(std::cin, period);
+								outputPosition(81, 20);
+								std::cout << "Changes saved successfully!";
+							}
+							DateManager dateManager;
+							eventManager->setMultiValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							break;
+						case 3:
+							printFullyOpenedBook();
+							printMapPopUp();
+							printBulgarianMap();
+							outputPosition(x, y);
+							std::cout << char(254);
+							while ((key = _getch()) != (char)ARROW_KEYS::KEY_ENTER)
+							{
+								switch (key)
+								{
+								case (char)ARROW_KEYS::KEY_UP:
+									outputPosition(x, y);
+									std::cout << " ";
+									y -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_DOWN:
+									outputPosition(x, y);
+									std::cout << " ";
+									y += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_LEFT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_RIGHT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_ENTER:
+									printFullyOpenedBook();
+									break;
+								}
+							}
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.X, (short)x);
+							eventManager->setSingleValueField((eventManager->getEventWithName(allEvents[selectedOption - 1].title))->coordinates.Y, (short)y);
+							break;
+						}
 					}
 				}
 			}
