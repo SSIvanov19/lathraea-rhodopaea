@@ -2113,11 +2113,11 @@ void printText() {
 	std::cout << "Hello, we are team from five people, making a program";
 	outputPosition(57, 15);
 	std::cout<<" for historical events!" << std::endl;
-	outputPosition(20, 18);
+	outputPosition(45, 20);
 	std::cout << "1. Use your arrow keys to navigate through the options given in the menu" << std::endl;
-	outputPosition(20, 22);
+	outputPosition(45, 25);
 	std::cout << "2. From the menu, you can choose either to remove, edit or add an event" << std::endl;
-	outputPosition(20, 26);
+	outputPosition(45, 30);
 	std::cout << "3. Fill your progress about the event, providing details (date, period, year, type, ect.)" << std::endl;
 }
 

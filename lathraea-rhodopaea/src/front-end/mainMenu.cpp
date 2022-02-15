@@ -2345,6 +2345,12 @@ void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineMa
 			system("CLS");
 			printaboutUs();
 			printText();
+			_getch();
+			system("CLS");
+			printClosedBook();
+			prinyBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
 			break;
 		case 7:
 			system("CLS");
