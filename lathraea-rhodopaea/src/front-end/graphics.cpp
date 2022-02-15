@@ -1657,79 +1657,79 @@ void printMainPage()
 {
 	int counter = 5;
 	outputPosition(3, counter + 1);
-	std::cout << "                   [\\                    __                        " << std::endl;
+	std::cout << "                   [\\                    __                                                                                                                                   " << std::endl;
 	outputPosition(3, counter + 2);
-	std::cout << "                   |\\)                __(  )-.                       " << std::endl;
+	std::cout << "                   |\\)                __(  )-.                                                                                                                                " << std::endl;
 	outputPosition(3, counter + 3);
-	std::cout << "                   |                 (        )_                      ___      __       ___                     " << std::endl;
+	std::cout << "                   |                 (        )_                      ___      __       ___                                                                                    " << std::endl;
 	outputPosition(3, counter + 4);
-	std::cout << "                   /\\           __  '.(_________)            |     /\\  | |__| |__)  /\\  |__   /\\                  " << std::endl;
+	std::cout << "                   /\\           __  '.(_________)            |     /\\  | |__| |__)  /\\  |__   /\\                                                                           " << std::endl;
 	outputPosition(3, counter + 5);
-	std::cout << "                  /  \\       __(  )--.                       |___ /~~\\ | |  | |  \\ /~~\\ |___ /~~\\                " << std::endl;
+	std::cout << "                  /  \\       __(  )--.                       |___ /~~\\ | |  | |  \\ /~~\\ |___ /~~\\                                                                         " << std::endl;
 	outputPosition(3, counter + 6);
-	std::cout << "                 /    \\   ,-(         )_                                 __        __   __   __   __       ___                 " << std::endl;
+	std::cout << "                 /    \\   ,-(         )_                                 __        __   __   __   __       ___                                                                " << std::endl;
 	outputPosition(3, counter + 7);
-	std::cout << "                //T`-._\\ (             _)                               |__) |__| /  \\ |  \\ /  \\ |__) /\\  |__   /\\              " << std::endl;
+	std::cout << "                //T`-._\\ (             _)                               |__) |__| /  \\ |  \\ /  \\ |__) /\\  |__   /\\                                                       " << std::endl;
 	outputPosition(3, counter + 8);
-	std::cout << "                /[|   ]|  `-(_______)-`   |\\                            |  \\ |  | \\__/ |__/ \\__/ |   /~~\\ |___ /~~\\                 " << std::endl;
+	std::cout << "                /[|   ]|  `-(_______)-`   |\\                            |  \\ |  | \\__/ |__/ \\__/ |   /~~\\ |___ /~~\\                                                      " << std::endl;
 	outputPosition(3, counter + 9);
-	std::cout << "                | |    |                  J'                      " << std::endl;
+	std::cout << "                | |    |                  J'                                                                                                                                   " << std::endl;
 	outputPosition(3, counter + 10);
-	std::cout << "                | |  ] |     _           /;\\                     " << std::endl;
+	std::cout << "                | |  ] |     _           /;\\                                                                                                                                  " << std::endl;
 	outputPosition(3, counter + 11);
-	std::cout << "               [| |    |     L'         /;  \\                    " << std::endl;
+	std::cout << "               [| |    |     L'         /;  \\                                                                                                                                 " << std::endl;
 	outputPosition(3, counter + 12);
-	std::cout << "              /||.| /\\ |    /\\         /.,-._\\                 " << std::endl;
+	std::cout << "              /||.| /\\ |    /\\         /.,-._\\                                                                                                                              " << std::endl;
 	outputPosition(3, counter + 13);
-	std::cout << "             /_|||| || |   /  \\        | |{  |                   " << std::endl;
+	std::cout << "             /_|||| || |   /  \\        | |{  |                                                                                                                                " << std::endl;
 	outputPosition(3, counter + 14);
-	std::cout << "   L/\\        |\\| | '` |_ _  {|        | | U |   /\\            " << std::endl;
+	std::cout << "   L/\\        |\\| | '` |_ _  {|        | | U |   /\\                                                                                                                         " << std::endl;
 	outputPosition(3, counter + 15);
-	std::cout << "  /   \\/\\    `| Y | [  '-'  '--''-''- -'`'   | '`  \\ /\\,`\\   " << std::endl;
+	std::cout << "  /   \\/\\    `| Y | [  '-'  '--''-''- -'`'   | '`  \\ /\\,`\\                                                                                                                " << std::endl;
 	outputPosition(3, counter + 16);
-	std::cout << " / ,'./  \\.`  |[  |       [     __   L    ]  |      /  \\  \\    " << std::endl;
+	std::cout << " / ,'./  \\.`  |[  |       [     __   L    ]  |      /  \\  \\                                                                                                                 " << std::endl;
 	outputPosition(3, counter + 17);
 	std::cout << "/,'     `     |   |           ,`   .   ]     |___Y Y____,_,,___,_____,,______________,_________________,,______________________,________________,________________,__,_______   " << std::endl;
 	outputPosition(3, counter + 18);
 	std::cout << "---    -----.-(] [|   ]     o/     |o       ]|| /`-, Y  _   Y  Y        +             _             .             -                                                            " << std::endl;
 	outputPosition(3, counter + 19);
-	std::cout << "     Y Y  --;`~T |      }   \\     |[\\ _,.- (^) ,-'    (^)__  _         (^)                 .            -                    -                             -                  " << std::endl;
+	std::cout << "     Y Y  --;`~T |      }   \\     |[\\ _,.- (^) ,-'    (^)__  _         (^)                 .            -                    -                             -                 " << std::endl;
 	outputPosition(3, counter + 20);
-	std::cout << "    Y  YY   ;'~~l |   L     [|\\       \\   \\ \\Y-`  _     Y   _       --- Y   ` _ _              .                   .                     -       +                          " << std::endl;
+	std::cout << "    Y  YY   ;'~~l |   L     [|\\       \\   \\ \\Y-`  _     Y   _       --- Y   ` _ _              .                   .                     -       +                         " << std::endl;
 	outputPosition(3, counter + 21);
-	std::cout << "   Y  Y Y   ;\\~~/\\{| [      _,'-\\`= = '.\\_ ,`    (^)       (^)      _        _            .               -                                                                 " << std::endl;
+	std::cout << "   Y  Y Y   ;\\~~/\\{| [      _,'-\\`= = '.\\_ ,`    (^)       (^)      _        _            .               -                                                                " << std::endl;
 	outputPosition(3, counter + 22);
-	std::cout << "       --   ;\\~~~/\\|  _,.-` _  `.\\_..-'   _  ., _ Y     _   Y__    (^)      (^)        .               +                   .                         -                        " << std::endl;
+	std::cout << "       --   ;\\~~~/\\|  _,.-` _  `.\\_..-'   _  ., _ Y     _   Y__    (^)      (^)        .               +                   .                         -                      " << std::endl;
 	outputPosition(3, counter + 23);
-	std::cout << "      _    _; \\~~( Y``   Y (^) / `,      (^)      _    (^)          Y        Y    _             .                    .                                                         " << std::endl;
+	std::cout << "      _    _; \\~~( Y``   Y (^) / `,      (^)      _    (^)          Y        Y    _             .                    .                                                        " << std::endl;
 	outputPosition(3, counter + 24);
-	std::cout << "     (^)  (^)`._~ /  L \\  _.Y'`  _  ` --  Y - - -(^) -  Y -         ===          (^)     .         .                  .                    =                                     " << std::endl;
+	std::cout << "     (^)  (^)`._~ /  L \\  _.Y'`  _  ` --  Y - - -(^) -  Y -         ===          (^)     .         .                  .                    =                                  " << std::endl;
 	outputPosition(3, counter + 25);
-	std::cout << "      Y    Y    `'--..,-'`      (^)   _  -    _   Y ____       __      _          Y            .                .                -                                               " << std::endl;
+	std::cout << "      Y    Y    `'--..,-'`      (^)   _  -    _   Y ____       __      _          Y            .                .                -                                             " << std::endl;
 	outputPosition(3, counter + 26);
-	std::cout << "        --                _ --   Y   (^)     (^)  ===   ----          (^) _  _  _      .          '       .         .                     .           +                             " << std::endl;
+	std::cout << "        --                _ --   Y   (^)     (^)  ===   ----          (^) _  _  _      .          '       .         .                     .           +                        " << std::endl;
 	outputPosition(3, counter + 27);
-	std::cout << "    .       __   -       (^)      --- Y       Y                        Y         .           .                        -  -  -                                                      " << std::endl;
+	std::cout << "    .       __   -       (^)      --- Y       Y                        Y         .           .                        -  -  -                                                  " << std::endl;
 	outputPosition(3, counter + 28);
-	std::cout << "       .                  Y         .                 -                     .               -               .                                                                      " << std::endl;
+	std::cout << "       .                  Y         .                 -                     .               -               .                                                                  " << std::endl;
 	outputPosition(3, counter + 29);
-	std::cout << " .                ,         +            .                       -                    =            .                     -              .           ";
+	std::cout << " .                ,         +            .                       -                    =            .                     -              .                                      ";
 	outputPosition(3, counter + 30);
-	std::cout << "   .       .          +             .          .        -                    =                                 -              .           ";
+	std::cout << "   .       .          +             .          .        -                    =                                 -              .                                                ";
 	outputPosition(3, counter + 31);
-	std::cout << "                     .                 .                   +            .                       -                    =            .                     -              .           ";
+	std::cout << "                     .                 .                   +            .                       -                    =            .                     -              .       ";
 	outputPosition(3, counter + 32);
-	std::cout << "       .        .          +       .        +        .            -                    =            .                     -              .           ";
+	std::cout << "       .        .          +       .        +        .            -                    =            .                     -              .                                     ";
 	outputPosition(3, counter + 33);
-	std::cout << " ,          .    .        =        =                   .      .                 -                    =            .                     -              .           ";
+	std::cout << " ,          .    .        =        =                   .      .                 -                    =            .                     -              .                       ";
 	outputPosition(3, counter + 34);
-	std::cout << "   .       .          +             .          .        -                    =                                 -              .           ";
+	std::cout << "   .       .          +             .          .        -                    =                                 -              .                                                ";
 	outputPosition(3, counter + 35);
-	std::cout << "                     .                 .                   +            .                       -                    =            .                     -              .           ";
+	std::cout << "                     .                 .                   +            .                       -                    =            .                     -              .       ";
 	outputPosition(3, counter + 36);
-	std::cout << "       .        .          +       .        +        .            -                    =            .                     -              .           ";
+	std::cout << "       .        .          +       .        +        .            -                    =            .                     -              .                                     ";
 	outputPosition(3, counter + 37);
-	std::cout << " ,          .    .           ,              ,          .      .                 -                    =            .                     -              .           ";
+	std::cout << " ,          .    .           ,              ,          .      .                 -                    =            .                     -              .                       ";
 }
 
 
@@ -2323,7 +2323,7 @@ void printBlankSpace(int x, int y)
 /**
  * @brief Function for printing book decorations
 */
-void prinyBookDecorations()
+void printBookDecorations()
 {
 	int counter = 6;
 	outputPosition(79, counter + 1);
