@@ -980,7 +980,7 @@ void addEvent(EventManager* eventManager)
 	{
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 	}
@@ -1029,7 +1029,7 @@ void deleteEvent(EventManager* eventManager)
 	{
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 	}
@@ -1259,7 +1259,7 @@ void displayEvent(const Event& e)
 	_getch();
 	system("CLS");
 	printClosedBook();
-	prinyBookDecorations();
+	printBookDecorations();
 	printSnakeSword();
 	printTeamLogo();
 }
@@ -1349,7 +1349,7 @@ void displayAllEvents(EventManager* eventManager, int sorting, int& type)
 		_getch();
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 		return;
@@ -1631,7 +1631,7 @@ void printAsMap(EventManager* eventManager)
 			_getch();
 			system("CLS");
 			printClosedBook();
-			prinyBookDecorations();
+			printBookDecorations();
 			printSnakeSword();
 			printTeamLogo();
 		}
@@ -1799,7 +1799,7 @@ void editEvent(EventManager* eventManager)
 
 							system("CLS");
 							printClosedBook();
-							prinyBookDecorations();
+							printBookDecorations();
 							printSnakeSword();
 							printTeamLogo();
 
@@ -1985,7 +1985,7 @@ void editEvent(EventManager* eventManager)
 			_getch();
 			system("CLS");
 			printClosedBook();
-			prinyBookDecorations();
+			printBookDecorations();
 			printSnakeSword();
 			printTeamLogo();
 		}
@@ -2082,7 +2082,7 @@ void printAsTimeline(StorylineManager* storylineManager)
 	_getch();
 	system("CLS");
 	printClosedBook();
-	prinyBookDecorations();
+	printBookDecorations();
 	printSnakeSword();
 	printTeamLogo();
 }
@@ -2307,7 +2307,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 				selectedOptions = 0;
 				system("CLS");
 				printClosedBook();
-				prinyBookDecorations();
+				printBookDecorations();
 				printSnakeSword();
 				printTeamLogo();
 				return;
@@ -2335,7 +2335,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		selectedOptions = 0;
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 		return;
@@ -2405,7 +2405,7 @@ void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineMa
 			_getch();
 			system("CLS");
 			printClosedBook();
-			prinyBookDecorations();
+			printBookDecorations();
 			printSnakeSword();
 			printTeamLogo();
 			break;

@@ -28,27 +28,27 @@ void Application::init(AccountManager& accountManager, EventManager& eventManage
 	);
 
 	eventManager.addUprisingEvent(
-		"Uprising of Vanya Velikova",
-		{ "18 sep 2021" },
+		"Uprising of Karposh",
+		{ "10 oct 1689", "18 dec 1689"},
 		{ 0, 0 },
-		{ "Vanya Velikoa", "Qsha Beibi" },
+		{ "Karposh", "Selim Girai" },
 		true,
 		1
 	);
 
 	eventManager.addWarEvent(
 		"Crimean War",
-		{ "16 oct 1853", "30 mar 1856" },
+		{ "5 oct 1853", "30 mar 1856" },
 		{ 0, 0 },
-		{ "Ottoman Empire", "Russian Empire" },
-		"Otoman Empire",
-		"Lorem ipsum"
+		{ "Ottoman Empire", "Russian Empire" , "France",},
+		{ "Otoman Empire" },
+		{ "Influence on the declining Ottoman territories" }
 	);
 
 	eventManager.addMovementEvent(
 		"Movement ipsum",
-		{ "16 oct 1153", "30 mar 1157" },
-		{ 0, 0 },
+		{ "10 century" },
+		{ 0 },
 		"Long story",
 		"Djena e velika",
 		"Qsha beibi"
