@@ -2323,7 +2323,7 @@ void printBlankSpace(int x, int y)
 /**
  * @brief Function for printing book decorations
 */
-void prinyBookDecorations()
+void printBookDecorations()
 {
 	int counter = 6;
 	outputPosition(79, counter + 1);

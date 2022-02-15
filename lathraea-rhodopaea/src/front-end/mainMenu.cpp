@@ -980,7 +980,7 @@ void addEvent(EventManager* eventManager)
 	{
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 	}
@@ -1029,7 +1029,7 @@ void deleteEvent(EventManager* eventManager)
 	{
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 	}
@@ -1074,7 +1074,7 @@ void displayEvent(const Event& e)
 		outputPosition(81, 16);
 		std::cout << "Type: Uprising";
 		outputPosition(81, 18);
-		std::cout << "Epoch: "<< e.epochs[0];
+		std::cout << "Epoch: " << e.epochs[0];
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 21);
@@ -1095,7 +1095,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 31);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 32);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 		else
 		{
@@ -1148,7 +1148,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 35);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 36);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 		else
 		{
@@ -1165,7 +1165,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 31);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 32);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 
 		break;
@@ -1200,7 +1200,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 35);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 36);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 		else
 		{
@@ -1217,7 +1217,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 31);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 32);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 	case TypeOfEvent::OTHER:
 		printFullyOpenedBook();
@@ -1242,7 +1242,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 27);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 28);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 		else
 		{
@@ -1251,7 +1251,7 @@ void displayEvent(const Event& e)
 			outputPosition(81, 23);
 			std::cout << "Additional notes: ";
 			outputPosition(81, 24);
-			std::cout<< e.additionalNotes;
+			std::cout << e.additionalNotes;
 		}
 		break;
 	}
@@ -1259,7 +1259,7 @@ void displayEvent(const Event& e)
 	_getch();
 	system("CLS");
 	printClosedBook();
-	prinyBookDecorations();
+	printBookDecorations();
 	printSnakeSword();
 	printTeamLogo();
 }
@@ -1349,7 +1349,7 @@ void displayAllEvents(EventManager* eventManager, int sorting, int& type)
 		_getch();
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 		return;
@@ -1631,7 +1631,7 @@ void printAsMap(EventManager* eventManager)
 			_getch();
 			system("CLS");
 			printClosedBook();
-			prinyBookDecorations();
+			printBookDecorations();
 			printSnakeSword();
 			printTeamLogo();
 		}
@@ -1735,13 +1735,24 @@ void editEvent(EventManager* eventManager)
 
 				std::string title;
 				std::string period;
+				std::string organizers;
+				bool isItSuccessful = true;
+				int rebilions;
+				const std::vector<std::string> successOfEventOptions = {
+					"Successful",
+					"Unsuccessful"
+				};
+				int x = 56;
+				int y = 20;
+				char key;
+
 
 				int selectedOption1 = 1;
 				char pressedKey1 = ' ';
 
 				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
 				{
-					for (int i = 0; i < allEvents.size(); i++)
+					for (int i = 0; i < uprisingOptions.size(); i++)
 					{
 						if (i + 1 == selectedOption1)
 						{
@@ -1776,10 +1787,10 @@ void editEvent(EventManager* eventManager)
 							selectedOption1 -= 1;
 						}
 						break;
-					case (int)ARROW_KEYS::KEY_ENTER:					
+					case (int)ARROW_KEYS::KEY_ENTER:
 						switch (selectedOption)
 						{
-						case 1:
+						case 2:
 							printFullyOpenedBook();
 							outputPosition(81, 10);
 							std::cout << "Enter the title of the event: " << std::endl;
@@ -1794,26 +1805,20 @@ void editEvent(EventManager* eventManager)
 								getline(std::cin, title);
 							}
 							outputPosition(81, 14);
-							std::cout << "Changes saved successfully";
+							std::cout << "Changes saved successfully!";
 							eventManager->setSingleValueField(eventManager->eventList->event.title, title);
-
-							system("CLS");
-							printClosedBook();
-							prinyBookDecorations();
-							printSnakeSword();
-							printTeamLogo();
-
 							break;
-						case 2:
+						case 3:
 							printFullyOpenedBook();
-							
+
 							outputPosition(81, 10);
 							std::cout << "Enter the starting and ending year and date";
 							outputPosition(81, 12);
 							std::cout << "Example - (20 apr 1876, 15 may 1876)";
 							outputPosition(81, 14);
 							getline(std::cin, period);
-
+							outputPosition(81, 16);
+							std::cout << "Changes saved successfully!";
 							while (!checkDatesValidation(period))
 							{
 								outputPosition(81, 14);
@@ -1822,9 +1827,144 @@ void editEvent(EventManager* eventManager)
 								std::cout << "Please enter a date/s - ex(24 apr 809, 27 apr 810)";
 								outputPosition(81, 18);
 								getline(std::cin, period);
+								outputPosition(81, 20);
+								std::cout << "Changes saved successfully!";
 							}
-							/*eventManager->setMultiValueField(eventManager->eventList->event.period, separateDates(period));*/
-						default:
+							DateManager dateManager;
+							eventManager->setMultiValueField(eventManager->eventList->event.period, dateManager.converVectorOfStringsToVectorOfDate(separateDates(period)));
+							break;
+						case 4:
+							printFullyOpenedBook();
+							printMapPopUp();
+							printBulgarianMap();							
+							outputPosition(x, y);
+							std::cout << char(254);
+							while ((key = _getch()) != (char)ARROW_KEYS::KEY_ENTER)
+							{
+								switch (key)
+								{
+								case (char)ARROW_KEYS::KEY_UP:
+									outputPosition(x, y);
+									std::cout << " ";
+									y -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_DOWN:
+									outputPosition(x, y);
+									std::cout << " ";
+									y += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_LEFT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x += 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_RIGHT:
+									outputPosition(x, y);
+									std::cout << " ";
+									x -= 1;
+									outputPosition(x, y);
+									std::cout << char(254);
+									break;
+								case (char)ARROW_KEYS::KEY_ENTER:
+									printFullyOpenedBook();
+									break;
+								}
+							}
+							eventManager->setSingleValueField<short>(eventManager->eventList->event.coordinates.X, x);
+							eventManager->setSingleValueField<short>(eventManager->eventList->event.coordinates.Y, y);
+							break;
+						case 5:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the organizers of the event: " << std::endl;
+							outputPosition(81, 12);
+							getline(std::cin, organizers);
+
+							while (organizers.empty())
+							{
+								outputPosition(81, 12);
+								std::cout << "Organizers can not be empty, please enter again: ";
+								outputPosition(81, 14);
+								getline(std::cin, organizers);
+							}
+
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+							eventManager->setMultiValueField(eventManager->eventList->event.organizers, { organizers });
+							break;
+						case 6:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Enter the numbers of rebilions: " << std::endl;
+							outputPosition(81, 12);
+							std::cin >> rebilions;
+
+							outputPosition(81, 14);
+							std::cout << "Changes saved successfully!";
+							eventManager->setSingleValueField(eventManager->eventList->event.numberOfRebelions, rebilions);
+							break;
+						case 7:
+							printFullyOpenedBook();
+							outputPosition(81, 10);
+							std::cout << "Is the event successful?";
+
+							int selectedOption = 1;
+							char pressedKey = ' ';
+
+							while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+							{
+								for (int i = 0; i < successOfEventOptions.size(); i++)
+								{
+									if (i + 1 == selectedOption)
+									{
+										outputPosition(81, 12 + i * 2);
+										std::cout << "-> ";
+									}
+									else
+									{
+										outputPosition(81, 12 + i * 2);
+										std::cout << "   ";
+									}
+									std::cout << successOfEventOptions[i] << std::endl << std::endl;
+								}
+								pressedKey = _getch();
+								switch (pressedKey)
+								{
+								case (int)ARROW_KEYS::KEY_UP:
+									selectedOption--;
+									if (selectedOption == 0)
+									{
+										selectedOption += 1;
+									}
+									break;
+
+								case (int)ARROW_KEYS::KEY_DOWN:
+									selectedOption++;
+									if (selectedOption == successOfEventOptions.size() + 1)
+									{
+										selectedOption -= 1;
+									}
+									break;
+								case (int)ARROW_KEYS::KEY_ENTER:
+									switch (selectedOption)
+									{
+									case 1:
+										isItSuccessful = true;
+
+										break;
+									case 2:
+										isItSuccessful = false;
+										break;
+									}
+								}
+							}
+							eventManager->setSingleValueField(eventManager->eventList->event.isItSuccessful, isItSuccessful);
 							break;
 						}
 					}
@@ -1840,7 +1980,7 @@ void editEvent(EventManager* eventManager)
 
 				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
 				{
-					for (int i = 0; i < allEvents.size(); i++)
+					for (int i = 0; i < warOptions.size(); i++)
 					{
 						if (i + 1 == selectedOption1)
 						{
@@ -1889,7 +2029,7 @@ void editEvent(EventManager* eventManager)
 
 				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
 				{
-					for (int i = 0; i < allEvents.size(); i++)
+					for (int i = 0; i < movementOptions.size(); i++)
 					{
 						if (i + 1 == selectedOption1)
 						{
@@ -1938,7 +2078,7 @@ void editEvent(EventManager* eventManager)
 
 				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
 				{
-					for (int i = 0; i < allEvents.size(); i++)
+					for (int i = 0; i < otherOptions.size(); i++)
 					{
 						if (i + 1 == selectedOption1)
 						{
@@ -1978,14 +2118,10 @@ void editEvent(EventManager* eventManager)
 					}
 				}
 			}
-			printMapPopUp();
-			printBulgarianMap();
-			outputPosition((allEvents[selectedOption - 1].coordinates.X), (allEvents[selectedOption - 1].coordinates.Y));
-			std::cout << char(254);
 			_getch();
 			system("CLS");
 			printClosedBook();
-			prinyBookDecorations();
+			printBookDecorations();
 			printSnakeSword();
 			printTeamLogo();
 		}
@@ -2082,7 +2218,7 @@ void printAsTimeline(StorylineManager* storylineManager)
 	_getch();
 	system("CLS");
 	printClosedBook();
-	prinyBookDecorations();
+	printBookDecorations();
 	printSnakeSword();
 	printTeamLogo();
 }
@@ -2307,7 +2443,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 				selectedOptions = 0;
 				system("CLS");
 				printClosedBook();
-				prinyBookDecorations();
+				printBookDecorations();
 				printSnakeSword();
 				printTeamLogo();
 				return;
@@ -2335,7 +2471,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		selectedOptions = 0;
 		system("CLS");
 		printClosedBook();
-		prinyBookDecorations();
+		printBookDecorations();
 		printSnakeSword();
 		printTeamLogo();
 		return;
@@ -2405,7 +2541,7 @@ void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineMa
 			_getch();
 			system("CLS");
 			printClosedBook();
-			prinyBookDecorations();
+			printBookDecorations();
 			printSnakeSword();
 			printTeamLogo();
 			break;

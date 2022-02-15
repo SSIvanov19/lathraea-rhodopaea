@@ -385,11 +385,14 @@ struct EventManager
 	);
 };
 
-template void EventManager::setSingleValueField<std::string>(std::string&, std::string);
-template void EventManager::setSingleValueField<Coordinates>(Coordinates&, Coordinates);
-template void EventManager::setSingleValueField<time_t>(time_t&, time_t);
-template void EventManager::setSingleValueField<bool>(bool&, bool);
-template void EventManager::setSingleValueField<int>(int&, int);
+template<typename T>
+void EventManager::setSingleValueField(T& field, T value)
+{
+	field = value;
+}
 
-template void EventManager::setMultiValueField<std::string>(std::vector<std::string>&, std::vector<std::string>);
-template void EventManager::setMultiValueField<tm>(std::vector<tm>&, std::vector<tm>);
+template<typename T>
+void EventManager::setMultiValueField(std::vector<T>& field, std::vector<T> value)
+{
+	field.swap(value);
+}

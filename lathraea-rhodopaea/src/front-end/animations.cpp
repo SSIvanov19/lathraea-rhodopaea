@@ -100,7 +100,7 @@ void reverseBookOpeningAnimation() {
 	delay(120);
 	printSlightlyOpenBook();
 	printClosedBook();
-	prinyBookDecorations();
+	printBookDecorations();
 	printSnakeSword();
 	printTeamLogo();
 }

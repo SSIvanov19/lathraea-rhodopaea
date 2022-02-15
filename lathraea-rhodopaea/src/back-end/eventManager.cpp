@@ -821,18 +821,6 @@ bool EventManager::removeEvent(EventList * *head, std::string searchTitle)
 	return true;
 }
 
-template<typename T>
-void EventManager::setSingleValueField(T & field, T value)
-{
-	field = value;
-}
-
-template<typename T>
-void EventManager::setMultiValueField(std::vector<T>&field, std::vector<T> value)
-{
-	field.swap(value);
-}
-
 void EventManager::approveEvent(std::string titleOfTheEvent)
 {
 	LoggerManager loggerManager;
