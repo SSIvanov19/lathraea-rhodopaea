@@ -110,22 +110,22 @@ void reverseBookOpeningAnimation() {
 */
 void loadingAnimation()
 {
-	delay(1000);
+	delay(300);
 	outputPosition(90, 15);
 	std::cout << (char)254;
-	delay(1000);
+	delay(300);
 	outputPosition(92, 15);
 	std::cout << (char)254;
-	delay(1000);
+	delay(300);
 	outputPosition(94, 15);
 	std::cout << (char)254;
-	delay(1000);
+	delay(300);
 	outputPosition(96, 15);
 	std::cout << (char)254;
-	delay(1000);
+	delay(300);
 	outputPosition(98, 15);
 	std::cout << (char)254;
-	delay(320);
+	delay(280);
 	outputPosition(84, 17);
 	std::cout << "PRESS ENTER TO START!";
 }
