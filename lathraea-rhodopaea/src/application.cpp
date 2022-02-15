@@ -47,8 +47,8 @@ void Application::init(AccountManager& accountManager, EventManager& eventManage
 
 	eventManager.addMovementEvent(
 		"Movement ipsum",
-		{ "10 century" },
-		{ 0 },
+		{ "5 oct 1853", "30 mar 1856" },
+		{ 0, 0 },
 		"Long story",
 		"Djena e velika",
 		"Qsha beibi"
