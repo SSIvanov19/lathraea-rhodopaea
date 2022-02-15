@@ -27,5 +27,7 @@ void printEventInfo(const std::vector<Event> events, int output); // Function fo
 void displayAllEvents(EventManager* eventManager, int sorting, int& type); // Function for displaying all the events
 void chooseSorting(EventManager* eventManager, int type); // Function for choosing the way of sorting the events by year
 void printBy(EventManager* eventManager); // Function for choosing the type of printing the events
-void displayEvents(EventManager* eventManager); // Function for choosing the way of printing the events
+void printAsMap(EventManager* eventManager); // Function for printing event coordinates on map
+void printAsTimeline(StorylineManager* storylineManager); // Function for printing events as a timeline
+void displayEvents(EventManager* eventManager, StorylineManager* storylineManager); // Function for choosing the way of printing the events
 void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineManager, char key, int& selectedOption, std::vector<std::string> possibleOptions); // Function for coloring hovered options
