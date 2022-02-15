@@ -22,7 +22,7 @@ std::string getTheEpoch(tm d)
 
 	if (year >= 681 && year <= 1018)
 	{
-		return "Bulgarian Middle Ages -> First Bulgarian country (681 - 1018)";
+		return "Bulgarian Middle Ages -> First Bulgarian country(681 - 1018)";
 	}
 
 	if (year > 1018 && year <= 1185)
@@ -822,13 +822,13 @@ bool EventManager::removeEvent(EventList * *head, std::string searchTitle)
 }
 
 template<typename T>
-void EventManager::setSingleValueField(T& field, T value)
+void EventManager::setSingleValueField(T & field, T value)
 {
 	field = value;
 }
 
 template<typename T>
-void EventManager::setMultiValueField(std::vector<T>& field, std::vector<T> value)
+void EventManager::setMultiValueField(std::vector<T>&field, std::vector<T> value)
 {
 	field.swap(value);
 }
