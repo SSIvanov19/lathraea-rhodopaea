@@ -2140,7 +2140,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 
 	for (size_t i = 0; i < events.size(); i++)
 	{
-		outputPosition(81, 12 + i);
+		outputPosition(81, 12 + i * 2);
 		selectedOptions == i ? std::cout << " -> " : std::cout << "    ";
 
 		std::cout << events[i].title;
@@ -2155,7 +2155,7 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 		}
 	}
 
-	outputPosition(81, 12 + events.size());
+	outputPosition(81, 12 + events.size() * 2);
 
 	int numOfSelEvents = getNumberOfSelectedEvents(indexSelectedEvents);
 
@@ -2196,12 +2196,12 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 				if (indexSelectedEvents[selectedOptions] == 1)
 				{
 					indexSelectedEvents[selectedOptions] = 0;
-					outputPosition(81, 13 + events.size());
+					outputPosition(81, 13 + events.size() * 2);
 					std::cout << "                                                  ";
 				}
 				else
 				{
-					outputPosition(81, 13 + events.size());
+					outputPosition(81, 13 + events.size() * 2);
 					std::cout << "Can not add more than 6 events to single storyline";
 				}
 			}
@@ -2218,23 +2218,24 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 			std::cout << "                                                  ";
 
 			std::string title;
-			outputPosition(81, 13 + events.size());
+			printFullyOpenedBook();
+			outputPosition(81, 10);
 			std::cout << "Please, enter title for the new storyline";
-			outputPosition(81, 14 + events.size());
+			outputPosition(81, 12);
 			getline(std::cin, title);
 
 			while (title.empty())
 			{
-				outputPosition(81, 13 + events.size());
+				outputPosition(81, 10);
 				std::cout << "Please, enter title for the new storyline";
-				outputPosition(81, 14 + events.size());
+				outputPosition(81, 12);
 				getline(std::cin, title);
 			}
 
 			std::string desc;
-			outputPosition(81, 15 + events.size());
+			outputPosition(81, 14);
 			std::cout << "Please, enter description for the new storyline";
-			outputPosition(81, 16 + events.size());
+			outputPosition(81, 16);
 			getline(std::cin, desc);
 
 			std::vector<Event> storylineEvents;

@@ -48,9 +48,6 @@ void bookAnimation()
 */
 void reverseBookAnimation() 
 {
-	printOpenedBook();
-	delay(120);
-	system("CLS");	
 	pageLeafingRightOne();
 	delay(120);
 	system("CLS");	
