@@ -1634,6 +1634,306 @@ void printAsMap(EventManager* eventManager)
 	}
 }
 
+void editEvent(EventManager* eventManager)
+{
+	std::vector<Event> allEvents = eventManager->getAllEvents(0);
+	int selectedOption = 1;
+	char pressedKey = ' ';
+	outputPosition(81, 10);
+	std::cout << "Choose the event you want to edit!";
+	while (pressedKey != (int)ARROW_KEYS::KEY_ENTER)
+	{
+		for (int i = 0; i < allEvents.size(); i++)
+		{
+			if (i + 1 == selectedOption)
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "-> ";
+			}
+			else
+			{
+				outputPosition(81, 12 + i * 2);
+				std::cout << "   ";
+			}
+
+			for (int j = 0; j < allEvents[i].period.size(); j++)
+			{
+				outputPosition(84, 12 + i * 2);
+				std::cout << allEvents[i].title << " - " << allEvents[i].period[j].tm_mday << " " << allEvents[i].period[j].tm_mon + 1 << " " << allEvents[i].period[j].tm_year + 1900 << std::endl;
+			}
+
+		}
+		pressedKey = _getch();
+		switch (pressedKey)
+		{
+		case (int)ARROW_KEYS::KEY_UP:
+			selectedOption--;
+			if (selectedOption == 0)
+			{
+				selectedOption += 1;
+			}
+			break;
+
+		case (int)ARROW_KEYS::KEY_DOWN:
+			selectedOption++;
+			if (selectedOption == allEvents.size() + 1)
+			{
+				selectedOption -= 1;
+			}
+			break;
+		case (int)ARROW_KEYS::KEY_ENTER:
+			std::vector<std::string> uprisingOptions
+			{
+				"Title",
+				"Date",
+				"Coordinates",
+				"Organizers",
+				"Number of rebilions",
+				"Success",
+
+			};
+
+			std::vector<std::string> warOptions
+			{
+				"Title",
+				"Date",
+				"Coordinates",
+				"Participating countries",
+				"Winner",
+				"Reason",
+				"Rulers",
+
+			};
+
+			std::vector<std::string> movementOptions
+			{
+				"Title",
+				"Date",
+				"Coordinates",
+				"How it started",
+				"Ideas",
+				"Aims",
+				"Representatives",
+
+			};
+
+			std::vector<std::string> otherOptions
+			{
+				"Title",
+				"Date",
+				"Coordinates",
+			};
+			if ((allEvents[selectedOption - 1].type == TypeOfEvent::UPRISING))
+			{
+				printFullyOpenedBook();
+				outputPosition(81, 10);
+				std::cout << "What do you want to edit?";
+				int selectedOption1 = 1;
+				char pressedKey1 = ' ';
+
+				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
+				{
+					for (int i = 0; i < allEvents.size(); i++)
+					{
+						if (i + 1 == selectedOption1)
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "-> ";
+						}
+						else
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "   ";
+						}
+
+						outputPosition(84, 12 + i * 2);
+						std::cout << uprisingOptions[i];
+
+					}
+					pressedKey1 = _getch();
+					switch (pressedKey1)
+					{
+					case (int)ARROW_KEYS::KEY_UP:
+						selectedOption1--;
+						if (selectedOption1 == 0)
+						{
+							selectedOption1 += 1;
+						}
+						break;
+
+					case (int)ARROW_KEYS::KEY_DOWN:
+						selectedOption1++;
+						if (selectedOption1 == allEvents.size() + 1)
+						{
+							selectedOption1 -= 1;
+						}
+						break;
+					case (int)ARROW_KEYS::KEY_ENTER:
+						break;
+					}
+				}
+			}
+			else if ((allEvents[selectedOption - 1].type == TypeOfEvent::WAR))
+			{
+				printFullyOpenedBook();
+				outputPosition(81, 10);
+				std::cout << "What do you want to edit?";
+				int selectedOption1 = 1;
+				char pressedKey1 = ' ';
+
+				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
+				{
+					for (int i = 0; i < allEvents.size(); i++)
+					{
+						if (i + 1 == selectedOption1)
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "-> ";
+						}
+						else
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "   ";
+						}
+						outputPosition(84, 12 + i * 2);
+						std::cout << warOptions[i];
+
+					}
+					pressedKey1 = _getch();
+					switch (pressedKey1)
+					{
+					case (int)ARROW_KEYS::KEY_UP:
+						selectedOption1--;
+						if (selectedOption1 == 0)
+						{
+							selectedOption1 += 1;
+						}
+						break;
+
+					case (int)ARROW_KEYS::KEY_DOWN:
+						selectedOption1++;
+						if (selectedOption1 == allEvents.size() + 1)
+						{
+							selectedOption1 -= 1;
+						}
+						break;
+					case (int)ARROW_KEYS::KEY_ENTER:
+						break;
+					}
+				}
+			}
+			else if ((allEvents[selectedOption - 1].type == TypeOfEvent::MOVEMENT))
+			{
+				printFullyOpenedBook();
+				outputPosition(81, 10);
+				std::cout << "What do you want to edit?";
+				int selectedOption1 = 1;
+				char pressedKey1 = ' ';
+
+				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
+				{
+					for (int i = 0; i < allEvents.size(); i++)
+					{
+						if (i + 1 == selectedOption1)
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "-> ";
+						}
+						else
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "   ";
+						}
+						outputPosition(84, 12 + i * 2);
+						std::cout << movementOptions[i];
+
+					}
+					pressedKey1 = _getch();
+					switch (pressedKey1)
+					{
+					case (int)ARROW_KEYS::KEY_UP:
+						selectedOption1--;
+						if (selectedOption1 == 0)
+						{
+							selectedOption1 += 1;
+						}
+						break;
+
+					case (int)ARROW_KEYS::KEY_DOWN:
+						selectedOption1++;
+						if (selectedOption1 == allEvents.size() + 1)
+						{
+							selectedOption1 -= 1;
+						}
+						break;
+					case (int)ARROW_KEYS::KEY_ENTER:
+						break;
+					}
+				}
+			}
+			else if ((allEvents[selectedOption - 1].type == TypeOfEvent::OTHER))
+			{
+				printFullyOpenedBook();
+				outputPosition(81, 10);
+				std::cout << "What do you want to edit?";
+				int selectedOption1 = 1;
+				char pressedKey1 = ' ';
+
+				while (pressedKey1 != (int)ARROW_KEYS::KEY_ENTER)
+				{
+					for (int i = 0; i < allEvents.size(); i++)
+					{
+						if (i + 1 == selectedOption1)
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "-> ";
+						}
+						else
+						{
+							outputPosition(81, 12 + i * 2);
+							std::cout << "   ";
+						}
+
+						outputPosition(84, 12 + i * 2);
+						std::cout << otherOptions[i];
+
+					}
+					pressedKey1 = _getch();
+					switch (pressedKey1)
+					{
+					case (int)ARROW_KEYS::KEY_UP:
+						selectedOption1--;
+						if (selectedOption1 == 0)
+						{
+							selectedOption1 += 1;
+						}
+						break;
+
+					case (int)ARROW_KEYS::KEY_DOWN:
+						selectedOption1++;
+						if (selectedOption1 == allEvents.size() + 1)
+						{
+							selectedOption1 -= 1;
+						}
+						break;
+					case (int)ARROW_KEYS::KEY_ENTER:
+						break;
+					}
+				}
+			}
+			printMapPopUp();
+			printBulgarianMap();
+			outputPosition((allEvents[selectedOption - 1].coordinates.X), (allEvents[selectedOption - 1].coordinates.Y));
+			std::cout << char(254);
+			_getch();
+			system("CLS");
+			printClosedBook();
+			prinyBookDecorations();
+			printSnakeSword();
+			printTeamLogo();
+		}
+	}
+}
 /**
  * @brief Function for printing events as a timeline
  * @param storylineManager Variable for an storyline manager
@@ -2025,6 +2325,11 @@ void switchMenuOptions(EventManager* eventManager, StorylineManager* storylineMa
 			system("CLS");
 			bookOpeningAnimation();
 			deleteEvent(eventManager);
+			break;
+		case 3:
+			system("CLS");
+			bookOpeningAnimation();
+			editEvent(eventManager);
 			break;
 		case 4:
 			system("CLS");
