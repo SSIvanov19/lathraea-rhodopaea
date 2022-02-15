@@ -1940,12 +1940,6 @@ void editEvent(EventManager* eventManager)
 void printAsTimeline(StorylineManager* storylineManager)
 {
 	std::vector<Storyline> allEvents = storylineManager->getAllStorylines(0);
-	EventManager ev;
-
-	for (size_t i = 0; i < allEvents.size(); i++)
-	{
-		allEvents[i].events = ev.sortAndGetAllEventsByTimeOfCreation(allEvents[i].events);
-	}
 
 	if (allEvents.empty())
 	{
@@ -2245,6 +2239,8 @@ void createStoryline(EventManager* eventManager, StorylineManager* storylineMana
 					storylineEvents.push_back(events[i]);
 				}
 			}
+
+			storylineEvents = eventManager->sortAndGetAllEventsByDate(storylineEvents);
 
 			try
 			{
