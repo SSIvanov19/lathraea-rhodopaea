@@ -10,9 +10,48 @@
 #include <string>
 #include <back-end/accountSystem.h>
 
-std::vector<std::string> enterRegisterData(); // Function for entering and validating regitestration data.
-void registerUser(AccountManager* accountManager); // Function for registrating user.
-std::vector<std::string> enterLoginData(); // Function for loging in user.
-bool isUserLogedIn(AccountManager* accountManager); // Function for loging in user.
-bool switchLoginOptions(AccountManager* accountManager, char key, int& selectedOption, std::vector<std::string> possibleOptions); // Function for coloring hovered login/register options.
-void accountMenu(AccountManager& accountManager); // Function for login and register.
+/**
+ * @brief Function for entering and validating registration data.
+ * @return Vector with email and password
+*/
+std::vector<std::string> enterRegisterData();
+
+/**
+ * @brief Function for registering user.
+ * @param accountManager Account manager
+*/
+void registerUser(AccountManager* accountManager);
+
+/**
+ * @brief Function for loging in user.
+ * @return Vector with email and password
+*/
+std::vector<std::string> enterLoginData(); 
+
+/**
+ * @brief Function for loging in user.
+ * @param accountManager 
+ * @return 
+*/
+bool isUserLogedIn(AccountManager* accountManager);
+
+/**
+ * @brief Function for switching hovered login/register options.
+ * @param accountManager Account manager
+ * @param key Key
+ * @param selectedOption Selected options
+ * @param possibleOptions Possible options
+ * @return Is login successful
+*/
+bool switchLoginOptions(
+	AccountManager* accountManager,
+	char key, 
+	int& selectedOption,
+	std::vector<std::string> possibleOptions
+); 
+
+/**
+ * @brief Function for handaling account menu
+ * @param accountManager Account manager
+*/
+void accountMenu(AccountManager& accountManager);

@@ -5,7 +5,26 @@
 #include <windows.h>
 #include <string>
 
-void outputPosition(int x, int y); // Function for setting the output position
-void setConsoleColorTo(int color); // Function for setting the output color
-void setCursorVisibilityTo(bool shown); // Function for showing/hideing the cursor
+/**
+ * @brief Function for setting the output position
+ * @param x X coordinate
+ * @param y Y coordinate
+*/
+void outputPosition(int x, int y);
+
+/**
+ * @brief Function for setting the output color
+ * @param color The code of the color
+*/
+void setConsoleColorTo(int color);
+
+/**
+ * @brief Function for showing/hideing the cursor
+ * @param shown is shown
+*/
+void setCursorVisibilityTo(bool shown); 
+
+/**
+ * @brief Function for clearing the console
+*/
 void clearConsole();

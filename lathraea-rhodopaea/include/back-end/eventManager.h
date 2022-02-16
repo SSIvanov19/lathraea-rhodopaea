@@ -39,11 +39,11 @@ struct Event
 	std::string title; //!< Title of the event
 	std::vector<tm> period; //!< Period/Year of the event
 	std::vector<std::string> epochs; //!< Epoch of the event (Determine by the year)
-	Coordinates coordinates; //!< Coordinates of the event
+	Coordinates coordinates = { 0, 0 }; //!< Coordinates of the event
 	TypeOfEvent type; //!< Type of the event
 	std::string additionalNotes; //!< Description of the event
 	time_t timeOfCreation; //!< Time of creation of the event
-	bool isAdminApproved; //!< Is the event approved by an admin
+	bool isAdminApproved = false; //!< Is the event approved by an admin
 
 	// Uprising event
 	std::vector<std::string> organizers; //!< Organizers of the uprising

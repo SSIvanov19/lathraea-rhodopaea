@@ -30,13 +30,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -49,7 +49,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -89,7 +89,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -135,7 +135,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -157,11 +157,16 @@
     <ClCompile Include="src\back-end\storylineManager.cpp" />
     <ClCompile Include="src\back-end\validations.cpp" />
     <ClCompile Include="src\external\strptime.cpp" />
+    <ClCompile Include="src\front-end\adminMenu.cpp" />
     <ClCompile Include="src\front-end\animations.cpp" />
+    <ClCompile Include="src\front-end\eventManagerMenu.cpp" />
     <ClCompile Include="src\front-end\graphics.cpp" />
+    <ClCompile Include="src\front-end\helperFunctions.cpp" />
     <ClCompile Include="src\front-end\loginMenu.cpp" />
     <ClCompile Include="src\front-end\mainMenu.cpp" />
     <ClCompile Include="src\front-end\output.cpp" />
+    <ClCompile Include="src\front-end\storylineManagerMenu.cpp" />
+    <ClCompile Include="src\front-end\userManagementMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h" />
@@ -176,12 +181,24 @@
     <ClInclude Include="include\back-end\validations.h" />
     <ClInclude Include="include\external\dotenv.h" />
     <ClInclude Include="include\external\strptime.h" />
+    <ClInclude Include="include\front-end\adminMenu.h" />
     <ClInclude Include="include\front-end\animations.h" />
     <ClInclude Include="include\front-end\enumerations.h" />
+    <ClInclude Include="include\front-end\eventManagerMenu.h" />
     <ClInclude Include="include\front-end\graphics.h" />
+    <ClInclude Include="include\front-end\helperFunctions.h" />
     <ClInclude Include="include\front-end\loginMenu.h" />
     <ClInclude Include="include\front-end\mainMenu.h" />
     <ClInclude Include="include\front-end\output.h" />
+    <ClInclude Include="include\front-end\storylineManagerMenu.h" />
+    <ClInclude Include="include\front-end\userManagementMenu.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="lathraeaRhodopaea.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\img\iconForApplication.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

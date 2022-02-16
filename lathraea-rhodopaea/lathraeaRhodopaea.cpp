@@ -12,7 +12,6 @@
 */
 int main()
 {
-	
 	try
 	{
 		LoggerManager loggerManager;

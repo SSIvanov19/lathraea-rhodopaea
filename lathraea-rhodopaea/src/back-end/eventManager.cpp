@@ -365,11 +365,6 @@ void EventManager::addUprisingEvent(
 		LogSeverity::INFO,
 		"Event with title: " + title + " is registered successfully."
 	);
-
-	////Should be removed
-	//std::cout << "Event added successfully. All events data:\n\n";
-	//eventList->displayAllEvents();
-	//std::cout << std::endl;
 }
 
 void EventManager::addWarEvent(
@@ -502,11 +497,6 @@ void EventManager::addWarEvent(
 		LogSeverity::INFO,
 		"Event with title: " + title + " is registered successfully."
 	);
-
-	////Should be removed
-	//std::cout << "Event added successfully. All events data:\n\n";
-	//eventList->displayAllEvents();
-	//std::cout << std::endl;
 }
 
 
@@ -639,11 +629,6 @@ void EventManager::addMovementEvent(
 		LogSeverity::INFO,
 		"Event with title: " + title + " is registered successfully."
 	);
-
-	////Should be removed
-	//std::cout << "Event added successfully. All events data:\n\n";
-	//eventList->displayAllEvents();
-	//std::cout << std::endl;
 }
 
 void EventManager::addOtherEvent(
@@ -728,11 +713,6 @@ void EventManager::addOtherEvent(
 		LogSeverity::INFO,
 		"Event with title: " + title + " is registered successfully."
 	);
-
-	////Should be removed
-	//std::cout << "Event added successfully. All events data:\n\n";
-	//eventList->displayAllEvents();
-	//std::cout << std::endl;
 }
 
 bool EventManager::removeEvent(EventList * *head, std::string searchTitle)
@@ -776,7 +756,10 @@ bool EventManager::removeEvent(EventList * *head, std::string searchTitle)
 			return false;
 		}
 
-		prev->next = temp->next;
+		if (prev != NULL)
+		{
+			prev->next = temp->next;
+		}
 
 		loggerManager.log(
 			LogSeverity::INFO,
@@ -1018,7 +1001,9 @@ bool compareDates(Event e1, Event e2)
 	return dateManager.areDatesInOrder(e1.period[0], e2.period[0]);
 }
 
-std::vector<Event> EventManager::sortAndGetAllEventsByTimeOfCreation(std::vector<Event> events)
+std::vector<Event> EventManager::sortAndGetAllEventsByTimeOfCreation(
+	std::vector<Event> events
+)
 {
 	LoggerManager loggerManager;
 
@@ -1037,7 +1022,9 @@ std::vector<Event> EventManager::sortAndGetAllEventsByTimeOfCreation(std::vector
 	return events;
 }
 
-std::vector<Event> EventManager::sortAndGetAllEventsByTitle(std::vector<Event> events)
+std::vector<Event> EventManager::sortAndGetAllEventsByTitle(
+	std::vector<Event> events
+)
 {
 	LoggerManager loggerManager;
 
@@ -1056,7 +1043,9 @@ std::vector<Event> EventManager::sortAndGetAllEventsByTitle(std::vector<Event> e
 	return events;
 }
 
-std::vector<Event> EventManager::sortAndGetAllEventsByDate(std::vector<Event> events)
+std::vector<Event> EventManager::sortAndGetAllEventsByDate(
+	std::vector<Event> events
+)
 {
 	LoggerManager loggerManager;
 

@@ -14,7 +14,7 @@
 #include <application.h>
 
 /**
- * @brief Function for entering and validating regitestration data
+ * @brief Function for entering and validating registration data
  * @return Accout information
 */
 std::vector<std::string> enterRegisterData()
@@ -76,7 +76,7 @@ std::vector<std::string> enterRegisterData()
 }
 
 /**
- * @brief Function for registrating user
+ * @brief Function for registering a user
  * @param accountManager Variable for an account manager
 */
 void registerUser(AccountManager* accountManager)
@@ -84,7 +84,12 @@ void registerUser(AccountManager* accountManager)
     std::vector<std::string> newAccount = enterRegisterData();  
     try
     {
-        accountManager->registerUser(newAccount[1], newAccount[0], newAccount[2], Roles::USER);
+        accountManager->registerUser(
+            newAccount[1],
+            newAccount[0],
+            newAccount[2],
+            Roles::USER
+        );
         printBlankSpace(7, 18);
     }
     catch (std::string errorMessage)
@@ -153,7 +158,12 @@ bool isUserLogedIn(AccountManager* accountManager)
  * @param selectedOption The selected option
  * @param possibleOptions The possible options
 */
-bool switchLoginOptions(AccountManager* accountManager, char key, int& selectedOption, std::vector<std::string> possibleOptions)
+bool switchLoginOptions(
+    AccountManager* accountManager,
+    char key,
+    int& selectedOption,
+    std::vector<std::string> possibleOptions
+)
 {
     bool isLoginSuccessful = false;
     switch (key)
@@ -191,7 +201,7 @@ bool switchLoginOptions(AccountManager* accountManager, char key, int& selectedO
 
 /**
  * @brief Function for login and register
- * @param accountManager Variable for an accouunt manager
+ * @param accountManager Variable for an account manager
 */
 void accountMenu(AccountManager& accountManager)
 {
@@ -222,7 +232,13 @@ void accountMenu(AccountManager& accountManager)
 
         outputOptions(loginOptions, selectedOption);
         pressedKey = _getch();
-        isLoginSuccessful = switchLoginOptions(&accountManager, pressedKey, selectedOption, loginOptions);
+        isLoginSuccessful = switchLoginOptions(
+            &accountManager, 
+            pressedKey,
+            selectedOption,
+            loginOptions
+        );
+
         if (isLoginSuccessful)
         {
             break;

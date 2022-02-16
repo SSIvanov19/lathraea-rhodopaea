@@ -2153,7 +2153,7 @@ void printTeamLogo()
 void printText() {
 	int counter = 1;
 	outputPosition(53, counter + 11);
-	std::cout << "Hello, we are team LATHREA RHODOPEA!";
+	std::cout << "Hello, we are team LATHREA RHODOPAEA!";
 	outputPosition(45, counter + 13);
 	std::cout << "We are making a program for you to organize";
 	outputPosition(45, counter + 14);
@@ -2188,7 +2188,7 @@ void printaboutUs() {
 	outputPosition(35, counter + 1);
 	std::cout << "  ________________________________________________________________" << std::endl;
 	outputPosition(35, counter + 2);
-	std::cout << " / \                                                               \\. " << std::endl;
+	std::cout << " / \\                                                               \\. " << std::endl;
 	outputPosition(35, counter + 3);
 	std::cout << "|   |                                                              \\. " << std::endl;
 	outputPosition(35, counter + 4);

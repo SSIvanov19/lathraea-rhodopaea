@@ -24,7 +24,9 @@ struct DateManager
 	 * @param dates Vector of strings
 	 * @return Vector of tm struct
 	*/
-	std::vector<tm> converVectorOfStringsToVectorOfDate(std::vector<std::string> dates);
+	std::vector<tm> converVectorOfStringsToVectorOfDate(
+		std::vector<std::string> dates
+	);
 
 	/**
 	 * @brief Function for counting leap years to given date

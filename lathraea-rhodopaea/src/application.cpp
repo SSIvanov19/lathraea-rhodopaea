@@ -13,7 +13,11 @@
 #include <front-end/output.h>
 #include <front-end/enumerations.h>
 
-void Application::init(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager)
+void Application::init(
+	AccountManager& accountManager,
+	EventManager& eventManager,
+	StorylineManager& storylineManager
+)
 {
 	// Hide the cursor
 	setCursorVisibilityTo(false);
@@ -104,14 +108,18 @@ void Application::init(AccountManager& accountManager, EventManager& eventManage
 	*/
 }
 
-void Application::run(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager)
+void Application::run(
+	AccountManager& accountManager,
+	EventManager& eventManager, 
+	StorylineManager& storylineManager
+)
 {
 	try
 	{
 		//Loading page
 		printMainPage();
 		loadingAnimation();
-		_getch();
+		(void)_getch();
 		clearConsole();
 
 		const std::vector<std::string> loginOptions =
@@ -133,9 +141,9 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 
 		const std::vector<std::string> adminMenuOptions =
 		{
-			"Event managment",
-			"Storyline managmet",
-			"User managment",
+			"Event management",
+			"Storyline managemet",
+			"User management",
 			"Log out",
 			"Exit"
 		};
@@ -170,13 +178,27 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 				{
 					outputOptions(adminMenuOptions, selectedOption);
 					pressedKey = _getch();
-					switchMenuOptions(&eventManager, &storylineManager, &accountManager, pressedKey, selectedOption, adminMenuOptions);
+					switchMenuOptions(
+						&eventManager, 
+						&storylineManager,
+						&accountManager,
+						pressedKey, 
+						selectedOption, 
+						adminMenuOptions
+					);
 				}
 				else
 				{
 					outputOptions(userMenuOptions, selectedOption);
 					pressedKey = _getch();
-					switchMenuOptions(&eventManager, &storylineManager, &accountManager, pressedKey, selectedOption, userMenuOptions);
+					switchMenuOptions(
+						&eventManager,
+						&storylineManager,
+						&accountManager, 
+						pressedKey, 
+						selectedOption, 
+						userMenuOptions
+					);
 				}
 			}
 			else
@@ -187,6 +209,6 @@ void Application::run(AccountManager& accountManager, EventManager& eventManager
 	}
 	catch (const std::string errorMsg)
 	{
-		std::cout << "The event can not be added\nReason: " + errorMsg << std::endl;;
+		std::cout << "The event can not be added\nReason: " + errorMsg << std::endl;
 	}
 }

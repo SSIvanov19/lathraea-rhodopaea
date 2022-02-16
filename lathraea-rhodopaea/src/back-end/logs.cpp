@@ -62,7 +62,8 @@ void LoggerManager::log(LogSeverity levelOfLog, std::string msg)
 	std::clog.rdbuf(trace_log.rdbuf());
 
 	// log 
-	std::clog << std::put_time(&timeinfo, "%F %T %z %t") << enumToString(levelOfLog) << ": " << msg << std::endl;
+	std::clog << std::put_time(&timeinfo, "%F %T %z %t") 
+		<< enumToString(levelOfLog) << ": " << msg << std::endl;
 
 	// restore
 	std::clog.flush();

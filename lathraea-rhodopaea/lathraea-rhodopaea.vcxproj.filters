@@ -84,6 +84,21 @@
     <ClCompile Include="src\front-end\loginMenu.cpp">
       <Filter>Source Files\front-end</Filter>
     </ClCompile>
+    <ClCompile Include="src\front-end\adminMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\userManagementMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\storylineManagerMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\eventManagerMenu.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
+    <ClCompile Include="src\front-end\helperFunctions.cpp">
+      <Filter>Source Files\front-end</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.h">
@@ -140,5 +155,33 @@
     <ClInclude Include="include\front-end\enumerations.h">
       <Filter>Header Files\front-end</Filter>
     </ClInclude>
+    <ClInclude Include="include\front-end\adminMenu.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\userManagementMenu.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\storylineManagerMenu.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\eventManagerMenu.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="include\front-end\helperFunctions.h">
+      <Filter>Header Files\front-end</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="lathraeaRhodopaea.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\img\iconForApplication.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

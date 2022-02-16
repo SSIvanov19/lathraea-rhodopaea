@@ -45,7 +45,11 @@ struct Application
 	 * @param eventManager Event manager
 	 * @param storylineManager Storyline manager
 	*/
-	void init(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager);
+	void init(
+		AccountManager& accountManager,
+		EventManager& eventManager,
+		StorylineManager& storylineManager
+	);
 
 	/**
 	 * @brief Entry point for the application
@@ -53,5 +57,9 @@ struct Application
 	 * @param eventManager Event manager
 	 * @param storylineManager Storyline manager
 	*/
-	void run(AccountManager& accountManager, EventManager& eventManager, StorylineManager& storylineManager);
+	void run(
+		AccountManager& accountManager, 
+		EventManager& eventManager,
+		StorylineManager& storylineManager
+	);
 };

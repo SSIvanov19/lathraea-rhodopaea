@@ -17,7 +17,9 @@ tm DateManager::convertStringToDate(std::string dateInString)
 	return tm;
 }
 
-std::vector<tm> DateManager::converVectorOfStringsToVectorOfDate(std::vector<std::string> dates)
+std::vector<tm> DateManager::converVectorOfStringsToVectorOfDate(
+	std::vector<std::string> dates
+)
 {
 	std::vector<tm> returnVal;
 

@@ -48,7 +48,10 @@ void AccountList::addUser(Account data)
 	}
 }
 
-bool AccountList::doesUserExist(std::string emailToCheck, Account * *accountData = nullptr)
+bool AccountList::doesUserExist(
+	std::string emailToCheck, 
+	Account * *accountData = nullptr
+)
 {
 	AccountList* temp = this;
 
