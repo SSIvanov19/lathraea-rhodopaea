@@ -62,7 +62,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON1               ICON                    "C:\\Users\\SSIvanov19\\source\\repos\\lathraea-rhodopaea\\img\\iconForApplication.ico"
+IDI_ICON1               ICON                    "..\\img\\iconForApplication.ico"
 
 #endif    // English (United Kingdom) resources
 /////////////////////////////////////////////////////////////////////////////
