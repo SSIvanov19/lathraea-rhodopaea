@@ -514,9 +514,16 @@ void printAlmostOpenedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .   " << std::endl;
 	outputPosition(19, counter + 4);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
-	std::cout << "                          ` " << (char)CHARACTERS::HORIZONTAL_LINE;
-	std::cout << " .    " << std::endl;
-	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE << "                                 ` ";
+	std::cout << "                         `  " << (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << "   .                                  . ";
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ";
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " "; (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
+	std::cout << " " << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
+	std::cout << "                       `   ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .                             . ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " " << (char)CHARACTERS::HORIZONTAL_LINE;
@@ -528,8 +535,8 @@ void printAlmostOpenedBook()
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ." << std::endl;
 	outputPosition(19, counter + 5);
 	std::cout << "  " << (char)CHARACTERS::VERTICAL_LINE;
-	std::cout << "                                      ` ";
-	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " .                 ";
+	std::cout << "                                    `  ";
+	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << "  .                ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << " ' '                         ' ";
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << (char)CHARACTERS::HORIZONTAL_LINE;
 	std::cout << (char)CHARACTERS::HORIZONTAL_LINE << std::endl;
@@ -635,7 +642,6 @@ void printAlmostOpenedBook()
 	}
 	std::cout << " '" << std::endl;
 }
-
 /**
  * @brief Function for printing fully open book.
 */
