@@ -880,8 +880,12 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+
+		struct tm timeinfo;
+		localtime_s(&timeinfo, &e.timeOfCreation);
+
 		outputPosition(81, 14);
-		std::cout << "Time of creation: " << e.timeOfCreation;
+		std::cout << "Time of creation: " << std::put_time(&timeinfo, "%x");
 		outputPosition(81, 16);
 		std::cout << "Type: Uprising";
 		outputPosition(81, 18);
@@ -900,8 +904,8 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 			std::cout << "Success: ";
 			switch (e.isItSuccessful)
 			{
-			case 0: std::cout << "No";
-			case 1: std::cout << "Yes";
+			case 0: std::cout << "No"; break;
+			case 1: std::cout << "Yes"; break;
 			}
 			outputPosition(81, 29);
 			std::cout << "Number of rebellions: " << e.numberOfRebelions;
@@ -918,8 +922,8 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 			std::cout << "Success: ";
 			switch (e.isItSuccessful)
 			{
-			case 0: std::cout << "No";
-			case 1: std::cout << "Yes";
+			case 0: std::cout << "No"; break;
+			case 1: std::cout << "Yes"; break;
 			}
 			outputPosition(81, 25);
 			std::cout << "Number of rebellions: " << e.numberOfRebelions;
@@ -934,8 +938,10 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		localtime_s(&timeinfo, &e.timeOfCreation);
+
 		outputPosition(81, 14);
-		std::cout << "Time of creation: " << e.timeOfCreation;
+		std::cout << "Time of creation: " << std::put_time(&timeinfo, "%x");
 		outputPosition(81, 16);
 		std::cout << "Type: War";
 		outputPosition(81, 18);
@@ -986,8 +992,10 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		localtime_s(&timeinfo, &e.timeOfCreation);
+
 		outputPosition(81, 14);
-		std::cout << "Time of creation: " << e.timeOfCreation;
+		std::cout << "Time of creation: " << std::put_time(&timeinfo, "%x");
 		outputPosition(81, 16);
 		std::cout << "Type: Movement";
 		outputPosition(81, 18);
@@ -1036,12 +1044,27 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 		printFullyOpenedBook();
 		outputPosition(81, 12);
 		std::cout << "Title: " << e.title;
+		localtime_s(&timeinfo, &e.timeOfCreation);
+
 		outputPosition(81, 14);
-		std::cout << "Time of creation: " << e.timeOfCreation;
+		std::cout << "Time of creation: " << std::put_time(&timeinfo, "%x");
 		outputPosition(81, 16);
 		std::cout << "Type: Other";
 		outputPosition(81, 18);
-		std::cout << "Epoch: " << e.epochs[0];
+		std::cout << "Epoch: ";
+		for (size_t i = 0; i < e.epochs[0].size(); i++)
+		{
+			if (i != 0)
+			{
+				if (e.epochs[0][i - 1] == '>')
+				{
+					outputPosition(81, 19);
+				}
+			}
+
+			std::cout << e.epochs[0][i];
+		}
+
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 21);
@@ -1455,6 +1478,8 @@ void printBy(EventManager* eventManager, bool getAllEvents)
 				chooseSorting(eventManager, 3, getAllEvents);
 				break;
 			}
+		case (int)ARROW_KEYS::KEY_ESC:
+			return;
 		}
 	}
 }

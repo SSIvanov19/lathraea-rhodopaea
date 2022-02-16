@@ -22,88 +22,95 @@ void Application::init(
 	// Hide the cursor
 	setCursorVisibilityTo(false);
 
-	//setConsoleColorTo((int)COLORS::WHITE);
-
 	// Premade events
-	eventManager.addUprisingEvent(
-		"April Uprising",
-		{ "20 apr 1876", "15 may 1876" },
-		{ 30, 76 },
-		{ "Stefan Stambolov", "Ilarion Dragostinov", "Stoyan Zaimov", "Zahari Stoyanov" },
-		false,
-		200
-	);
-	
-
-	eventManager.addUprisingEvent(
-		"Uprising of Vanya Velikova",
-		{ "18 sep 2021" },
-		{ 45, 23 },
-		{ "Vanya Velikoa", "Qsha Beibi" },
-		true,
-		1
-	);
-
-	eventManager.addWarEvent(
-		"Crimean War",
-		{ "16 oct 1853", "30 mar 1856" },
-		{ 33, 43 },
-		{ "Ottoman Empire", "Russian Empire" },
-		"Otoman Empire",
-		"Lorem ipsum"
-	);
-
-	eventManager.addMovementEvent(
-		"Qsha movement",
-		{ "19 jan 2020", "14 jan 2022" },
-		{ 67, 23 },
-		"Long story",
-		"Djena e velika",
-		"Qsha beibi",
-		{ "Slavka Kalcheva",
-		"1114131374",
-		"Mariana Kalcheva",
-		"Margarita Kalcheva",
-		"Darina Kalcheva Georgieva-Pavlova",
-		"Vanya Kycheck",
-		"D-R Blagosweta Kalcheva",
-		"D-R Svetla Kalcheva",
-		"Debel Kalchev",
-		"Rumena Kalcheva"
-		},
-		"Qsha jelqzko"
-	);
-
 	eventManager.addOtherEvent(
 		"Giurgiu Revolutionary Committee",
 		{ "11 nov 1875", "25 dec 1875" },
-		{ 34, 56 },
-		"Giurgiu Revolutionary Committee lorem ipsum lorem"
+		{ 85, 15 },
+		"Example of other event"
 	);
 
 	eventManager.addOtherEvent(
-		"Qsha",
-		{ "11 nov 1875", "25 dec 1875" },
-		{ 67, 34 },
-		"Giurgiu Revolutionary Committee lorem ipsum lorem"
+		"Start of the uprising",
+		{ "11 nov 1875" },
+		{ 66, 26 },
+		"Start of the April Uprising in Koprivshtitsa"
 	);
 
 	eventManager.addOtherEvent(
-		"Djana Koleva",
-		{ "11 nov 1875", "25 dec 1875" },
-		{ 46, 34 },
-		"Giurgiu Revolutionary Committee lorem ipsum lorem"
+		"Batak massacre",
+		{ "20 apr 1876" },
+		{ 64, 30 },
+		"Batak massacre"
 	);
 
-	//eventManager.approveEvent("April Uprising");
-	eventManager.approveEvent("Uprising of Vanya Velikova");
-	eventManager.approveEvent("Crimean War");
-	eventManager.approveEvent("Qsha movement");
+	eventManager.addOtherEvent(
+		"Hristo Botev",
+		{ "1 june 1876" },
+		{ 54, 20 },
+		"Hristo Botev's death"
+	);
+
+	eventManager.addOtherEvent(
+		"Example 1",
+		{ "1 june 1876" },
+		{ 0, 0 }
+	);
+
+	eventManager.addOtherEvent(
+		"Example 2",
+		{ "1 june 1877" },
+		{ 0, 0 }
+	);
+
+	eventManager.addOtherEvent(
+		"Example 3",
+		{ "1 june 1878" },
+		{ 0, 0 }
+	);
+
+	eventManager.addOtherEvent(
+		"Example 4",
+		{ "1 june 1879" },
+		{ 0, 0 }
+	);
+
+	eventManager.addOtherEvent(
+		"Example 5",
+		{ "1 june 1880" },
+		{ 0, 0 }
+	);
+
+	eventManager.addOtherEvent(
+		"Example 6",
+		{ "1 june 1882" },
+		{ 0, 0 }
+	);
+	
+	eventManager.addUprisingEvent(
+		"Uprising of Karposh",
+		{ "10 oct 1689", "18 dec 1689" },
+		{ 0, 0 },
+		{ "Karposh", "Selim Girai" },
+		false,
+		200,
+		"Uprising in North Macedonia"
+	);
+
+	eventManager.approveEvent("Example 1");
+	eventManager.approveEvent("Example 2");
+	eventManager.approveEvent("Example 3");
+	eventManager.approveEvent("Example 4");
+	eventManager.approveEvent("Example 5");
+	eventManager.approveEvent("Example 6");
+
+	storylineManager.addStoryline("Example Storyline", eventManager.sortAndGetAllEventsByDate(eventManager.getAllEvents(1)), "Example desc");
+
 	eventManager.approveEvent("Giurgiu Revolutionary Committee");
-	eventManager.approveEvent("Qsha");
-	eventManager.approveEvent("Djana Koleva");
-
-	storylineManager.addStoryline("Storyline 1", eventManager.sortAndGetAllEventsByDate(eventManager.getAllEvents(1)), "Sick desc");
+	eventManager.approveEvent("Start of the uprising");
+	eventManager.approveEvent("Batak massacre");
+	eventManager.approveEvent("Hristo Botev");
+	eventManager.approveEvent("Uprising of Karposh");
 }
 
 void Application::run(

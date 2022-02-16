@@ -89,7 +89,7 @@ void adminStorylineManagement(
 				// Display storylines
 				displayStoryline(storylineManager, true);
 				break;
-			case 5:
+			case 4:
 				deleteStoryline(storylineManager);
 				break;
 			}
