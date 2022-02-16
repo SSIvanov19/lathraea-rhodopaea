@@ -24,7 +24,6 @@ void Application::init(
 
 	//setConsoleColorTo((int)COLORS::WHITE);
 
-	/*
 	// Premade events
 	eventManager.addUprisingEvent(
 		"April Uprising",
@@ -105,7 +104,6 @@ void Application::init(
 	eventManager.approveEvent("Djana Koleva");
 
 	storylineManager.addStoryline("Storyline 1", eventManager.sortAndGetAllEventsByDate(eventManager.getAllEvents(1)), "Sick desc");
-	*/
 }
 
 void Application::run(

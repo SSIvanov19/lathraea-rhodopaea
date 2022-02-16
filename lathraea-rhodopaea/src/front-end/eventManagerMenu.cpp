@@ -1,4 +1,8 @@
-﻿#include <front-end/output.h>
+﻿/*! @file eventManagerMenu.cpp
+*   @brief A source file for the event menu handaling system.
+*/
+
+#include <front-end/output.h>
 #include <front-end/graphics.h>
 #include <front-end/enumerations.h>
 #include <front-end/helperFunctions.h>
@@ -1182,9 +1186,7 @@ void printEventInfo(const std::vector<Event> events, int output)
 				for (int j = 0; j < events[i].period.size(); j++)
 				{
 					outputPosition(84, 10 + i * 2);
-					std::cout << events[i].title << " - " << events[i].period[j].tm_mday 
-						<< " " << events[i].period[j].tm_mon + 1 
-						<< " " << events[i].period[j].tm_year + 1900 << std::endl;
+					std::cout << events[i].title << " - " << std::put_time(&events[i].period[j], "%x") << std::endl;
 				}
 			}
 			else if (output == 2)
@@ -1194,9 +1196,7 @@ void printEventInfo(const std::vector<Event> events, int output)
 					for (int j = 0; j < events[i].period.size(); j++)
 					{
 						outputPosition(84, 10 + i * 2);
-						std::cout << events[i].period[j].tm_mday << " " 
-							<< events[i].period[j].tm_mon + 1 << " " 
-							<< events[i].period[j].tm_year + 1900 << " - " 
+						std::cout << std::put_time(&events[i].period[j], "%x") << " - "
 							<< events[i].title;
 					}
 				}
@@ -1501,9 +1501,7 @@ void printAsMap(EventManager* eventManager, bool getAllEvents)
 			{
 				outputPosition(84, 10 + i * 2);
 				std::cout << allEvents[i].title << " - " 
-					<< allEvents[i].period[j].tm_mday << " "
-					<< allEvents[i].period[j].tm_mon + 1 << " " 
-					<< allEvents[i].period[j].tm_year + 1900 << std::endl;
+					<< std::put_time(&allEvents[i].period[j], "%x") << std::endl;
 			}
 
 		}
@@ -1590,9 +1588,7 @@ void editEvent(EventManager* eventManager)
 			{
 				outputPosition(84, 12 + i * 2);
 				std::cout << approveEvents[i].title << " - " 
-					<< approveEvents[i].period[j].tm_mday << " " 
-					<< approveEvents[i].period[j].tm_mon + 1 << " " 
-					<< approveEvents[i].period[j].tm_year + 1900 << std::endl;
+					<< std::put_time(&approveEvents[i].period[j], "%x") << std::endl;
 			}
 
 		}

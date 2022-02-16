@@ -1,5 +1,5 @@
-/*! @file login.h
-*   @brief A header file for the login and register menu options
+/*! @file loginMenu.h
+*   @brief A header file for the login menu handaling system.
 */
 
 #pragma once

@@ -1,3 +1,7 @@
+/*! @file helperFunctions.h
+*   @brief A header file with a bunch of small helper functions.
+*/
+
 #pragma once
 #include <string>
 #include <vector>

@@ -1,3 +1,7 @@
+/*! @file userManagementMenu.h
+*   @brief A header file for the user management menu handaling system.
+*/
+
 #pragma once
 #include <iostream>
 #include <conio.h>

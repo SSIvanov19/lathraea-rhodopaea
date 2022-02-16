@@ -1,3 +1,7 @@
+/*! @file userManagementMenu.cpp
+*   @brief A source file for the user management menu handaling system.
+*/
+
 #include <front-end/userManagementMenu.h>
 #include <front-end/output.h>
 #include <front-end/graphics.h>
@@ -249,7 +253,7 @@ void viewAllUsers(AccountManager* accountManager)
 		case (int)ARROW_KEYS::KEY_ENTER:
 			clearConsole();
 			printFullyOpenedBook();
-			showUserInfo(allAccounts[int(selectedOption)- 1], accountManager);
+			showUserInfo(allAccounts[__int64(selectedOption)- 1], accountManager);
 		case (int)ARROW_KEYS::KEY_ESC:
 			// Return to main menu
 			clearConsole();

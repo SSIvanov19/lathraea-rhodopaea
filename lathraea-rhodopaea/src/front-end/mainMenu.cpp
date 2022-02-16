@@ -1,3 +1,7 @@
+/*! @file mainMenu.cpp
+*   @brief A source file for the main menu handaling system.
+*/
+
 #include <front-end/output.h>
 #include <front-end/graphics.h>
 #include <front-end/adminMenu.h>

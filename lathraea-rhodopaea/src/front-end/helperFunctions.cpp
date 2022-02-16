@@ -1,3 +1,7 @@
+/*! @file helperFunctions.cpp
+*   @brief A source file with a bunch of small helper functions.
+*/
+
 #include <front-end/helperFunctions.h>
 
 bool isValidMonthName(std::string month)

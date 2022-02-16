@@ -1,6 +1,7 @@
 /*! @file mainMenu.h
-*   @brief A header file for the functions used for the main menu.
+*   @brief A header file for the main menu handaling system.
 */
+
 #pragma once
 
 #include <iostream>

@@ -1,3 +1,7 @@
+/*! @file storylineManager.cpp
+*   @brief A source file for the storyline system.
+*/
+
 #include <back-end/storylineManager.h>
 
 Storyline::Storyline(

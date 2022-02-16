@@ -1,3 +1,7 @@
+/*! @file loginMenu.cpp
+*   @brief A source file for the login menu handaling system.
+*/
+
 #include <iostream>
 #include <windows.h>
 #include <vector>

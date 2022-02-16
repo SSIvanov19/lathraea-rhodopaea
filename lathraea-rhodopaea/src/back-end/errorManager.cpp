@@ -1,5 +1,8 @@
-#include <back-end/errorManager.h>
+/*! @file errorManager.cpp
+*   @brief A source file for the error-handling.
+*/
 
+#include <back-end/errorManager.h>
 
 /**
  * @brief Converts error code to error description

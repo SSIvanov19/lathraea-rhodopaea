@@ -1,3 +1,7 @@
+/*! @file storylineManagerMenu.h
+*   @brief A header file for the storyline menu handaling system.
+*/
+
 #pragma once
 
 #include <back-end/eventManager.h>

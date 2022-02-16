@@ -1,3 +1,7 @@
+/*! @file adminMenu.h
+*   @brief A header file for the admin menu handaling system.
+*/
+
 #pragma once
 #include <back-end/eventManager.h>
 #include <back-end/storylineManager.h>

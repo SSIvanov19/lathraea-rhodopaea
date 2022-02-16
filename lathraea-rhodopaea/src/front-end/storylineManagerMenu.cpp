@@ -1,3 +1,7 @@
+/*! @file storylineManagerMenu.cpp
+*   @brief A source file for the storyline menu handaling system.
+*/
+
 #include <front-end/storylineManagerMenu.h>
 #include <front-end/enumerations.h>
 #include <front-end/graphics.h>

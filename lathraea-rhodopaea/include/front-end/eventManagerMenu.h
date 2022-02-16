@@ -1,3 +1,7 @@
+/*! @file eventManagerMenu.h
+*   @brief A header file for the event menu handaling system.
+*/
+
 #pragma once
 #include <back-end/eventManager.h>
 #include <conio.h>

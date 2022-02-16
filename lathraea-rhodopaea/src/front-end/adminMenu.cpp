@@ -1,3 +1,7 @@
+/*! @file adminMenu.cpp
+*   @brief A source file for the admin menu handaling system.
+*/
+
 #include <front-end/output.h>
 #include <front-end/graphics.h>
 #include <front-end/adminMenu.h>

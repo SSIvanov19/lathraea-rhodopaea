@@ -1,5 +1,5 @@
-/*! @file animation.cpp
-*   @brief A source file for the animations.
+/*! @file animations.cpp
+*   @brief A source file for the application animations.
 */
 
 #include <iostream>

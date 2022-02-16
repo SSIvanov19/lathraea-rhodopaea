@@ -1,3 +1,7 @@
+/*! @file storylineManager.h
+*   @brief A header file for the storyline system.
+*/
+
 #pragma once
 #include <string>
 #include <vector>
