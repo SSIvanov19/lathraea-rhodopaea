@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "..\lathraea-rhodopaea\include\back-end\validations.h"
+#include <back-end/validations.h>
+#include <back-end/validations.cpp>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
