@@ -156,20 +156,6 @@ void Application::run(
 		char pressedKey;
 		int selectedOption = 1;
 
-		/*
-		accountManager.registerUser(
-			"SSIvanov19",
-			"SSIvanov19@cb.bg",
-			"Password123",
-			Roles::USER
-		);
-
-		accountManager.loginUser(
-			"SSIvanov19@cb.bg",
-			"Password123"
-		);
-		*/
-
 		printClosedBook();
 		printBookDecorations();
 		printSnakeSword();

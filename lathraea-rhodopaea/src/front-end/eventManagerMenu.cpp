@@ -945,7 +945,20 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 		outputPosition(81, 16);
 		std::cout << "Type: War";
 		outputPosition(81, 18);
-		std::cout << "Epoch: " << e.epochs[0];
+		std::cout << "Epoch: ";
+		for (size_t i = 0; i < e.epochs[0].size(); i++)
+		{
+			if (i != 0)
+			{
+				if (e.epochs[0][i - 1] == '>')
+				{
+					outputPosition(81, 19);
+				}
+			}
+
+			std::cout << e.epochs[0][i];
+		}
+
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 21);
@@ -999,7 +1012,21 @@ void displayEvent(const Event& e, bool approve, EventManager* eventManager)
 		outputPosition(81, 16);
 		std::cout << "Type: Movement";
 		outputPosition(81, 18);
-		std::cout << "Epoch: " << e.epochs[0];
+		std::cout << "Epoch: ";
+
+		for (size_t i = 0; i < e.epochs[0].size(); i++)
+		{
+			if (i != 0)
+			{
+				if (e.epochs[0][i - 1] == '>')
+				{
+					outputPosition(81, 19);
+				}
+			}
+
+			std::cout << e.epochs[0][i];
+		}
+
 		if (e.period.size() == 2)
 		{
 			outputPosition(81, 21);
