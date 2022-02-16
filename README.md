@@ -33,7 +33,6 @@ Mariq Ilcheva | <a href = "https://github.com/MZIlcheva19/mzilcheva19"> MZIlchev
 Vesela Dekova | <a href = "https://github.com/VBDekova19/vbdekova19"> VBDekova19</a> | Front-end Developer
 Polina Petrova | <a href = "https://github.com/PYPetrova19/pypetrova19"> PYPetrova19</a> | QA Engineer
 
-# Online Documentation
   
 ##  Demo of our Project<a name = "demo-of-our-project"></a>
   <img src= "img/firstPage.png" width="800">

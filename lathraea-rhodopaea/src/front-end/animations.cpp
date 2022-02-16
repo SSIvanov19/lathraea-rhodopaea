@@ -23,22 +23,22 @@ void delay(int seconds)
 void bookAnimation()
 {
 	printOpenedBook();
-	delay(120);
+	delay(100);
 	clearConsole();
 	printOnePageLeafedBook();
-	delay(120);
+	delay(100);
 	clearConsole();
 	pageLeafingLeftOne();
-	delay(120);
+	delay(100);
 	clearConsole();
 	pageLeafingLeftTwo();
-	delay(120);
+	delay(10);
 	clearConsole();
 	pageLeafingRightTwo();
-	delay(120);
+	delay(100);
 	clearConsole();
 	pageLeafingRightOne();
-	delay(120);
+	delay(100);
 	clearConsole();
 	printOpenedBook();
 }
