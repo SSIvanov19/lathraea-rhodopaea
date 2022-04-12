@@ -1,69 +1,62 @@
 <div align = "center">
-<img src= "img/logoBanner.png" width="1000">
-
+<div>
+  <img src = "https://cdn.discordapp.com/attachments/934036037922078759/943518270026289162/logoBanner.png" alt="logo"> 
 </div>
-
-<div align = "center">
- <h1>Hello, we are team Lathraea rhodopaea!<h1>
-
- <div align = "center">
+<br>
+<div>
    <img src = "https://img.shields.io/github/languages/count/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
    <img src = "https://img.shields.io/github/contributors/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
    <img src = "https://img.shields.io/github/repo-size/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
    <img src = "https://img.shields.io/github/last-commit/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
    <img src = "https://img.shields.io/github/languages/top/SSIvanov19/lathraea-rhodopaea?style=for-the-badge">
- </div>
 </div>
 
-You can view our Presentation here: [Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/vmmihaylov19_codingburgas_bg/EXXSPE_PIS1KuVWciFPpxUgBndSAjtLEEcKtulO2y2bIng?e=tjojwV)
-<br>
+<hr>
+<p style = "font-size:4em">
+  <strong>
+ Program for adding, removing, editing and visualising events related to history.
+  </strong>
+</p>
+<hr>
+</div>
 
-# About
-  We made a program to help you add , edit, remove, connect and vvisualise different events, wars, movements and rebellions!
+<h1>💻 About  </h1>
+<p>
+ We made a program to help you add, edit, remove, connect and visualise different events, wars, movements and rebellions!
+</p>
+<h1>🎥 Demo of our project </h1>
+<img src  = "https://raw.githubusercontent.com/SSIvanov19/lathraea-rhodopaea/main/img/firstPage.png" alt="demo img 1" width="728px">
+<img src  = "https://raw.githubusercontent.com/SSIvanov19/lathraea-rhodopaea/main/img/menu.png" alt="demo img 2" width="728px">
 
-<br>
-
-## Participants <a name = "participants"></a>
-
-Name   | Github profile| Role
--------|---------------|------
-Stoqn Ivanov | <a href = "https://github.com/SSIvanov19"> SSIvanov19</a> | Back-end Developer
-Vasilen Mihaylov | <a href = "https://github.com/VMMihaylov19/vmmihaylov19"> VMMihaylov19</a> | Scrum trainer
-Mariq Ilcheva | <a href = "https://github.com/MZIlcheva19/mzilcheva19"> MZIlcheva19</a> | Front-end Developer
-Vesela Dekova | <a href = "https://github.com/VBDekova19/vbdekova19"> VBDekova19</a> | Front-end Developer
-Polina Petrova | <a href = "https://github.com/PYPetrova19/pypetrova19"> PYPetrova19</a> | QA Engineer
-
-  
-##  Demo of our Project<a name = "demo-of-our-project"></a>
-  <img src= "img/firstPage.png" width="800">
-  <img src= "img/menu.png" width="1000">
-
-
-##  Used technologies <a name = "used-technologies"></a>
-
- 
-
-<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg/2203px-Microsoft_Office_Excel_%282019%E2%80%93present%29.svg.png" width= "23"> Excel <br>
-<img src = "https://www.freepnglogos.com/uploads/discord-logo-png/concours-discord-cartes-voeux-fortnite-france-6.png" width = "25"> Discord <br>
-<img src = "https://heliocentrix.co.uk/wp-content/uploads/2020/04/microsoft-teams-logo-png_480-480.png" width = "25"> Teams <br>
-<img src = "https://upload.wikimedia.org/wikipedia/commons/3/3b/Microsoft_PowerPoint_Logo.png" width ="25"> PowerPoint <br> 
-<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/1200px-Visual_Studio_Icon_2019.svg.png"  width = "20"> Visual Studio  <br>
-<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/1051px-Adobe_Illustrator_CC_icon.svg.png" width = "25"> Adobe Illustrator  
-
- 
-
-##  Installation
-<a name = "installation"></a>
-
-
- 
-
- - Open cmd with Windows + "R"; <br>
- - Clone the repo with the command: <br>
-```bash
-https://github.com/SSIvanov19/lathraea-rhodopaea.git
-```
- 
-- Or you can download it from the site.
-
-# We hope you to enjoy our project!
+<h1>⌨️ How it works</h1>
+<p><strong>Our work can be split on 2 main things :</p></strong>
+<ol>
+  <li>👨‍💻 Back end : 
+    <ul>
+      <li>The back-end is our logic layer.</li>
+      <li>It manages events, storylines and users with the uses of linked lists.</li>
+    </ul>
+  </li>
+  <li> Front end :  
+    <ul>
+      <li>The front-end is our presentation layer.</li>
+      <li>It controls what the user is experiencing with the application.</li>
+    </ul>
+  </li>
+  <li> <p>Here you can see how these two parts combines and create our project:</p>
+    <ul>
+     <li> <img src  = "https://media.discordapp.net/attachments/934036037922078759/943520736356749423/unknown.png" alt="demo img 3" width="728px">
+     <img src  = "https://media.discordapp.net/attachments/934036037922078759/943521049524465684/unknown.png" alt="demo img 4" width="728px"> </li>
+    </ul>
+  </li>
+</ol>
+<h1> 📥 Installing </h1>
+<p> To install our project on your machine you just need to clone it. This can be done by : </p>
+<pre>git clone https://github.com/SSIvanov19/lathraea-rhodopaea.git</pre>
+<p> You can open the project by opening the <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Visual_Studio_Icon_2019.svg/512px-Visual_Studio_Icon_2019.svg.png" height="18px" alt="vs logo"><strong> lathraeaRhodopaea.sln </strong> file </p>
+<h1>🧒 Our Team</h1>
+<p>Vasilen Mihaylov - <a href = "https://github.com/VMMihaylov19"> VMMihaylov19</a> - Scrum trainer</p>
+<p>Stoyan Ivanov - <a href = "https://github.com/SSIvanov19"> SSIvanov19</a> - Back-end Developer </p>
+<p>Mariya Ilcheva - <a href = "https://github.com/MZIlcheva19"> MZIlcheva19 </a> - Front-end Developer </p>
+<p>Vesela Dekova - <a href = "https://github.com/VBDekova19"> VBDekova19 </a> - Front-end Developer </p>
+<p>Polina Petrova - <a href = "https://github.com/TTKarchev19"> PYPetrova19 </a> - QA Engineer </p>
