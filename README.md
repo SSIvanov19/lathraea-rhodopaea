@@ -25,9 +25,10 @@
  We made a program to help you add, edit, remove, connect and visualise different events, wars, movements and rebellions!
 </p>
 <h1>🎥 Demo of our project </h1>
-<img src  = "https://raw.githubusercontent.com/SSIvanov19/lathraea-rhodopaea/main/img/firstPage.png" alt="demo img 1" width="728px">
-<img src  = "https://raw.githubusercontent.com/SSIvanov19/lathraea-rhodopaea/main/img/menu.png" alt="demo img 2" width="728px">
-
+<div align = "center">
+<img src  = "https://media.discordapp.net/attachments/934036037922078754/963502147683622912/unknown.png" alt="demo img 1" width="728px">
+<img src  = "https://media.discordapp.net/attachments/934036037922078754/963502147884953660/unknown.png" alt="demo img 2" width="728px">
+</div>
 <h1>⌨️ How it works</h1>
 <p><strong>Our work can be split on 2 main things :</p></strong>
 <ol>
@@ -45,8 +46,10 @@
   </li>
   <li> <p>Here you can see how these two parts combines and create our project:</p>
     <ul>
-     <li> <img src  = "https://media.discordapp.net/attachments/934036037922078759/943520736356749423/unknown.png" alt="demo img 3" width="728px">
-     <img src  = "https://media.discordapp.net/attachments/934036037922078759/943521049524465684/unknown.png" alt="demo img 4" width="728px"> </li>
+      <div align = "center">
+     <img src  = "https://media.discordapp.net/attachments/934036037922078759/943520736356749423/unknown.png" alt="demo img 3" width="728px">
+     <img src  = "https://media.discordapp.net/attachments/934036037922078759/943521049524465684/unknown.png" alt="demo img 4" width="728px"> 
+      </div>
     </ul>
   </li>
 </ol>
